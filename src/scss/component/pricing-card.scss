@@ -14,7 +14,13 @@
   }
 
   &.pricing-card--danger {
-    border-top: 5px solid $color-red;
+    border-top: 5px solid $color-accent;
+    .new-project{
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
   }
 
   hr {

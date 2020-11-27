@@ -18,7 +18,7 @@
   position: relative;
   padding: 50px 40px 60px 40px;
   text-align: center;
-
+  background-color: #232329;
   @include themify($themes) {
     background-color: themed('colorBackground');
     color: themed('colorText');

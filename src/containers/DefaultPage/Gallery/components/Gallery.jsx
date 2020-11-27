@@ -5,6 +5,7 @@ import Carousel from '@brainhubeu/react-carousel';
 import ChevronLeftIcon from 'mdi-react/ChevronLeftIcon';
 import ChevronRightIcon from 'mdi-react/ChevronRightIcon';
 import '@brainhubeu/react-carousel/lib/style.css';
+import '@brainhubeu/react-carousel/lib/style.css';
 
 export default class Gallery extends Component {
   static propTypes = {
@@ -134,7 +135,8 @@ export default class Gallery extends Component {
                 <div className="modal__btn">
                   <ChevronRightIcon className="modal__btn_right" />
                 </div>}
-            />
+            >
+            </Carousel>
             <div className="modal__footer">
               <p>{currentImage + 1} of {carouselImages.length}</p>
             </div>

@@ -4,22 +4,14 @@ import Gallery from './Gallery';
 import Items from './imgs';
 
 const tags = [
-  { tag: 'sneakers', title: 'sneakers' },
-  { tag: 'cap', title: 'cap' },
-  { tag: 'watch', title: 'watch' },
-  { tag: 'glasses', title: 'glasses' },
+  { tag: 'cap', title: 'Images' },
+  { tag: 'watch', title: 'Videos' },
+  { tag: 'glasses', title: 'Charts' }
 ];
 
 const FilterGallery = () => (
   <Col md={12} lg={12}>
-    <Card>
-      <CardBody>
-        <div className="card__title">
-          <h5 className="bold-text">Filter Gallery</h5>
-        </div>
-        <Gallery images={Items} tags={tags} />
-      </CardBody>
-    </Card>
+      <Gallery images={Items} tags={tags} />
   </Col>
 );
 

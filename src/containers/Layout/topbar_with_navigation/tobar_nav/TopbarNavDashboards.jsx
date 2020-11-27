@@ -8,29 +8,32 @@ import TopbarNavLink from './TopbarNavLink';
 const TopbarNavDashboards = () => (
   <UncontrolledDropdown className="topbar__nav-dropdown">
     <DropdownToggle className="topbar__nav-dropdown-toggle">
-      Dashboards <DownIcon />
+      Pages <DownIcon />
     </DropdownToggle>
     <DropdownMenu className="topbar__nav-dropdown-menu dropdown__menu">
       <DropdownItem>
-        <TopbarNavLink title="Online Marketing Dashboard" icon="home" route="/online_marketing_dashboard" />
+        <TopbarNavLink title="Projects" icon="home" route="/online_marketing_dashboard" />
       </DropdownItem>
       <DropdownItem>
-        <TopbarNavLink title="E-commerce Dashboard" icon="store" route="/e_commerce_dashboard" />
+        <TopbarNavLink title="Gallery" icon="store" route="/e_commerce_dashboard" />
       </DropdownItem>
       <DropdownItem>
-        <TopbarNavLink title="App Dashboard" icon="smartphone" route="/app_dashboard" />
+        <TopbarNavLink title="Report" icon="smartphone" route="/app_dashboard" />
       </DropdownItem>
       <DropdownItem>
-        <TopbarNavLink title="Booking Dashboard" icon="apartment" route="/booking_dashboard" />
-      </DropdownItem>
-      <DropdownItem>
-        <TopbarNavLink title="Finance Dashboard" icon="rocket" route="/finance_dashboard" />
-      </DropdownItem>
-      <DropdownItem>
-        <TopbarNavLink title="Fitness Dashboard" icon="heart-pulse" route="/fitness_dashboard" />
+        <TopbarNavLink title="Studio" icon="apartment" route="/booking_dashboard" />
       </DropdownItem>
     </DropdownMenu>
   </UncontrolledDropdown>
 );
 
 export default TopbarNavDashboards;
+
+{/*
+  <DropdownItem>
+    <TopbarNavLink title="Finance Dashboard" icon="rocket" route="/finance_dashboard" />
+  </DropdownItem>
+  <DropdownItem>
+    <TopbarNavLink title="Fitness Dashboard" icon="heart-pulse" route="/fitness_dashboard" />
+  </DropdownItem>
+  */}

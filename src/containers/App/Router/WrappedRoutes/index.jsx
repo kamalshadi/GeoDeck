@@ -21,6 +21,7 @@ import AppDashboard from '../../../Dashboards/App/index';
 import BookingDashboard from '../../../Dashboards/Booking/index';
 import FitnessDashboard from '../../../Dashboards/Fitness/index';
 import VisDash from '../../../Main';
+import Projects from '../../../GeoDeck/Projects';
 
 import Mail from '../../../Mail/index';
 
@@ -50,6 +51,7 @@ export default () => {
         <Route path="/default_pages" component={DefaultPages} />
         <Route path="/documentation" component={Documentation} />
         <Route path="/main" component={VisDash} />
+        <Route path="/projects" component={Projects} />
       </div>
     </div>
   );
