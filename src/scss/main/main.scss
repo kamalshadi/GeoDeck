@@ -24,6 +24,7 @@ $controlbarHeight:200px;
     left: 0px;
     top: 0px;
     display: flex;
+    font-size: 24px;
     flex-direction: column;
     &>*{
       margin-bottom: $toolIconSpace;
@@ -37,11 +38,12 @@ $controlbarHeight:200px;
     &>div:first-child{
       padding-top: 0px;
     }
+
     height: calc(100vh - 60px);
     width: 100%;
     padding-left: $toolbarWidth;
     padding-right: $detailbarWidth;
-    // background-color: red;
+    background-color: #000014;
     display: flex;
     flex-direction: column;
     .chart-container{
@@ -57,13 +59,144 @@ $controlbarHeight:200px;
         align-items: center;
         // background-color: red;
       }
+      &>div:last-child{
+        // background-color: red;
+        display: flex;
+        justify-content: space-between;
+      }
     }
     .control-bar{
       height: $controlbarHeight;
-      @include themify($themes) {
-        background-color: themed('colorBackground');
-      }
+      // @include themify($themes) {
+      //   background-color: themed('colorBackground');
+      // }
+      background-color: #262626;
       width: 100%;
+      display: flex;
+      &>div{
+        flex: 1 1 0;
+        border-right: 1px solid black;
+        &.variables{
+          display: flex;
+          flex-direction: column;
+          padding-left: 0px;
+          .variable{
+            cursor: pointer;
+            &.disabled{
+              cursor: not-allowed;
+            }
+          }
+          cursor: pointer;
+          span.anticon{
+            padding-top: 2px;
+            &.selected{
+              @include themify($themes) {
+                color: themed('colorBubble');
+              }
+            }
+          }
+          div{
+            display: flex;
+            width: 100%;
+            .variable{
+              margin-right: auto;
+            }
+          }
+        }
+        padding: 15px;
+      }
+      .time-play{
+        flex: 1 1 200px;
+        display: flex;
+        width: 100%;
+        flex-direction: column;
+        &>div{
+          text-align: center;
+        }
+        .player-buttons{
+          padding-left: 90px;
+          padding-right: 90px;
+          font-size: 32px;
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+          margin-bottom: 5px;
+        }
+        .player-input{
+          display: flex;
+          justify-content: center;
+          margin-right: 15px;
+          .time-input{
+            position: relative;
+            input{
+              color: white;
+              background-color: transparent;
+              border: none;
+              outline: 1px solid #d5d5d5;
+              margin: 0px 5px;
+              &:focus{
+                @include themify($themes) {
+                  outline: 1px solid themed('colorBubble');
+                }
+              }
+            }
+            &:after {
+              color: #d5d5d5;
+              position: absolute;
+              right: 30px;
+              top: 0px;
+              content: "/120";
+            }
+          }
+        }
+        .rc-slider{
+          margin-top: 15px;
+        }
+      }
+      .simulatins{
+        margin: 15px;
+        border: 1px solid #d5d5d5;
+        padding-top: 5px;
+        border-radius: 4px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        h5{
+          margin-bottom: 5px;
+          font-weight: bold;
+        }
+        .sim-table{
+          display: flex;
+          justify-content: space-between;
+          width: 60%;
+          &>div{
+            width: 45%;
+          }
+          .sim-row{
+            cursor: pointer;
+            width: 100%;
+            .legend{
+              margin-left: auto;
+              background-color: red;
+              margin-bottom: 5px;
+            }
+            display: flex;
+            justify-content: space-between;
+            span.anticon{
+              padding-top: 2px;
+              &.selected{
+                @include themify($themes) {
+                  color: themed('colorBubble');
+                }
+              }
+            }
+          }
+        }
+        .anticon{
+          padding-top: 2px;
+        }
+      }
     }
   }
   .detail-bar{

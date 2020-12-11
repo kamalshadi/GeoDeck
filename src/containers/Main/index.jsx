@@ -2,11 +2,14 @@ import React from 'react';
 import {
   Col, Container, Row, Card, CardBody
 } from 'reactstrap';
+import { CheckCircleOutlined, CheckCircleFilled, PlusCircleFilled } from '@ant-design/icons';
 import MainContainer from '../GeoDeck/Canvas';
 import Toolbar from '../GeoDeck/Toolbar';
-import Slider from '../../shared/components/range_slider/Slider';
 import InfoExport from '../GeoDeck/InfoExport';
 import DetailChart from '../GeoDeck/DetailChart';
+import Variables from '../GeoDeck/Variables';
+import Player from '../GeoDeck/Player';
+import Simulations from '../GeoDeck/Simulations';
 // import { withTranslation } from 'react-i18next';
 
 const VisDash = () => (
@@ -19,13 +22,15 @@ const VisDash = () => (
         <MainContainer style={{width:'100%'}}/>
       </div>
       <div className="control-bar">
-          <Slider min={0} max={129} value={34} />
-      </div>
+          <Variables />
+          <Player />
+          <Simulations />
     </div>
     <div className="detail-bar">
       <DetailChart />
       <InfoExport />
     </div>
+  </div>
   </div>
 )
 

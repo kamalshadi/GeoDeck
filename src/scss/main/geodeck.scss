@@ -1,0 +1,15 @@
+// some geodeck components
+
+.geo-button{
+  border-radius: 4px;
+  cursor: pointer;
+  border: 1px solid #DDDDDD;
+  padding: 5px 10px;
+  margin-right: 5px;
+  &:last-of-type{
+    margin-right: 0px;
+  }
+  &.selected{
+    background-color: $color-accent;
+  }
+}

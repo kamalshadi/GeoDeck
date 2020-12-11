@@ -11,7 +11,7 @@ const handle = ({ value, index, ...restProps }) => (
   <Tooltip
     prefixCls="rc-slider-tooltip"
     overlay={value}
-    visible
+    visible={false}
     placement="top"
     key={index}
   >

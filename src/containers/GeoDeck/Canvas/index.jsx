@@ -9,7 +9,7 @@ import VRScene from '../../Aframe';
 import MultipleYAxesScatterChart from '../../Charts/Recharts/components/MultipleYAxesScatterChart';
 
 const MainContainer = () => {
-    const [tab, setTab] = useState(0)
+    const [tab, setTab] = useState(1)
 
     const renderGraph = ()=>{
       switch (tab) {
@@ -23,14 +23,21 @@ const MainContainer = () => {
     }
     return (
       <>
-        <ButtonToolbar>
-          <ButtonGroup className="btn-group--icons" dir="ltr">
-            <Button outline={tab!==0} onClick={()=>setTab(0)}>2D</Button>
-            <Button outline={tab!==1} onClick={()=>setTab(1)}>3D</Button>
-            <Button outline={tab!==2} onClick={()=>setTab(2)}>VR</Button>
-          </ButtonGroup>
-        </ButtonToolbar>
         {renderGraph()}
+        <div>
+          <div>
+            <span className={`geo-button ${tab===0?'selected':null}`} onClick={()=>setTab(0)}>ST</span>
+            <span className={`geo-button ${tab===1?'selected':null}`} onClick={()=>setTab(1)}>3D</span>
+            <span className={`geo-button ${tab===2?'selected':null}`} onClick={()=>setTab(2)}>VR</span>
+          </div>
+          <div>
+            {/*
+              <span onClick={()=>setTab(0)}>ST</span>
+              <span onClick={()=>setTab(1)}>3D</span>
+              <span onClick={()=>setTab(2)}>VR</span>
+              */}
+          </div>
+        </div>
       </>
     )
 
