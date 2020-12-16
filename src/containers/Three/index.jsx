@@ -8,8 +8,6 @@ import 'react-dat-gui/dist/index.css';
 
 const {ni, nj, nk } = data
 
-console.log(ni, nk, nj)
-
 function RGBAToHexA(r,g,b,a) {
   r = r.toString(16);
   g = g.toString(16);
@@ -143,17 +141,23 @@ const Cube = () => {
     const geometry = new THREE.PlaneGeometry( 2, 2 );
     let material = new THREE.MeshBasicMaterial( {color: 0xffff0022, side: THREE.DoubleSide} );
     const plane = new THREE.Mesh( geometry, material );
+    // plane.lookAt(new THREE.Vector3(10, 0, 0)); // x direction red
+    // plane.lookAt(new THREE.Vector3(0, 10, 0)); // y direction green
+    plane.lookAt(new THREE.Vector3(0, 0, 10)); // z direction blue
+    plane.translateZ( 0.5 );
+    // plane.rotation.set(new THREE.Vector3( 0, 0, Math.PI / 2));
+
     scene.add( plane );
 
     // draw line
-    const points = [];
-    points.push( new THREE.Vector3( -0.5, -.5, -0.5 ) );
-    points.push( new THREE.Vector3( 1, 1, 1 ) );
-    points.push( new THREE.Vector3( -1, -1, -1 ) );
-    material = new THREE.LineBasicMaterial( { color: 0x0000ff } );
-    const geometry2 = new THREE.BufferGeometry().setFromPoints( points );
-    const line = new THREE.Line( geometry2, material );
-    scene.add(line)
+    // const points = [];
+    // points.push( new THREE.Vector3( -0.5, -.5, -0.5 ) );
+    // points.push( new THREE.Vector3( 1, 1, 1 ) );
+    // points.push( new THREE.Vector3( -1, -1, -1 ) );
+    // material = new THREE.LineBasicMaterial( { color: 0x0000ff } );
+    // const geometry2 = new THREE.BufferGeometry().setFromPoints( points );
+    // const line = new THREE.Line( geometry2, material );
+    // scene.add(line)
 
     // slicing
     // let _plane = new THREE.Plane(new THREE.Vector3(0, 0, 1), 0);
