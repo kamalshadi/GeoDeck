@@ -20,7 +20,7 @@ const LogIn = ({ changeIsOpenModalFireBase }) => {
     <div className="account account--not-photo">
       <div className="account__wrapper">
         <div className="account__card">
-          <div className="account__head d-flex">
+          <div className="account__head">
             <div>
               <h3 className="account__title">
                 Welcome to

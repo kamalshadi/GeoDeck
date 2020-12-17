@@ -57,10 +57,14 @@
     p {
       color: #ffffff;
     }
+  }
+}
 
-    .account__title {
-      color: #ffffff;
-    }
+.account__title {
+  color: #ffffff;
+  font-size: 18px !important;
+  @include respond(sm) {
+    font-size: 24px !important;
   }
 }
 
@@ -276,6 +280,13 @@
 
 .account__head {
   margin-bottom: 30px;
+  display: grid;
+  grid-template-columns: min-content 1fr;
+  grid-column-gap: 8px;
+  align-items: center;
+  @include respond(sm) {
+    grid-column-gap: 10px;
+  }
 
   // @include directify($directions) {
   // #{directed('padding-left')}: 10px;
@@ -285,16 +296,19 @@
   &::before {
     content: "";
 
-    @include respond(sm) {
-      background-image: url(../../shared/img/logo/Untitled-logo-small.png);
-      background-size: 45px 45px;
-      width: 45px;
-      height: 45px;
+    background: url(../../shared/img/logo/Untitled-logo-small.png);
+    background-size: $logo-small $logo-small;
+    width: $logo-small;
+    height: $logo-small;
 
-      @include directify($directions) {
-        #{directed('margin-right')}: 10px;
-        // #{directed('border-left')}: 4px solid $color-accent;
-      }
+    @include respond(sm) {
+      background-size: $logo-normal $logo-normal;
+      width: $logo-normal;
+      height: $logo-normal;
+    }
+
+    @include respond(md) {
+      background-size: cover;
     }
   }
 }
