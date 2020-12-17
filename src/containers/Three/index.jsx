@@ -2,9 +2,11 @@ import React, { useState, useEffect, useRef } from 'react';
 import data from './sample.json';
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
-import DatGui, { DatBoolean, DatColor, DatNumber, DatString } from 'react-dat-gui';
+import DatGui, { DatBoolean, DatColor, DatNumber, DatString, DatSelect } from 'react-dat-gui';
 import { Interaction } from 'three.interaction';
 import 'react-dat-gui/dist/index.css';
+import { connect } from 'react-redux'
+import PlaneHelper from './helper-plane'
 
 const {ni, nj, nk } = data
 
@@ -35,14 +37,16 @@ const getSphere = (x,y,z)=>{
   return sphere
 }
 
-const Cube = () => {
+const Cube = ({three}) => {
   const [count, _] = useState(0);
+  const [stage,setStage] = useState(null);
   const [data1, setData1] = useState({
     package: 'react-dat-gui',
     power: 9000,
     isAwesome: true,
     feelsLike: '#2FA1D6',
   })
+  const [points, setPoints] = useState([])
   const domElement = useRef(null);
 
   const handleUpdate = newData => {
@@ -62,49 +66,6 @@ const Cube = () => {
      var light = new THREE.AmbientLight( 0x404040 ); // soft white light
      scene.add( light );
 
-
-     // plane helper
-     var PlaneHelper = function(plane) {
-       var geom = new THREE.PlaneGeometry( 5, 5, 50, 50 );
-       var material = new THREE.MeshBasicMaterial({
-         color: '#333',
-         side: THREE.DoubleSide,
-         wireframe: true
-       });
-       var obj = new THREE.Mesh( geom, material );
-       obj.lookAt(plane.normal);
-       obj.translateOnAxis(
-         new THREE.Vector3(1, 0, 0).cross(plane.normal).normalize(),
-         plane.constant * -1
-       );
-       return obj;
-     };
-
-     var wavyPlaneGeom = function() {
-       var degree = 3;
-       var knots = [0, 0, 0, 0, 1, 1, 1, 1];
-       var pts = [];
-       var numPoints = 4;
-       for (let u = 0; u < numPoints; u++) {
-         var ptsV = [];
-         for (let v = 0; v < numPoints; v++) {
-           ptsV.push([
-             u/numPoints - 0.5,
-             Math.random() - 0.5,
-             v/numPoints - 0.1
-           ])
-         }
-         pts.push(ptsV)
-       }
-       var srf = window.verb.geom.NurbsSurface.byKnotsControlPointsWeights(degree, degree, knots, knots, pts);
-       var geom = srf.toThreeGeometry();
-       return geom;
-     }
-
-     var floor = new THREE.Plane(new THREE.Vector3(0, 0, 1), 0)
-
-     var planeHelper = new PlaneHelper(floor);
-     scene.add( planeHelper );
 
      // var localPlane = new THREE.Plane( new THREE.Vector3( .5, -.5, .1 ), .1 );
 
@@ -137,17 +98,6 @@ const Cube = () => {
     const axesHelper = new THREE.AxesHelper( 5 );
     scene.add( axesHelper );
 
-    // draw plane
-    const geometry = new THREE.PlaneGeometry( 2, 2 );
-    let material = new THREE.MeshBasicMaterial( {color: 0xffff0022, side: THREE.DoubleSide} );
-    const plane = new THREE.Mesh( geometry, material );
-    // plane.lookAt(new THREE.Vector3(10, 0, 0)); // x direction red
-    // plane.lookAt(new THREE.Vector3(0, 10, 0)); // y direction green
-    plane.lookAt(new THREE.Vector3(0, 0, 10)); // z direction blue
-    plane.translateZ( 0.5 );
-    // plane.rotation.set(new THREE.Vector3( 0, 0, Math.PI / 2));
-
-    scene.add( plane );
 
     // draw line
     // const points = [];
@@ -169,41 +119,142 @@ const Cube = () => {
 
 
     group.cursor = 'pointer';
-    group.on('click', function(ev) {
-      console.log(ev.intersects)
-      let s = getSphere(ev.intersects[0].point.x,ev.intersects[0].point.y,ev.intersects[0].point.z)
-      scene.add(s)
-    });
+    group.on('click', (ev) => {
+      console.log('click data', points)
+      if (true) {
+        if (points.length === 1) {
+          setPoints([points[0], [ev.intersects[0].point.x, ev.intersects[0].point.y, ev.intersects[0].point.z]])
+        } else {
+          setPoints([[ev.intersects[0].point.x, ev.intersects[0].point.y, ev.intersects[0].point.z]])
+        }
+      }
+    })
     scene.add(group)
 
 
     camera.position.z = 2;
     camera.position.y = 1;
     camera.position.x = 1;
-    camera.lookAt( 0, 0, 0);
+    camera.lookAt(0, 0, 0);
     controls.update();
 
-    const animate = function () {
-      requestAnimationFrame( animate );
+    const animate = () => {
+      requestAnimationFrame(animate)
       // cube.rotation.x += 0.01;
       // cube.rotation.y += 0.01;
       controls.update();
-      renderer.render( scene, camera );
+      renderer.render(scene, camera);
     };
-
+    setStage(scene)
+    scene.add(PlaneHelper); // the help grid on the floor
     animate();
-  },[]);
+  }, []);
+
+  useEffect(() => {
+    switch(three.activeWidget){
+      case 'plane':
+        drawPlane()
+        setData1({
+          plane: 'XY',
+          translate: 0,
+          rotate: 0
+        })
+        break
+      case 'line':
+        lineMode()
+        setData1({
+          color: '#f50',
+          size: 1
+        })
+        break
+      default:
+        break
+    }
+  }, [three, points])
+
+
+  const drawPlane = () => {
+    const geometry = new THREE.PlaneGeometry(2, 2);
+    const material = new THREE.MeshBasicMaterial({ color: 0xffff0022, side: THREE.DoubleSide });
+    const plane = new THREE.Mesh(geometry, material)
+    // plane.lookAt(new THREE.Vector3(10, 0, 0)); // x direction red
+    // plane.lookAt(new THREE.Vector3(0, 10, 0)); // y direction green
+    plane.lookAt(new THREE.Vector3(0, 0, 10)); // z direction blue
+    // plane.rotation.set(new THREE.Vector3( 0, 0, Math.PI / 2));
+    stage.add(plane);
+  }
+
+  const myInc = ls => ls.map(v => v + 0.1)
+
+  const lineMode = () => {
+    points.map((p, ind) => {
+      const s = getSphere(...p)
+      stage.add(s)
+      console.log('pints',points)
+      if (ind === 1) {
+        const sps = [] // sample line
+        sps.push(new THREE.Vector3(...myInc(points[0])));
+        sps.push(new THREE.Vector3(...myInc(points[1])));
+        const material = new THREE.LineBasicMaterial({ color: 0x0000ff });
+        const geometry2 = new THREE.BufferGeometry().setFromPoints(sps);
+        const line = new THREE.Line(geometry2, material);
+        stage.add(line)
+      }
+      return null
+    })
+  }
+
+  const renderLegend = () => {
+    switch (three.activeWidget) {
+      case 'plane':
+        return (
+          <DatGui data={data1} onUpdate={handleUpdate} style={{ position: 'absolute' }}>
+            <DatSelect path="plane" options={['XY', 'ZY', 'XZ']} />
+            <DatNumber path="translate" label="Move" min={0} max={1} step={0.05} />
+            <DatNumber path="rotate" label="Rotate" min={-90} max={90} step={5} />
+          </DatGui>
+        )
+      case 'line':
+        return (
+          <DatGui data={data1} onUpdate={handleUpdate} style={{ position: 'absolute' }}>
+            <DatColor path="color" label="Color" />
+            <DatNumber path="size" label="Size" min={0.1} max={10} step={0.5} />
+          </DatGui>
+        )
+      default:
+        return (
+          <DatGui data={data1} onUpdate={handleUpdate} style={{ position: 'absolute' }}>
+            <DatString path="package" label="Package" />
+            <DatNumber path="power" label="Power" min={9000} max={9999} step={1} />
+            <DatBoolean path="isAwesome" label="Awesome?" />
+            <DatColor path="feelsLike" label="Feels Like" />
+          </DatGui>
+        )
+    }
+  }
+
+
   return (
     <div ref={domElement} className="chart" style={{position: 'relative'}}>
-      <DatGui data={data1} onUpdate={handleUpdate} style={{position: 'absolute'}}>
-        <DatString path='package' label='Package' />
-        <DatNumber path='power' label='Power' min={9000} max={9999} step={1} />
-        <DatBoolean path='isAwesome' label='Awesome?' />
-        <DatColor path='feelsLike' label='Feels Like' />
-      </DatGui>
+      {renderLegend()}
     </div>
   );
 };
 
 
-export default Cube;
+function mapStateToProps ({
+  three
+  }) {
+  return {
+    three
+  }
+}
+
+const mapDispatchToProps = {
+
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Cube)

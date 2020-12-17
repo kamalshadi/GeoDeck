@@ -1,0 +1,3 @@
+export default {
+  activeWidget: null, // plane, line, ...
+}

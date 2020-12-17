@@ -6,6 +6,7 @@ import newOrderTableReducer from './newOrderTableReducer';
 import customizerReducer from './customizerReducer';
 import todoReducer from './todoReducer';
 import authReducer from './authReducer';
+import threeReducer from './threeReducer';
 
 export {
   themeReducer,
@@ -16,4 +17,5 @@ export {
   customizerReducer,
   todoReducer,
   authReducer,
+  threeReducer,
 };

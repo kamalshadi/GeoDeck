@@ -3,10 +3,12 @@ import { ScissorOutlined, HighlightOutlined,
   RadiusSettingOutlined, AimOutlined, FormatPainterOutlined,
   NodeIndexOutlined, StarOutlined, FunctionOutlined, CodepenOutlined, DragOutlined
  } from '@ant-design/icons'
+import { connect } from 'react-redux'
 
- import { withStyles, makeStyles } from '@material-ui/core/styles';
+import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Tooltip from '@material-ui/core/Tooltip';
+import { changeWidget } from '../../../redux/actions'
 
 const useStylesBootstrap = makeStyles((theme) => ({
   arrow: {
@@ -32,12 +34,15 @@ function BootstrapTooltip(props) {
 
 const tools = [ScissorOutlined, HighlightOutlined, RadiusSettingOutlined, AimOutlined, FormatPainterOutlined, NodeIndexOutlined, StarOutlined, FunctionOutlined, CodepenOutlined, DragOutlined]
 
-const Toolbar = () => {
+const Toolbar = ({changeWidget}) => {
   return (
     <>
       {tools.map((v,ind)=>{
         return (
-          <BootstrapTooltip title="tool item" placement="right">{React.createElement(v, {index: ind}, null)}</BootstrapTooltip>
+          <BootstrapTooltip title="tool item" placement="right"
+            onClick = {()=>changeWidget(ind === 0 ? 'plane' : 'line')}
+          >{React.createElement(v, { index: ind }, null
+          )}</BootstrapTooltip>
         )
 
       })}
@@ -49,4 +54,18 @@ const Toolbar = () => {
 
 
 
-export default Toolbar;
+function mapStateToProps({
+  threeReducer
+  }) {
+  return {
+    three: threeReducer
+  }
+}
+const mapDispatchToProps = {
+  changeWidget
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Toolbar)

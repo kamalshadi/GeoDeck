@@ -1,4 +1,4 @@
-import { combineReducers, createStore, applyMiddleware } from 'redux';
+import { combineReducers, createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import { reducer as reduxFormReducer } from 'redux-form';
 import {
@@ -9,6 +9,7 @@ import {
   customizerReducer,
   rtlReducer,
   authReducer,
+  threeReducer
 } from '../../redux/reducers/index';
 import appConfigReducer from '../../redux/reducers/appConfigReducer';
 import covidReducer from '../Maps/VectorMapWithRequestData/redux/covidReducer';
@@ -26,7 +27,15 @@ const reducer = combineReducers({
   user: authReducer,
   covid: covidReducer,
   todo: todoReducer,
+  three: threeReducer,
 });
-const store = createStore(reducer, applyMiddleware(thunk));
+
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+
+// Redux Store
+export const store = createStore(reducer, {}, composeEnhancers(
+  applyMiddleware(thunk.withExtraArgument())
+))
+
 
 export default store;
