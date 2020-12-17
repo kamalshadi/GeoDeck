@@ -6,11 +6,11 @@
   overflow-y: auto;
 
   @include themify($themes) {
-    background: themed('colorBackgroundBody');
+    background: themed("colorBackgroundBody");
   }
 
   &.account--photo {
-    background: url(../../shared/img/404/bg_404.png) no-repeat center!important;
+    background: url(../../shared/img/404/bg_404.png) no-repeat center !important;
     background-size: cover;
 
     .account__card {
@@ -18,21 +18,22 @@
       color: #ffffff;
     }
 
-    .form__form-group-icon, .form__form-group-button {
+    .form__form-group-icon,
+    .form__form-group-button {
       background: transparent;
     }
 
-    .form__form-group-icon, input:not(:last-child) {
-
+    .form__form-group-icon,
+    input:not(:last-child) {
       @include directify($directions) {
-        #{directed('border-right')}: none
+        #{directed('border-right')}: none;
       }
     }
 
-    .form__form-group-button, input {
-
+    .form__form-group-button,
+    input {
       @include directify($directions) {
-        #{directed('border-left')}: none
+        #{directed('border-left')}: none;
       }
     }
 
@@ -68,7 +69,7 @@
   padding: 10px;
 
   @include directify($directions) {
-    text-align: directed('left');
+    text-align: directed("left");
   }
 }
 
@@ -79,7 +80,7 @@
   width: 100%;
 
   @include themify($themes) {
-    background-color: themed('colorBackground');
+    background-color: themed("colorBackground");
   }
 }
 
@@ -88,9 +89,8 @@
 }
 
 .register__btns {
-
   @include directify($directions) {
-    #{directed('margin-left')}: 0px!important;
+    #{directed('margin-left')}: 0px !important;
   }
 }
 
@@ -186,7 +186,8 @@
   margin-bottom: 20px;
   position: relative;
 
-  &:before, &:after {
+  &:before,
+  &:after {
     content: "";
     height: 1px;
     width: calc(50% - 90px);
@@ -196,14 +197,12 @@
   }
 
   &:before {
-
     @include directify($directions) {
       #{directed('left')}: 0px;
     }
   }
 
   &:after {
-
     @include directify($directions) {
       #{directed('right')}: 0px;
     }
@@ -228,7 +227,6 @@
   }
 
   &:last-child {
-
     @include directify($directions) {
       #{directed('margin-right')}: 0px;
     }
@@ -279,9 +277,25 @@
 .account__head {
   margin-bottom: 30px;
 
-  @include directify($directions) {
-    #{directed('padding-left')}: 10px;
-    #{directed('border-left')}: 4px solid $color-accent;
+  // @include directify($directions) {
+  // #{directed('padding-left')}: 10px;
+  // #{directed('border-left')}: 4px solid $color-accent;
+  // }
+
+  &::before {
+    content: "";
+
+    @include respond(sm) {
+      background-image: url(../../shared/img/logo/Untitled-logo-small.png);
+      background-size: 45px 45px;
+      width: 45px;
+      height: 45px;
+
+      @include directify($directions) {
+        #{directed('margin-right')}: 10px;
+        // #{directed('border-left')}: 4px solid $color-accent;
+      }
+    }
   }
 }
 
@@ -309,14 +323,12 @@
 }
 
 @media screen and (max-width: 520px) {
-
   .account__card {
     padding: 35px 30px;
   }
 }
 
 @media screen and (max-width: 425px) {
-
   .account__btns {
     flex-wrap: wrap;
   }

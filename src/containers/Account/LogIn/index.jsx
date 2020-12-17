@@ -1,45 +1,54 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Button } from 'reactstrap';
-import FirebaseIcon from 'mdi-react/FirebaseIcon';
-import withAuthFirebase from '../../../shared/components/auth/withAuthFirebase';
-import { useAuth0 } from '../../../shared/components/auth/withAuth0';
-import Loading from '../../../shared/components/Loading';
-import LogInForm from '../../../shared/components/loginForm/LogInForm';
-import GoogleAuthBtn from '../AuthBtn/googleAuthBtn';
-import FacebookAuthBtn from '../AuthBtn/fbAuthBtn';
+import React from "react";
+import PropTypes from "prop-types";
+import { Button } from "reactstrap";
+import FirebaseIcon from "mdi-react/FirebaseIcon";
+import withAuthFirebase from "../../../shared/components/auth/withAuthFirebase";
+import { useAuth0 } from "../../../shared/components/auth/withAuth0";
+import Loading from "../../../shared/components/Loading";
+import LogInForm from "../../../shared/components/loginForm/LogInForm";
+import GoogleAuthBtn from "../AuthBtn/googleAuthBtn";
+import FacebookAuthBtn from "../AuthBtn/fbAuthBtn";
 
 const auth0Icon = `${process.env.PUBLIC_URL}/img/auth0.svg`;
 
 const LogIn = ({ changeIsOpenModalFireBase }) => {
-  const {
-    loginWithRedirect, loading,
-  } = useAuth0();
+  const { loginWithRedirect, loading } = useAuth0();
   if (loading) {
-    return (<Loading loading={loading} />);
+    return <Loading loading={loading} />;
   }
   return (
     <div className="account account--not-photo">
       <div className="account__wrapper">
         <div className="account__card">
-          <div className="account__head">
-            <h3 className="account__title">Welcome to
-              <span className="account__logo"> Geo
-                <span className="account__logo-accent">Deck</span>
-              </span>
-            </h3>
-            <h4 className="account__subhead subhead">Immerse yourself in Geo data</h4>
+          <div className="account__head d-flex">
+            <div>
+              <h3 className="account__title">
+                Welcome to
+                <span className="account__logo">
+                  {" "}
+                  Geo
+                  <span className="account__logo-accent">Deck</span>
+                </span>
+              </h3>
+              <h4 className="account__subhead subhead">
+                Immerse yourself in Geo data
+              </h4>
+            </div>
           </div>
-          <LogInForm
-            onSubmit
-            form="log_in_form"
-          />
+          <LogInForm onSubmit form="log_in_form" />
           <div className="account__or">
             <p>Product of </p>
           </div>
-            <div className="account__social">
-              <img src="https://www.petrolern.com/wp-content/uploads/2018/09/PETROLERN-logo-PNG-HQ-1.png" alt="Petrolern" id="logo" data-height-percentage="54" data-actual-width="1000" data-actual-height="203" />
-              {/*
+          <div className="account__social">
+            <img
+              src="https://www.petrolern.com/wp-content/uploads/2018/09/PETROLERN-logo-PNG-HQ-1.png"
+              alt="Petrolern"
+              id="logo"
+              data-height-percentage="54"
+              data-actual-width="1000"
+              data-actual-height="203"
+            />
+            {/*
                 <FacebookAuthBtn />
               <GoogleAuthBtn />
               <Button
@@ -52,7 +61,7 @@ const LogIn = ({ changeIsOpenModalFireBase }) => {
                 <img className="customizer__btn-icon" src={auth0Icon} alt="icon" />
               </Button>
                 */}
-            </div>
+          </div>
         </div>
       </div>
     </div>
