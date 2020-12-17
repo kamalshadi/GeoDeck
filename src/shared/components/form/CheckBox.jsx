@@ -1,8 +1,9 @@
-import React, { useEffect } from 'react';
-import CheckIcon from 'mdi-react/CheckIcon';
-import CloseIcon from 'mdi-react/CloseIcon';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import React, { useEffect } from "react";
+import CheckIcon from "mdi-react/CheckIcon";
+import CloseIcon from "mdi-react/CloseIcon";
+import PropTypes from "prop-types";
+import classNames from "classnames";
+import FormHelperText from "@material-ui/core/FormHelperText";
 
 const CheckBoxField = ({
   onChange,
@@ -19,12 +20,14 @@ const CheckBoxField = ({
   }, [onChange, defaultChecked]);
 
   const CheckboxClass = classNames({
-    'checkbox-btn': true,
+    "checkbox-btn": true,
     disabled,
   });
   return (
     <label
-      className={`${CheckboxClass} ${className ? ` checkbox-btn--${className}` : ''}`}
+      className={`${CheckboxClass} ${
+        className ? ` checkbox-btn--${className}` : ""
+      }`}
       htmlFor={name}
     >
       <input
@@ -42,16 +45,15 @@ const CheckBoxField = ({
       >
         <CheckIcon />
       </span>
-      {className === 'button'
-        ? (
-          <span className="checkbox-btn__label-svg">
-            <CheckIcon className="checkbox-btn__label-check" />
-            <CloseIcon className="checkbox-btn__label-uncheck" />
-          </span>
-        ) : ''}
-      <span className="checkbox-btn__label">
-        {label}
-      </span>
+      {className === "button" ? (
+        <span className="checkbox-btn__label-svg">
+          <CheckIcon className="checkbox-btn__label-check" />
+          <CloseIcon className="checkbox-btn__label-uncheck" />
+        </span>
+      ) : (
+        ""
+      )}
+      <span className="checkbox-btn__label">{label}</span>
     </label>
   );
 };
@@ -59,10 +61,7 @@ const CheckBoxField = ({
 CheckBoxField.propTypes = {
   onChange: PropTypes.func.isRequired,
   name: PropTypes.string.isRequired,
-  value: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.bool,
-  ]).isRequired,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]).isRequired,
   label: PropTypes.string,
   defaultChecked: PropTypes.bool,
   disabled: PropTypes.bool,
@@ -71,34 +70,47 @@ CheckBoxField.propTypes = {
 };
 
 CheckBoxField.defaultProps = {
-  label: '',
+  label: "",
   defaultChecked: false,
   disabled: false,
-  className: '',
-  color: '',
+  className: "",
+  color: "",
+};
+
+const renderFromHelper = ({ valid, error }) => {
+  if (!valid && error) {
+    return <FormHelperText error>{(!valid && error)}</FormHelperText>;
+  }
 };
 
 const renderCheckBoxField = ({
-  input, label, defaultChecked, disabled, className, color,
-}) => (
-  <CheckBoxField
-    {...input}
-    label={label}
-    defaultChecked={defaultChecked}
-    disabled={disabled}
-    className={className}
-    color={color}
-  />
-);
+  input,
+  label,
+  defaultChecked,
+  disabled,
+  className,
+  color,
+  // meta: { valid, error },
+}) => {
+  return (
+  <React.Fragment>
+    <CheckBoxField
+      {...input}
+      label={label}
+      defaultChecked={defaultChecked}
+      disabled={disabled}
+      className={className}
+      color={color}
+    />
+    {/* {renderFromHelper({ valid, error })} */}
+  </React.Fragment>
+)};
 
 renderCheckBoxField.propTypes = {
   input: PropTypes.shape({
     onChange: PropTypes.func,
     name: PropTypes.string,
-    value: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.bool,
-    ]),
+    value: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
   }).isRequired,
   label: PropTypes.string,
   defaultChecked: PropTypes.bool,
@@ -108,11 +120,11 @@ renderCheckBoxField.propTypes = {
 };
 
 renderCheckBoxField.defaultProps = {
-  label: '',
+  label: "",
   defaultChecked: false,
   disabled: false,
-  className: '',
-  color: '',
+  className: "",
+  color: "",
 };
 
 export default renderCheckBoxField;
