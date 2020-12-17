@@ -5,7 +5,7 @@ import FirebaseIcon from "mdi-react/FirebaseIcon";
 import withAuthFirebase from "../../../shared/components/auth/withAuthFirebase";
 import { useAuth0 } from "../../../shared/components/auth/withAuth0";
 import Loading from "../../../shared/components/Loading";
-import LogInForm from "../../../shared/components/loginForm/LogInForm";
+import LogInForm from "./LoginForm";
 import GoogleAuthBtn from "../AuthBtn/googleAuthBtn";
 import FacebookAuthBtn from "../AuthBtn/fbAuthBtn";
 
@@ -67,6 +67,7 @@ const LogIn = ({ changeIsOpenModalFireBase }) => {
     </div>
   );
 };
+
 
 LogIn.propTypes = {
   changeIsOpenModalFireBase: PropTypes.func.isRequired,
