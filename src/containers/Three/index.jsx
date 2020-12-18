@@ -8,6 +8,7 @@ import 'react-dat-gui/dist/index.css';
 import { connect } from 'react-redux'
 import PlaneHelper from './helper-plane'
 import { drawSamplingPlane } from './shapes'
+import cubeData from './cube.json'
 
 const {ni, nj, nk } = data
 
@@ -82,18 +83,19 @@ const Cube = ({three}) => {
     renderer.setSize(domElement.current.clientWidth, domElement.current.clientHeight);
     domElement.current.appendChild( renderer.domElement );
     const group = new THREE.Group();
-    for (let i = 0; i < data.ni; i++) {
-      for (let j = 0; j < data.nj; j++) {
-        for (let k = 0; k < data.nk; k++) {
-          const geometry = new THREE.BoxBufferGeometry(1/ni,1/nj,1/nk);
-          const ind = k + data.nk*j + data.nj*i
-          const material = new THREE.MeshBasicMaterial( { color: RGBAToHexA(parseInt(data.data[ind]*255),0,0,1), clippingPlanes: []});
-          const cube = new THREE.Mesh( geometry, material );
-          cube.position.set(i/ni,j/nj,k/nk);
-          group.add( cube );
-        }
-      }
-    }
+    const groupP = new THREE.Group();
+    cubeData.map(node => {
+      const {i, j, k} = node
+      const geometry = new THREE.BoxBufferGeometry(0.04, 0.04, 0.04);
+      const material = new THREE.MeshBasicMaterial({ color: node.Temprature, clippingPlanes: [] });
+      const materialP = new THREE.MeshBasicMaterial({ color: node.Pressure, clippingPlanes: [] });
+      const cube = new THREE.Mesh(geometry, material);
+      const cubeP = new THREE.Mesh(geometry, materialP);
+      cube.position.set(i/100,j/100,k/25)
+      cubeP.position.set(i/100,j/100,k/25)
+      group.add(cube)
+      groupP.add(cubeP)
+    })
 
     //axis helper
     const axesHelper = new THREE.AxesHelper( 5 );
@@ -212,6 +214,10 @@ const Cube = ({three}) => {
     }
   }, [three, points, data1])
 
+  useEffect(() => {
+    console.log('run cube')
+  },[three.sample.variable])
+
 
   const myInc = ls => ls.map(v => v + 0.1)
 
@@ -271,9 +277,9 @@ const Cube = ({three}) => {
 }
 
 
-function mapStateToProps ({
+function mapStateToProps({
   three
-  }) {
+  }){
   return {
     three
   }

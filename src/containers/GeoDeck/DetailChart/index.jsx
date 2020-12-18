@@ -1,9 +1,10 @@
 import React from 'react';
 import { Card, CardBody, Col } from 'reactstrap';
+import { withTranslation } from 'react-i18next';
+import { connect } from 'react-redux'
 import LineChart from '../../Two/LineChart'
 import HeatMap from '../../Two/Heatmap'
-import { withTranslation } from 'react-i18next';
-import PropTypes from 'prop-types';
+import Dist from '../../Two/Dist'
 
 const data = [];
 
@@ -17,10 +18,26 @@ for (let i = 0; i < 20; i += 1) {
   });
 }
 
-const LineSeriesWithManyColors = ({ t }) => (
-  <div style={{ height:"350px" }}>
-    {true?<HeatMap />:<LineChart />}
+const LineSeriesWithManyColors = ({ three }) => (
+  <div style={{ height:"350px", marginBottom:'25px' }}>
+    {!three.sample.method && <><p>Live Chart</p><Dist /></>}
+    {/* true?<HeatMap />:<LineChart /> */}
   </div>
 )
 
-export default withTranslation('common')(LineSeriesWithManyColors);
+function mapStateToProps ({
+  three
+  }) {
+  return {
+    three
+  }
+}
+
+const mapDispatchToProps = {
+
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withTranslation('common')(LineSeriesWithManyColors))

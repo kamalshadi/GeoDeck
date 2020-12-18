@@ -1,15 +1,20 @@
 import React, { useState } from 'react';
-import { CheckCircleOutlined, CheckCircleFilled, PlusCircleFilled } from '@ant-design/icons';
+import { CheckCircleFilled } from '@ant-design/icons';
+import { connect } from 'react-redux'
+import { changeSample } from '../../../redux/actions/threeActions'
 
 const V = ['Pressure', 'Temprature', 'Saturation', 'Porosity', 'Permeability', 'N/A', 'N/A', 'N/A']
-const Variables = () => {
-  const [vs, setVs] = useState([])
+const Variables = ({changeSample, three}) => {
+  const [vs, setVs] = useState(0)
   const clickHandler = (ind) => {
-    if (vs.includes(ind)) {
-      setVs(vs.filter(v => v !== ind))
+    if (vs === ind) {
       return
     }
-    setVs([...vs, ind])
+    changeSample({
+      method: three.sample.method,
+      variable: V[ind],
+    })
+    setVs(ind)
   }
 
   return (
@@ -21,11 +26,11 @@ const Variables = () => {
         return (
           <div>
             <div className="variable" onClick={()=> clickHandler(index)}>
-              <CheckCircleFilled className={vs.includes(index) ? 'selected' : ''} />
+              <CheckCircleFilled className={vs===index ? 'selected' : ''} />
               <span className="variable">&nbsp;{V[index]}</span>
             </div>
             <div className="variable" onClick={()=> clickHandler(index + 1)}>
-              <CheckCircleFilled className={vs.includes(index + 1) ? 'selected' : ''} />
+              <CheckCircleFilled className={vs === (index + 1) ? 'selected' : ''} />
               <span>&nbsp; {V[index+1]}</span>
             </div>
           </div>
@@ -35,4 +40,19 @@ const Variables = () => {
   )
 }
 
-export default Variables;
+function mapStateToProps ({
+  three
+  }) {
+  return {
+    three
+  }
+}
+
+const mapDispatchToProps = {
+  changeSample
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Variables)

@@ -1,7 +1,7 @@
 import React from "react";
 import { Col, Container, Row } from "reactstrap";
 import CardProject from "./components/CardProject";
-import CardNew from "./components/CardNew";
+// import CardNew from "./components/CardNew";
 
 const cards = [
   { title: "USA Geothermal", time: "09/09/2020", image: "01.jpg", href: 1 },
@@ -33,7 +33,6 @@ const PricingCards = () => {
             />
           );
         })}
-        <CardNew />
       </Row>
     </Container>
   );

@@ -6,6 +6,8 @@ import classnames from 'classnames';
 import { withTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 import Table from '../DetailTable';
+import Export from './Export'
+import Well from './Well'
 
 class DefaultTabsBorderedTop extends Component {
   static propTypes = {
@@ -43,7 +45,7 @@ class DefaultTabsBorderedTop extends Component {
                         this.toggle('1');
                       }}
                     >
-                      Info
+                      Export
                     </NavLink>
                   </NavItem>
                   <NavItem>
@@ -53,18 +55,29 @@ class DefaultTabsBorderedTop extends Component {
                         this.toggle('2');
                       }}
                     >
-                      Export
+                      Info
+                    </NavLink>
+                  </NavItem>
+                  <NavItem>
+                    <NavLink
+                      className={classnames({ active: activeTab === '3' })}
+                      onClick={() => {
+                        this.toggle('3');
+                      }}
+                    >
+                      Reservoir
                     </NavLink>
                   </NavItem>
                 </Nav>
                 <TabContent activeTab={activeTab} style={{paddingLeft:'30px'}}>
                   <TabPane tabId="1">
-                    <Table />
+                    <Export />
                   </TabPane>
                   <TabPane tabId="2">
-                    <p>Direction has strangers now believing. Respect enjoyed gay far exposed parlors towards. Enjoyment
-                      use tolerably dependent listening men. No peculiar in handsome together unlocked do by.
-                    </p>
+                    <Table />
+                  </TabPane>
+                  <TabPane tabId="3">
+                    <Well />
                   </TabPane>
                 </TabContent>
               </div>
