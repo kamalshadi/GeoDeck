@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react'
 import data from './sample.json';
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
@@ -7,6 +7,7 @@ import { Interaction } from 'three.interaction';
 import 'react-dat-gui/dist/index.css';
 import { connect } from 'react-redux'
 import PlaneHelper from './helper-plane'
+import { drawSamplingPlane } from './shapes'
 
 const {ni, nj, nk } = data
 
@@ -32,7 +33,6 @@ const getSphere = (x,y,z)=>{
   const geometry = new THREE.SphereGeometry( .05, .05, .05 );
   const material = new THREE.MeshBasicMaterial( {color: 0xffff00} );
   const sphere = new THREE.Mesh( geometry, material );
-  console.log(x,y,z);
   sphere.position.set(x,y,z);
   return sphere
 }
@@ -40,6 +40,7 @@ const getSphere = (x,y,z)=>{
 const Cube = ({three}) => {
   const [count, _] = useState(0);
   const [stage,setStage] = useState(null);
+  const [samplePlane, setSamplePlane] = useState(null);
   const [data1, setData1] = useState({
     package: 'react-dat-gui',
     power: 9000,
@@ -116,18 +117,18 @@ const Cube = ({three}) => {
     // let mat = new THREE.MeshBasicMaterial({ wireframe: true });
     // let mesh = new THREE.Mesh(geom, mat);
     // scene.add(mesh);
-
+    //
+    //
+    // sampling
+    const plane = drawSamplingPlane()
 
     group.cursor = 'pointer';
     group.on('click', (ev) => {
-      console.log('click data', points)
-      if (true) {
         if (points.length === 1) {
           setPoints([points[0], [ev.intersects[0].point.x, ev.intersects[0].point.y, ev.intersects[0].point.z]])
         } else {
           setPoints([[ev.intersects[0].point.x, ev.intersects[0].point.y, ev.intersects[0].point.z]])
         }
-      }
     })
     scene.add(group)
 
@@ -146,21 +147,59 @@ const Cube = ({three}) => {
       renderer.render(scene, camera);
     };
     setStage(scene)
+    window.stage = scene
+    setSamplePlane(plane)
     scene.add(PlaneHelper); // the help grid on the floor
     animate();
   }, []);
 
   useEffect(() => {
-    switch(three.activeWidget){
+    switch (three.activeWidget){
       case 'plane':
-        drawPlane()
-        setData1({
-          plane: 'XY',
-          translate: 0,
-          rotate: 0
-        })
+        if (!stage.getObjectByName('sampling-plane')) {
+          stage.add(samplePlane)
+          setData1({
+            plane: 'XY',
+            translate: 0,
+            rotate: 0
+          })
+        } else {
+          switch (data1.plane) {
+            case 'XY':
+              samplePlane.rotation.set(0,0,0)
+              samplePlane.position.set(0,0,0)
+              samplePlane.lookAt(new THREE.Vector3(0, 0, 10)) // z direction blue
+              samplePlane.translateX(0.45)
+              samplePlane.translateY(0.45)
+              samplePlane.translateZ(0.05)
+              samplePlane.position.z = data1.translate + 0.05
+              break;
+            case 'YZ':
+              samplePlane.rotation.set(0,0,0)
+              samplePlane.position.set(0,0,0)
+              samplePlane.lookAt(new THREE.Vector3(10, 0, 0)) // x direction blue
+              samplePlane.translateX(0.05)
+              samplePlane.translateY(0.45)
+              samplePlane.translateZ(0.45)
+              samplePlane.translateX(data1.translate + 0.05)
+              break
+            default:
+              samplePlane.rotation.set(0,0,0)
+              samplePlane.position.set(0,0,0)
+              samplePlane.lookAt(new THREE.Vector3(0, 10, 0)) // y direction blue
+              samplePlane.translateX(0.45)
+              samplePlane.translateY(0.05)
+              samplePlane.translateZ(0.45)
+              samplePlane.translateY(data1.translate + 0.05)
+          }
+          // plane.lookAt(new THREE.Vector3(10, 0, 0)); // x direction red
+          // plane.lookAt(new THREE.Vector3(0, 10, 0)); // y direction green
+
+        }
+
         break
       case 'line':
+        stage.remove(stage.getObjectByName('sampling-plane'))
         lineMode()
         setData1({
           color: '#f50',
@@ -168,21 +207,11 @@ const Cube = ({three}) => {
         })
         break
       default:
+        if (stage) stage.remove(stage.getObjectByName('sampling-plane'))
         break
     }
-  }, [three, points])
+  }, [three, points, data1])
 
-
-  const drawPlane = () => {
-    const geometry = new THREE.PlaneGeometry(2, 2);
-    const material = new THREE.MeshBasicMaterial({ color: 0xffff0022, side: THREE.DoubleSide });
-    const plane = new THREE.Mesh(geometry, material)
-    // plane.lookAt(new THREE.Vector3(10, 0, 0)); // x direction red
-    // plane.lookAt(new THREE.Vector3(0, 10, 0)); // y direction green
-    plane.lookAt(new THREE.Vector3(0, 0, 10)); // z direction blue
-    // plane.rotation.set(new THREE.Vector3( 0, 0, Math.PI / 2));
-    stage.add(plane);
-  }
 
   const myInc = ls => ls.map(v => v + 0.1)
 
@@ -238,8 +267,8 @@ const Cube = ({three}) => {
     <div ref={domElement} className="chart" style={{position: 'relative'}}>
       {renderLegend()}
     </div>
-  );
-};
+  )
+}
 
 
 function mapStateToProps ({
