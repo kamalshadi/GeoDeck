@@ -6,7 +6,7 @@ const defaultImage = `${process.env.PUBLIC_URL}/img/co2.png`;
 const imageUrl = `${process.env.PUBLIC_URL}/img/gallery/`;
 
 const CardProject = ({ image, title, time, href }) => (
-  <Col md={6} xl={3} sm={12} className="d-flex project-card">
+  <Col md={4} xl={3} sm={12} className="d-flex project-card">
     <Card>
       <CardBody className="project-card__container">
         <CardHeader>
