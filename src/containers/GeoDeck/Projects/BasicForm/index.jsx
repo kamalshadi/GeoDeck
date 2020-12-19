@@ -8,7 +8,9 @@ import showResults from './Show';
 const BasicForm = ({ t }) => (
   <Container>
     <Row>
-      <AnimatedLineFormWithLabels onSubmit={showResults} />
+      <AnimatedLineFormWithLabels 
+      // onSubmit={showResults} 
+      />
     </Row>
   </Container>
 );

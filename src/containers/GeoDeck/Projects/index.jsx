@@ -10,7 +10,7 @@ const cards = [
   { title: "Well Optimization", time: "12/01/2020", image: "04.png", href: 4 },
   { title: "USA Geothermal", time: "12/18/2020", image: null, href: 5 },
 ];
-const PricingCards = () => {
+const ProjectCards = () => {
   return (
     <Container>
       <Row>
@@ -39,7 +39,7 @@ const PricingCards = () => {
   );
 };
 
-export default PricingCards;
+export default ProjectCards;
 
 {
   /*
