@@ -76,14 +76,15 @@ const CardNew = () => {
                 className="modal__footer"
                 style={{ backgroundColor: "#232329" }}
               >
-                <Button className="modal_cancel" onClick={toggle}>
+                <Button type="button" className="modal_cancel" onClick={toggle}>
                   Cancel
                 </Button>{" "}
                 <Button
                   className="modal_ok"
                   outline={colored}
                   color={color}
-                  onClick={toggle}
+                  type="submit"
+                  form="new-project-form"
                 >
                   Create
                 </Button>
