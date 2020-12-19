@@ -75,6 +75,13 @@
     padding: spacing(2);
   }
 
+  &__new {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 250px;
+  }
+
   &__img {
     min-height: spacing(25);
     //  start -- add aspect-ratio  -> item
@@ -108,7 +115,8 @@
     line-height: spacing(6);
     color: inherit !important;
     @include respond(sm) {
-      margin-top: spacing(2) !important;
+      margin-top: calc(76px - 10%) !important;
+
     }
     
     @include respond(lg) {
