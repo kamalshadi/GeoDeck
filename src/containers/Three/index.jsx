@@ -7,7 +7,7 @@ import { Interaction } from 'three.interaction';
 import 'react-dat-gui/dist/index.css';
 import { connect } from 'react-redux'
 import PlaneHelper from './helper-plane'
-import { drawSamplingPlane } from './shapes'
+import { drawSamplingPlane, drawSamplingLine, drawSamplingDot } from './shapes'
 import cubeData from './cube.json'
 
 const {ni, nj, nk } = data
@@ -30,23 +30,17 @@ function RGBAToHexA(r,g,b,a) {
   return "#" + r + g + b;
 }
 
-const getSphere = (x,y,z)=>{
-  const geometry = new THREE.SphereGeometry( .05, .05, .05 );
-  const material = new THREE.MeshBasicMaterial( {color: 0xffff00} );
-  const sphere = new THREE.Mesh( geometry, material );
-  sphere.position.set(x,y,z);
-  return sphere
-}
-
 const Cube = ({three}) => {
+  const [groupP, setGroupP] = useState(null) // pressure
+  const [groupT, setGroupT] = useState(null)// temprature
   const [count, _] = useState(0);
-  const [stage,setStage] = useState(null);
+  const [stage, setStage] = useState(null);
   const [samplePlane, setSamplePlane] = useState(null);
+  const [sampleLine, setSampleLine] = useState(null);
+  const [sampleDot, setSampleDot] = useState(null);
   const [data1, setData1] = useState({
-    package: 'react-dat-gui',
-    power: 9000,
-    isAwesome: true,
-    feelsLike: '#2FA1D6',
+    project: 'GeoDeck Demo',
+    simulation: 'S1',
   })
   const [points, setPoints] = useState([])
   const domElement = useRef(null);
@@ -82,19 +76,21 @@ const Cube = ({three}) => {
     const controls = new OrbitControls( camera, renderer.domElement );
     renderer.setSize(domElement.current.clientWidth, domElement.current.clientHeight);
     domElement.current.appendChild( renderer.domElement );
-    const group = new THREE.Group();
-    const groupP = new THREE.Group();
+    const _groupT = new THREE.Group();
+    _groupT.name = 'cube-temprature'
+    const _groupP = new THREE.Group();
+    _groupP.name = 'cube-pressure'
     cubeData.map(node => {
       const {i, j, k} = node
       const geometry = new THREE.BoxBufferGeometry(0.04, 0.04, 0.04);
-      const material = new THREE.MeshBasicMaterial({ color: node.Temprature, clippingPlanes: [] });
+      const materialT = new THREE.MeshBasicMaterial({ color: node.Temprature, clippingPlanes: [] });
       const materialP = new THREE.MeshBasicMaterial({ color: node.Pressure, clippingPlanes: [] });
-      const cube = new THREE.Mesh(geometry, material);
+      const cube = new THREE.Mesh(geometry, materialT);
       const cubeP = new THREE.Mesh(geometry, materialP);
       cube.position.set(i/100,j/100,k/25)
       cubeP.position.set(i/100,j/100,k/25)
-      group.add(cube)
-      groupP.add(cubeP)
+      _groupT.add(cube)
+      _groupP.add(cubeP)
     })
 
     //axis helper
@@ -102,15 +98,11 @@ const Cube = ({three}) => {
     scene.add( axesHelper );
 
 
-    // draw line
-    // const points = [];
-    // points.push( new THREE.Vector3( -0.5, -.5, -0.5 ) );
-    // points.push( new THREE.Vector3( 1, 1, 1 ) );
-    // points.push( new THREE.Vector3( -1, -1, -1 ) );
-    // material = new THREE.LineBasicMaterial( { color: 0x0000ff } );
-    // const geometry2 = new THREE.BufferGeometry().setFromPoints( points );
-    // const line = new THREE.Line( geometry2, material );
-    // scene.add(line)
+    const line = drawSamplingLine()
+    setSampleLine(line)
+
+    const dot = drawSamplingDot()
+    setSampleDot(dot)
 
     // slicing
     // let _plane = new THREE.Plane(new THREE.Vector3(0, 0, 1), 0);
@@ -124,15 +116,15 @@ const Cube = ({three}) => {
     // sampling
     const plane = drawSamplingPlane()
 
-    group.cursor = 'pointer';
-    group.on('click', (ev) => {
+    _groupP.cursor = 'pointer';
+    _groupP.on('click', (ev) => {
         if (points.length === 1) {
           setPoints([points[0], [ev.intersects[0].point.x, ev.intersects[0].point.y, ev.intersects[0].point.z]])
         } else {
           setPoints([[ev.intersects[0].point.x, ev.intersects[0].point.y, ev.intersects[0].point.z]])
         }
     })
-    scene.add(group)
+    scene.add(groupP)
 
 
     camera.position.z = 2;
@@ -149,6 +141,8 @@ const Cube = ({three}) => {
       renderer.render(scene, camera);
     };
     setStage(scene)
+    setGroupP(_groupP)
+    setGroupT(_groupT)
     window.stage = scene
     setSamplePlane(plane)
     scene.add(PlaneHelper); // the help grid on the floor
@@ -158,86 +152,49 @@ const Cube = ({three}) => {
   useEffect(() => {
     switch (three.activeWidget){
       case 'plane':
+        if (stage) stage.remove(stage.getObjectByName('sampling-line'))
+        if (stage) stage.remove(stage.getObjectByName('sampling-dot'))
         if (!stage.getObjectByName('sampling-plane')) {
           stage.add(samplePlane)
-          setData1({
-            plane: 'XY',
-            translate: 0,
-            rotate: 0
-          })
-        } else {
-          switch (data1.plane) {
-            case 'XY':
-              samplePlane.rotation.set(0,0,0)
-              samplePlane.position.set(0,0,0)
-              samplePlane.lookAt(new THREE.Vector3(0, 0, 10)) // z direction blue
-              samplePlane.translateX(0.45)
-              samplePlane.translateY(0.45)
-              samplePlane.translateZ(0.05)
-              samplePlane.position.z = data1.translate + 0.05
-              break;
-            case 'YZ':
-              samplePlane.rotation.set(0,0,0)
-              samplePlane.position.set(0,0,0)
-              samplePlane.lookAt(new THREE.Vector3(10, 0, 0)) // x direction blue
-              samplePlane.translateX(0.05)
-              samplePlane.translateY(0.45)
-              samplePlane.translateZ(0.45)
-              samplePlane.translateX(data1.translate + 0.05)
-              break
-            default:
-              samplePlane.rotation.set(0,0,0)
-              samplePlane.position.set(0,0,0)
-              samplePlane.lookAt(new THREE.Vector3(0, 10, 0)) // y direction blue
-              samplePlane.translateX(0.45)
-              samplePlane.translateY(0.05)
-              samplePlane.translateZ(0.45)
-              samplePlane.translateY(data1.translate + 0.05)
-          }
-          // plane.lookAt(new THREE.Vector3(10, 0, 0)); // x direction red
-          // plane.lookAt(new THREE.Vector3(0, 10, 0)); // y direction green
-
         }
-
         break
       case 'line':
-        stage.remove(stage.getObjectByName('sampling-plane'))
-        lineMode()
-        setData1({
-          color: '#f50',
-          size: 1
-        })
+        if (stage) stage.remove(stage.getObjectByName('sampling-plane'))
+        if (stage) stage.remove(stage.getObjectByName('sampling-dot'))
+        if (!stage.getObjectByName('sampling-line')) {
+          stage.add(sampleLine)
+        }
+        break
+      case 'point':
+        if (stage) stage.remove(stage.getObjectByName('sampling-plane'))
+        if (stage) stage.remove(stage.getObjectByName('sampling-line'))
+        if (!stage.getObjectByName('sampling-line')) {
+          stage.add(sampleDot)
+        }
         break
       default:
         if (stage) stage.remove(stage.getObjectByName('sampling-plane'))
+        if (stage) stage.remove(stage.getObjectByName('sampling-line'))
+        if (stage) stage.remove(stage.getObjectByName('sampling-dot'))
         break
     }
-  }, [three, points, data1])
+  }, [three])
 
   useEffect(() => {
-    console.log('run cube')
-  },[three.sample.variable])
+    if (!stage) return
+    switch (three.sample.variable){
+      case 'Temprature':
+        stage.remove(stage.getObjectByName('cube-pressure'))
+        stage.add(groupT)
+        break
+      default:
+        stage.remove(stage.getObjectByName('cube-temprature'))
+        stage.add(groupP)
+    }
+  },[three.sample.variable, groupP, groupT])
 
 
   const myInc = ls => ls.map(v => v + 0.1)
-
-  const lineMode = () => {
-    points.map((p, ind) => {
-      const s = getSphere(...p)
-      stage.add(s)
-      console.log('pints',points)
-      if (ind === 1) {
-        const sps = [] // sample line
-        sps.push(new THREE.Vector3(...myInc(points[0])));
-        sps.push(new THREE.Vector3(...myInc(points[1])));
-        const material = new THREE.LineBasicMaterial({ color: 0x0000ff });
-        const geometry2 = new THREE.BufferGeometry().setFromPoints(sps);
-        const line = new THREE.Line(geometry2, material);
-        stage.add(line)
-      }
-      return null
-    })
-  }
 
   const renderLegend = () => {
     switch (three.activeWidget) {
@@ -259,10 +216,8 @@ const Cube = ({three}) => {
       default:
         return (
           <DatGui data={data1} onUpdate={handleUpdate} style={{ position: 'absolute' }}>
-            <DatString path="package" label="Package" />
-            <DatNumber path="power" label="Power" min={9000} max={9999} step={1} />
-            <DatBoolean path="isAwesome" label="Awesome?" />
-            <DatColor path="feelsLike" label="Feels Like" />
+            <DatString path="project" label="Project" />
+            <DatSelect path="simulation" options={['S1', 'S2', 'S3', 'S4']} />
           </DatGui>
         )
     }

@@ -15,7 +15,6 @@ const HeatMap = () => {
   return (
     <>
       <img src={`${process.env.PUBLIC_URL}/img/gem/gem_0_${frame}.png`} width='400px' alt="heat-map" />
-      <span onClick = {()=> setFrame(frame+1)}>{frame}</span>
     </>
   )
 }

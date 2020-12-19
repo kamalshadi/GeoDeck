@@ -18,10 +18,15 @@ for (let i = 0; i < 20; i += 1) {
   });
 }
 
+const chartForm = (s) => {
+  if (s === 'plane')return <><p>Live Chart</p><HeatMap /></>
+  else if (s === 'point' || s === 'line') return <><p>Live Chart</p><LineChart /></>
+  else return <><p>Live Chart</p><Dist /></>
+}
+
 const LineSeriesWithManyColors = ({ three }) => (
   <div style={{ height:"350px", marginBottom:'25px' }}>
-    {!three.sample.method && <><p>Live Chart</p><Dist /></>}
-    {/* true?<HeatMap />:<LineChart /> */}
+    {chartForm(three.activeWidget)}
   </div>
 )
 

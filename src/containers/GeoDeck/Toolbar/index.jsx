@@ -32,15 +32,40 @@ function BootstrapTooltip(props) {
   return <StyledTooltip arrow classes={classes} {...props} />;
 }
 
-const tools = [ScissorOutlined, HighlightOutlined, RadiusSettingOutlined, AimOutlined, FormatPainterOutlined, NodeIndexOutlined, StarOutlined, FunctionOutlined, CodepenOutlined, DragOutlined]
+const tools = [AimOutlined, RadiusSettingOutlined, CodepenOutlined, ScissorOutlined, HighlightOutlined, FormatPainterOutlined, NodeIndexOutlined, StarOutlined, FunctionOutlined, DragOutlined]
 
+const toolText = (ind) => {
+  switch (ind){
+    case 0:
+      return 'point sampling'
+    case 1:
+      return 'line sampling'
+    case 2:
+      return 'plane sampling'
+    default:
+      return 'tool item'
+  }
+}
+
+const widgetText = (ind) => {
+  switch (ind){
+    case 0:
+      return 'point'
+    case 1:
+      return 'line'
+    case 2:
+      return 'plane'
+    default:
+      return ''
+  }
+}
 const Toolbar = ({changeWidget}) => {
   return (
     <>
       {tools.map((v,ind)=>{
         return (
-          <BootstrapTooltip title="tool item" placement="right"
-            onClick = {()=>changeWidget(ind === 0 ? 'plane' : 'line')}
+          <BootstrapTooltip title={toolText(ind)} placement="right"
+            onClick={ () => changeWidget(widgetText(ind)) }
           >{React.createElement(v, { index: ind }, null
           )}</BootstrapTooltip>
         )

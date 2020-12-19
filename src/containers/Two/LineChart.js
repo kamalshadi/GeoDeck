@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
-
+import { connect } from 'react-redux'
 import pressData from './pressure_point.json'
 import tempData from './temp_point.json'
 import { ResponsiveLine } from '@nivo/line'
@@ -33,12 +33,19 @@ const theme = {
 // no chart will be rendered.
 // website examples showcase many properties,
 // you'll often use just a few of them.
-const MyResponsiveLine = (props) => (
-    <ResponsiveLine
-        data={tempData}
+//
+const minMax = p => {
+  if (p) return [1800,1900]
+  else return [120,122]
+}
+const MyResponsiveLine = ({ three }) => {
+    const m = minMax(three.sample.variable !== 'Temprature')
+    return (
+      <ResponsiveLine
+        data={three.sample.variable === 'Temprature'?tempData:pressData}
         margin={{ top: 10, right: 0, bottom: 40, left: 50 }}
         xScale={{ type: 'point' }}
-        yScale={{ type: 'linear', min: 120, max: 122, stacked: false, reverse: false }}
+        yScale={{ type: 'linear', min: m[0], max: m[1], stacked: false, reverse: false }}
         yFormat=" >-.2f"
         axisTop={null}
         axisRight={null}
@@ -47,7 +54,7 @@ const MyResponsiveLine = (props) => (
             tickSize: 5,
             tickPadding: 5,
             tickRotation: 0,
-            legend: 'Pressure',
+            legend: 'Time (frame)',
             legendOffset: 36,
             legendPosition: 'middle'
         }}
@@ -56,7 +63,7 @@ const MyResponsiveLine = (props) => (
             tickSize: 5,
             tickPadding: 5,
             tickRotation: 0,
-            legend: 'Value',
+            legend: three.sample.variable || 'Pressure',
             legendOffset: -40,
             legendPosition: 'middle'
         }}
@@ -112,5 +119,21 @@ const MyResponsiveLine = (props) => (
         ]}
     />
 )
+}
 
-export default MyResponsiveLine
+function mapStateToProps({
+  three
+  }){
+  return {
+    three
+  }
+}
+
+const mapDispatchToProps = {
+
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(MyResponsiveLine)
