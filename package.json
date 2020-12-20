@@ -87,7 +87,8 @@
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "eslint-config-airbnb": "^17.1.0",
-    "eslint-plugin-react-hooks": "^4.0.8"
+    "eslint-plugin-react-hooks": "^4.0.8",
+    "redux-devtools-extension": "^2.13.8"
   },
   "eslintConfig": {
     "extends": "react-app"
