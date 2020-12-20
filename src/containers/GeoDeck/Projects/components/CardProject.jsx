@@ -1,27 +1,86 @@
 import React from "react";
 import { Card, CardBody, Col, Button, CardHeader } from "reactstrap";
 import { Link, NavLink } from "react-router-dom";
+import { CardMedia } from "@material-ui/core";
 
 const defaultImage = `${process.env.PUBLIC_URL}/img/co2.png`;
 const imageUrl = `${process.env.PUBLIC_URL}/img/gallery/`;
 
 const CardProject = (props) => {
-  const { image, title, time, id } = props.project;
+  const { source, title, time, id } = props.project;
+
+  const images = ["jpg", "gif", "png"];
+  const videos = ["mp4", "3gp", "ogg", "webm"];
+  const extension = source ? source.split(".").pop() : null;
+
+  const renderMedia = () => {
+    const isVideo = videos.includes(extension);
+    return isVideo ? (
+      <CardMedia
+        src={`${imageUrl}${source}`}
+        autoPlay={true}
+        loop={true}
+        // style={{ height: "150px" }}
+        component="video"
+        className={"project-card__thumbnail project-card__thumbnail--valid"}
+        title={title}
+      />
+    ) : (
+      <CardMedia
+        component="img"
+        src={source ? `${imageUrl}${source}` : defaultImage}
+        className={
+          source
+            ? "project-card__thumbnail project-card__thumbnail--valid"
+            : " project-card__thumbnail project-card__thumbnail--default"
+        }
+        title={title}
+      />
+    );
+    // {videos.includes(extension) && (
+    //   <video width="320" height="240" autoPlay loop>
+    //     <source src={`${imageUrl}${source}`} type={`video/${extension}`} />
+    //   </video>
+    // )}
+    {
+      /* <img
+              className=
+              src={image ? `${imageUrl}${image}` : defaultImage}
+              alt=""
+            /> */
+    }
+  };
 
   return (
     <Col md={4} xl={3} sm={12} className="d-flex project-card">
       <Card>
         <CardBody className="project-card__container">
           <CardHeader>
-            <img
+            {renderMedia()}
+            {/* <CardMedia
+              src={source ? `${imageUrl}${source}` : defaultImage}
+              style={{ height: "150px" }}
+              component={images.includes(extension) ? "picture" : "video"}
               className={
-                image
+                source
                   ? "project-card__img project-card__img--valid"
                   : " project-card__img project-card__img--default"
               }
+              title={title}
+            />
+            {videos.includes(extension) && (
+              <video width="320" height="240" autoPlay loop>
+                <source
+                  src={`${imageUrl}${source}`}
+                  type={`video/${extension}`}
+                />
+              </video>
+            )} */}
+            {/* <img
+              className=
               src={image ? `${imageUrl}${image}` : defaultImage}
               alt=""
-            />
+            /> */}
           </CardHeader>
           <div className="project-card__body">
             {/* <h3 className="project-card__plan">Toy Example</h3>

@@ -25,7 +25,7 @@ const getProjects = {
       username: "test project",
       collaborationGroup: "Lab Internal",
       description: "this is a test project",
-      image: "01.jpg",
+      source: "01.jpg",
     },
     {
       id: 2,
@@ -35,7 +35,7 @@ const getProjects = {
       username: "web project",
       collaborationGroup: "Lab Internal",
       description: "this is a web project",
-      image: "02.jpg",
+      source: "02.jpg",
     },
     {
       id: 3,
@@ -45,7 +45,7 @@ const getProjects = {
       username: "mail project",
       collaborationGroup: "Lab Internal",
       description: "this is a mail project",
-      image: "03.jpg",
+      source: "03.jpg",
     },
     {
       id: 4,
@@ -55,7 +55,7 @@ const getProjects = {
       username: "example project",
       collaborationGroup: "Lab Internal",
       description: "this is a example project",
-      image: "04.png",
+      source: "video.webm",
     },
     {
       id: 5,
@@ -65,7 +65,7 @@ const getProjects = {
       username: "archive project",
       collaborationGroup: "Lab Internal",
       description: "this is a archive project",
-      image: null,
+      source: null,
     },
   ],
 };
@@ -78,7 +78,7 @@ const getCreatedProject = (formValues) => {
     username: "test project",
     collaborationGroup: "Lab Internal",
     description: "this is a test project",
-    image: null,
+    source: null,
   };
   const values = _.omit(formValues, "password");
   return {data: _.merge(defaultValue, values)};
