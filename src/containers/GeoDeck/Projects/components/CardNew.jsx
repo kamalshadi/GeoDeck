@@ -8,6 +8,7 @@ const CardNew = () => {
   const [modal, setModal] = useState(false);
 
   const toggle = () => {
+    console.log("call toggle in modal------!!!");
     setModal((prevState) => !prevState);
   };
 

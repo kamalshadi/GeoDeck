@@ -14,6 +14,9 @@ import MaterialTextField from "../../../../../shared/components/form/material/Ma
 import PasswordFieldMaterial from "../../../../../shared/components/form/material/PasswordFieldMaterial";
 import MaterialSelectField from "../../../../../shared/components/form/material/MaterialSelectField";
 import { createProject } from "../../../../../redux/actions/projectAction";
+import { TextField } from "@material-ui/core";
+import Autocomplete from "@material-ui/lab/Autocomplete";
+import RenderAutoComplete from "./RenderAutoComplete";
 
 const AnimatedLineFormWithLabels = (props) => {
   const onSubmit = (formValues) => {
@@ -60,11 +63,21 @@ const AnimatedLineFormWithLabels = (props) => {
               <PasswordFieldMaterial />
             </div>
             <div>
+              <RenderAutoComplete />
+            </div>
+            {/* <div>
+              <TextField id="select" label="Age" value="20" select onChange={(e) => e.preventDefault}>
+                <MenuItem value="10">Ten</MenuItem>
+                <MenuItem value="20">Twenty</MenuItem>
+              </TextField>
+            </div> */}
+            {/* <div>
               <Field
                 name="select"
-                // component={MaterialSelectField}
-                component={MaterialTextField}
-                select
+                type="select"
+                component={MaterialSelectField}
+                // component={MaterialTextField}
+                // select
                 label="Collaboration Group"
               >
                 <MenuItem className="material-form__option" value="one">
@@ -74,7 +87,7 @@ const AnimatedLineFormWithLabels = (props) => {
                   SMART Group
                 </MenuItem>
               </Field>
-            </div>
+            </div> */}
             <div>
               <Field
                 name="description"
