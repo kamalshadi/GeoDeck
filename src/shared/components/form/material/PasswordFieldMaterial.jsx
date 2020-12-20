@@ -66,7 +66,7 @@ export default function PasswordFieldMaterial() {
                 style={{borderRadius: 0}}
                 // onMouseDown={handleMouseDownPassword}
               >
-                {showPassword ? <EyeIcon size="small" /> : <EyeOffIcon />}
+                {showPassword ? <EyeIcon /> : <EyeOffIcon />}
               </IconButton>
             </InputAdornment>
           ),
