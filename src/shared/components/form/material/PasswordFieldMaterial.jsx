@@ -64,7 +64,7 @@ export default function PasswordFieldMaterial() {
                   }`}
                 onClick={showPasswordToggle}
                 style={{borderRadius: 0}}
-                // onMouseDown={handleMouseDownPassword}
+                onMouseDown={handleMouseDownPassword}
               >
                 {showPassword ? <EyeIcon /> : <EyeOffIcon />}
               </IconButton>

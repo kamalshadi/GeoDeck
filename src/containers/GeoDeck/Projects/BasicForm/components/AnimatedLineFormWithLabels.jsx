@@ -1,5 +1,7 @@
 /* eslint-disable react/no-children-prop */
 import React, { useState } from "react";
+import { connect } from "react-redux";
+import moment from "moment";
 import PropTypes from "prop-types";
 import { Card, CardBody, Col, Button, ButtonToolbar } from "reactstrap";
 import { Field, reduxForm } from "redux-form";
@@ -11,12 +13,13 @@ import validate from "../../validateNewProject";
 import MaterialTextField from "../../../../../shared/components/form/material/MaterialTextField";
 import PasswordFieldMaterial from "../../../../../shared/components/form/material/PasswordFieldMaterial";
 import MaterialSelectField from "../../../../../shared/components/form/material/MaterialSelectField";
-// import renderField from "../../../../../shared/components/form/InputField";  
+import { createProject } from "../../../../../redux/actions/projectAction";
 
 const AnimatedLineFormWithLabels = (props) => {
-
   const onSubmit = (formValues) => {
-    console.log(formValues);
+    formValues.time = moment().format("l");
+    props.createProject(formValues);
+    props.toggle(false);
   };
 
   const onKeyPress = (event) => {
@@ -24,7 +27,7 @@ const AnimatedLineFormWithLabels = (props) => {
       event.preventDefault(); //<===== This stops the form from being submitted
     }
   };
-  const { handleSubmit } = props
+  const { handleSubmit } = props;
 
   return (
     <Col md={12} lg={12}>
@@ -38,7 +41,7 @@ const AnimatedLineFormWithLabels = (props) => {
           >
             <div>
               <Field
-                name="username"
+                name="title"
                 component={MaterialTextField}
                 placeholder="title"
                 label="Project Title"
@@ -55,14 +58,6 @@ const AnimatedLineFormWithLabels = (props) => {
             </div>
             <div>
               <PasswordFieldMaterial />
-              {/* {renderPassowrd()} */}
-
-              {/* <Field
-                name="password"
-                component={MaterialTextField}
-                type="password"
-                label="Password"
-              /> */}
             </div>
             <div>
               <Field
@@ -90,7 +85,6 @@ const AnimatedLineFormWithLabels = (props) => {
                 label="Description"
               />
             </div>
-            
           </form>
         </CardBody>
       </Card>
@@ -104,7 +98,9 @@ AnimatedLineFormWithLabels.propTypes = {
   t: PropTypes.func.isRequired,
 };
 
-export default reduxForm({
+let wrapper = reduxForm({
   form: "newProjectForm", // a unique identifier for this form
   validate,
 })(withTranslation("common")(AnimatedLineFormWithLabels));
+
+export default connect(null, { createProject })(wrapper);

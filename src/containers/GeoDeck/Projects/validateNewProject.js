@@ -3,7 +3,7 @@ const validate = (values) => {
     const errors = {};
   
     const requiredFields = [
-      "username",
+      "title",
       "url",
       "password",
     ];

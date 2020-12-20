@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { Col, Container, Row } from "reactstrap";
 import CardProject from "./components/CardProject";
@@ -6,11 +6,16 @@ import CardNew from "./components/CardNew";
 import { fetchProjects } from "../../../redux/actions/projectAction";
 
 const ProjectCards = (props) => {
+  const [projectList, setProjectList] = useState([]);
   const { projects, fetchProjects } = props;
 
   useEffect(() => {
     fetchProjects();
   }, []);
+
+  useEffect(() => {
+    setProjectList(projects);
+  }, [projects]);
 
   return (
     <Container>
@@ -23,7 +28,7 @@ const ProjectCards = (props) => {
         </Col>
       </Row>
       <Row dir="ltr">
-        {projects.map((project, index) => {
+        {projectList.map((project, index) => {
           return <CardProject project={project} key={index} />;
         })}
         <CardNew />
@@ -34,6 +39,7 @@ const ProjectCards = (props) => {
 };
 
 const mapStateToProps = (state) => {
+  // console.log(state);
   return { projects: Object.values(state.projects) };
 };
 

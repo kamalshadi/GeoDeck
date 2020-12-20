@@ -6,7 +6,7 @@ const defaultImage = `${process.env.PUBLIC_URL}/img/co2.png`;
 const imageUrl = `${process.env.PUBLIC_URL}/img/gallery/`;
 
 const CardProject = (props) => {
-  const { image, title, time, href } = props.project;
+  const { image, title, time, id } = props.project;
 
   return (
     <Col md={4} xl={3} sm={12} className="d-flex project-card">
@@ -36,7 +36,7 @@ const CardProject = (props) => {
           >
             Load
           </NavLink> */}
-            <Link to={`/main/${href}`} className="stretched-link" />
+            <Link to={`/main/${id}`} className="stretched-link" />
           </div>
         </CardBody>
       </Card>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Card, CardBody, Col, Button, Modal, ButtonToolbar } from "reactstrap";
 import classNames from "classnames";
 import CreateForm from "../BasicForm";
@@ -10,6 +10,7 @@ const CardNew = () => {
   const toggle = () => {
     setModal((prevState) => !prevState);
   };
+
 
   let Icon;
   const color = "primary";
@@ -49,7 +50,7 @@ const CardNew = () => {
               className=""
               src={rocket}
               alt=""
-              style={{ height: "100px", width: "auto"}}
+              style={{ height: "100px", width: "auto" }}
             />
             <Modal
               isOpen={modal}
@@ -70,7 +71,7 @@ const CardNew = () => {
                 className="modal__body"
                 style={{ backgroundColor: "#232329" }}
               >
-                <CreateForm />
+                <CreateForm toggle={toggle} />
               </div>
               <ButtonToolbar
                 className="modal__footer"
