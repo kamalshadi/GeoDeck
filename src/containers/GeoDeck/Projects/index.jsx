@@ -1,16 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { connect } from "react-redux";
 import { Col, Container, Row } from "reactstrap";
 import CardProject from "./components/CardProject";
 import CardNew from "./components/CardNew";
+import { fetchProjects } from "../../../redux/actions/projectAction";
 
-const cards = [
-  { title: "USA Geothermal", time: "09/09/2020", image: "01.jpg", href: 1 },
-  { title: "Well Optimization", time: "10/21/2020", image: "02.jpg", href: 2 },
-  { title: "USA Geothermal", time: "11/27/2020", image: "03.jpg", href: 3 },
-  { title: "Well Optimization", time: "12/01/2020", image: "04.png", href: 4 },
-  { title: "USA Geothermal", time: "12/18/2020", image: null, href: 5 },
-];
-const ProjectCards = () => {
+const ProjectCards = (props) => {
+  const { projects, fetchProjects } = props;
+
+  useEffect(() => {
+    fetchProjects();
+  }, []);
+
   return (
     <Container>
       <Row>
@@ -22,28 +23,18 @@ const ProjectCards = () => {
         </Col>
       </Row>
       <Row dir="ltr">
-        {cards.map((card, index) => {
-          return (
-            <CardProject
-              key={index}
-              title={card.title}
-              time={card.time}
-              image={card.image}
-              href={card.href}
-            />
-          );
+        {projects.map((project, index) => {
+          return <CardProject project={project} key={index} />;
         })}
         <CardNew />
       </Row>
     </Container>
   );
+  // }
 };
 
-export default ProjectCards;
+const mapStateToProps = (state) => {
+  return { projects: Object.values(state.projects) };
+};
 
-{
-  /*
-  <CardSpecial />
-  <CardPro />
-  */
-}
+export default connect(mapStateToProps, { fetchProjects })(ProjectCards);

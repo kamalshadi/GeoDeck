@@ -1,15 +1,16 @@
 import { combineReducers } from "redux";
 import { reducer as reduxFormReducer } from "redux-form";
-import themeReducer from './themeReducer';
-import rtlReducer from './rtlReducer';
-import sidebarReducer from './sidebarReducer';
-import cryptoTableReducer from './cryptoTableReducer';
-import newOrderTableReducer from './newOrderTableReducer';
-import customizerReducer from './customizerReducer';
-import todoReducer from './todoReducer';
-import authReducer from './authReducer';
+import themeReducer from "./themeReducer";
+import rtlReducer from "./rtlReducer";
+import sidebarReducer from "./sidebarReducer";
+import cryptoTableReducer from "./cryptoTableReducer";
+import newOrderTableReducer from "./newOrderTableReducer";
+import customizerReducer from "./customizerReducer";
+import todoReducer from "./todoReducer";
+import authReducer from "./authReducer";
 import appConfigReducer from "./appConfigReducer";
 import covidReducer from "../../containers/Maps/VectorMapWithRequestData/redux/covidReducer";
+import projectReducer from "./projectReducer";
 
 export default combineReducers({
   form: reduxFormReducer, // mounted under "form",
@@ -23,4 +24,7 @@ export default combineReducers({
   user: authReducer,
   covid: covidReducer,
   todo: todoReducer,
+
+  // user defined reducers
+  projects: projectReducer,
 });
