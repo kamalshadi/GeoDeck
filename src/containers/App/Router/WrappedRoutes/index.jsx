@@ -22,6 +22,7 @@ import BookingDashboard from '../../../Dashboards/Booking/index';
 import FitnessDashboard from '../../../Dashboards/Fitness/index';
 import VisDash from '../../../Main';
 import Projects from '../../../GeoDeck/Projects';
+import Gallery from '../../../GeoDeck/Gallery';
 
 import Mail from '../../../Mail/index';
 
@@ -52,6 +53,7 @@ export default () => {
         <Route path="/documentation" component={Documentation} />
         <Route path="/main" component={VisDash} />
         <Route path="/projects" component={Projects} />
+        <Route path="/gallery" component={Gallery} />
       </div>
     </div>
   );
