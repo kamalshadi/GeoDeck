@@ -46,25 +46,41 @@
 }
 
 .gallery__img-wrap {
-  width: 100%;
+  // width: 100%;
+  flex: 0 1 100%;
   overflow: hidden;
   cursor: pointer;
   border: none;
   padding: 0;
-  margin: 30px;
+  margin: spacing(1.5);
   background-color: #2a2a31;
+
+  @include respond(md) {
+    flex: 0 1 calc(50% - 32px);
+    margin: spacing(2);
+  }
+
+  @include respond(lg) {
+    flex: 0 1 calc(33.33% - 32px);
+    margin: spacing(2);
+  }
+  
+  @include respond(xl) {
+    flex: 0 1 calc(25% - 32px);
+    margin: spacing(2);
+  }
 }
 
 @media screen and (min-width: 768px) {
 
   .gallery__img-wrap {
-    width: 50%;
+    // width: 50%;
   }
 }
 
 @media screen and (min-width: 992px) {
 
   .gallery__img-wrap {
-    width: 25%;
+    // width: 25%;
   }
 }
