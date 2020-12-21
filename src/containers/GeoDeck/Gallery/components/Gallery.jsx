@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { Modal } from "reactstrap";
 import Carousel from "@brainhubeu/react-carousel";
@@ -6,64 +7,10 @@ import ChevronLeftIcon from "mdi-react/ChevronLeftIcon";
 import ChevronRightIcon from "mdi-react/ChevronRightIcon";
 import "@brainhubeu/react-carousel/lib/style.css";
 import "@brainhubeu/react-carousel/lib/style.css";
-import CardProject from "../../Projects/components/CardProject";
-import { CardMedia } from "@material-ui/core";
 import CardGallery from "./CardGallery";
+import { fetchGalleryItems } from "../../../../redux/actions/galleryAction";
 
-const getGallery = [
-  {
-    id: 1,
-    title: "USA Geothermal",
-    time: "09/09/2020",
-    url: "http://test.com",
-    username: "test project",
-    collaborationGroup: "Lab Internal",
-    description: "this is a test project",
-    source: "01.jpg",
-  },
-  {
-    id: 2,
-    title: "Well Optimization",
-    time: "10/21/2020",
-    url: "http://web.com",
-    username: "web project",
-    collaborationGroup: "Lab Internal",
-    description: "this is a web project",
-    source: "02.jpg",
-  },
-  {
-    id: 3,
-    title: "USA Geothermal",
-    time: "11/27/2020",
-    url: "http://mail.com",
-    username: "mail project",
-    collaborationGroup: "Lab Internal",
-    description: "this is a mail project",
-    source: "03.jpg",
-  },
-  {
-    id: 4,
-    title: "Well Optimization",
-    time: "12/01/2020",
-    url: "http://example.com",
-    username: "example project",
-    collaborationGroup: "Lab Internal",
-    description: "this is a example project",
-    source: "video.webm",
-  },
-  {
-    id: 5,
-    title: "USA Geothermal",
-    time: "12/18/2020",
-    url: "http://archive.com",
-    username: "archive project",
-    collaborationGroup: "Lab Internal",
-    description: "this is a archive project",
-    source: null,
-  },
-];
-
-export default class Gallery extends Component {
+class Gallery extends Component {
   static propTypes = {
     images: PropTypes.arrayOf(
       PropTypes.shape({
@@ -90,6 +37,10 @@ export default class Gallery extends Component {
       currentImage: 0,
       carouselImages: [],
     };
+  }
+
+  componentDidMount() {
+    this.props.fetchGalleryItems();
   }
 
   onFilter = (tag) => {
@@ -145,6 +96,8 @@ export default class Gallery extends Component {
       carouselImages,
     } = this.state;
 
+    const { galleryItems } = this.props;
+
     return (
       <div className="gallery">
         <div className="gallery__btns">
@@ -157,23 +110,23 @@ export default class Gallery extends Component {
           >
             all
           </button>
-          {tags.map((btn) => (
+          {tags.map((btn, index) => (
             <button
               type="button"
               className={`gallery__btn${
                 btn.tag === currentTag ? " gallery__btn--active" : ""
               }`}
-              key={btn}
+              key={index}
               onClick={(e) => this.onFilter(btn.tag, e)}
             >
               {btn.title}
             </button>
           ))}
         </div>
-        {getGallery.map((gallery, index) => (
+        {galleryItems.map((gallery, index) => (
           <button
             className="gallery__img-wrap"
-            key={index}
+            key={`gallery-item-${index} `}
             onClick={(event) => this.openLightbox(index, event)}
           >
             <CardGallery item={gallery} />
@@ -221,3 +174,9 @@ export default class Gallery extends Component {
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return { galleryItems: Object.values(state.galleries) };
+};
+
+export default connect(mapStateToProps, { fetchGalleryItems })(Gallery);
