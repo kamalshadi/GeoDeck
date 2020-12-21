@@ -1,15 +1,19 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { Modal } from "reactstrap";
-import Carousel from "@brainhubeu/react-carousel";
+import _ from "lodash";
+import { Card, CardBody, Modal } from "reactstrap";
+import Carousel, { Dots } from "@brainhubeu/react-carousel";
 import ChevronLeftIcon from "mdi-react/ChevronLeftIcon";
 import ChevronRightIcon from "mdi-react/ChevronRightIcon";
 import "@brainhubeu/react-carousel/lib/style.css";
-import "@brainhubeu/react-carousel/lib/style.css";
+// import "@brainhubeu/react-carousel/lib/style.css";
 import CardGallery from "./CardGallery";
 import { fetchGalleryItems } from "../../../../redux/actions/galleryAction";
-import { sourceToTag } from "../../../../shared/helpers";
+import { renderMedia, sourceToTag } from "../../../../shared/helpers";
+
+const defaultImage = `${process.env.PUBLIC_URL}/img/co2.png`;
+const baseUrl = `${process.env.PUBLIC_URL}/img/gallery/`;
 
 class Gallery extends Component {
   static propTypes = {
@@ -36,7 +40,7 @@ class Gallery extends Component {
       tags: props.tags,
       lightboxIsOpen: false,
       currentItem: 0,
-      carouseltems: [],
+      carouselItems: [],
     };
   }
 
@@ -66,7 +70,7 @@ class Gallery extends Component {
     event.preventDefault();
     this.carouselItems();
     this.setState({
-      currentItenmage: index,
+      currentItem: index,
       lightboxIsOpen: true,
     });
   };
@@ -79,13 +83,16 @@ class Gallery extends Component {
   };
 
   onChange = (value) => {
+    // console.log(value);
     this.setState({ currentItem: value });
   };
 
   carouselItems = () => {
     const { items } = this.state;
+    // console.log(items);
     this.setState({
-      carouselItems: items.map((item) => item.src),
+      carouselItems: items.map((item) => item),
+      // carouselItems: items.map((item) => item.source),
     });
   };
 
@@ -118,9 +125,41 @@ class Gallery extends Component {
     );
   };
 
+  renderCarousel = () => {
+    // console.log(this.state.carouselItems);
+    return (
+      <div>
+        <Carousel
+          // plugins={["arrows"]}
+          value={this.state.currentItem}
+          // slides={this.state.slides}
+          onChange={this.onChange}
+        >
+          {this.state.carouselItems.map(({ source, title }) => {
+            // console.log(source);
+            return (
+              <div className="card-header">{renderMedia(source, title)}</div>
+            );
+          })}
+        </Carousel>
+        <Dots
+          number={this.state.carouselItems.length}
+          thumbnails={this.state.carouselItems.map(({ source, title }) => {
+            // console.log(source);
+            return (
+              <div className="card-header">{renderMedia(source, title)}</div>
+            );
+          })}
+          value={this.state.currentItem}
+          onChange={this.onChange}
+        />
+      </div>
+    );
+  };
+
   renderModal = () => {
     const { currentItem, lightboxIsOpen, carouselItems } = this.state;
-
+    // console.log(this.state);
     return (
       <Modal
         isOpen={lightboxIsOpen}
@@ -135,12 +174,13 @@ class Gallery extends Component {
               onClick={this.closeLightbox}
             />
           </div>
-          <Carousel
+          {this.renderCarousel()}
+          {/* <Carousel
             value={currentItem}
             onChange={this.onChange}
-            slides={carouselItems.map((item) => (
-              <img src={item} alt="" />
-            ))}
+            // slides={carouselItems?.map((item) => (
+            //   <img src={item ? `${baseUrl}${item}` : defaultImage} alt="" />
+            // ))}
             addArrowClickHandler
             arrowLeft={
               <div className="modal__btn">
@@ -152,10 +192,33 @@ class Gallery extends Component {
                 <ChevronRightIcon className="modal__btn_right" />
               </div>
             }
-          ></Carousel>
+          >
+            {carouselItems?.map((item) => (
+              <img
+                src={item ? `${baseUrl}${item}` : defaultImage}
+                alt={item}
+                width="100%"
+                height="auto"
+              />
+            ))}
+            <Dots
+              number={_.size(carouselItems)}
+              thumbnails={carouselItems?.map((item) => (
+                <img
+                  src={item ? `${baseUrl}${item}` : defaultImage}
+                  alt={item}
+                  width="100%"
+                  height="auto"
+                />
+              ))}
+              value={currentItem}
+              onChange={this.onChange}
+              // number={}
+            />
+          </Carousel> */}
           <div className="modal__footer">
             <p>
-              {currentItem + 1} of {carouselItems.length}
+              {currentItem + 1} of {_.size(carouselItems)}
             </p>
           </div>
         </div>
@@ -183,7 +246,7 @@ class Gallery extends Component {
             <CardGallery item={item} />
           </button>
         ))}
-        {/* {this.renderModal()} */}
+        {this.renderModal()}
       </div>
     );
   }
