@@ -2,6 +2,7 @@ import React from "react";
 import { Card, CardBody, Col, Button, CardHeader } from "reactstrap";
 import { Link, NavLink } from "react-router-dom";
 import { CardMedia } from "@material-ui/core";
+import { sourceToTag } from "../../../../shared/helpers";
 
 const defaultImage = `${process.env.PUBLIC_URL}/img/co2.png`;
 const imageUrl = `${process.env.PUBLIC_URL}/img/gallery/`;
@@ -9,31 +10,15 @@ const imageUrl = `${process.env.PUBLIC_URL}/img/gallery/`;
 const CardProject = (props) => {
   const { source, title, time, id } = props.item;
 
-  const images = ["jpg", "gif", "png"];
-  const videos = ["mp4", "3gp", "ogg", "webm"];
-  const extension = source ? source.split(".").pop() : null;
-
   const renderMedia = () => {
-    const isVideo = videos.includes(extension);
-    const isImage = images.includes(extension);
+    const sourceTag = sourceToTag(source);
 
-    if (isVideo) {
-      return (
-        <CardMedia
-          src={`${imageUrl}${source}`}
-          autoPlay={true}
-          loop={true}
-          // style={{ height: "150px" }}
-          component="video"
-          className={"project-card__thumbnail project-card__thumbnail--valid"}
-          title={title}
-        />
-      );
-    } else if (isImage || !source) {
+    if (sourceTag === "img" || !source) {
       return (
         <CardMedia
           component="img"
           src={source ? `${imageUrl}${source}` : defaultImage}
+          style={{ minHeight: "auto" }}
           className={
             source
               ? "project-card__thumbnail project-card__thumbnail--valid"
@@ -42,19 +27,21 @@ const CardProject = (props) => {
           title={title}
         />
       );
-    }
-    return <div>NO IMAGE OR VIDEO!!!!</div>;
-    // {videos.includes(extension) && (
-    //   <video width="320" height="240" autoPlay loop>
-    //     <source src={`${imageUrl}${source}`} type={`video/${extension}`} />
-    //   </video>
-    // )}
-    {
-      /* <img
-              className=
-              src={image ? `${imageUrl}${image}` : defaultImage}
-              alt=""
-            /> */
+    } else if (sourceTag === "video") {
+      return (
+        <CardMedia
+          src={`${imageUrl}${source}`}
+          autoPlay={true}
+          loop={true}
+          // style={{ height: "150px" }}
+          component="video"
+          style={{ minHeight: "auto" }}
+          className={"project-card__thumbnail project-card__thumbnail--valid"}
+          title={title}
+        />
+      );
+    } else {
+      return <div>NO IMAGE OR VIDEO!!!!</div>;
     }
   };
 
