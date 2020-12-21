@@ -11,9 +11,7 @@ import "@brainhubeu/react-carousel/lib/style.css";
 import CardGallery from "./CardGallery";
 import { fetchGalleryItems } from "../../../../redux/actions/galleryAction";
 import { renderMedia, sourceToTag } from "../../../../shared/helpers";
-
-const defaultImage = `${process.env.PUBLIC_URL}/img/co2.png`;
-const baseUrl = `${process.env.PUBLIC_URL}/img/gallery/`;
+import { CardMedia } from "@material-ui/core";
 
 class Gallery extends Component {
   static propTypes = {
@@ -125,34 +123,116 @@ class Gallery extends Component {
     );
   };
 
+  renderThumbnail = (source, title) => {
+    const defaultImage = `${process.env.PUBLIC_URL}/img/co2.png`;
+    const imageUrl = `${process.env.PUBLIC_URL}/img/gallery/`;
+    const sourceTag = sourceToTag(source);
+
+    if (sourceTag === "img" || !source) {
+      return (
+        <CardMedia
+          component="img"
+          src={source ? `${imageUrl}${source}` : defaultImage}
+          style={{ width: "50px", height: "35px" }}
+          // style={{ minHeight: "auto" }}
+          // className={
+          //   source
+          //     ? "project-card__thumbnail project-card__thumbnail--valid"
+          //     : " project-card__thumbnail project-card__thumbnail--default"
+          // }
+          title={title}
+        />
+      );
+    } else if (sourceTag === "video") {
+      return (
+        <CardMedia
+          src={`${imageUrl}${source}`}
+          autoPlay={true}
+          loop={true}
+          style={{ width: "50px", height: "50px" }}
+          // style={{ height: "150px" }}
+          component="video"
+          // style={{ minHeight: "auto" }}
+          // className={"project-card__thumbnail project-card__thumbnail--valid"}
+          title={title}
+        />
+      );
+    } else {
+      return <div>NO IMAGE OR VIDEO!!!!</div>;
+    }
+  };
+
   renderCarousel = () => {
     // console.log(this.state.carouselItems);
     return (
-      <div>
-        <Carousel
-          // plugins={["arrows"]}
-          value={this.state.currentItem}
-          // slides={this.state.slides}
-          onChange={this.onChange}
+      <Carousel
+        addArrowClickHandler
+        arrowLeft={
+          <div className="modal__btn">
+            <ChevronLeftIcon className="modal__btn_left" />
+          </div>
+        }
+        arrowRight={
+          <div className="modal__btn">
+            <ChevronRightIcon className="modal__btn_right" />
+          </div>
+        }
+        value={this.state.currentItem}
+        // slides={this.state.slides}
+        onChange={this.onChange}
+      >
+        {this.state.carouselItems.map(({ source, title }) => {
+          // console.log(source);
+          return (
+            <div className="card-header">{renderMedia(source, title)}</div>
+          );
+        })}
+      </Carousel>
+    );
+  };
+
+  renderDots = () => {
+    return (
+      <div
+        style={{
+          marginTop: "24px",
+          // width: "300px",
+          height: "60px",
+          overflow: "hidden",
+        }}
+        className="d-flex justify-content-between"
+      >
+        <div
+          style={{
+            height: "90px",
+            /* 40px - more place for scrollbar, is hidden under parent box */
+            // padding: "5px",
+            whiteSpace: "nowrap",
+            overflowX: "scroll",
+            overflowY: "hidden",
+            "-webkit-overflow-scrolling": "touch",
+          }}
         >
-          {this.state.carouselItems.map(({ source, title }) => {
+          <Dots
+            value={this.state.currentItem}
+            number={this.state.carouselItems.length}
+            thumbnails={this.state.carouselItems.map(({ source, title }) =>
+              this.renderThumbnail(source, title)
+            )}
             // console.log(source);
-            return (
-              <div className="card-header">{renderMedia(source, title)}</div>
-            );
-          })}
-        </Carousel>
-        <Dots
-          number={this.state.carouselItems.length}
-          thumbnails={this.state.carouselItems.map(({ source, title }) => {
-            // console.log(source);
-            return (
-              <div className="card-header">{renderMedia(source, title)}</div>
-            );
-          })}
-          value={this.state.currentItem}
-          onChange={this.onChange}
-        />
+            // <div className="card-header" style={{width: "50px", height: "50px"}}>{renderMedia(source, title)}</div>
+
+            value={this.state.currentItem}
+            onChange={this.onChange}
+          />
+        </div>
+
+        <p
+          className="modal__footer"
+          style={{ margin: "0 24px", alignItems: "center", flex: "1 0 auto" }}
+        >
+          {this.state.currentItem + 1} of {_.size(this.state.carouselItems)}
+        </p>
       </div>
     );
   };
@@ -165,6 +245,7 @@ class Gallery extends Component {
         isOpen={lightboxIsOpen}
         toggle={this.closeLightbox}
         className="modal-dialog--primary modal-dialog--carousel"
+        style={{ margin: 0 }}
       >
         <div className="modal__body">
           <div className="modal__header">
@@ -175,6 +256,7 @@ class Gallery extends Component {
             />
           </div>
           {this.renderCarousel()}
+          {this.renderDots()}
           {/* <Carousel
             value={currentItem}
             onChange={this.onChange}
@@ -216,11 +298,11 @@ class Gallery extends Component {
               // number={}
             />
           </Carousel> */}
-          <div className="modal__footer">
+          {/* <div className="modal__footer">
             <p>
               {currentItem + 1} of {_.size(carouselItems)}
             </p>
-          </div>
+          </div> */}
         </div>
       </Modal>
     );

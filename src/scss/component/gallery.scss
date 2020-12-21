@@ -13,7 +13,7 @@
   margin-bottom: 20px;
 
   @include directify($directions) {
-    text-align: directed('left');
+    text-align: directed("left");
   }
 }
 
@@ -32,7 +32,8 @@
     #{directed('margin-right')}: 20px;
   }
 
-  &:focus, &:active {
+  &:focus,
+  &:active {
     outline: none;
   }
 
@@ -43,6 +44,10 @@
   &.gallery__btn--active {
     color: $color-accent;
   }
+}
+.BrainhubCarousel__thumbnail[type="button"] {
+  padding: 5px 10px !important;
+  height: 100% !important;
 }
 
 .gallery__img-wrap {
@@ -64,7 +69,7 @@
     flex: 0 1 calc(33.33% - 32px);
     margin: spacing(2);
   }
-  
+
   // @include respond(xl) {
   //   flex: 0 1 calc(25% - 32px);
   //   margin: spacing(2);
@@ -72,14 +77,12 @@
 }
 
 @media screen and (min-width: 768px) {
-
   .gallery__img-wrap {
     // width: 50%;
   }
 }
 
 @media screen and (min-width: 992px) {
-
   .gallery__img-wrap {
     // width: 25%;
   }
