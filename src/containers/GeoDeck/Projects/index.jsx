@@ -29,7 +29,11 @@ const ProjectCards = (props) => {
       </Row>
       <Row dir="ltr">
         {projectList.map((project, index) => {
-          return <CardProject project={project} key={index} />;
+          return (
+            <Col md={4} xl={3} sm={12} className="d-flex project-card">
+              <CardProject item={project} key={index} />
+            </Col>
+          );
         })}
         <CardNew />
       </Row>
