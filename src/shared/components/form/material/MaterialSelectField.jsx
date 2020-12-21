@@ -1,21 +1,19 @@
 import React from "react";
-import {Select } from "@material-ui/core";
+import { FormControl, Select } from "@material-ui/core";
 
-const renderSelectField = ({
-  input,
-  label,
-  meta: { touched, error },
-  children,
-  ...custom
-}) => (
-  <Select
-    floatingLabelText={label}
-    errorText={touched && error}
-    {...input}
-    onChange={(event, index, value) => input.onChange(value)}
-    children={children}
-    {...custom}
-  />
+
+const renderSelectField = (
+  { input, label, meta: { touched, error }, children, ...custom },
+) => (
+    <Select 
+      errorText={touched && error}
+      {...input}
+      onChange={(event, index, value) => input.onChange(value)}
+
+      {...custom}
+    >
+      {children}
+    </Select>
 );
 
 export default renderSelectField;

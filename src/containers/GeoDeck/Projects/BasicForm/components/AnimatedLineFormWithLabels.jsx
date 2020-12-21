@@ -19,8 +19,14 @@ import Autocomplete from "@material-ui/lab/Autocomplete";
 import RenderAutoComplete from "./RenderAutoComplete";
 
 const AnimatedLineFormWithLabels = (props) => {
+  const [selectValue, setSelectValue] = useState(null);
+
   const onSubmit = (formValues) => {
+    // if (!selectValue) {
+    //   return;
+    // }
     formValues.time = moment().format("l");
+    formValues.collaborationGroup = selectValue;
     props.createProject(formValues);
     props.toggle(false);
   };
@@ -30,7 +36,18 @@ const AnimatedLineFormWithLabels = (props) => {
       event.preventDefault(); //<===== This stops the form from being submitted
     }
   };
+
+  const onSelectChange = (value) => {
+    setSelectValue(value);
+  };
+
   const { handleSubmit } = props;
+
+  const autoCompleteOptions = [
+    { title: "Lab Internal", value: 1 },
+    { title: "SMART Group", value: 2 },
+    { title: "Default Group", value: 3 },
+  ];
 
   return (
     <Col md={12} lg={12}>
@@ -63,21 +80,22 @@ const AnimatedLineFormWithLabels = (props) => {
               <PasswordFieldMaterial />
             </div>
             <div>
-              <RenderAutoComplete />
+              <Field
+                name="collaboration-group"
+                component={RenderAutoComplete}
+                label="Collaboration Group"
+                fullWidth
+                options={autoCompleteOptions}
+                onSelectChange={onSelectChange}
+              />
             </div>
-            {/* <div>
-              <TextField id="select" label="Age" value="20" select onChange={(e) => e.preventDefault}>
-                <MenuItem value="10">Ten</MenuItem>
-                <MenuItem value="20">Twenty</MenuItem>
-              </TextField>
-            </div> */}
             {/* <div>
               <Field
                 name="select"
-                type="select"
-                component={MaterialSelectField}
-                // component={MaterialTextField}
-                // select
+                // type="select"
+                // component={MaterialSelectField}
+                component={MaterialTextField}
+                select
                 label="Collaboration Group"
               >
                 <MenuItem className="material-form__option" value="one">
