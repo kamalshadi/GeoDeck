@@ -4,14 +4,14 @@ import Gallery from './Gallery';
 import Items from './imgs';
 
 const tags = [
-  { tag: 'cap', title: 'Images' },
-  { tag: 'watch', title: 'Videos' },
-  { tag: 'glasses', title: 'Charts' }
+  { tag: 'img', title: 'Images' },
+  { tag: 'video', title: 'Videos' },
+  // { tag: 'chart', title: 'Charts' }
 ];
 
 const FilterGallery = () => (
   <Col md={12} lg={12}>
-      <Gallery images={Items} tags={tags} />
+      <Gallery tags={tags} />
   </Col>
 );
 

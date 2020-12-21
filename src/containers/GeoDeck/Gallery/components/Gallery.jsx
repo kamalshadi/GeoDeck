@@ -9,10 +9,11 @@ import "@brainhubeu/react-carousel/lib/style.css";
 import "@brainhubeu/react-carousel/lib/style.css";
 import CardGallery from "./CardGallery";
 import { fetchGalleryItems } from "../../../../redux/actions/galleryAction";
+import { sourceToTag } from "../../../../shared/helpers";
 
 class Gallery extends Component {
   static propTypes = {
-    images: PropTypes.arrayOf(
+    items: PropTypes.arrayOf(
       PropTypes.shape({
         src: PropTypes.string,
         type: PropTypes.string,
@@ -30,12 +31,12 @@ class Gallery extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      images: props.images,
+      items: props.items,
       currentTag: "all",
       tags: props.tags,
       lightboxIsOpen: false,
-      currentImage: 0,
-      carouselImages: [],
+      currentItem: 0,
+      carouseltems: [],
     };
   }
 
@@ -44,16 +45,18 @@ class Gallery extends Component {
   }
 
   onFilter = (tag) => {
-    const { images } = this.props;
-    const image = images;
+    const { items } = this.props;
     if (tag === "all") {
       this.setState({
-        images: image,
+        items: items,
         currentTag: "all",
       });
     } else {
       this.setState({
-        images: image.filter((t) => t.type === tag),
+        items: items.filter((item) => {
+          const itemTag = sourceToTag(item.source);
+          return itemTag === tag;
+        }),
         currentTag: tag,
       });
     }
@@ -61,122 +64,133 @@ class Gallery extends Component {
 
   openLightbox = (index, event) => {
     event.preventDefault();
-    this.carouselImages();
+    this.carouselItems();
     this.setState({
-      currentImage: index,
+      currentItenmage: index,
       lightboxIsOpen: true,
     });
   };
 
   closeLightbox = () => {
     this.setState({
-      currentImage: 0,
+      currentItem: 0,
       lightboxIsOpen: false,
     });
   };
 
   onChange = (value) => {
-    this.setState({ currentImage: value });
+    this.setState({ currentItem: value });
   };
 
-  carouselImages = () => {
-    const { images } = this.state;
+  carouselItems = () => {
+    const { items } = this.state;
     this.setState({
-      carouselImages: images.map((item) => item.src),
+      carouselItems: items.map((item) => item.src),
     });
   };
 
-  render() {
-    const {
-      currentImage,
-      lightboxIsOpen,
-      tags,
-      images,
-      currentTag,
-      carouselImages,
-    } = this.state;
-
-    const { galleryItems } = this.props;
-
+  renderFilters = () => {
+    const { tags, currentTag } = this.state;
     return (
-      <div className="gallery">
-        <div className="gallery__btns">
+      <div className="gallery__btns">
+        <button
+          type="button"
+          className={`gallery__btn${
+            currentTag === "all" ? " gallery__btn--active" : ""
+          }`}
+          onClick={(e) => this.onFilter("all", e)}
+        >
+          all
+        </button>
+        {tags.map((btn, index) => (
           <button
             type="button"
             className={`gallery__btn${
-              currentTag === "all" ? " gallery__btn--active" : ""
+              btn.tag === currentTag ? " gallery__btn--active" : ""
             }`}
-            onClick={(e) => this.onFilter("all", e)}
+            key={index}
+            onClick={(e) => this.onFilter(btn.tag, e)}
           >
-            all
+            {btn.title}
           </button>
-          {tags.map((btn, index) => (
+        ))}
+      </div>
+    );
+  };
+
+  renderModal = () => {
+    const { currentItem, lightboxIsOpen, carouselItems } = this.state;
+
+    return (
+      <Modal
+        isOpen={lightboxIsOpen}
+        toggle={this.closeLightbox}
+        className="modal-dialog--primary modal-dialog--carousel"
+      >
+        <div className="modal__body">
+          <div className="modal__header">
             <button
+              className="lnr lnr-cross modal__close-btn"
               type="button"
-              className={`gallery__btn${
-                btn.tag === currentTag ? " gallery__btn--active" : ""
-              }`}
-              key={index}
-              onClick={(e) => this.onFilter(btn.tag, e)}
-            >
-              {btn.title}
-            </button>
-          ))}
+              onClick={this.closeLightbox}
+            />
+          </div>
+          <Carousel
+            value={currentItem}
+            onChange={this.onChange}
+            slides={carouselItems.map((item) => (
+              <img src={item} alt="" />
+            ))}
+            addArrowClickHandler
+            arrowLeft={
+              <div className="modal__btn">
+                <ChevronLeftIcon className="modal__btn_left" />
+              </div>
+            }
+            arrowRight={
+              <div className="modal__btn">
+                <ChevronRightIcon className="modal__btn_right" />
+              </div>
+            }
+          ></Carousel>
+          <div className="modal__footer">
+            <p>
+              {currentItem + 1} of {carouselItems.length}
+            </p>
+          </div>
         </div>
-        {galleryItems.map((gallery, index) => (
+      </Modal>
+    );
+  };
+
+  render() {
+    const { items } = this.state;
+
+    if (!this.props.items) {
+      return null;
+    }
+
+    return (
+      <div className="gallery">
+        {this.renderFilters()}
+
+        {items.map((item, index) => (
           <button
             className="gallery__img-wrap"
             key={`gallery-item-${index} `}
             onClick={(event) => this.openLightbox(index, event)}
           >
-            <CardGallery item={gallery} />
+            <CardGallery item={item} />
           </button>
         ))}
-        <Modal
-          isOpen={lightboxIsOpen}
-          toggle={this.closeLightbox}
-          className="modal-dialog--primary modal-dialog--carousel"
-        >
-          <div className="modal__body">
-            <div className="modal__header">
-              <button
-                className="lnr lnr-cross modal__close-btn"
-                type="button"
-                onClick={this.closeLightbox}
-              />
-            </div>
-            <Carousel
-              value={currentImage}
-              onChange={this.onChange}
-              slides={carouselImages.map((item) => (
-                <img src={item} alt="" />
-              ))}
-              addArrowClickHandler
-              arrowLeft={
-                <div className="modal__btn">
-                  <ChevronLeftIcon className="modal__btn_left" />
-                </div>
-              }
-              arrowRight={
-                <div className="modal__btn">
-                  <ChevronRightIcon className="modal__btn_right" />
-                </div>
-              }
-            ></Carousel>
-            <div className="modal__footer">
-              <p>
-                {currentImage + 1} of {carouselImages.length}
-              </p>
-            </div>
-          </div>
-        </Modal>
+        {/* {this.renderModal()} */}
       </div>
     );
   }
 }
 
 const mapStateToProps = (state) => {
-  return { galleryItems: Object.values(state.galleries) };
+  return { items: Object.values(state.galleries) };
 };
 
 export default connect(mapStateToProps, { fetchGalleryItems })(Gallery);
