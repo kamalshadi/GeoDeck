@@ -38,7 +38,7 @@ const getGalleries = {
       username: "mail project",
       collaborationGroup: "Lab Internal",
       description: "this is a mail project",
-      source: "03.jpg",
+      source: "04.png",
     },
     {
       id: 4,
@@ -78,7 +78,7 @@ const getGalleries = {
       username: "mail project",
       collaborationGroup: "Lab Internal",
       description: "this is a mail project",
-      source: "03.jpg",
+      source: "04.png",
     },
     {
       id: 8,
@@ -118,7 +118,7 @@ const getGalleries = {
       username: "mail project",
       collaborationGroup: "Lab Internal",
       description: "this is a mail project",
-      source: "03.jpg",
+      source: "04.png",
     },
     {
       id: 12,
