@@ -13,8 +13,24 @@
   margin-bottom: 20px;
 
   @include directify($directions) {
-    text-align: directed('left');
+    text-align: directed("left");
   }
+}
+
+.gallery-modal-footer {
+  justify-content: space-between !important;
+  align-items: center !important;
+  max-width: 78%;
+  margin: 0 auto;
+
+  @include respond(xl) {
+    max-width: 68%;
+  }
+}
+
+.gallery-download {
+  font-size: 1.5rem;
+  color: rgb(233, 233, 233);
 }
 
 .gallery__btn {
@@ -32,7 +48,8 @@
     #{directed('margin-right')}: 20px;
   }
 
-  &:focus, &:active {
+  &:focus,
+  &:active {
     outline: none;
   }
 
@@ -44,27 +61,45 @@
     color: $color-accent;
   }
 }
+.BrainhubCarousel__thumbnail[type="button"] {
+  padding: 5px 10px !important;
+  height: 100% !important;
+}
 
 .gallery__img-wrap {
-  width: 100%;
+  // width: 100%;
+  flex: 0 1 100%;
   overflow: hidden;
   cursor: pointer;
   border: none;
   padding: 0;
-  margin: 30px;
+  margin: spacing(1.5);
   background-color: #2a2a31;
+
+  @include respond(md) {
+    flex: 0 1 calc(50% - 32px);
+    margin: spacing(2);
+  }
+
+  @include respond(lg) {
+    flex: 0 1 calc(33.33% - 32px);
+    margin: spacing(2);
+  }
+
+  @include respond(xl) {
+    flex: 0 1 calc(25% - 32px);
+    margin: spacing(2);
+  }
 }
 
 @media screen and (min-width: 768px) {
-
   .gallery__img-wrap {
-    width: 50%;
+    // width: 50%;
   }
 }
 
 @media screen and (min-width: 992px) {
-
   .gallery__img-wrap {
-    width: 25%;
+    // width: 25%;
   }
 }

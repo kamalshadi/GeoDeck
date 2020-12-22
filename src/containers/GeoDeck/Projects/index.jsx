@@ -1,16 +1,22 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { connect } from "react-redux";
 import { Col, Container, Row } from "reactstrap";
 import CardProject from "./components/CardProject";
-// import CardNew from "./components/CardNew";
+import CardNew from "./components/CardNew";
+import { fetchProjects } from "../../../redux/actions/projectAction";
 
-const cards = [
-  { title: "USA Geothermal", time: "09/09/2020", image: "01.jpg", href: 1 },
-  { title: "Well Optimization", time: "10/21/2020", image: "02.jpg", href: 2 },
-  { title: "USA Geothermal", time: "11/27/2020", image: "03.jpg", href: 3 },
-  { title: "Well Optimization", time: "12/01/2020", image: "04.png", href: 4 },
-  { title: "USA Geothermal", time: "12/18/2020", image: null, href: 5 },
-];
-const PricingCards = () => {
+const ProjectCards = (props) => {
+  const [projectList, setProjectList] = useState([]);
+  const { projects, fetchProjects } = props;
+
+  useEffect(() => {
+    fetchProjects();
+  }, []);
+
+  useEffect(() => {
+    setProjectList(projects);
+  }, [projects]);
+
   return (
     <Container>
       <Row>
@@ -22,27 +28,28 @@ const PricingCards = () => {
         </Col>
       </Row>
       <Row dir="ltr">
-        {cards.map((card, index) => {
+        {projectList.map((project, index) => {
           return (
-            <CardProject
-              key={index}
-              title={card.title}
-              time={card.time}
-              image={card.image}
-              href={card.href}
-            />
+            <Col
+              md={4}
+              xl={3}
+              sm={12}
+              className="d-flex project-card"
+              key={`project-card-${index}`}
+            >
+              <CardProject item={project} />
+            </Col>
           );
         })}
       </Row>
     </Container>
   );
+  // }
 };
 
-export default PricingCards;
+const mapStateToProps = (state) => {
+  // console.log(state);
+  return { projects: Object.values(state.projects) };
+};
 
-{
-  /*
-  <CardSpecial />
-  <CardPro />
-  */
-}
+export default connect(mapStateToProps, { fetchProjects })(ProjectCards);

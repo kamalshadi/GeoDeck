@@ -1,27 +1,15 @@
 import React from "react";
-import { Card, CardBody, Col, Button, CardHeader } from "reactstrap";
-import { Link, NavLink } from "react-router-dom";
+import { Card, CardBody, CardHeader } from "reactstrap";
+import { Link } from "react-router-dom";
+import { renderMedia } from "../../../../shared/helpers";
 
-const defaultImage = `${process.env.PUBLIC_URL}/img/co2.png`;
-const imageUrl = `${process.env.PUBLIC_URL}/img/gallery/`;
+const CardProject = (props) => {
+  const { source, title, time, id } = props.item;
 
-const CardProject = ({ image, title, time, href }) => (
-  <Col md={6} xl={3} sm={12} className="d-flex project-card">
+  return (
     <Card>
       <CardBody className="project-card__container">
-        <CardHeader>
-          <img
-            className={
-              image ? "project-card__img project-card__img--valid" : " project-card__img project-card__img--default"
-            }
-            src={image ? `${imageUrl}${image}` : defaultImage}
-            alt=""
-            style={{
-            //   width: "100%",
-            //    height: "auto"
-            }}
-          />
-        </CardHeader>
+        <CardHeader>{renderMedia(source, title)}</CardHeader>
         <div className="project-card__body">
           {/* <h3 className="project-card__plan">Toy Example</h3>
           <hr /> */}
@@ -35,18 +23,11 @@ const CardProject = ({ image, title, time, href }) => (
           >
             Load
           </NavLink> */}
-          <Link to={`/main/${href}`} className="stretched-link" />
+          <Link to={`/main/${id}`} className="stretched-link" />
         </div>
       </CardBody>
     </Card>
-  </Col>
-);
+  );
+};
 
 export default CardProject;
-
-{
-  /*
-  <p className="project-card__feature project-card__feature--inactive">Monthly update</p>
-  <p className="project-card__feature project-card__feature--inactive">Free support</p>
-  */
-}

@@ -127,14 +127,15 @@
   }
 
   .material-table__filter-menu-item {
-    color: #646777;
+    color: #999999;
     transition: 0.3s;
     font-size: 13px;
     padding: 7px 24px;
     height: auto;
+    text-transform: capitalize;
 
     &:hover {
-      background: #fafbfe;
+      color: #F2AB1f;
     }
   }
 }

@@ -1,21 +1,35 @@
-import themeReducer from './themeReducer';
-import rtlReducer from './rtlReducer';
-import sidebarReducer from './sidebarReducer';
-import cryptoTableReducer from './cryptoTableReducer';
-import newOrderTableReducer from './newOrderTableReducer';
-import customizerReducer from './customizerReducer';
-import todoReducer from './todoReducer';
-import authReducer from './authReducer';
-import threeReducer from './threeReducer';
+import { combineReducers } from "redux";
+import { reducer as reduxFormReducer } from "redux-form";
+import themeReducer from "./themeReducer";
+import rtlReducer from "./rtlReducer";
+import sidebarReducer from "./sidebarReducer";
+import cryptoTableReducer from "./cryptoTableReducer";
+import newOrderTableReducer from "./newOrderTableReducer";
+import customizerReducer from "./customizerReducer";
+import todoReducer from "./todoReducer";
+import authReducer from "./authReducer";
+import appConfigReducer from "./appConfigReducer";
+import covidReducer from "../../containers/Maps/VectorMapWithRequestData/redux/covidReducer";
 
-export {
-  themeReducer,
-  rtlReducer,
-  sidebarReducer,
-  cryptoTableReducer,
-  newOrderTableReducer,
-  customizerReducer,
-  todoReducer,
-  authReducer,
+import threeReducer from './threeReducer';
+import projectReducer from "./projectReducer";
+import galleryReducer from "./galleryReducer";
+
+export default combineReducers({
+  form: reduxFormReducer, // mounted under "form",
+  theme: themeReducer,
+  rtl: rtlReducer,
+  appConfig: appConfigReducer,
+  sidebar: sidebarReducer,
+  cryptoTable: cryptoTableReducer,
+  newOrder: newOrderTableReducer,
+  customizer: customizerReducer,
+  user: authReducer,
+  covid: covidReducer,
+  todo: todoReducer,
+  
   threeReducer,
-};
+  // user defined reducers
+  projects: projectReducer,
+  galleries: galleryReducer,
+});

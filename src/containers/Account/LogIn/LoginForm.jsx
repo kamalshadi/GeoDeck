@@ -1,10 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import { Field, reduxForm, Form } from "redux-form";
 import { connect } from "react-redux";
 import { withTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom";
-import EyeIcon from "mdi-react/EyeIcon";
-import KeyVariantIcon from "mdi-react/KeyVariantIcon";
 import AccountOutlineIcon from "mdi-react/AccountOutlineIcon";
 import { NavLink } from "react-router-dom";
 import PropTypes from "prop-types";
@@ -12,6 +10,7 @@ import { Alert, Button } from "reactstrap";
 import renderCheckBoxField from "../../../shared/components/form/CheckBox";
 import InputField from "../../../shared/components/form/InputField";
 import validate from "./validateLogin";
+import PasswordField from "../../../shared/components/form/PasswordField";
 
 const LoginForm = ({
   handleSubmit,
@@ -22,18 +21,11 @@ const LoginForm = ({
   typeFieldUser,
   form,
 }) => {
-  
-  const [showPassword, setShowPassword] = useState(false);
   let history = useHistory();
-
-
-  const showPasswordToggle = () => {
-    setShowPassword(!showPassword);
-  };
 
   const onSubmit = (formValues) => {
     // redirect to dashboard
-    history.push('/projects');
+    history.push("/projects");
   };
 
   return (
@@ -57,33 +49,11 @@ const LoginForm = ({
           />
         </div>
       </div>
-      <div className="form__form-group">
-        <span className="form__form-group-label">Password</span>
-        <div className="form__form-group-field">
-          <div className="form__form-group-icon">
-            <KeyVariantIcon />
-          </div>
-          <Field
-            name="password"
-            component={InputField}
-            type={showPassword ? "text" : "password"}
-            placeholder="Password"
-            className="input-without-border-radius"
-          />
-          <button
-            type="button"
-            className={`form__form-group-button${
-              showPassword ? " active" : ""
-            }`}
-            onClick={showPasswordToggle}
-          >
-            <EyeIcon />
-          </button>
-          <div className="account__forgot-password">
-            <NavLink to="/reset_password">Forgot a password?</NavLink>
-          </div>
+      <PasswordField>
+        <div className="account__forgot-password">
+          <NavLink to="/reset_password">Forgot a password?</NavLink>
         </div>
-      </div>
+      </PasswordField>
       <div className="form__form-group">
         <div className="form__form-group form__form-group-field">
           <Field
@@ -94,9 +64,14 @@ const LoginForm = ({
         </div>
       </div>
       <div className="account__btns">
-          <Button className="account__btn" type="submit" color="primary" disabled={submitting}>
-            Sign In
-          </Button>
+        <Button
+          className="account__btn"
+          type="submit"
+          color="primary"
+          disabled={submitting}
+        >
+          Sign In
+        </Button>
 
         <NavLink
           disabled
@@ -129,7 +104,7 @@ LoginForm.defaultProps = {
 let wrappedComponent = reduxForm({
   form: "geoDeckLoginForm", // a unique identifier for this form
   validate,
-  asyncChangeFields: []
+  asyncChangeFields: [],
   // asyncBlurFields: [], // this seems to prevent the error
 })(withTranslation("common")(LoginForm));
 
