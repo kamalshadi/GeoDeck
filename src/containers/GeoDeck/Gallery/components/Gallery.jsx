@@ -3,17 +3,17 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import _ from "lodash";
 import moment from "moment";
-import { Card, CardBody, Modal } from "reactstrap";
-import Carousel, { Dots } from "@brainhubeu/react-carousel";
-import ChevronLeftIcon from "mdi-react/ChevronLeftIcon";
-import ChevronRightIcon from "mdi-react/ChevronRightIcon";
-import { DownloadOutlined } from "@ant-design/icons";
-import "@brainhubeu/react-carousel/lib/style.css";
+import { Modal } from "reactstrap";
+// import Carousel, { Dots } from "@brainhubeu/react-carousel";
+// import ChevronLeftIcon from "mdi-react/ChevronLeftIcon";
+// import ChevronRightIcon from "mdi-react/ChevronRightIcon";
+// import "@brainhubeu/react-carousel/lib/style.css";
 // import "@brainhubeu/react-carousel/lib/style.css";
 import CardGallery from "./CardGallery";
+import { DownloadOutlined } from "@ant-design/icons";
 import { fetchGalleryItems } from "../../../../redux/actions/galleryAction";
-import { renderMedia, sourceToTag } from "../../../../shared/helpers";
-import { CardMedia } from "@material-ui/core";
+import { sourceToTag } from "../../../../shared/helpers";
+// import { CardMedia } from "@material-ui/core";
 import CarouselGallery from "./CarsouselGallery";
 import { baseUrl, defaultImage } from "../../../../baseUrl";
 import GalleryFilterButton from "./GalleryFilterButton";
@@ -151,102 +151,102 @@ class Gallery extends Component {
     );
   };
 
-  renderThumbnail = (source, title) => {
-    const defaultImage = `${process.env.PUBLIC_URL}/img/co2.png`;
-    const imageUrl = `${process.env.PUBLIC_URL}/img/gallery/`;
-    const sourceTag = sourceToTag(source);
+  // renderThumbnail = (source, title) => {
+  //   const defaultImage = `${process.env.PUBLIC_URL}/img/co2.png`;
+  //   const imageUrl = `${process.env.PUBLIC_URL}/img/gallery/`;
+  //   const sourceTag = sourceToTag(source);
 
-    if (sourceTag === "img" || !source) {
-      return (
-        <CardMedia
-          component="img"
-          src={source ? `${imageUrl}${source}` : defaultImage}
-          style={{ width: "50px", height: "35px" }}
-          title={title}
-        />
-      );
-    } else if (sourceTag === "video") {
-      return (
-        <CardMedia
-          src={`${imageUrl}${source}`}
-          autoPlay={true}
-          loop={true}
-          style={{ width: "50px", height: "50px" }}
-          component="video"
-          title={title}
-        />
-      );
-    } else {
-      return <div>NO IMAGE OR VIDEO!!!!</div>;
-    }
-  };
+  //   if (sourceTag === "img" || !source) {
+  //     return (
+  //       <CardMedia
+  //         component="img"
+  //         src={source ? `${imageUrl}${source}` : defaultImage}
+  //         style={{ width: "50px", height: "35px" }}
+  //         title={title}
+  //       />
+  //     );
+  //   } else if (sourceTag === "video") {
+  //     return (
+  //       <CardMedia
+  //         src={`${imageUrl}${source}`}
+  //         autoPlay={true}
+  //         loop={true}
+  //         style={{ width: "50px", height: "50px" }}
+  //         component="video"
+  //         title={title}
+  //       />
+  //     );
+  //   } else {
+  //     return <div>NO IMAGE OR VIDEO!!!!</div>;
+  //   }
+  // };
 
-  renderCarousel = () => {
-    return (
-      <Carousel
-        addArrowClickHandler
-        arrowLeft={
-          <div className="modal__btn">
-            <ChevronLeftIcon className="modal__btn_left" />
-          </div>
-        }
-        arrowRight={
-          <div className="modal__btn">
-            <ChevronRightIcon className="modal__btn_right" />
-          </div>
-        }
-        value={this.state.currentItem}
-        onChange={this.onChange}
-      >
-        {this.state.carouselItems.map(({ source, title }) => {
-          return (
-            <div className="card-header">{renderMedia(source, title)}</div>
-          );
-        })}
-      </Carousel>
-    );
-  };
+  // renderCarousel = () => {
+  //   return (
+  //     <Carousel
+  //       addArrowClickHandler
+  //       arrowLeft={
+  //         <div className="modal__btn">
+  //           <ChevronLeftIcon className="modal__btn_left" />
+  //         </div>
+  //       }
+  //       arrowRight={
+  //         <div className="modal__btn">
+  //           <ChevronRightIcon className="modal__btn_right" />
+  //         </div>
+  //       }
+  //       value={this.state.currentItem}
+  //       onChange={this.onChange}
+  //     >
+  //       {this.state.carouselItems.map(({ source, title }) => {
+  //         return (
+  //           <div className="card-header">{renderMedia(source, title)}</div>
+  //         );
+  //       })}
+  //     </Carousel>
+  //   );
+  // };
 
-  renderDots = () => {
-    return (
-      <div
-        style={{
-          marginTop: "24px",
-          // width: "300px",
-          height: "60px",
-          overflow: "hidden",
-        }}
-        className="d-flex justify-content-between"
-      >
-        <div
-          style={{
-            height: "90px",
-            whiteSpace: "nowrap",
-            overflowX: "scroll",
-            overflowY: "hidden",
-            "-webkit-overflow-scrolling": "touch",
-          }}
-        >
-          <Dots
-            value={this.state.currentItem}
-            number={this.state.carouselItems.length}
-            thumbnails={this.state.carouselItems.map(({ source, title }) =>
-              this.renderThumbnail(source, title)
-            )}
-            value={this.state.currentItem}
-            onChange={this.onChange}
-          />
-        </div>
+  // renderDots = () => {
+  //   return (
+  //     <div
+  //       style={{
+  //         marginTop: "24px",
+  //         // width: "300px",
+  //         height: "60px",
+  //         overflow: "hidden",
+  //       }}
+  //       className="d-flex justify-content-between"
+  //     >
+  //       <div
+  //         style={{
+  //           height: "90px",
+  //           whiteSpace: "nowrap",
+  //           overflowX: "scroll",
+  //           overflowY: "hidden",
+  //           "-webkit-overflow-scrolling": "touch",
+  //         }}
+  //       >
+  //         <Dots
+  //           value={this.state.currentItem}
+  //           number={this.state.carouselItems.length}
+  //           thumbnails={this.state.carouselItems.map(({ source, title }) =>
+  //             this.renderThumbnail(source, title)
+  //           )}
+  //           value={this.state.currentItem}
+  //           onChange={this.onChange}
+  //         />
+  //       </div>
 
-        <p
-          className="modal__footer"
-          style={{ margin: "0 24px", alignItems: "center", flex: "1 0 auto" }}
-        >
-          {this.state.currentItem + 1} of {_.size(this.state.carouselItems)}
-        </p>
-      </div>
-    );
-  };
+  //       <p
+  //         className="modal__footer"
+  //         style={{ margin: "0 24px", alignItems: "center", flex: "1 0 auto" }}
+  //       >
+  //         {this.state.currentItem + 1} of {_.size(this.state.carouselItems)}
+  //       </p>
+  //     </div>
+  //   );
+  // };
 
   renderModal = () => {
     const { currentItem, lightboxIsOpen, carouselItems } = this.state;
