@@ -1,56 +1,84 @@
 // based on Bootstrap4 breakpoints
-@mixin respond ($breakpoint){
-    @if $breakpoint==sm{
-        @media only screen and (min-width:36em){//  ≥ 576px
-            @content;
-        }
-    }    
-    @if $breakpoint==md{
-        @media only screen and (min-width:48em){//  ≥ 768px
-            @content;
-        }
+@mixin respond($breakpoint) {
+  @if $breakpoint==sm {
+    @media only screen and (min-width: 36em) {
+      //  ≥ 576px
+      @content;
     }
-    @if $breakpoint==lg{
-        @media only screen and (min-width:62em){//  ≥ 992px
-            @content;
-        }
+  }
+  @if $breakpoint==md {
+    @media only screen and (min-width: 48em) {
+      //  ≥ 768px
+      @content;
     }
-    @if $breakpoint==xl{
-        @media only screen and(min-width:75em){//  ≥ 1200px
-            @content;
-        }
+  }
+  @if $breakpoint==lg {
+    @media only screen and (min-width: 62em) {
+      //  ≥ 992px
+      @content;
     }
-    
+  }
+  @if $breakpoint==xl {
+    @media only screen and(min-width:75em) {
+      //  ≥ 1200px
+      @content;
+    }
+  }
 }
 
 // based on Bootstrap4 breakpoints
-@mixin respond-max ($breakpoint){
-    @if $breakpoint==xs{
-        @media only screen and(max-width:36em){//  576px
-            @content;
-        }
+@mixin respond-max($breakpoint) {
+  @if $breakpoint==xs {
+    @media only screen and(max-width:36em) {
+      //  576px
+      @content;
     }
-    @if $breakpoint==sm{
-        @media only screen and (max-width:48em){//  768px
-            @content;
-        }
+  }
+  @if $breakpoint==sm {
+    @media only screen and (max-width: 48em) {
+      //  768px
+      @content;
     }
-    @if $breakpoint==md{
-        @media only screen and (max-width:62em){//  992px
-            @content;
-        }
+  }
+  @if $breakpoint==md {
+    @media only screen and (max-width: 62em) {
+      //  992px
+      @content;
     }
+  }
 
-    @if $breakpoint==lg{
-        @media only screen and (max-width:75em){//  1200px
-            @content;
-        }
+  @if $breakpoint==lg {
+    @media only screen and (max-width: 75em) {
+      //  1200px
+      @content;
     }
-    @if $breakpoint==xl{
-        @media only screen and(min-width:112.5em){//  1800px
-            @content;
-        }
+  }
+  @if $breakpoint==xl {
+    @media only screen and(min-width:112.5em) {
+      //  1800px
+      @content;
     }
-    
+  }
 }
 
+@mixin aspect-ratio-parrent($ratio) {
+  position: relative;
+  width: 100%;
+  padding-top: 100%;
+
+  @if $ratio== "fullHd" {
+    padding-top: 56.25%;
+  }
+
+  @if $ratio== "hd" {
+    padding-top: 75%;
+  }
+}
+
+@mixin aspect-ratio-child {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
