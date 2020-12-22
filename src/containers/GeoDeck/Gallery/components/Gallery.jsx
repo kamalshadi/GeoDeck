@@ -6,12 +6,15 @@ import { Card, CardBody, Modal } from "reactstrap";
 import Carousel, { Dots } from "@brainhubeu/react-carousel";
 import ChevronLeftIcon from "mdi-react/ChevronLeftIcon";
 import ChevronRightIcon from "mdi-react/ChevronRightIcon";
+import { DownloadOutlined } from "@ant-design/icons";
 import "@brainhubeu/react-carousel/lib/style.css";
 // import "@brainhubeu/react-carousel/lib/style.css";
 import CardGallery from "./CardGallery";
 import { fetchGalleryItems } from "../../../../redux/actions/galleryAction";
 import { renderMedia, sourceToTag } from "../../../../shared/helpers";
 import { CardMedia } from "@material-ui/core";
+import CarouselGallery from "./CarsouselGallery";
+import { baseUrl, defaultImage } from "../../../../baseUrl";
 
 class Gallery extends Component {
   static propTypes = {
@@ -239,6 +242,8 @@ class Gallery extends Component {
 
   renderModal = () => {
     const { currentItem, lightboxIsOpen, carouselItems } = this.state;
+    const item = carouselItems[currentItem];
+    const itemSource = item?.source;
     // console.log(this.state);
     return (
       <Modal
@@ -247,7 +252,7 @@ class Gallery extends Component {
         className="modal-dialog--primary modal-dialog--carousel"
         style={{ margin: 0 }}
       >
-        <div className="modal__body">
+        <div className="modal__body" style={{ width: "60%", maxWidth: "60%" }}>
           <div className="modal__header">
             <button
               className="lnr lnr-cross modal__close-btn"
@@ -255,62 +260,36 @@ class Gallery extends Component {
               onClick={this.closeLightbox}
             />
           </div>
-          {this.renderCarousel()}
-          {this.renderDots()}
-          {/* <Carousel
-            value={currentItem}
+          {/* {this.renderCarousel()}
+          {this.renderDots()} */}
+
+          <CarouselGallery
+            items={carouselItems}
+            activeIndex={currentItem}
             onChange={this.onChange}
-            // slides={carouselItems?.map((item) => (
-            //   <img src={item ? `${baseUrl}${item}` : defaultImage} alt="" />
-            // ))}
-            addArrowClickHandler
-            arrowLeft={
-              <div className="modal__btn">
-                <ChevronLeftIcon className="modal__btn_left" />
-              </div>
-            }
-            arrowRight={
-              <div className="modal__btn">
-                <ChevronRightIcon className="modal__btn_right" />
-              </div>
-            }
-          >
-            {carouselItems?.map((item) => (
-              <img
-                src={item ? `${baseUrl}${item}` : defaultImage}
-                alt={item}
-                width="100%"
-                height="auto"
-              />
-            ))}
-            <Dots
-              number={_.size(carouselItems)}
-              thumbnails={carouselItems?.map((item) => (
-                <img
-                  src={item ? `${baseUrl}${item}` : defaultImage}
-                  alt={item}
-                  width="100%"
-                  height="auto"
-                />
-              ))}
-              value={currentItem}
-              onChange={this.onChange}
-              // number={}
-            />
-          </Carousel> */}
-          {/* <div className="modal__footer">
+          />
+
+          <div className="modal__footer gallery-modal-footer">
+            <a
+              // target="_blank"
+              href={itemSource ? `${baseUrl}${itemSource}` : defaultImage}
+              download
+            >
+              <DownloadOutlined className="gallery-download" />
+            </a>
             <p>
               {currentItem + 1} of {_.size(carouselItems)}
             </p>
-          </div> */}
+          </div>
         </div>
       </Modal>
     );
   };
 
   render() {
-    const { items } = this.state;
+    const { items, carouselItems, currentItem } = this.state;
 
+    console.log(this.state);
     if (!this.props.items) {
       return null;
     }

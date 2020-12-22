@@ -17,6 +17,16 @@
   }
 }
 
+.gallery-modal-footer {
+  justify-content: space-between !important;
+  align-items: center !important;
+}
+
+.gallery-download {
+  font-size: 1.5rem;
+  color: rgb(233, 233, 233);
+}
+
 .gallery__btn {
   background: transparent;
   padding: 0;
