@@ -1,10 +1,10 @@
 import React from 'react';
 import { Card, CardBody, Col } from 'reactstrap';
-import {
-  HorizontalGridLines, LineSeries, VerticalGridLines, XAxis, FlexibleWidthXYPlot, YAxis,
-} from 'react-vis';
 import { withTranslation } from 'react-i18next';
-import PropTypes from 'prop-types';
+import { connect } from 'react-redux'
+import LineChart from '../../Two/LineChart'
+import HeatMap from '../../Two/Heatmap'
+import Dist from '../../Two/Dist'
 
 const data = [];
 
@@ -18,21 +18,31 @@ for (let i = 0; i < 20; i += 1) {
   });
 }
 
-const LineSeriesWithManyColors = ({ t }) => (
-    <div>
-          <FlexibleWidthXYPlot
-            height={250}
-            colorType="linear"
-            colorDomain={[0, 9]}
-            colorRange={['#70bbfd', '#c88ffa']}
-          >
-            <HorizontalGridLines />
-            <VerticalGridLines />
-            <XAxis />
-            <YAxis />
-            {data.map(props => <LineSeries className="react-vis__svg-line" {...props} />)}
-          </FlexibleWidthXYPlot>
-    </div>
+const chartForm = (s) => {
+  if (s === 'plane')return <><p>Live Chart</p><HeatMap /></>
+  else if (s === 'point' || s === 'line') return <><p>Live Chart</p><LineChart /></>
+  else return <><p>Live Chart</p><Dist /></>
+}
+
+const LineSeriesWithManyColors = ({ three }) => (
+  <div style={{ height:"350px", marginBottom:'25px' }}>
+    {chartForm(three.activeWidget)}
+  </div>
 )
 
-export default withTranslation('common')(LineSeriesWithManyColors);
+function mapStateToProps ({
+  three
+  }) {
+  return {
+    three
+  }
+}
+
+const mapDispatchToProps = {
+
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withTranslation('common')(LineSeriesWithManyColors))

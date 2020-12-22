@@ -41,7 +41,6 @@ const ProjectCards = (props) => {
             </Col>
           );
         })}
-        <CardNew />
       </Row>
     </Container>
   );

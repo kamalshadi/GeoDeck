@@ -10,6 +10,8 @@ import todoReducer from "./todoReducer";
 import authReducer from "./authReducer";
 import appConfigReducer from "./appConfigReducer";
 import covidReducer from "../../containers/Maps/VectorMapWithRequestData/redux/covidReducer";
+
+import threeReducer from './threeReducer';
 import projectReducer from "./projectReducer";
 import galleryReducer from "./galleryReducer";
 
@@ -25,7 +27,8 @@ export default combineReducers({
   user: authReducer,
   covid: covidReducer,
   todo: todoReducer,
-
+  
+  threeReducer,
   // user defined reducers
   projects: projectReducer,
   galleries: galleryReducer,

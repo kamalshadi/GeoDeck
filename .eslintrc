@@ -31,6 +31,7 @@
     "max-len": ["error", {"code": 120, "ignoreRegExpLiterals": true, "tabWidth": 2}],
     "no-console": [1],
     "linebreak-style": "off",
-    "react/jsx-one-expression-per-line": [0, { "allow": "literal" }]
+    "react/jsx-one-expression-per-line": [0, { "allow": "literal" }],
+    "semi": 0
   }
 }
