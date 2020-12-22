@@ -14,7 +14,7 @@ import { DownloadOutlined } from "@ant-design/icons";
 import { fetchGalleryItems } from "../../../../redux/actions/galleryAction";
 import { sourceToTag } from "../../../../shared/helpers";
 // import { CardMedia } from "@material-ui/core";
-import CarouselGallery from "./CarsouselGallery";
+import CarouselGallery from "./CarouselGallery";
 import { baseUrl, defaultImage } from "../../../../baseUrl";
 import GalleryFilterButton from "./GalleryFilterButton";
 
@@ -258,9 +258,9 @@ class Gallery extends Component {
         isOpen={lightboxIsOpen}
         toggle={this.closeLightbox}
         className="modal-dialog--primary modal-dialog--carousel"
-        style={{ margin: 0 }}
+        style={{ margin: 0}}
       >
-        <div className="modal__body" style={{ width: "60%", maxWidth: "60%" }}>
+        <div className="modal__body">
           <div className="modal__header">
             <button
               className="lnr lnr-cross modal__close-btn"

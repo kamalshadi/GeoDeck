@@ -20,8 +20,8 @@
   text-align: center;
   background-color: #232329;
   @include themify($themes) {
-    background-color: themed('colorBackground');
-    color: themed('colorText');
+    background-color: themed("colorBackground");
+    color: themed("colorText");
   }
 }
 
@@ -42,7 +42,7 @@
   background: transparent;
 
   @include themify($themes) {
-    color: themed('colorIcon');
+    color: themed("colorIcon");
   }
 }
 
@@ -74,33 +74,29 @@
   }
 
   @include directify($directions) {
-    flex-flow: directed('flex-flow')!important;
+    flex-flow: directed("flex-flow") !important;
   }
 }
 
 .modal-dialog--primary {
-
   .modal__title-icon {
     color: $color-blue;
   }
 }
 
 .modal-dialog--success {
-
   .modal__title-icon {
     color: $color-accent;
   }
 }
 
 .modal-dialog--warning {
-
   .modal__title-icon {
     color: $color-yellow;
   }
 }
 
 .modal-dialog--danger {
-
   .modal__title-icon {
     color: $color-red;
   }
@@ -118,7 +114,6 @@
   }
 
   .modal__footer {
-
     button:first-child {
       color: #ffffff;
       background-color: rgba(255, 255, 255, 0.3);
@@ -159,7 +154,7 @@
     padding: 0;
 
     @include directify($directions) {
-      text-align: directed('left');
+      text-align: directed("left");
     }
   }
 
@@ -228,9 +223,10 @@
     align-items: center;
     box-shadow: none;
     background: none;
+    padding: 4vh 2vw !important;
 
     @include directify($directions) {
-      text-align: directed('left');
+      text-align: directed("left");
     }
   }
 
@@ -253,7 +249,7 @@
   .modal__btn {
     padding: 0;
     cursor: pointer;
-    color: transparentize(#ffffff, .5);
+    color: transparentize(#ffffff, 0.5);
 
     &:hover:not([enabled]) {
       color: #ffffff;
@@ -275,10 +271,11 @@
   }
 
   .modal__body {
-    max-width: 50%;
+    max-width: calc(100% - 4vw);
+    width: calc(100% - 4vw);
     overflow: hidden;
 
-    li{
+    li {
       align-items: stretch;
     }
 
@@ -296,7 +293,6 @@
 
 @media screen and (max-width: 768px) {
   .modal-dialog--carousel {
-
     .modal__body {
       max-width: 100%;
     }

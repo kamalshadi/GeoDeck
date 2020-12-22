@@ -51,31 +51,36 @@ const CarouselGallery = (props) => {
   });
 
   return (
-    <div style={{ width: "100%" }}>
-      <Carousel
-        interval={false}
-        activeIndex={activeIndex}
-        next={next}
-        previous={previous}
-      >
-        <CarouselIndicators
-          items={items}
-          activeIndex={activeIndex}
-          onClickHandler={goToIndex}
-        />
-        {slides}
+    <React.Fragment>
+      <div style={{ width: "100%" }} className="d-flex">
         <CarouselControl
           direction="prev"
           directionText="Previous"
           onClickHandler={previous}
         />
+        <Carousel
+          interval={false}
+          activeIndex={activeIndex}
+          next={next}
+          previous={previous}
+          className="carousel-slide"
+        >
+          {slides}
+        </Carousel>
+
         <CarouselControl
           direction="next"
           directionText="Next"
           onClickHandler={next}
         />
-      </Carousel>
-    </div>
+      </div>
+
+      <CarouselIndicators
+        items={items}
+        activeIndex={activeIndex}
+        onClickHandler={goToIndex}
+      />
+    </React.Fragment>
   );
 };
 

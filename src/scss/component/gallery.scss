@@ -20,6 +20,12 @@
 .gallery-modal-footer {
   justify-content: space-between !important;
   align-items: center !important;
+  max-width: 78%;
+  margin: 0 auto;
+
+  @include respond(xl) {
+    max-width: 68%;
+  }
 }
 
 .gallery-download {
