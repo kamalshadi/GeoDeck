@@ -8,34 +8,11 @@ import {
 } from "reactstrap";
 import { renderMedia } from "../../../../shared/helpers";
 
-// const items = [
-//   {
-//     id: 1,
-//     altText: "Slide 1",
-//     title: "Slide 1",
-//     description: "Slide 1",
-//   },
-//   {
-//     id: 2,
-//     altText: "Slide 2",
-//     title: "Slide 2",
-//     description: "Slide 2",
-//   },
-//   {
-//     id: 3,
-//     altText: "Slide 3",
-//     title: "Slide 3",
-//     description: "Slide 3",
-//   },
-// ];
-
 const CarouselGallery = (props) => {
-  // const [activeIndex, setActiveIndex] = useState(0);
   const [animating, setAnimating] = useState(false);
 
   const { items, onChange, activeIndex } = props;
 
-  console.log(items);
   const next = () => {
     if (animating) return;
     const nextIndex = activeIndex === items.length - 1 ? 0 : activeIndex + 1;
@@ -62,7 +39,6 @@ const CarouselGallery = (props) => {
         onExiting={() => setAnimating(true)}
         onExited={() => setAnimating(false)}
       >
-        
         {renderMedia(item.source, item.title)}
         <CarouselCaption
           // className="text-danger"

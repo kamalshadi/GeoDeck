@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import _ from "lodash";
+import moment from "moment";
 import { Card, CardBody, Modal } from "reactstrap";
 import Carousel, { Dots } from "@brainhubeu/react-carousel";
 import ChevronLeftIcon from "mdi-react/ChevronLeftIcon";
@@ -15,6 +16,7 @@ import { renderMedia, sourceToTag } from "../../../../shared/helpers";
 import { CardMedia } from "@material-ui/core";
 import CarouselGallery from "./CarsouselGallery";
 import { baseUrl, defaultImage } from "../../../../baseUrl";
+import GalleryFilterButton from "./GalleryFilterButton";
 
 class Gallery extends Component {
   static propTypes = {
@@ -84,23 +86,43 @@ class Gallery extends Component {
   };
 
   onChange = (value) => {
-    // console.log(value);
     this.setState({ currentItem: value });
   };
 
   carouselItems = () => {
     const { items } = this.state;
-    // console.log(items);
     this.setState({
       carouselItems: items.map((item) => item),
-      // carouselItems: items.map((item) => item.source),
     });
+  };
+
+  handleRequestSort = (event, property) => {
+    const { items } = this.state;
+    let newItems = [];
+    switch (property) {
+      case "title":
+        newItems = _.sortBy(items, function (o) {
+          return o.title;
+        });
+        break;
+      case "date":
+        newItems = _.sortBy(items, function (o) {
+          return new moment(o.time);
+        }).reverse();
+        break;
+      default:
+        newItems = _.sortBy(items, function (o) {
+          return o.id;
+        }).reverse();
+        break;
+    }
+    this.setState({ items: newItems });
   };
 
   renderFilters = () => {
     const { tags, currentTag } = this.state;
     return (
-      <div className="gallery__btns">
+      <div className="gallery__btns d-flex">
         <button
           type="button"
           className={`gallery__btn${
@@ -122,6 +144,9 @@ class Gallery extends Component {
             {btn.title}
           </button>
         ))}
+        <div className="gallery__btn">
+          <GalleryFilterButton onRequestSort={this.handleRequestSort} />
+        </div>
       </div>
     );
   };
@@ -137,12 +162,6 @@ class Gallery extends Component {
           component="img"
           src={source ? `${imageUrl}${source}` : defaultImage}
           style={{ width: "50px", height: "35px" }}
-          // style={{ minHeight: "auto" }}
-          // className={
-          //   source
-          //     ? "project-card__thumbnail project-card__thumbnail--valid"
-          //     : " project-card__thumbnail project-card__thumbnail--default"
-          // }
           title={title}
         />
       );
@@ -153,10 +172,7 @@ class Gallery extends Component {
           autoPlay={true}
           loop={true}
           style={{ width: "50px", height: "50px" }}
-          // style={{ height: "150px" }}
           component="video"
-          // style={{ minHeight: "auto" }}
-          // className={"project-card__thumbnail project-card__thumbnail--valid"}
           title={title}
         />
       );
@@ -166,7 +182,6 @@ class Gallery extends Component {
   };
 
   renderCarousel = () => {
-    // console.log(this.state.carouselItems);
     return (
       <Carousel
         addArrowClickHandler
@@ -181,11 +196,9 @@ class Gallery extends Component {
           </div>
         }
         value={this.state.currentItem}
-        // slides={this.state.slides}
         onChange={this.onChange}
       >
         {this.state.carouselItems.map(({ source, title }) => {
-          // console.log(source);
           return (
             <div className="card-header">{renderMedia(source, title)}</div>
           );
@@ -208,8 +221,6 @@ class Gallery extends Component {
         <div
           style={{
             height: "90px",
-            /* 40px - more place for scrollbar, is hidden under parent box */
-            // padding: "5px",
             whiteSpace: "nowrap",
             overflowX: "scroll",
             overflowY: "hidden",
@@ -222,9 +233,6 @@ class Gallery extends Component {
             thumbnails={this.state.carouselItems.map(({ source, title }) =>
               this.renderThumbnail(source, title)
             )}
-            // console.log(source);
-            // <div className="card-header" style={{width: "50px", height: "50px"}}>{renderMedia(source, title)}</div>
-
             value={this.state.currentItem}
             onChange={this.onChange}
           />
@@ -244,7 +252,7 @@ class Gallery extends Component {
     const { currentItem, lightboxIsOpen, carouselItems } = this.state;
     const item = carouselItems[currentItem];
     const itemSource = item?.source;
-    // console.log(this.state);
+
     return (
       <Modal
         isOpen={lightboxIsOpen}
@@ -287,9 +295,8 @@ class Gallery extends Component {
   };
 
   render() {
-    const { items, carouselItems, currentItem } = this.state;
+    const { items } = this.state;
 
-    console.log(this.state);
     if (!this.props.items) {
       return null;
     }
