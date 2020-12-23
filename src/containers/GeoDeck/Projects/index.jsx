@@ -21,10 +21,10 @@ const ProjectCards = (props) => {
     <Container>
       <Row>
         <Col md={12}>
-          <h3 className="page-title">Your Projects</h3>
-          <h3 className="page-subhead subhead">
+          <h3 className="page-title">Projects</h3>
+          {/* <h3 className="page-subhead subhead">
             Load your project or create a new one
-          </h3>
+          </h3> */}
         </Col>
       </Row>
       <Row dir="ltr">
