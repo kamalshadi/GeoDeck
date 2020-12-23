@@ -3,7 +3,7 @@
   padding: 0;
   &-header {
     // z-index: 2;
-    border-radius: $border-radius !important;
+    border-radius: inherit !important;
     padding: 0;
     border-bottom: none;
 
@@ -17,7 +17,7 @@
   &-body {
     z-index: 1;
     padding: 0;
-    border-radius: $border-radius;
+    border-radius: inherit !important;
   }
 }
 
@@ -93,7 +93,7 @@
     // end -- add aspect-ratio  -> item
 
     &--valid {
-      border-radius: $border-radius;
+      border-radius: inherit !important;
     }
     &--default {
       padding: spacing(2);

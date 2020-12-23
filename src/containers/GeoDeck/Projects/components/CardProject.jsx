@@ -7,7 +7,7 @@ const CardProject = (props) => {
   const { source, title, time, id } = props.item;
 
   return (
-    <Card>
+    <Card className="border-radius-spacing-2">
       <CardBody className="project-card__container">
         <CardHeader>{renderMedia(source, title)}</CardHeader>
         <div className="project-card__body">
