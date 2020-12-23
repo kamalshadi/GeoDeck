@@ -58,6 +58,7 @@ const CarouselGallery = (props) => {
           directionText="Previous"
           onClickHandler={previous}
         />
+
         <Carousel
           interval={false}
           activeIndex={activeIndex}
