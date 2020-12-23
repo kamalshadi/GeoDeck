@@ -12,7 +12,6 @@ const CardNew = () => {
     setModal((prevState) => !prevState);
   };
 
-
   let Icon;
   const color = "primary";
   const colored = false;
@@ -40,19 +39,38 @@ const CardNew = () => {
   });
   return (
     <Col md={4} xl={3} sm={12} className="d-flex project-card">
-      <Card>
+      <Card className="border-radius-spacing-2">
         <CardBody
           className="project-card__new"
           onClick={toggle}
           style={{ cursor: "pointer" }}
         >
-          <div className="new-project">
-            <img
-              className=""
-              src={rocket}
-              alt=""
-              style={{ height: "100px", width: "auto" }}
-            />
+          {/* <div className="d-flex flex-column justify-content-between">
+            <div>
+              <p>border radius</p>
+            </div>
+            <div>
+              <p>Add new Project</p>
+            </div>
+          </div> */}
+          <div className="new-project" style={{ height: "100%" }}>
+            <div
+              className="d-flex flex-column justify-content-between align-items-center"
+              style={{ height: "100%" }}
+            >
+              <div
+                className="d-flex justify-content-between align-items-center"
+                style={{ flex: "1 0 auto"}}
+              >
+                <img
+                  className="project-card__image--new"
+                  src={rocket}
+                  alt=""
+                  style={{ height: "100px", width: "auto", flex: "1 0 auto" }}
+                />
+              </div>
+              <h3 className="project-card__title project-card__title--new">Add New Project</h3>
+            </div>
             <Modal
               isOpen={modal}
               toggle={toggle}
