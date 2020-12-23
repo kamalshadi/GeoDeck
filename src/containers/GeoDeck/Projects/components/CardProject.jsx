@@ -13,7 +13,7 @@ const CardProject = (props) => {
         <div className="project-card__body">
           {/* <h3 className="project-card__plan">Toy Example</h3>
           <hr /> */}
-          <p className="project-card__title">{title}</p>
+          <h3 className="project-card__title">{title}</h3>
           <p className="project-card__edited">{`Edited: ${time}`}</p>
           {/* <p className="project-card__feature">Modified: 1 Dec</p> */}
           {/* <NavLink
