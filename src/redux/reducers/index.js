@@ -27,8 +27,7 @@ export default combineReducers({
   user: authReducer,
   covid: covidReducer,
   todo: todoReducer,
-  
-  threeReducer,
+  three: threeReducer,
   // user defined reducers
   projects: projectReducer,
   galleries: galleryReducer,
