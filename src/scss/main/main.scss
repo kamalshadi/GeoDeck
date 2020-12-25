@@ -295,21 +295,31 @@ $controlbarHeight: 200px;
       flex: 0 1 20%;
       @include themify($themes) {
         background-color: themed("colorBackground");
+        color: themed("colorTextAdditional");
       }
       // background-color: #262626;
       width: 100%;
       display: flex;
+
       & > div {
         flex: 1 1 0;
         border-right: 1px solid black;
+
+        padding: spacing(2); // flex-basis = 2 * padding left/right
         &.variables {
+          flex: 1 0 calc(35% - #{spacing(4)}); // flex-basis = 2 * padding left/right
           display: flex;
           flex-direction: column;
-          padding-left: 0px;
+          justify-content: space-between;
+          // padding-left: 0px;
           .variable {
             cursor: pointer;
             &.disabled {
               cursor: not-allowed;
+              @include themify($themes) {
+                color: darken(themed("colorTextAdditional"), 15%);
+              }
+
             }
           }
           cursor: pointer;
@@ -329,10 +339,11 @@ $controlbarHeight: 200px;
             }
           }
         }
-        padding: 15px;
       }
       .time-play {
-        flex: 1 1 200px;
+        // flex: 1 1 200px;
+        flex: 1 0 calc(40% - #{spacing(4)}); // flex-basis = 2 * padding left/right
+
         display: flex;
         width: 100%;
         flex-direction: column;
@@ -345,34 +356,70 @@ $controlbarHeight: 200px;
           font-size: 32px;
           width: 100%;
           display: flex;
-          justify-content: space-between;
+          justify-content: center;
           margin-bottom: 5px;
+          & :not(:last-child) {
+            margin-right: spacing(1);
+          }
         }
         .player-input {
           display: flex;
           justify-content: center;
+          align-items: center;
           margin-right: 15px;
+          span {
+            font-size: 14px;
+          }
+
           .time-input {
             position: relative;
             input {
-              color: white;
+              // color: white;
+              // background-color: transparent;
+              // border: none;
+              // outline: 1px solid #d5d5d5;
+              // margin: 0px 5px;
+
               background-color: transparent;
               border: none;
-              outline: 1px solid #d5d5d5;
-              margin: 0px 5px;
+              @include themify($themes) {
+                color: themed("colorBubble");
+                border: 1px solid themed("colorTextAdditional");
+              }
+              margin: 0 spacing(1.5);
+              display: flex;
+              width: spacing(11);
+              padding: 4px 6px;
+              border-radius: 4px;
+              height: 30px;
               &:focus {
                 @include themify($themes) {
-                  outline: 1px solid themed("colorBubble");
+                  border: 1px solid themed("colorBubble");
                 }
               }
             }
             &:after {
-              color: #d5d5d5;
+              // color: #d5d5d5;
+              // position: absolute;
+              // right: 30px;
+              // top: 0px;
+              // content: "/120";
+
+              @include themify($themes) {
+                color: themed("colorTextAdditional");
+              }
+              // color: #757575;
               position: absolute;
-              right: 30px;
-              top: 0px;
+              right: 40px;
+              top: 18%;
               content: "/120";
             }
+          }
+        }
+        .player-slider {
+          .slider {
+            max-width: 75%;
+            margin: 0 auto;
           }
         }
         .rc-slider {
@@ -380,7 +427,8 @@ $controlbarHeight: 200px;
         }
       }
       .simulatins {
-        margin: spacing(2) spacing(4);
+        margin: spacing(2) spacing(6);
+        flex: 0 0 calc(25% - #{spacing(12)}); // flex-basis = 2 * padding left/right
         @include themify($themes) {
           border: 1px solid themed("colorTextAdditional");
         }
@@ -388,7 +436,7 @@ $controlbarHeight: 200px;
         display: flex;
         justify-content: center;
         align-items: center;
-        flex: 0 0 15%;
+        // flex: 0 0 15%;
         & > * {
           // margin-bottom: 5px;
           font-size: spacing(2.5);

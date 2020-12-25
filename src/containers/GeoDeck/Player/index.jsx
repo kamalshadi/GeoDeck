@@ -24,7 +24,7 @@ const Player = () => {
         <div className="time-input">
           <input type="number"/>
         </div>
-        <CameraOutlined style={{ marginTop: '5px'} } />
+        <CameraOutlined style={{ fontSize: "18px"} } />
       </div>
       <div className="player-slider">
         <Slider min={0} max={129} value={34} />
