@@ -3,7 +3,7 @@
   padding: 0;
   &-header {
     // z-index: 2;
-    border-radius: $border-radius !important;
+    border-radius: inherit !important;
     padding: 0;
     border-bottom: none;
 
@@ -17,7 +17,7 @@
   &-body {
     z-index: 1;
     padding: 0;
-    border-radius: $border-radius;
+    border-radius: inherit !important;
   }
 }
 
@@ -72,14 +72,14 @@
   }
 
   &__body {
-    padding: spacing(2);
+    padding: spacing(1) spacing(2);
   }
 
   &__new {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 250px;
+    min-height: 300px;
   }
 
   &__thumbnail {
@@ -93,7 +93,7 @@
     // end -- add aspect-ratio  -> item
 
     &--valid {
-      border-radius: $border-radius;
+      border-radius: inherit !important;
     }
     &--default {
       padding: spacing(2);
@@ -106,17 +106,14 @@
   }
 
   &__title {
-    margin-top: calc(72px - 10%) !important;
+    margin-top: 0 !important;
     font-weight: 500;
-    font-size: spacing(3);
+    font-size: spacing(2.5);
     line-height: spacing(6);
     color: inherit !important;
-    @include respond(sm) {
-      margin-top: calc(76px - 10%) !important;
-    }
 
-    @include respond(lg) {
-      margin-top: spacing(3) !important;
+    &--new {
+      margin-bottom: spacing(3);
     }
   }
 
@@ -130,5 +127,15 @@
     margin-top: 25px;
     max-width: 160px;
     width: 100%;
+  }
+
+  &__image {
+    &--new {
+      height: 100px;
+      width: auto;
+      padding: spacing(3);
+      border: 1px solid;
+      border-radius: 100%;
+    }
   }
 }

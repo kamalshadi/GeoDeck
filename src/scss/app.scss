@@ -1,7 +1,9 @@
 @import 'settings/variable';  //themes' colors
 @import './main/custom-variables'; // user defined variables
 @import 'settings/mixins';  //mixins
-@import './settings/functions';
+@import './settings/functions'; // functions
+@import './settings/utilities'; // utilities
+
 //vendor...
 @import './vendor';
 
