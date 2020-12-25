@@ -1,16 +1,19 @@
-import React from 'react';
+import React from "react";
+import { Col, Container, Row, Card, CardBody } from "reactstrap";
 import {
-  Col, Container, Row, Card, CardBody
-} from 'reactstrap';
-import { CheckCircleOutlined, CheckCircleFilled, PlusCircleFilled } from '@ant-design/icons';
-import MainContainer from '../GeoDeck/Canvas';
-import Toolbar from '../GeoDeck/Toolbar';
-import InfoExport from '../GeoDeck/InfoExport';
-import DetailChart from '../GeoDeck/DetailChart';
-import Variables from '../GeoDeck/Variables';
-import Player from '../GeoDeck/Player';
-import Simulations from '../GeoDeck/Simulations';
+  CheckCircleOutlined,
+  CheckCircleFilled,
+  PlusCircleFilled,
+} from "@ant-design/icons";
+import MainContainer from "../GeoDeck/Canvas";
+import Toolbar from "../GeoDeck/Toolbar";
+import InfoExport from "../GeoDeck/InfoExport";
+import DetailChart from "../GeoDeck/DetailChart";
+import Variables from "../GeoDeck/Variables";
+import Player from "../GeoDeck/Player";
+import Simulations from "../GeoDeck/Simulations";
 // import { withTranslation } from 'react-i18next';
+
 
 const VisDash = () => (
   <div className="geodeck-app">
@@ -19,20 +22,20 @@ const VisDash = () => (
     </div>
     <div className="geodeck-canvas">
       <div className="chart-container">
-        <MainContainer style={{width:'100%'}}/>
+        <MainContainer style={{ width: "100%" }} />
       </div>
       <div className="control-bar">
-          <Variables />
-          <Player />
-          <Simulations />
+        <Variables />
+        <Player />
+        <Simulations />
+      </div>
     </div>
     <div className="detail-bar">
       <DetailChart />
       <InfoExport />
     </div>
   </div>
-  </div>
-)
+);
 
 // const VisDash = () => (
 //   <Container className="dashboard">
@@ -78,6 +81,5 @@ const VisDash = () => (
 //     </Row>
 //   </Container>
 // );
-
 
 export default VisDash;
