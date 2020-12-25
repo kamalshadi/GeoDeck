@@ -15,7 +15,7 @@ const Simulations = () => {
   return (
     <div className="simulatins">
       <h5>Simulations</h5>
-      <div className="sim-table">
+      {/* <div className="sim-table">
         <div style={{marginRight:'60px'}}>
           {V.slice(0,3).map((v,index)=>{
             return (
@@ -38,7 +38,7 @@ const Simulations = () => {
             )
           })}
         </div>
-      </div>
+      </div> */}
     </div>
   )
 }

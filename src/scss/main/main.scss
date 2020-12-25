@@ -242,7 +242,7 @@ $controlbarHeight: 200px;
       &:hover {
         @include themify($themes) {
           color: themed("colorBubble");
-        } 
+        }
       }
     }
   }
@@ -252,13 +252,14 @@ $controlbarHeight: 200px;
 
     canvas {
       width: 100% !important;
+      height: 100% !important;
     }
     // .geodeck-canvas {
     & > div {
-      padding: 30px;
+      // padding: 30px;
     }
     & > div:first-child {
-      padding-top: 0px;
+      // padding-top: 0px;
     }
 
     height: calc(100vh - 60px);
@@ -273,30 +274,29 @@ $controlbarHeight: 200px;
     display: flex;
     flex-direction: column;
     .chart-container {
-      // background-color: yellow;
       width: 100%;
-      flex: 1 1 0;
+      flex: 1 0 auto;
       display: flex;
       flex-direction: column;
+      padding: spacing(1.5);
       .chart {
         flex: 1 1 0;
         width: 100%;
         justify-content: center;
         align-items: center;
-        // background-color: red;
       }
       & > div:last-child {
-        // background-color: red;
         display: flex;
         justify-content: space-between;
       }
     }
     .control-bar {
-      height: $controlbarHeight;
-      // @include themify($themes) {
-      //   background-color: themed('colorBackground');
-      // }
-      background-color: #262626;
+      // height: $controlbarHeight;
+      flex: 0 1 20%;
+      @include themify($themes) {
+        background-color: themed("colorBackground");
+      }
+      // background-color: #262626;
       width: 100%;
       display: flex;
       & > div {
@@ -380,17 +380,22 @@ $controlbarHeight: 200px;
         }
       }
       .simulatins {
-        margin: 15px;
-        border: 1px solid #d5d5d5;
-        padding-top: 5px;
-        border-radius: 4px;
+        margin: spacing(2) spacing(4);
+        @include themify($themes) {
+          border: 1px solid themed("colorTextAdditional");
+        }
+        border-radius: spacing(2);
         display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: flex-start;
-        h5 {
-          margin-bottom: 5px;
+        justify-content: center;
+        align-items: center;
+        flex: 0 0 15%;
+        & > * {
+          // margin-bottom: 5px;
+          font-size: spacing(2.5);
           font-weight: bold;
+          @include themify($themes) {
+            color: themed("colorTextAdditional");
+          }
         }
         .sim-table {
           display: flex;
