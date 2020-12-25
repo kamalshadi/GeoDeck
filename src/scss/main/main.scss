@@ -235,6 +235,7 @@ $controlbarHeight: 200px;
     & > * {
       padding: $toolIconSpace;
       cursor: pointer;
+      font-size: 1rem;
       @include themify($themes) {
         color: themed("colorText");
       }
@@ -319,7 +320,6 @@ $controlbarHeight: 200px;
               @include themify($themes) {
                 color: darken(themed("colorTextAdditional"), 15%);
               }
-
             }
           }
           cursor: pointer;
