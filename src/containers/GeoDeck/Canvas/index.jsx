@@ -14,7 +14,14 @@ import VRScene from "../../Aframe";
 import MultipleYAxesScatterChart from "../../Charts/Recharts/components/MultipleYAxesScatterChart";
 import jet from "./jet.png";
 
-const MainContainer = ({ toggleDetailBar, toggleControlBar, toggleXY }) => {
+const MainContainer = ({
+  detailBar,
+  controlBar,
+  xy,
+  toggleDetailBar,
+  toggleControlBar,
+  toggleXY,
+}) => {
   const [tab, setTab] = useState(0);
 
   const renderGraph = () => {
@@ -31,20 +38,25 @@ const MainContainer = ({ toggleDetailBar, toggleControlBar, toggleXY }) => {
   const renderPageSetting = () => {
     return (
       <div className="d-flex page-setting">
-        <div className="setting geo-button setting__xy ">XY</div>
+        <div
+          className={`setting geo-button icon__toggle--xy ${
+            !xy ? "active" : ""
+          }`}
+          onClick={toggleXY}
+        />
 
         <div
-          className="setting geo-button setting__control-bar"
+          className={`setting geo-button icon__toggle--bottom-bar ${
+            !controlBar ? "active" : ""
+          }`}
           onClick={toggleControlBar}
-        >
-          c
-        </div>
+        />
         <div
-          className="setting geo-button setting__side-bar"
+          className={`setting geo-button icon__toggle--side-bar ${
+            !detailBar ? "active" : ""
+          }`}
           onClick={toggleDetailBar}
-        >
-          s
-        </div>
+        />
       </div>
     );
   };

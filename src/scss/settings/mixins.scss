@@ -82,3 +82,18 @@
   bottom: 0;
   right: 0;
 }
+
+@mixin icon {
+  position: relative;
+  background-color: transparent !important;
+  font-size: 16px;
+  &::after {
+    display: inline-block;
+    content: "";
+    position: absolute;
+    background-color: currentColor;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}

@@ -33,7 +33,7 @@ const VisDash = () => {
     </div>
     <div className="geodeck-canvas">
       <div className="chart-container">
-        <MainContainer toggleDetailBar={onToggleDetailBar} toggleControlBar={onToggleControlBar} toggleXY={onToggleXY} style={{ width: "100%" }} />
+        <MainContainer detailBar={toggleDetailBar} controlBar={toggleControlBar} xy={toggleXY} toggleDetailBar={onToggleDetailBar} toggleControlBar={onToggleControlBar} toggleXY={onToggleXY} style={{ width: "100%" }} />
       </div>
       <div className={`control-bar ${toggleControlBar ? "hide"  : ""}`}>
         <Variables />
