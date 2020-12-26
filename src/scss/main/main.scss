@@ -248,12 +248,17 @@ $controlbarHeight: 200px;
     }
   }
 
+  .hide {
+    display: none !important;
+  }
+
   .geodeck-canvas {
     flex: 0 1 auto;
 
     canvas {
-      width: 100% !important;
+      margin: 0 auto;
       height: 100% !important;
+      display: block;
     }
     // .geodeck-canvas {
     & > div {
@@ -279,7 +284,6 @@ $controlbarHeight: 200px;
       flex: 1 0 auto;
       display: flex;
       flex-direction: column;
-      padding: spacing(1.5);
       .chart {
         flex: 1 1 0;
         width: 100%;
@@ -289,6 +293,23 @@ $controlbarHeight: 200px;
       & > div:last-child {
         display: flex;
         justify-content: space-between;
+        margin: 0 spacing(1) spacing(1);
+      }
+
+      .page-setting {
+        // display: flex;
+        & :not(:last-child) {
+          margin-right: spacing(0.5);
+        }
+
+        setting {
+          &__side-bar {
+          }
+          &__control-bar {
+          }
+          &__xy {
+          }
+        }
       }
     }
     .control-bar {
@@ -315,6 +336,7 @@ $controlbarHeight: 200px;
           // padding-left: 0px;
           .variable {
             cursor: pointer;
+            font-size: 0.875rem;
             &.disabled {
               cursor: not-allowed;
               @include themify($themes) {
