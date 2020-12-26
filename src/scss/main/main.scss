@@ -302,12 +302,13 @@ $controlbarHeight: 200px;
           margin-right: spacing(0.5);
         }
 
-        setting {
-          &__side-bar {
-          }
-          &__control-bar {
-          }
-          &__xy {
+        // setting {
+        // }
+        .active {
+          @include themify($themes) {
+            background-color: themed("colorBubble");
+            color: themed("colorBubble");
+            // border-color: themed("colorBubble");
           }
         }
       }
@@ -505,5 +506,53 @@ $controlbarHeight: 200px;
   .detail-bar {
     flex: 0 0 20%;
     background: rgb(11, 134, 108);
+  }
+}
+
+.icon {
+  &__toggle--side-bar {
+    @include icon;
+    width: 1.5em;
+    height: 1.5em;
+    border: 1px solid inherit !important;
+    &::after {
+      top: 0;
+      right: 0;
+      width: 0.4em;
+      height: 101%;
+      border-radius: inherit;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+  }
+
+  &__toggle--bottom-bar {
+    @include icon;
+    width: 1.5em;
+    height: 1.5em;
+    border: 1px solid inherit !important;
+    &::after {
+      bottom: -1px;
+      left: 0;
+      width: 100%;
+      height: 0.4em;
+      border-radius: inherit;
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+    }
+  }
+
+  &__toggle--xy {
+    @include icon;
+    width: 1.5em;
+    height: 1.5em;
+    border: 1px solid inherit !important;
+    &::after {
+      content: "XY";
+      width: 0.4em;
+      height: 100%;
+      background-color: transparent;
+      left: 33%;
+    }
   }
 }
