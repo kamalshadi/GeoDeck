@@ -10,7 +10,7 @@
   @include directify($directions) {
     #{directed('padding-left')}: 0px;
   }
-  padding-top: 90px;
+  padding-top: $appbar-padding;
   &.exception{
     padding-top: 60px;
   }
@@ -60,4 +60,8 @@
       }
     }
   }
+}
+
+.page-title {
+  margin-top: spacing(3) !important;
 }

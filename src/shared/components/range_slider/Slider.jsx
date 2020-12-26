@@ -3,7 +3,7 @@ import Tooltip from 'rc-tooltip';
 import Slider from 'rc-slider';
 import PropTypes from 'prop-types';
 
-import 'rc-slider/assets/index.css';
+// import 'rc-slider/assets/index.css';
 
 const { Handle } = Slider;
 
@@ -28,12 +28,12 @@ const SliderTheme = ({
   marks, value, min, max, tipFormatter,
 }) => (
   <div className="slider">
-    <div className="slider__min">
+    {/* <div className="slider__min">
       <p>{tipFormatter ? tipFormatter(min) : min}</p>
     </div>
     <div className="slider__max">
       <p>{tipFormatter ? tipFormatter(max) : max}</p>
-    </div>
+    </div> */}
     <Slider
       min={min}
       max={max}
