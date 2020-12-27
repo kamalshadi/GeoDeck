@@ -21,17 +21,25 @@ const MainContainer = ({
   toggleDetailBar,
   toggleControlBar,
   toggleXY,
+  tab,
+  setTab,
 }) => {
-  const [tab, setTab] = useState(0);
-
   const renderGraph = () => {
     switch (tab) {
       case 0:
         return <Cube />;
       case 1:
         return <MultipleYAxesScatterChart />;
-      default:
+      case 2:
         return <VRScene />;
+      case 3:
+        return (
+          <div className="chart">
+            <h2>This is Simulation Table!</h2>
+          </div>
+        );
+      default:
+        return <Cube />;
     }
   };
 
