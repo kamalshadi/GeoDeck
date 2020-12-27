@@ -29,7 +29,12 @@ const MainContainer = ({
       case 0:
         return <Cube />;
       case 1:
-        return <MultipleYAxesScatterChart />;
+        return (
+          <div className="chart">
+            <h2>This is Simulation View!</h2>
+          </div>
+        );
+        // return <MultipleYAxesScatterChart />;
       case 2:
         return <VRScene />;
       case 3:

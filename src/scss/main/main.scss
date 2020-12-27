@@ -224,7 +224,7 @@ $controlbarHeight: 200px;
     display: flex;
     flex-direction: column;
     @include themify($themes) {
-      background-color: lighten(themed("colorBackground"), 15%);
+      background-color: lighten(themed("colorBackground"), 10%);
     }
 
     @include respond(lg) {
@@ -291,16 +291,27 @@ $controlbarHeight: 200px;
       flex: 1 0 auto;
       display: flex;
       flex-direction: column;
+      position: relative;
       .chart {
         flex: 1 1 0;
         width: 100%;
         justify-content: center;
         align-items: center;
+
+        & .a-enter-vr {
+          &.embedded {
+            bottom: spacing(5);
+          }
+        }
       }
       & > div:last-child {
         display: flex;
         justify-content: space-between;
-        margin: 0 spacing(1) spacing(1);
+        // margin: 0 spacing(1) spacing(1);
+        position: absolute;
+        right: spacing(1);
+        left: spacing(1);
+        bottom: spacing(1);
       }
 
       .page-setting {
@@ -523,7 +534,14 @@ $controlbarHeight: 200px;
 
   .detail-bar {
     flex: 0 0 20%;
-    background: rgb(11, 134, 108);
+    @include themify($themes) {
+      background-color: lighten(themed("colorBackground"), 10%);
+    }
+    & :first-child {
+      & > p {
+        padding: spacing(1) spacing(2) 0;
+      }
+    }
   }
 }
 
