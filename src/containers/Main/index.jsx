@@ -14,8 +14,8 @@ import Player from "../GeoDeck/Player";
 import Simulations from "../GeoDeck/Simulations";
 // import { withTranslation } from 'react-i18next';
 
-
 const VisDash = () => {
+  const [tab, setTab] = useState(0);
 
   const [toggleDetailBar, setToggleDetailBar] = useState(false);
   const [toggleControlBar, setToggleControlBar] = useState(false);
@@ -24,30 +24,42 @@ const VisDash = () => {
   const onToggleDetailBar = () => setToggleDetailBar(!toggleDetailBar);
   const onToggleControlBar = () => setToggleControlBar(!toggleControlBar);
   const onToggleXY = () => setToggleXY(!toggleXY);
-  
-  console.log(`detail: ${toggleDetailBar}`);
-  console.log(`control: ${toggleControlBar}`);
-  return (  <div className="geodeck-app">
-    <div className="tool-bar">
-      <Toolbar />
-    </div>
-    <div className="geodeck-canvas">
-      <div className="chart-container">
-        <MainContainer detailBar={toggleDetailBar} controlBar={toggleControlBar} xy={toggleXY} toggleDetailBar={onToggleDetailBar} toggleControlBar={onToggleControlBar} toggleXY={onToggleXY} style={{ width: "100%" }} />
+
+  // console.log(`tab: ${tab}`);
+  // console.log(`detail: ${toggleDetailBar}`);
+  // console.log(`control: ${toggleControlBar}`);
+  return (
+    <div className="geodeck-app">
+      <div className="tool-bar">
+        <Toolbar />
       </div>
-      <div className={`control-bar ${toggleControlBar ? "hide"  : ""}`}>
-        <Variables />
-        <Player />
-        <Simulations />
+      <div className="geodeck-canvas">
+        <div className="chart-container">
+          <MainContainer
+            tab={tab}
+            setTab={setTab}
+            detailBar={toggleDetailBar}
+            controlBar={toggleControlBar}
+            xy={toggleXY}
+            toggleDetailBar={onToggleDetailBar}
+            toggleControlBar={onToggleControlBar}
+            toggleXY={onToggleXY}
+            style={{ width: "100%" }}
+          />
+        </div>
+        <div className={`control-bar ${toggleControlBar ? "hide" : ""}`}>
+          <Variables />
+          <Player />
+          <Simulations tab={tab} setTab={setTab} />
+        </div>
+      </div>
+      <div className={`detail-bar ${toggleDetailBar ? "hide" : ""}`}>
+        <DetailChart />
+        <InfoExport />
       </div>
     </div>
-    <div className={`detail-bar ${toggleDetailBar ? "hide"  : ""}`}>
-      <DetailChart />
-      <InfoExport />
-    </div>
-  </div>
-);
-}
+  );
+};
 
 // const VisDash = () => (
 //   <Container className="dashboard">
