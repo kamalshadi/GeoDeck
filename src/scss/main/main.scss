@@ -1,212 +1,594 @@
-$toolbarWidth:60px;
-$toolIconSpace:20px;
-$detailbarWidth:450px;
-$controlbarHeight:200px;
+$toolbarWidth: spacing(6);
+$toolbarWidthLg: spacing(8);
+$toolIconSpace: spacing(2);
+$detailbarWidth: 450px;
+$controlbarHeight: 200px;
 
-.geodeck-app{
-  height: calc(100vh - 60px);
-  width: 100vw;
-  margin-top: -30px;
-  position: relative;
-  @include themify($themes) {
-    color: themed('colorText');
-  }
-  &>div{
-    padding-top: 30px;
-  }
-  .tool-bar{
-    @include themify($themes) {
-      background-color: themed('colorBackground');
-    }
-    height: calc(100vh - 60px);
-    width: $toolbarWidth;
-    position: absolute;
-    left: 0px;
-    top: 0px;
+// .geodeck-app {
+//   height: calc(100vh - 60px);
+//   width: 100vw;
+//   margin-top: -30px;
+//   position: relative;
+//   @include themify($themes) {
+//     color: themed("colorText");
+//   }
+//   & > div {
+//     padding-top: 30px;
+//   }
+//   .tool-bar {
+//     @include themify($themes) {
+//       background-color: themed("colorBackground");
+//     }
+//     height: calc(100vh - 60px);
+//     width: $toolbarWidth;
+//     position: absolute;
+//     left: 0px;
+//     top: 0px;
+//     display: flex;
+//     font-size: 24px;
+//     flex-direction: column;
+//     & > * {
+//       margin-bottom: $toolIconSpace;
+//       cursor: pointer;
+//     }
+//   }
+//   .geodeck-canvas {
+//     & > div {
+//       padding: 30px;
+//     }
+//     & > div:first-child {
+//       padding-top: 0px;
+//     }
+
+//     height: calc(100vh - 60px);
+//     width: 100%;
+//     padding-left: $toolbarWidth;
+//     padding-right: $detailbarWidth;
+//     background-color: #000014;
+//     display: flex;
+//     flex-direction: column;
+//     .chart-container {
+//       // background-color: yellow;
+//       width: 100%;
+//       flex: 1 1 0;
+//       display: flex;
+//       flex-direction: column;
+//       .chart {
+//         flex: 1 1 0;
+//         width: 100%;
+//         justify-content: center;
+//         align-items: center;
+//         // background-color: red;
+//       }
+//       & > div:last-child {
+//         // background-color: red;
+//         display: flex;
+//         justify-content: space-between;
+//       }
+//     }
+//     .control-bar {
+//       height: $controlbarHeight;
+//       // @include themify($themes) {
+//       //   background-color: themed('colorBackground');
+//       // }
+//       background-color: #262626;
+//       width: 100%;
+//       display: flex;
+//       & > div {
+//         flex: 1 1 0;
+//         border-right: 1px solid black;
+//         &.variables {
+//           display: flex;
+//           flex-direction: column;
+//           padding-left: 0px;
+//           .variable {
+//             cursor: pointer;
+//             &.disabled {
+//               cursor: not-allowed;
+//             }
+//           }
+//           cursor: pointer;
+//           span.anticon {
+//             padding-top: 2px;
+//             &.selected {
+//               @include themify($themes) {
+//                 color: themed("colorBubble");
+//               }
+//             }
+//           }
+//           div {
+//             display: flex;
+//             width: 100%;
+//             .variable {
+//               margin-right: auto;
+//             }
+//           }
+//         }
+//         padding: 15px;
+//       }
+//       .time-play {
+//         flex: 1 1 200px;
+//         display: flex;
+//         width: 100%;
+//         flex-direction: column;
+//         & > div {
+//           text-align: center;
+//         }
+//         .player-buttons {
+//           padding-left: 90px;
+//           padding-right: 90px;
+//           font-size: 32px;
+//           width: 100%;
+//           display: flex;
+//           justify-content: space-between;
+//           margin-bottom: 5px;
+//         }
+//         .player-input {
+//           display: flex;
+//           justify-content: center;
+//           margin-right: 15px;
+//           .time-input {
+//             position: relative;
+//             input {
+//               color: white;
+//               background-color: transparent;
+//               border: none;
+//               outline: 1px solid #d5d5d5;
+//               margin: 0px 5px;
+//               &:focus {
+//                 @include themify($themes) {
+//                   outline: 1px solid themed("colorBubble");
+//                 }
+//               }
+//             }
+//             &:after {
+//               color: #d5d5d5;
+//               position: absolute;
+//               right: 30px;
+//               top: 0px;
+//               content: "/120";
+//             }
+//           }
+//         }
+//         .rc-slider {
+//           margin-top: 15px;
+//         }
+//       }
+//       .simulatins {
+//         margin: 15px;
+//         border: 1px solid #d5d5d5;
+//         padding-top: 5px;
+//         border-radius: 4px;
+//         display: flex;
+//         flex-direction: column;
+//         justify-content: flex-start;
+//         align-items: flex-start;
+//         h5 {
+//           margin-bottom: 5px;
+//           font-weight: bold;
+//         }
+//         .sim-table {
+//           display: flex;
+//           justify-content: space-between;
+//           width: 60%;
+//           & > div {
+//             width: 45%;
+//           }
+//           .sim-row {
+//             cursor: pointer;
+//             width: 100%;
+//             .legend {
+//               margin-left: auto;
+//               background-color: red;
+//               margin-bottom: 5px;
+//             }
+//             display: flex;
+//             justify-content: space-between;
+//             span.anticon {
+//               padding-top: 2px;
+//               &.selected {
+//                 @include themify($themes) {
+//                   color: themed("colorBubble");
+//                 }
+//               }
+//             }
+//           }
+//         }
+//         .anticon {
+//           padding-top: 2px;
+//         }
+//       }
+//     }
+//   }
+//   .detail-bar {
+//     @include themify($themes) {
+//       background-color: themed("colorBackground");
+//     }
+//     height: calc(100vh - 60px);
+//     width: $detailbarWidth;
+//     position: absolute;
+//     right: 0px;
+//     top: 0px;
+//   }
+// }
+
+.geodeck-app {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+
+  .tool-bar {
+    min-width: spacing(6);
+    max-width: spacing(6);
+
     display: flex;
-    font-size: 24px;
     flex-direction: column;
-    &>*{
-      margin-bottom: $toolIconSpace;
+    @include themify($themes) {
+      background-color: lighten(themed("colorBackground"), 10%);
+    }
+
+    @include respond(lg) {
+      min-width: spacing(8);
+      max-width: spacing(8);
+    }
+
+    & > * {
+      padding: $toolIconSpace;
       cursor: pointer;
+      font-size: 1rem;
+      @include themify($themes) {
+        color: themed("colorText");
+      }
+
+      &:hover {
+        @include themify($themes) {
+          color: themed("colorBubble");
+        }
+      }
     }
   }
-  .geodeck-canvas{
-    &>div{
-      padding: 30px;
+
+  .hide {
+    display: none !important;
+  }
+
+  .geodeck-canvas {
+    flex: 0 1 auto;
+
+    canvas {
+      // change default styles for fix responsive bug
+      margin: 0 auto;
+      height: 100% !important;
+      display: block;
     }
-    &>div:first-child{
-      padding-top: 0px;
+
+    .recharts-wrapper {
+      // change default styles for fix responsive bug
+      // width: auto !important;
+    }
+
+    // .geodeck-canvas {
+    & > div {
+      // padding: 30px;
+    }
+    & > div:first-child {
+      // padding-top: 0px;
     }
 
     height: calc(100vh - 60px);
     width: 100%;
-    padding-left: $toolbarWidth;
-    padding-right: $detailbarWidth;
-    background-color: #000014;
+    // padding-left: $toolbarWidth;
+    // padding-right: $detailbarWidth;
+
+    @include themify($themes) {
+      background-color: themed("colorBackgroundBody");
+    }
+    // background-color: #000014;
     display: flex;
     flex-direction: column;
-    .chart-container{
-      // background-color: yellow;
+    .chart-container {
       width: 100%;
-      flex: 1 1 0;
+      flex: 1 0 auto;
       display: flex;
       flex-direction: column;
-      .chart{
+      position: relative;
+      .chart {
         flex: 1 1 0;
         width: 100%;
         justify-content: center;
         align-items: center;
-        // background-color: red;
+
+        & .a-enter-vr {
+          &.embedded {
+            bottom: spacing(5);
+          }
+        }
       }
-      &>div:last-child{
-        // background-color: red;
+      & > div:last-child {
         display: flex;
         justify-content: space-between;
+        // margin: 0 spacing(1) spacing(1);
+        position: absolute;
+        right: spacing(1);
+        left: spacing(1);
+        bottom: spacing(1);
+      }
+
+      .page-setting {
+        // display: flex;
+        & :not(:last-child) {
+          margin-right: spacing(0.5);
+        }
+
+        // setting {
+        // }
+        .active {
+          @include themify($themes) {
+            background-color: themed("colorBubble");
+            color: themed("colorBubble");
+            // border-color: themed("colorBubble");
+          }
+        }
       }
     }
-    .control-bar{
-      height: $controlbarHeight;
-      // @include themify($themes) {
-      //   background-color: themed('colorBackground');
-      // }
-      background-color: #262626;
+    .control-bar {
+      // height: $controlbarHeight;
+      flex: 0 1 20%;
+      @include themify($themes) {
+        background-color: themed("colorBackground");
+        color: themed("colorTextAdditional");
+      }
+      // background-color: #262626;
       width: 100%;
       display: flex;
-      &>div{
+
+      & > div {
         flex: 1 1 0;
         border-right: 1px solid black;
-        &.variables{
+
+        padding: spacing(2); // flex-basis = 2 * padding left/right
+        &.variables {
+          flex: 1 0 calc(35% - #{spacing(4)}); // flex-basis = 2 * padding left/right
           display: flex;
           flex-direction: column;
-          padding-left: 0px;
-          .variable{
+          justify-content: space-between;
+          // padding-left: 0px;
+          .variable {
             cursor: pointer;
-            &.disabled{
+            font-size: 0.875rem;
+            &.disabled {
               cursor: not-allowed;
-            }
-          }
-          cursor: pointer;
-          span.anticon{
-            padding-top: 2px;
-            &.selected{
               @include themify($themes) {
-                color: themed('colorBubble');
+                color: darken(themed("colorTextAdditional"), 15%);
               }
             }
           }
-          div{
+          cursor: pointer;
+          span.anticon {
+            padding-top: 2px;
+            font-size: 16px;
+            &.selected {
+              @include themify($themes) {
+                color: themed("colorBubble");
+              }
+            }
+          }
+          div {
             display: flex;
             width: 100%;
-            .variable{
+            .variable {
               margin-right: auto;
+              margin-left: spacing(1);
             }
           }
         }
-        padding: 15px;
       }
-      .time-play{
-        flex: 1 1 200px;
+      .time-play {
+        // flex: 1 1 200px;
+        flex: 1 0 calc(40% - #{spacing(4)}); // flex-basis = 2 * padding left/right
+
         display: flex;
         width: 100%;
         flex-direction: column;
-        &>div{
+        & > div {
           text-align: center;
         }
-        .player-buttons{
+        .player-buttons {
           padding-left: 90px;
           padding-right: 90px;
           font-size: 32px;
           width: 100%;
           display: flex;
-          justify-content: space-between;
+          justify-content: center;
           margin-bottom: 5px;
+          & :not(:last-child) {
+            margin-right: spacing(1);
+          }
         }
-        .player-input{
+        .player-input {
           display: flex;
           justify-content: center;
+          align-items: center;
           margin-right: 15px;
-          .time-input{
+          span {
+            font-size: 14px;
+          }
+
+          .time-input {
             position: relative;
-            input{
-              color: white;
+            input {
+              // color: white;
+              // background-color: transparent;
+              // border: none;
+              // outline: 1px solid #d5d5d5;
+              // margin: 0px 5px;
+
               background-color: transparent;
               border: none;
-              outline: 1px solid #d5d5d5;
-              margin: 0px 5px;
-              &:focus{
+              @include themify($themes) {
+                color: themed("colorBubble");
+                border: 1px solid themed("colorTextAdditional");
+              }
+              margin: 0 spacing(1.5);
+              display: flex;
+              width: spacing(11);
+              padding: 4px 6px;
+              border-radius: 4px;
+              height: 30px;
+              &:focus {
                 @include themify($themes) {
-                  outline: 1px solid themed('colorBubble');
+                  border: 1px solid themed("colorBubble");
                 }
               }
             }
             &:after {
-              color: #d5d5d5;
+              // color: #d5d5d5;
+              // position: absolute;
+              // right: 30px;
+              // top: 0px;
+              // content: "/120";
+
+              @include themify($themes) {
+                color: themed("colorTextAdditional");
+              }
+              // color: #757575;
               position: absolute;
-              right: 30px;
-              top: 0px;
+              right: 40px;
+              top: 18%;
               content: "/120";
             }
           }
         }
-        .rc-slider{
+        .player-slider {
+          .slider {
+            max-width: 75%;
+            margin: 0 auto;
+          }
+        }
+        .rc-slider {
           margin-top: 15px;
         }
       }
-      .simulatins{
-        margin: 15px;
-        border: 1px solid #d5d5d5;
-        padding-top: 5px;
-        border-radius: 4px;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: flex-start;
-        h5{
-          margin-bottom: 5px;
-          font-weight: bold;
+      .simulatins {
+        margin: spacing(2) spacing(6);
+        flex: 0 0 calc(25% - #{spacing(12)}); // flex-basis = 2 * padding left/right
+        @include themify($themes) {
+          border: 2px solid themed("colorTextAdditional");
+          color: themed("colorTextAdditional");
         }
-        .sim-table{
+        border-radius: spacing(2);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        // flex: 0 0 15%;
+
+        &.active {
+          @include themify($themes) {
+            border-color: fade-out(themed("colorBubble"), 0.55);
+            color: fade-out(themed("colorBubble"), 0.55);
+          }
+        }
+        & > * {
+          // margin-bottom: 5px;
+          font-size: spacing(2.5);
+          font-weight: bold;
+          @include themify($themes) {
+            color: inherit;
+          }
+        }
+        .sim-table {
           display: flex;
           justify-content: space-between;
           width: 60%;
-          &>div{
+          & > div {
             width: 45%;
           }
-          .sim-row{
+          .sim-row {
             cursor: pointer;
             width: 100%;
-            .legend{
+            .legend {
               margin-left: auto;
               background-color: red;
               margin-bottom: 5px;
             }
             display: flex;
             justify-content: space-between;
-            span.anticon{
+            span.anticon {
               padding-top: 2px;
-              &.selected{
+              &.selected {
                 @include themify($themes) {
-                  color: themed('colorBubble');
+                  color: themed("colorBubble");
                 }
               }
             }
           }
         }
-        .anticon{
+        .anticon {
           padding-top: 2px;
         }
       }
     }
+    // }
   }
-  .detail-bar{
+
+  .detail-bar {
+    flex: 0 0 20%;
     @include themify($themes) {
-      background-color: themed('colorBackground');
+      background-color: lighten(themed("colorBackground"), 10%);
     }
-    height: calc(100vh - 60px);
-    width: $detailbarWidth;
-    position: absolute;
-    right: 0px;
-    top: 0px;
+    & :first-child {
+      & > p {
+        padding: spacing(1) spacing(2) 0;
+      }
+    }
+  }
+}
+
+.icon {
+  &__toggle--side-bar {
+    @include icon;
+    width: 1.5em;
+    height: 1.5em;
+    border: 1px solid inherit !important;
+    &::after {
+      top: 0;
+      right: 0;
+      width: 0.4em;
+      height: 101%;
+      border-radius: inherit;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+  }
+
+  &__toggle--bottom-bar {
+    @include icon;
+    width: 1.5em;
+    height: 1.5em;
+    border: 1px solid inherit !important;
+    &::after {
+      bottom: -1px;
+      left: 0;
+      width: 100%;
+      height: 0.4em;
+      border-radius: inherit;
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+    }
+  }
+
+  &__toggle--xy {
+    @include icon;
+    width: 1.5em;
+    height: 1.5em;
+    border: 1px solid inherit !important;
+    &::after {
+      content: "XY";
+      width: 0.4em;
+      height: 100%;
+      background-color: transparent;
+      left: 33%;
+    }
   }
 }

@@ -3,19 +3,13 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import moment from "moment";
 import PropTypes from "prop-types";
-import { Card, CardBody, Col, Button, ButtonToolbar } from "reactstrap";
+import { Card, CardBody, Col } from "reactstrap";
 import { Field, reduxForm } from "redux-form";
 import { withTranslation } from "react-i18next";
-import MenuItem from "@material-ui/core/MenuItem";
-import EyeIcon from "mdi-react/EyeIcon";
-import KeyVariantIcon from "mdi-react/KeyVariantIcon";
 import validate from "../../validateNewProject";
 import MaterialTextField from "../../../../../shared/components/form/material/MaterialTextField";
 import PasswordFieldMaterial from "../../../../../shared/components/form/material/PasswordFieldMaterial";
-import MaterialSelectField from "../../../../../shared/components/form/material/MaterialSelectField";
 import { createProject } from "../../../../../redux/actions/projectAction";
-import { TextField } from "@material-ui/core";
-import Autocomplete from "@material-ui/lab/Autocomplete";
 import RenderAutoComplete from "./RenderAutoComplete";
 
 const AnimatedLineFormWithLabels = (props) => {

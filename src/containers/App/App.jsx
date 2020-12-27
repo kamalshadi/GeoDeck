@@ -66,7 +66,7 @@ class App extends Component {
           returnTo={`${window.location.origin}/easydev/online_marketing_dashboard`}
           onRedirectCallback={this.onRedirectCallbackAuth0}
         >
-          <BrowserRouter basename="/">
+          <BrowserRouter basename="">
             <I18nextProvider i18n={i18n}>
               <LoadScript
                 googleMapsApiKey="" /* Paste your Google Maps Api Key here */

@@ -6,7 +6,7 @@ const CardGallery = (props) => {
   const { source, title, time, id } = props.item;
 
   return (
-    <Card>
+    <Card className="border-radius-spacing-0">
       <CardBody className="project-card__container">
         <CardHeader>{renderMedia(source, title)}</CardHeader>
       </CardBody>

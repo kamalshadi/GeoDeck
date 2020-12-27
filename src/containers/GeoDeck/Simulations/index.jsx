@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { CheckCircleFilled } from '@ant-design/icons';
 
 const V = [{name:'S1', color:'#f50'}, {name:'S2', color:'#faad14'}, {name:'S3', color:'#a0d911'}, {name:'S4', color:'#1890ff'}, {name:'S5', color:'#13c2c2'}]
-const Simulations = () => {
+const Simulations = ({tab, setTab}) => {
   const [vs, setVs] = useState([])
   const clickHandler = (ind) => {
     if (vs.includes(ind)) {
@@ -13,9 +13,9 @@ const Simulations = () => {
   }
 
   return (
-    <div className="simulatins">
+    <div className={`simulatins ${tab === 3 ? "active" : ""} `} onClick={() =>setTab(3)}>
       <h5>Simulations</h5>
-      <div className="sim-table">
+      {/* <div className="sim-table">
         <div style={{marginRight:'60px'}}>
           {V.slice(0,3).map((v,index)=>{
             return (
@@ -38,7 +38,7 @@ const Simulations = () => {
             )
           })}
         </div>
-      </div>
+      </div> */}
     </div>
   )
 }

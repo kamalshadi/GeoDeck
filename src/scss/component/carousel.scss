@@ -152,10 +152,35 @@
 
 .carousel-caption {
   &--custom {
-    width: fit-content;
-    margin: 0 auto;
-    padding: spacing(3) spacing(6);
-    box-shadow: 1px 2px 100px rgba(0, 0, 0, 0.767) inset;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    padding: 1rem 2rem;
+
+    // dark background
+    background: rgba(101, 101, 101, 0.5);
+    color: white;
+
+    // light background
+    // background-color: rgba(255, 255, 255, 0.5);
+    // color: #333;
+
+    h3 {
+      font-size: spacing(2.5);
+      line-height: 1.5;
+    }
+  }
+}
+
+@supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
+  .carousel-caption {
+    &--custom {
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
+      background: rgba(101, 101, 101, 0.5); // dark background
+      // background-color: rgba(255, 255, 255, 0.5); // light background
+    }
   }
 }
 .carousel-slide {
