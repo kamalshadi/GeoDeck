@@ -29,7 +29,12 @@ const MainContainer = ({
       case 0:
         return <Cube />;
       case 1:
-        return <MultipleYAxesScatterChart />;
+        return (
+          <div className="chart">
+            <h2>This is Simulation View!</h2>
+          </div>
+        );
+        // return <MultipleYAxesScatterChart />;
       case 2:
         return <VRScene />;
       case 3:
@@ -47,20 +52,20 @@ const MainContainer = ({
     return (
       <div className="d-flex page-setting">
         <div
-          className={`setting geo-button icon__toggle--xy ${
+          className={`geo-button setting icon__toggle--xy ${
             !xy ? "active" : ""
           }`}
           onClick={toggleXY}
         />
 
         <div
-          className={`setting geo-button icon__toggle--bottom-bar ${
+          className={`geo-button setting icon__toggle--bottom-bar ${
             !controlBar ? "active" : ""
           }`}
           onClick={toggleControlBar}
         />
         <div
-          className={`setting geo-button icon__toggle--side-bar ${
+          className={`geo-button setting icon__toggle--side-bar ${
             !detailBar ? "active" : ""
           }`}
           onClick={toggleDetailBar}
