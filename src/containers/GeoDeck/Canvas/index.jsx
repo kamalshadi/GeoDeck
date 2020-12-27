@@ -52,20 +52,20 @@ const MainContainer = ({
     return (
       <div className="d-flex page-setting">
         <div
-          className={`setting geo-button icon__toggle--xy ${
+          className={`geo-button setting icon__toggle--xy ${
             !xy ? "active" : ""
           }`}
           onClick={toggleXY}
         />
 
         <div
-          className={`setting geo-button icon__toggle--bottom-bar ${
+          className={`geo-button setting icon__toggle--bottom-bar ${
             !controlBar ? "active" : ""
           }`}
           onClick={toggleControlBar}
         />
         <div
-          className={`setting geo-button icon__toggle--side-bar ${
+          className={`geo-button setting icon__toggle--side-bar ${
             !detailBar ? "active" : ""
           }`}
           onClick={toggleDetailBar}
