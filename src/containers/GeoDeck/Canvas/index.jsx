@@ -6,6 +6,7 @@ import {
   Button,
   ButtonGroup,
   ButtonToolbar,
+  Container,
 } from "reactstrap";
 import classnames from "classnames";
 import { withTranslation } from "react-i18next";
@@ -13,6 +14,7 @@ import Cube from "../../Three";
 import VRScene from "../../Aframe";
 import MultipleYAxesScatterChart from "../../Charts/Recharts/components/MultipleYAxesScatterChart";
 import jet from "./jet.png";
+import SimulationView from "../SimulationView";
 
 const MainContainer = ({
   detailBar,
@@ -34,14 +36,12 @@ const MainContainer = ({
             <h2>This is Simulation View!</h2>
           </div>
         );
-        // return <MultipleYAxesScatterChart />;
+      // return <MultipleYAxesScatterChart />;
       case 2:
         return <VRScene />;
       case 3:
         return (
-          <div className="chart">
-            <h2>This is Simulation Table!</h2>
-          </div>
+            <SimulationView />
         );
       default:
         return <Cube />;

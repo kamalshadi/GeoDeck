@@ -11,11 +11,11 @@ import InfoExport from "../GeoDeck/InfoExport";
 import DetailChart from "../GeoDeck/DetailChart";
 import Variables from "../GeoDeck/Variables";
 import Player from "../GeoDeck/Player";
-import Simulations from "../GeoDeck/Simulations";
+import SimulationLoader from "../GeoDeck/SimulationLoader";
 // import { withTranslation } from 'react-i18next';
 
 const VisDash = () => {
-  const [tab, setTab] = useState(0);
+  const [tab, setTab] = useState(3);
 
   const [toggleDetailBar, setToggleDetailBar] = useState(false);
   const [toggleControlBar, setToggleControlBar] = useState(false);
@@ -50,7 +50,7 @@ const VisDash = () => {
         <div className={`control-bar ${toggleControlBar ? "hide" : ""}`}>
           <Variables />
           <Player />
-          <Simulations tab={tab} setTab={setTab} />
+          <SimulationLoader tab={tab} setTab={setTab} />
         </div>
       </div>
       <div className={`detail-bar ${toggleDetailBar ? "hide" : ""}`}>
