@@ -1,7 +1,7 @@
 import React from 'react';
 import { ScissorOutlined, HighlightOutlined,
   RadiusSettingOutlined, AimOutlined, FormatPainterOutlined,
-  NodeIndexOutlined, StarOutlined, FunctionOutlined, CodepenOutlined, DragOutlined
+  NodeIndexOutlined, StarOutlined, FunctionOutlined, CodepenOutlined, DragOutlined, ClearOutlined
  } from '@ant-design/icons'
 import { connect } from 'react-redux'
 
@@ -32,7 +32,7 @@ function BootstrapTooltip(props) {
   return <StyledTooltip arrow classes={classes} {...props} />;
 }
 
-const tools = [AimOutlined, RadiusSettingOutlined, CodepenOutlined, ScissorOutlined, HighlightOutlined, FormatPainterOutlined, NodeIndexOutlined, StarOutlined, FunctionOutlined, DragOutlined]
+const tools = [AimOutlined, RadiusSettingOutlined, CodepenOutlined, ClearOutlined, ScissorOutlined, HighlightOutlined, FormatPainterOutlined, NodeIndexOutlined, StarOutlined, FunctionOutlined, DragOutlined]
 
 const toolText = (ind) => {
   switch (ind){
@@ -42,6 +42,8 @@ const toolText = (ind) => {
       return 'line sampling'
     case 2:
       return 'plane sampling'
+    case 3:
+      return 'clear'
     default:
       return 'tool item'
   }

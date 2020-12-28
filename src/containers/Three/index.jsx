@@ -38,15 +38,35 @@ const Cube = ({three}) => {
   const [samplePlane, setSamplePlane] = useState(null);
   const [sampleLine, setSampleLine] = useState(null);
   const [sampleDot, setSampleDot] = useState(null);
+  const [sampleDot2, setSampleDot2] = useState(null);
   const [data1, setData1] = useState({
     project: 'GeoDeck Demo',
     simulation: 'S1',
+    point: [
+      {
+        name: 'point 1',
+        x: 0.2,
+        y: 0.2,
+        z: 0.98,
+      }
+    ],
+    line: {
+      name: 'line 1',
+      translateX: 0,
+      translateZ: 0,
+    },
+    plane: {
+      name: 'plane 1',
+      translate: 0,
+    }
   })
   const [points, setPoints] = useState([])
   const domElement = useRef(null);
 
   const handleUpdate = newData => {
-    setData1({...data1,...newData})
+    const event = new CustomEvent('sample-update', { detail: { ...newData } })
+    document.dispatchEvent(event)
+    setData1({ ...data1,...newData })
   }
 
   useEffect(() => {
@@ -55,12 +75,12 @@ const Cube = ({three}) => {
     const renderer = new THREE.WebGLRenderer({alpha:true});
 
     //light
-    var light = new THREE.PointLight( 0xffffff, 1, 100 );
-       light.position.set( 20, 30, 40 );
-       scene.add( light );
+    var light = new THREE.PointLight(0xffffff, 1, 100)
+    light.position.set(20, 30, 40)
+    scene.add(light)
 
-     var light = new THREE.AmbientLight( 0x404040 ); // soft white light
-     scene.add( light );
+     var light = new THREE.AmbientLight( 0x404040 ) // soft white light
+     scene.add( light )
 
 
      // var localPlane = new THREE.Plane( new THREE.Vector3( .5, -.5, .1 ), .1 );
@@ -93,6 +113,9 @@ const Cube = ({three}) => {
       _groupP.add(cubeP)
     })
 
+    window.tmp = _groupP
+    window.rend = renderer
+
     //axis helper
     const axesHelper = new THREE.AxesHelper( 5 );
     scene.add( axesHelper );
@@ -103,6 +126,9 @@ const Cube = ({three}) => {
 
     const dot = drawSamplingDot()
     setSampleDot(dot)
+
+    const dot2 = drawSamplingDot('sampling-dot2')
+    setSampleDot2(dot2)
 
     // slicing
     // let _plane = new THREE.Plane(new THREE.Vector3(0, 0, 1), 0);
@@ -150,10 +176,19 @@ const Cube = ({three}) => {
   }, []);
 
   useEffect(() => {
+    if(three.activeWidget){
+      const cbp = stage.getObjectByName('cube-pressure')
+      if(cbp) {
+
+      }
+    }else{
+
+    }
     switch (three.activeWidget){
       case 'plane':
         if (stage) stage.remove(stage.getObjectByName('sampling-line'))
         if (stage) stage.remove(stage.getObjectByName('sampling-dot'))
+        if (stage) stage.remove(stage.getObjectByName('sampling-dot2'))
         if (!stage.getObjectByName('sampling-plane')) {
           stage.add(samplePlane)
         }
@@ -161,6 +196,7 @@ const Cube = ({three}) => {
       case 'line':
         if (stage) stage.remove(stage.getObjectByName('sampling-plane'))
         if (stage) stage.remove(stage.getObjectByName('sampling-dot'))
+        if (stage) stage.remove(stage.getObjectByName('sampling-dot2'))
         if (!stage.getObjectByName('sampling-line')) {
           stage.add(sampleLine)
         }
@@ -168,8 +204,12 @@ const Cube = ({three}) => {
       case 'point':
         if (stage) stage.remove(stage.getObjectByName('sampling-plane'))
         if (stage) stage.remove(stage.getObjectByName('sampling-line'))
-        if (!stage.getObjectByName('sampling-line')) {
+        if (!stage.getObjectByName('sampling-dot')) {
           stage.add(sampleDot)
+        } else {
+          const event = new CustomEvent('sample-update', { detail: { ...data1, addPoint: true } })
+          document.dispatchEvent(event)
+          stage.add(sampleDot2)
         }
         break
       default:
@@ -193,6 +233,30 @@ const Cube = ({three}) => {
     }
   },[three.sample.variable, groupP, groupT])
 
+  useEffect(()=>{
+
+    switch (three.activeWidget){
+      case 'plane':
+        let plane = stage.getObjectByName('sampling-plane')
+        if (plane) {
+          console.log('tns', data1.plane.translate)
+          plane.position.z = 0.05 + data1.plane.translate
+        }
+        break
+      case 'line':
+        if (!stage.getObjectByName('sampling-line')) {
+          stage.add(sampleLine)
+        }
+        break
+      case 'point':
+        let dot = stage.getObjectByName('sampling-dot')
+        dot.position.x = data1.point[0].x
+        break
+      default:
+        break
+    }
+  },[three, data1])
+
 
   const myInc = ls => ls.map(v => v + 0.1)
 
@@ -202,15 +266,25 @@ const Cube = ({three}) => {
         return (
           <DatGui data={data1} onUpdate={handleUpdate} style={{ position: 'absolute' }}>
             <DatSelect path="plane" options={['XY', 'ZY', 'XZ']} />
-            <DatNumber path="translate" label="Move" min={0} max={1} step={0.05} />
-            <DatNumber path="rotate" label="Rotate" min={-90} max={90} step={5} />
+            <DatNumber path="plane.translate" label="Move" min={0} max={1} step={0.05} />
+            <DatNumber path="plane.rotate" label="Rotate" min={-90} max={90} step={5} />
           </DatGui>
         )
       case 'line':
         return (
           <DatGui data={data1} onUpdate={handleUpdate} style={{ position: 'absolute' }}>
-            <DatColor path="color" label="Color" />
-            <DatNumber path="size" label="Size" min={0.1} max={10} step={0.5} />
+            <DatSelect path="line" label="Direction" options={['Y', 'X', 'Z']} />
+            <DatNumber path="line.translateX" label="Move X" min={0} max={1} step={0.05} />
+            <DatNumber path="line.translateZ" label="Move Z" min={0} max={1} step={0.05} />
+          </DatGui>
+        )
+      case 'point':
+        return (
+          <DatGui data={data1} onUpdate={handleUpdate} style={{ position: 'absolute' }}>
+            <DatString path="point.0.name" label="name" />
+            <DatNumber path="point.0.x" label="X" min={0} max={1} step={0.05} />
+            <DatNumber path="point.0.y" label="Y" min={0} max={1} step={0.05} />
+            <DatNumber path="point.0.z" label="Z" min={0} max={1} step={0.05} />
           </DatGui>
         )
       default:

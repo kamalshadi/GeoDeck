@@ -42,9 +42,9 @@ const drawSamplingPlane = () => {
 }
 
 const drawSamplingLine = () => {
-  const geometry = new THREE.CylinderGeometry( 0.05, 0.05, 1.5, 32 );
-  const material = new THREE.MeshBasicMaterial( {color: '#F2AB1f'} );
-  const cylinder = new THREE.Mesh( geometry, material );
+  const geometry = new THREE.CylinderGeometry(0.02, 0.02, 1.5, 32)
+  const material = new THREE.MeshBasicMaterial({ color: '#F2AB1f' })
+  const cylinder = new THREE.Mesh(geometry, material);
   cylinder.translateX(0.45)
   cylinder.translateY(0.5)
   cylinder.translateZ(0.45)
@@ -52,16 +52,13 @@ const drawSamplingLine = () => {
   return cylinder
 }
 
-const drawSamplingDot = ()=>{
-  const geometry = new THREE.SphereGeometry( .05, .05, .05 );
-  const material = new THREE.MeshBasicMaterial( {color: '#F2AB1f'} );
+const drawSamplingDot = (name) => {
+  const geometry = new THREE.SphereGeometry( .02, .02, .02 );
+  const material = new THREE.MeshBasicMaterial( {color: name ? '#f50':'#F2AB1f'} );
   const sphere = new THREE.Mesh( geometry, material );
-  sphere.position.set(0.2, 0.2, 1-0.02);
-  sphere.name = 'sampling-dot'
+  sphere.position.set(0.2, name ? 0.3 : 0.2, 1-0.02);
+  sphere.name = name || 'sampling-dot'
   return sphere
 }
-
-
-
 
 export { drawSamplingPlane, drawSamplingLine, drawSamplingDot }

@@ -1,16 +1,13 @@
 import React, { useState, useEffect } from 'react'
+import get from 'lodash.get'
 
 const HeatMap = () => {
   const [frame, setFrame] = useState(0)
 
-  const tick = f => {
-    setFrame(f => Math.min((f + 1),24) )
-  }
-
-  useEffect(() => {
-    const interval = setInterval(()=> tick(frame), 300)
-    return () => clearInterval(interval)
-  }, [])
+  document.addEventListener('sample-update', e => {
+    const f = get(e, 'detail.plane.translate') || 0
+    setFrame(Math.min(Math.round(f * 24), 24))
+  }, false)
 
   return (
     <>
