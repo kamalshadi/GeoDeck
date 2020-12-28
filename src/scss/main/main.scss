@@ -589,8 +589,32 @@ $controlbarHeight: 200px;
     &__view {
       // background-color: burlywood;
       & > h4 {
-        margin-top: spacing(1);
+        margin: spacing(1) 0 spacing(2);
       }
+    }
+
+    &__table {
+      & > div {
+        padding: 8px;
+        background: transparent !important;
+        text-align: center;
+        color: white;
+      }
+      // margin-bottom: 40px;
+      // // overflow-y: scroll;
+      // & .table tbody td,
+      // .table th {
+      //   color: #989696;
+      //   padding: 8px;
+      //   background: transparent !important;
+      //   text-align: center;
+      //   // height: 50px;
+      //   vertical-align: middle;
+      //   @include themify($themes) {
+      //     border: 1px solid themed("colorBackground");
+      //   }
+      //   border: 1px solid;
+      // }
     }
 
     &-inputs {
