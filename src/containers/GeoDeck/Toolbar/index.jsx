@@ -82,10 +82,10 @@ const Toolbar = ({changeWidget}) => {
 
 
 function mapStateToProps({
-  threeReducer
+  three
   }) {
   return {
-    three: threeReducer
+    three: three
   }
 }
 const mapDispatchToProps = {

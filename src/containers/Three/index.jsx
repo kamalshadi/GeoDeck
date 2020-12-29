@@ -9,6 +9,7 @@ import { connect } from 'react-redux'
 import PlaneHelper from './helper-plane'
 import { drawSamplingPlane, drawSamplingLine, drawSamplingDot } from './shapes'
 import cubeData from './cube.json'
+import cubeData2 from './cube2.json'
 
 const {ni, nj, nk } = data
 
@@ -33,6 +34,8 @@ function RGBAToHexA(r,g,b,a) {
 const Cube = ({three}) => {
   const [groupP, setGroupP] = useState(null) // pressure
   const [groupT, setGroupT] = useState(null)// temprature
+  const [gP, setGP] = useState(null) // pressure
+  const [gT, setGT] = useState(null)// temprature
   const [count, _] = useState(0);
   const [stage, setStage] = useState(null);
   const [samplePlane, setSamplePlane] = useState(null);
@@ -113,8 +116,23 @@ const Cube = ({three}) => {
       _groupP.add(cubeP)
     })
 
-    window.tmp = _groupP
-    window.rend = renderer
+    const _gT = new THREE.Group();
+    _gT.name = 'cube-temprature-2'
+    const _gP = new THREE.Group();
+    _gP.name = 'cube-pressure-2'
+    cubeData2.map(node => {
+      const {i, j, k} = node
+      const geometry = new THREE.BoxBufferGeometry(0.04, 0.04, 0.04);
+      const materialT = new THREE.MeshBasicMaterial({ color: node.Temprature, clippingPlanes: [] });
+      const materialP = new THREE.MeshBasicMaterial({ color: node.Pressure, clippingPlanes: [] });
+      const cube = new THREE.Mesh(geometry, materialT);
+      const cubeP = new THREE.Mesh(geometry, materialP);
+      cube.position.set(i/100,j/100,k/25)
+      cubeP.position.set(i/100,j/100,k/25)
+      _gT.add(cube)
+      _gP.add(cubeP)
+    })
+
 
     //axis helper
     const axesHelper = new THREE.AxesHelper( 5 );
@@ -169,6 +187,8 @@ const Cube = ({three}) => {
     setStage(scene)
     setGroupP(_groupP)
     setGroupT(_groupT)
+    setGP(_gP)
+    setGT(_gT)
     window.stage = scene
     setSamplePlane(plane)
     scene.add(PlaneHelper); // the help grid on the floor
@@ -225,13 +245,27 @@ const Cube = ({three}) => {
     switch (three.sample.variable){
       case 'Temprature':
         stage.remove(stage.getObjectByName('cube-pressure'))
-        stage.add(groupT)
+        stage.remove(stage.getObjectByName('cube-pressure-2'))
+        if(three.sample.time === 5){
+          stage.remove(stage.getObjectByName('cube-temprature-2'))
+          stage.add(groupT)
+        } else{
+          stage.remove(stage.getObjectByName('cube-temprature'))
+          stage.add(gT)
+        }
         break
       default:
         stage.remove(stage.getObjectByName('cube-temprature'))
-        stage.add(groupP)
+        stage.remove(stage.getObjectByName('cube-temprature-2'))
+        if(three.sample.time === 5){
+          stage.remove(stage.getObjectByName('cube-pressure-2'))
+          stage.add(groupP)
+        }else{
+          stage.remove(stage.getObjectByName('cube-pressure'))
+          stage.add(gP)
+        }
     }
-  },[three.sample.variable, groupP, groupT])
+  },[three,groupP, groupT])
 
   useEffect(()=>{
 
