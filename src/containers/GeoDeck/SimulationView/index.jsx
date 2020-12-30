@@ -39,7 +39,9 @@ const SimulationView = (props) => {
     <Container className="simulation">
       <Row className="simulation__container">
         <Col md="2" className="simulation__sidebar">
-          <div className="simulation__inputs">
+          <div className="simulation__inputs"
+          style = {{maxHeight : controlBar ? "72vh" : "56vh"}}
+          >
             {simulations?.map(({ id, name, color }, index) => {
               return (
                 <SimulationInput
