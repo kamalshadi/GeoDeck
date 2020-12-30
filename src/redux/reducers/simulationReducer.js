@@ -1,14 +1,47 @@
 import _ from "lodash";
-import * as types from "../types";
+import {
+  FETCH_SIMULATIONS,
+  FETCH_SIMULATION,
+  CREATE_SIMULATION,
+  SET_SIMULATION_CUREENT,
+} from "../types";
 
-const initialState = {};
+const initialState = {
+  data: [],
+  current: null,
+};
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case types.FETCH_SIMULATIONS:
-      return { ...state, ..._.mapKeys(action.payload, "id") };
-    case types.FETCH_SIMULATION:
-      return { ...state, [action.payload.id]: action.payload };
+    case FETCH_SIMULATIONS:
+      console.log(action.payload);
+      return {
+        ...state,
+        data: { ..._.mapKeys(action.payload, "id") },
+        current: action.payload[0]?.id,
+      };
+    case FETCH_SIMULATION:
+      return {
+        ...state,
+        current: action.payload.id,
+        [action.payload.id]: action.payload,
+      };
+
+    case CREATE_SIMULATION:
+      console.log(state);
+      console.log(action.payload);
+      const oldData = state.data;
+      return {
+        ...state,
+        current: action.payload.id,
+        data: { ...oldData, [action.payload.id]: action.payload },
+      };
+
+    case SET_SIMULATION_CUREENT:
+      return {
+        ...state,
+        current: action.payload,
+      };
     default:
       return state;
   }

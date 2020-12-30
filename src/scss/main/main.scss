@@ -440,6 +440,7 @@ $controlbarHeight: 100px;
         display: flex;
         width: 100%;
         flex-direction: column;
+        justify-content: center;
         & > div {
           text-align: center;
         }
@@ -580,7 +581,7 @@ $controlbarHeight: 100px;
     }
 
     &__sidebar {
-      padding: 0 spacing(2) spacing(2);
+      padding: 0 0 spacing(2);
       @include themify($themes) {
         border-right: 0.5px solid themed("colorTextAdditional");
       }
@@ -588,19 +589,23 @@ $controlbarHeight: 100px;
 
     &__view {
       // background-color: burlywood;
+      display: flex;
+      flex-direction: column;
       & > h4 {
         margin: spacing(1) 0 spacing(2);
       }
     }
 
     &__table {
+      margin-bottom: spacing(3);
+
       & tr:hover {
         background: none !important;
       }
 
       & th,
       td {
-        font-weight: 400;
+        font-weight: 300;
         text-align: center;
         min-width: 8vw;
         @include themify($themes) {
@@ -622,39 +627,43 @@ $controlbarHeight: 100px;
           color: lighten(themed("colorTextAdditional"), 15%);
         }
       }
-      // & > div {
-      //   padding: 8px;
-      //   background: transparent !important;
-      //   text-align: center;
-      //   color: white;
-      // }
-      // margin-bottom: 40px;
-      // // overflow-y: scroll;
-      // & .table tbody td,
-      // .table th {
-      //   color: #989696;
-      //   padding: 8px;
-      //   background: transparent !important;
-      //   text-align: center;
-      //   // height: 50px;
-      //   vertical-align: middle;
-      //   @include themify($themes) {
-      //     border: 1px solid themed("colorBackground");
-      //   }
-      //   border: 1px solid;
-      // }
     }
 
-    &-inputs {
+    &__button {
+      margin: 0;
+      padding: spacing(0.5) spacing(1.5);
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 13px;
+      line-height: 1.2;
+      letter-spacing: -0.5px;
+      &:active {
+        color: inherit !important;
+        border-color: inherit !important;
+        transform: translateY(0.5px);
+      }
+      @include themify($themes) {
+        color: #000;
+      }
+    }
+
+    &__inputs {
       display: flex;
       flex-direction: column;
+      overflow-y: auto;
+      padding: 0 spacing(2);
+
+      // & :not(:last-child) {
+      //   margin-bottom: spacing(2);
+      // }
 
       &__child {
+        margin-bottom: spacing(2);
+
         font-size: 0.75rem;
         border-width: 1px;
         border-style: solid;
-        margin-bottom: spacing(2);
-        border-radius: 50px;
+        border-radius: 14px;
         background-color: transparent;
         @include themify($themes) {
           color: themed("colorTextAdditional");
@@ -664,11 +673,25 @@ $controlbarHeight: 100px;
           border-color: inherit;
           box-shadow: none;
         }
+        &.selected {
+          @include themify($themes) {
+            color: themed("colorText");
+            // background-color: themed("colorBackground");
+          }
+        }
+      }
+    }
+    &__alert {
+      &--none {
+        @include themify($themes) {
+          color: themed("colorTextAdditional");
+        }
       }
     }
 
     &__new {
       text-align: center;
+      margin-top: spacing(2);
 
       &__icon {
         font-size: 1rem;
@@ -683,6 +706,9 @@ $controlbarHeight: 100px;
           @include themify($themes) {
             color: themed("colorBubble");
           }
+        }
+        &:focus, :focus-visible {
+          outline: unset !important;
         }
       }
     }

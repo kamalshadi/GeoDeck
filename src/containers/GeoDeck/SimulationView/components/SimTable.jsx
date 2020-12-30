@@ -7,14 +7,13 @@ import {
   TableRow,
   TableCell,
 } from "@material-ui/core";
-const SimTable = ({ simulation }) => {
-  console.log(simulation);
+const SimTable = ({ simulation, controlBar }) => {
+  // console.log(simulation);
   const { parameters } = simulation;
   // { label, value, unit, max, min, editable, other }
-
   const columns = [
     { id: "label", label: "Variables", color: "#ff6ce6" },
-    { id: "value", label: "Current Values", color: "#87c1fc" },
+    { id: "value", label: "Value", color: "#87c1fc" },
     { id: "unit", label: "Unit" },
     { id: "max", label: "Max" },
     { id: "min", label: "Min" },
@@ -22,15 +21,15 @@ const SimTable = ({ simulation }) => {
     { id: "other", label: "etc." },
   ];
   return (
-    <TableContainer className="simulation__table" style={{ maxHeight: 430 }}>
+    <TableContainer
+      className="simulation__table"
+      style={{ maxHeight: controlBar ? "76vh" : "52vh" }}
+    >
       <Table stickyHeader aria-label="sticky table">
         <TableHead>
           <TableRow>
             {columns.map((column) => (
-              <TableCell
-                key={column.id}
-                style={{ color: column?.color }}
-              >
+              <TableCell key={column.id} style={{ color: column?.color }}>
                 {column.label}
               </TableCell>
             ))}

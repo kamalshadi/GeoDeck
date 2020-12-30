@@ -68,15 +68,13 @@ class App extends Component {
         >
           <BrowserRouter basename="">
             <I18nextProvider i18n={i18n}>
-              <LoadScript
-                googleMapsApiKey="" /* Paste your Google Maps Api Key here */
-              >
+              {/* <LoadScript googleMapsApiKey="" Paste your Google Maps Api Key here > */}
                 <ScrollToTop>
                   <ConnectedThemeComponent>
                     <Router />
                   </ConnectedThemeComponent>
                 </ScrollToTop>
-              </LoadScript>
+              {/* </LoadScript> */}
             </I18nextProvider>
           </BrowserRouter>
         </Auth0Provider>
