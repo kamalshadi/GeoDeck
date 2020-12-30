@@ -95,8 +95,7 @@ const Cube = ({three}) => {
      // renderer.localClippingEnabled = true;
 
     //interaction
-    const interaction = new Interaction(renderer, scene, camera);
-    const controls = new OrbitControls( camera, renderer.domElement );
+    // const interaction = new Interaction(renderer, scene, camera)
     renderer.setSize(domElement.current.clientWidth, domElement.current.clientHeight);
     domElement.current.appendChild( renderer.domElement );
     const _groupT = new THREE.Group();
@@ -170,29 +169,49 @@ const Cube = ({three}) => {
     })
     scene.add(groupP)
 
+    camera.position.z = 2
+    camera.position.y = 1
+    camera.position.x = 1
+    camera.up = new THREE.Vector3(0, 0, 1)
+    window.camera = camera
+    // camera.up = new THREE.Vector3(0,0,1)
+    camera.lookAt(0.5, 0.5, 0.5)
+    const controls = new OrbitControls(camera, renderer.domElement)
+    controls.target = new THREE.Vector3(0.5, 0.5, 0.5)
+    controls.target = new THREE.Vector3(0.5, 0.5, 0)
 
-    camera.position.z = 2;
-    camera.position.y = 1;
-    camera.position.x = 1;
-    camera.lookAt(0, 0, 0);
-    controls.update();
+    // Stop from going inside the geometry
+    OrbitControls.minDistance = 1;
+    OrbitControls.maxDistance = 5;
 
+    OrbitControls.rotateSpeed = 0.3;
+    OrbitControls.minPolarAngle = 0; // radians
+    OrbitControls.maxPolarAngle = 1.65;
+
+    controls.update()
+
+    const render = () => {
+      renderer.render(scene, camera)
+    }
+    render()
     const animate = () => {
       requestAnimationFrame(animate)
       // cube.rotation.x += 0.01;
       // cube.rotation.y += 0.01;
-      controls.update();
-      renderer.render(scene, camera);
-    };
+      controls.update()
+      render()
+    }
+
     setStage(scene)
     setGroupP(_groupP)
     setGroupT(_groupT)
     setGP(_gP)
     setGT(_gT)
-    window.stage = scene
+    // window.stage = scene
     setSamplePlane(plane)
     scene.add(PlaneHelper); // the help grid on the floor
-    animate();
+    animate()
+    // controls.addEventListener( 'change', render)
   }, []);
 
   useEffect(() => {
