@@ -11,9 +11,10 @@ import authReducer from "./authReducer";
 import appConfigReducer from "./appConfigReducer";
 import covidReducer from "../../containers/Maps/VectorMapWithRequestData/redux/covidReducer";
 
-import threeReducer from './threeReducer';
+import threeReducer from "./threeReducer";
 import projectReducer from "./projectReducer";
 import galleryReducer from "./galleryReducer";
+import simulationReducer from "./simulationReducer";
 
 export default combineReducers({
   form: reduxFormReducer, // mounted under "form",
@@ -31,4 +32,5 @@ export default combineReducers({
   // user defined reducers
   projects: projectReducer,
   galleries: galleryReducer,
+  simulations: simulationReducer,
 });
