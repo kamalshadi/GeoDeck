@@ -21,7 +21,7 @@ class SimulationView extends Component {
   };
 
   render() {
-    const { simulations } = this.props;
+    const { simulations, controlBar } = this.props;
     const { currentSimulation } = this.state;
 
     return (
@@ -48,7 +48,7 @@ class SimulationView extends Component {
             <h4>API exposed variables</h4>
             {currentSimulation ? (
               <React.Fragment>
-                <SimTable simulation={currentSimulation[0]} />
+                <SimTable simulation={currentSimulation[0]} controlBar={controlBar}/>
                 <div>
                   <Button
                     color="primary"

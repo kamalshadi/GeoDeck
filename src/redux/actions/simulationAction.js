@@ -25,6 +25,7 @@ const getParameters = [
     unit: "number",
     max: "infinity",
     min: 1000,
+    editable: "yes"
   },
   {
     label: "Time Step Size",
@@ -32,6 +33,7 @@ const getParameters = [
     unit: "second",
     max: "infinity",
     min: 0.001,
+    editable: "yes"
   },
   {
     label: "Time Duration",
@@ -39,6 +41,7 @@ const getParameters = [
     unit: "second",
     max: "infinity",
     min: 86400,
+    editable: "yes"
   },
   {
     label: "Number of wells",
@@ -46,6 +49,7 @@ const getParameters = [
     unit: "number",
     max: 100,
     min: 1,
+    editable: "yes"
   },
   {
     label: "Gas Injection Rate",
@@ -53,6 +57,7 @@ const getParameters = [
     unit: "SCF/day",
     max: "infinity",
     min: 0,
+    editable: "yes"
   },
   {
     label: "Water Injection Rate",
@@ -60,6 +65,7 @@ const getParameters = [
     unit: "STB/day",
     max: "infinity",
     min: 0,
+    editable: "yes"
   },
   {
     label: "Rock Heat Capacity",
@@ -67,6 +73,7 @@ const getParameters = [
     unit: "BTU/(lb degF)",
     max: 0.6,
     min: 0.1,
+    editable: "yes"
   },
   {
     label: "Rock Thermal Conductivity",
@@ -74,6 +81,7 @@ const getParameters = [
     unit: "BTU/(hr ft degF)",
     max: 2,
     min: 0.5,
+    editable: "yes"
   },
 ];
 
