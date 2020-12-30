@@ -3,13 +3,16 @@ import { Col, Container, Row } from "reactstrap";
 import SimTable from "./components/SimTable";
 import SimulationInput from "./components/SimulationInput";
 import SimulationNew from "./components/SimulationNew";
-import { fetchSimulations, setCurrent } from "../../../redux/actions/simulationAction";
+import {
+  fetchSimulations,
+  setCurrent,
+} from "../../../redux/actions/simulationAction";
 import { connect } from "react-redux";
 import { Button } from "reactstrap";
 
 const SimulationView = (props) => {
   const [currentSimulation, setCurrentSimulation] = useState(null);
-  const { simulations, current, fetchSimulations, setCurrent} = props;
+  const { simulations, current, fetchSimulations, setCurrent } = props;
 
   useEffect(() => {
     fetchSimulations();
@@ -43,7 +46,7 @@ const SimulationView = (props) => {
                   onSelect={onSelectSim}
                   key={index}
                   id={id}
-                  selected= {id === current}
+                  selected={id === current}
                   name={name}
                   color={color}
                 />
@@ -54,9 +57,10 @@ const SimulationView = (props) => {
         </Col>
 
         <Col md="10" className="simulation__view">
-          <h4>API exposed variables</h4>
           {currentSimulation ? (
             <React.Fragment>
+              <h4>API exposed variables - {currentSimulation.name}</h4>
+
               <SimTable
                 simulation={currentSimulation}
                 controlBar={controlBar}
@@ -94,4 +98,6 @@ const mapStateToProps = (state) => {
   return { current, simulations: Object.values(data) };
 };
 
-export default connect(mapStateToProps, { fetchSimulations, setCurrent })(SimulationView);
+export default connect(mapStateToProps, { fetchSimulations, setCurrent })(
+  SimulationView
+);
