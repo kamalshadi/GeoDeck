@@ -1,9 +1,12 @@
 import React from "react";
 import { PlusOutlined } from "@ant-design/icons";
+import { createSimulation } from "../../.././../redux/actions/simulationAction";
+import { connect } from "react-redux";
 
-const SimulationNew = () => {
+const SimulationNew = (props) => {
   const addNewSimulation = () => {
     console.log("create new simulation");
+    props.createSimulation();
   };
   return (
     <div className="simulation__new">
@@ -15,4 +18,4 @@ const SimulationNew = () => {
   );
 };
 
-export default SimulationNew;
+export default connect(null, { createSimulation })(SimulationNew);

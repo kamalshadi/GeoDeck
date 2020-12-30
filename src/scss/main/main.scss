@@ -666,6 +666,12 @@ $controlbarHeight: 200px;
           border-color: inherit;
           box-shadow: none;
         }
+        &.selected {
+          @include themify($themes) {
+            color: themed("colorText");
+            // background-color: themed("colorBackground");
+          }
+        }
       }
     }
     &__alert {

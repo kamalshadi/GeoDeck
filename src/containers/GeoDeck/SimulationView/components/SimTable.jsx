@@ -8,10 +8,9 @@ import {
   TableCell,
 } from "@material-ui/core";
 const SimTable = ({ simulation, controlBar }) => {
-  console.log(simulation);
+  // console.log(simulation);
   const { parameters } = simulation;
   // { label, value, unit, max, min, editable, other }
-  console.log(`controlBar: ${controlBar}`);
   const columns = [
     { id: "label", label: "Variables", color: "#ff6ce6" },
     { id: "value", label: "Value", color: "#87c1fc" },
