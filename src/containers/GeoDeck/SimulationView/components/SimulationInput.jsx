@@ -13,7 +13,7 @@ const SimulationInput = (props) => {
     <Input
       value={value}
       onChange={(e) => setValue(e.target.value)}
-      className="simulation-inputs__child"
+      className="simulation__inputs__child"
       style={{ borderColor: color }}
       onClick={onSelectSimulation}
     />

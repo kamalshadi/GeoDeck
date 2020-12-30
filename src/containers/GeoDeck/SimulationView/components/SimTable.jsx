@@ -22,7 +22,7 @@ const SimTable = ({ simulation }) => {
     { id: "other", label: "etc." },
   ];
   return (
-    <TableContainer className="simulation__table" style={{ maxHeight: 430 }}>
+    <TableContainer className="simulation__table" style={{ maxHeight: "52vh" }}>
       <Table stickyHeader aria-label="sticky table">
         <TableHead>
           <TableRow>

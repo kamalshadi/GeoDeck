@@ -5,6 +5,7 @@ import SimulationInput from "./components/SimulationInput";
 import SimulationNew from "./components/SimulationNew";
 import { fetchSimulations } from "../../../redux/actions/simulationAction";
 import { connect } from "react-redux";
+import { Button } from "reactstrap";
 
 class SimulationView extends Component {
   state = { currentSimulation: null };
@@ -27,7 +28,7 @@ class SimulationView extends Component {
       <Container className="simulation">
         <Row className="simulation__container">
           <Col md="2" className="simulation__sidebar">
-            <div className="simulation-inputs">
+            <div className="simulation__inputs">
               {simulations?.map(({ id, name, color }, index) => {
                 return (
                   <SimulationInput
@@ -45,7 +46,24 @@ class SimulationView extends Component {
 
           <Col md="10" className="simulation__view">
             <h4>API exposed variables</h4>
-            {currentSimulation && <SimTable simulation={currentSimulation[0]} />}
+            {currentSimulation ? (
+              <React.Fragment>
+                <SimTable simulation={currentSimulation[0]} />
+                <div>
+                  <Button
+                    color="primary"
+                    type="button"
+                    className="simulation__button"
+                  >
+                    Regenerate Data
+                  </Button>
+                </div>
+              </React.Fragment>
+            ) : (
+              <div className="d-flex justify-content-center align-items-center" style={{flex: "1"}}>
+                <h6 className="simulation__alert--none">Please select a simulation or create new one</h6>
+              </div>
+            )}
           </Col>
         </Row>
       </Container>

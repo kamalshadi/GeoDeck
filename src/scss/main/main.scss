@@ -588,19 +588,23 @@ $controlbarHeight: 200px;
 
     &__view {
       // background-color: burlywood;
+      display: flex;
+      flex-direction: column;
       & > h4 {
         margin: spacing(1) 0 spacing(2);
       }
     }
 
     &__table {
+      margin-bottom: spacing(3);
+
       & tr:hover {
         background: none !important;
       }
 
       & th,
       td {
-        font-weight: 400;
+        font-weight: 300;
         text-align: center;
         min-width: 8vw;
         @include themify($themes) {
@@ -622,30 +626,27 @@ $controlbarHeight: 200px;
           color: lighten(themed("colorTextAdditional"), 15%);
         }
       }
-      // & > div {
-      //   padding: 8px;
-      //   background: transparent !important;
-      //   text-align: center;
-      //   color: white;
-      // }
-      // margin-bottom: 40px;
-      // // overflow-y: scroll;
-      // & .table tbody td,
-      // .table th {
-      //   color: #989696;
-      //   padding: 8px;
-      //   background: transparent !important;
-      //   text-align: center;
-      //   // height: 50px;
-      //   vertical-align: middle;
-      //   @include themify($themes) {
-      //     border: 1px solid themed("colorBackground");
-      //   }
-      //   border: 1px solid;
-      // }
     }
 
-    &-inputs {
+    &__button {
+      margin: 0;
+      padding: spacing(0.5) spacing(1.5);
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 13px;
+      line-height: 1.2;
+      letter-spacing: -0.5px;
+      &:active {
+        color: inherit !important;
+        border-color: inherit !important;
+        transform: translateY(0.5px);
+      }
+      @include themify($themes) {
+        color: #000;
+      }
+    }
+
+    &__inputs {
       display: flex;
       flex-direction: column;
 
@@ -654,7 +655,7 @@ $controlbarHeight: 200px;
         border-width: 1px;
         border-style: solid;
         margin-bottom: spacing(2);
-        border-radius: 50px;
+        border-radius: 14px;
         background-color: transparent;
         @include themify($themes) {
           color: themed("colorTextAdditional");
@@ -663,6 +664,13 @@ $controlbarHeight: 200px;
         &:focus {
           border-color: inherit;
           box-shadow: none;
+        }
+      }
+    }
+    &__alert {
+      &--none {
+        @include themify($themes) {
+          color: themed("colorTextAdditional");
         }
       }
     }
