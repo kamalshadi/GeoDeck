@@ -13,6 +13,24 @@ body {
 
 * {
   box-sizing: inherit;
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+  
+  /* Track */
+  &::-webkit-scrollbar-track {
+    background: #262626;
+  }
+   
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    background: #757575;
+  }
+  
+  /* Handle on hover */
+  &::-webkit-scrollbar-thumb:hover {
+    background: #757575;
+  }
 }
 
 ul, ol {
