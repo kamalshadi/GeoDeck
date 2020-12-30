@@ -594,12 +594,40 @@ $controlbarHeight: 200px;
     }
 
     &__table {
-      & > div {
-        padding: 8px;
-        background: transparent !important;
-        text-align: center;
-        color: white;
+      & tr:hover {
+        background: none !important;
       }
+
+      & th,
+      td {
+        font-weight: 400;
+        text-align: center;
+        min-width: 8vw;
+        @include themify($themes) {
+          border: 0.5px solid themed("colorBackground");
+        }
+      }
+
+      & th {
+        @include themify($themes) {
+          color: themed("colorTextAdditional");
+          background-color: themed("inboxButtonBackground");
+        }
+        white-space: nowrap;
+      }
+
+      & td {
+        background-color: transparent !important;
+        @include themify($themes) {
+          color: lighten(themed("colorTextAdditional"), 15%);
+        }
+      }
+      // & > div {
+      //   padding: 8px;
+      //   background: transparent !important;
+      //   text-align: center;
+      //   color: white;
+      // }
       // margin-bottom: 40px;
       // // overflow-y: scroll;
       // & .table tbody td,
