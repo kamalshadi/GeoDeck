@@ -29,7 +29,7 @@ const SimTable = ({ simulation, controlBar, editSimulationParameters }) => {
   // useEffect(() => setNewParameters(parameters), [parameters]);
 
   const onChangeValue = (value, index) => {
-    let intValue = _.toInteger(value);
+    let intValue = _.toNumber(value);
     const newParam = { ...newParameters[index], value: intValue }; // create new object with changed value
     const newParams = newParameters.map((p, ind) => {
       if (ind === index) return newParam;
