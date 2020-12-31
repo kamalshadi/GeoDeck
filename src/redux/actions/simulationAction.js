@@ -33,7 +33,7 @@ export const createSimulation = (formValues) => async (dispatch, getState) => {
       name: `simulation ${size}`,
       color: "#1f8705",
       isLoaded: true,
-      parameters: defalutParameters,
+      parameters: getParameters,
     },
   };
   dispatch({
@@ -44,7 +44,6 @@ export const createSimulation = (formValues) => async (dispatch, getState) => {
 
 export const editSimulation = (newSimulation) => async (dispatch) => {
   // const response = await api.patch(`/sims/${id}`, newParameters); // return updated simulation object
-  // const simluation = {...newSimulation, isLoaded: false};
   dispatch({ type: types.UPDATE_SIMULATION, payload: newSimulation });
 };
 
@@ -123,74 +122,6 @@ const getParameters = [
     editable: "yes",
   },
 ];
-
-const defalutParameters = [
-  {
-    label: "Grid Blocks",
-    value: 6595820,
-    unit: "number",
-    max: "infinity",
-    min: 1000,
-    editable: "yes",
-  },
-  {
-    label: "Time Step Size",
-    value: 146,
-    unit: "second",
-    max: "infinity",
-    min: 0.001,
-    editable: "yes",
-  },
-  {
-    label: "Time Duration",
-    value: 1,
-    unit: "second",
-    max: "infinity",
-    min: 86400,
-    editable: "yes",
-  },
-  {
-    label: "Number of wells",
-    value: 4,
-    unit: "number",
-    max: 100,
-    min: 1,
-    editable: "yes",
-  },
-  {
-    label: "Gas Injection Rate",
-    value: 35,
-    unit: "SCF/day",
-    max: "infinity",
-    min: 0,
-    editable: "yes",
-  },
-  {
-    label: "Water Injection Rate",
-    value: 35,
-    unit: "STB/day",
-    max: "infinity",
-    min: 0,
-    editable: "yes",
-  },
-  {
-    label: "Rock Heat Capacity",
-    value: 0.21,
-    unit: "BTU/(lb degF)",
-    max: 0.6,
-    min: 0.1,
-    editable: "yes",
-  },
-  {
-    label: "Rock Thermal Conductivity",
-    value: 1,
-    unit: "BTU/(hr ft degF)",
-    max: 2,
-    min: 0.5,
-    editable: "yes",
-  },
-];
-
 const getSims = {
   data: [
     {

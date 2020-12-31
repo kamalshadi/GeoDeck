@@ -31,7 +31,6 @@ const SimulationView = (props) => {
   };
 
   const { controlBar } = props;
-  console.log(currentSimulation);
   if (!simulations) return null;
   return (
     <Container className="simulation">

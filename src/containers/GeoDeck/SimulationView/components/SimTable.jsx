@@ -49,8 +49,6 @@ const SimTable = ({ simulation, controlBar, editSimulation }) => {
       // after api implementation
       // const newSimulation = { ...simulation, parameters: newParameters };
       editSimulation(newSimulation);
-    } else {
-      console.log("parameters is equals .....");
     }
   };
 

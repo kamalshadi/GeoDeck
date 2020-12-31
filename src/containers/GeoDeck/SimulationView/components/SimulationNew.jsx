@@ -5,7 +5,6 @@ import { connect } from "react-redux";
 
 const SimulationNew = (props) => {
   const addNewSimulation = () => {
-    console.log("create new simulation");
     props.createSimulation();
   };
   return (

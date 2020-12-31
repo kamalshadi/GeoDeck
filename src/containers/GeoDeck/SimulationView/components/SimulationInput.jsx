@@ -23,7 +23,6 @@ const SimulationInput = (props) => {
   };
 
   const editName = () => {
-    console.log(value);
     const newSimulation = { ...simulation, name: value };
     props.editSimulation(newSimulation);
   };
