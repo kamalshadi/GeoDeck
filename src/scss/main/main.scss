@@ -596,6 +596,21 @@ $controlbarHeight: 200px;
       }
     }
 
+    &__header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: spacing(2);
+      font-size: 14px;
+
+      p {
+        margin: 0;
+        @include themify($themes) {
+          color: lighten(themed("colorBubble"), 10%) !important;
+        }
+      }
+    }
+
     &__table {
       margin-bottom: spacing(3);
 
@@ -606,7 +621,6 @@ $controlbarHeight: 200px;
           background: themed("colorBackground") !important;
           color: themed("colorText") !important;
         }
-
       }
 
       & tr:hover {
@@ -690,9 +704,8 @@ $controlbarHeight: 200px;
         }
       }
 
-      &__loading {
+      &__icons {
         position: absolute;
-        right: spacing(0.5);
         z-index: 3;
         font-size: 16px;
         @include themify($themes) {
@@ -702,6 +715,14 @@ $controlbarHeight: 200px;
           @include themify($themes) {
             color: themed("colorText");
           }
+        }
+
+        &.loading {
+          right: spacing(0.5);
+        }
+
+        &.check {
+          right: spacing(1);
         }
       }
     }

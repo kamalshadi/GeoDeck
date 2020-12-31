@@ -42,10 +42,10 @@ export const createSimulation = (formValues) => async (dispatch, getState) => {
   });
 };
 
-export const editSimulationParameters = (newSimulation) => async (dispatch) => {
+export const editSimulation = (newSimulation) => async (dispatch) => {
   // const response = await api.patch(`/sims/${id}`, newParameters); // return updated simulation object
-  const simluation = {...newSimulation, isLoaded: false};
-  dispatch({ type: types.UPDATE_SIMULATION, payload: simluation });
+  // const simluation = {...newSimulation, isLoaded: false};
+  dispatch({ type: types.UPDATE_SIMULATION, payload: newSimulation });
 };
 
 export const setCurrent = (id) => async (dispatch) => {

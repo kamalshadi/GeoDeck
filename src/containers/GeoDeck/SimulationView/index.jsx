@@ -41,16 +41,13 @@ const SimulationView = (props) => {
             className="simulation__inputs"
             style={{ maxHeight: controlBar ? "72vh" : "56vh" }}
           >
-            {simulations?.map(({ id, name, color, isLoaded }, index) => {
+            {simulations?.map((simulation, index) => {
               return (
                 <SimulationInput
                   onSelect={onSelectSim}
                   key={index}
-                  id={id}
-                  isLoaded={isLoaded}
-                  selected={id === current}
-                  name={name}
-                  color={color}
+                  selected={simulation.id === current}
+                  simulation={simulation}
                 />
               );
             })}

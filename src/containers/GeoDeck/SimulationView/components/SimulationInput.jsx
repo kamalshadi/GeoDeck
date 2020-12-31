@@ -1,36 +1,60 @@
-import React, { useState } from "react";
-import { Input, InputGroup, InputGroupAddon, InputGroupText } from "reactstrap";
-import {
-  Loading3QuartersOutlined,
-  SyncOutlined,
-  LoadingOutlined,
-} from "@ant-design/icons";
+import React, { useEffect, useState } from "react";
+import { connect } from "react-redux";
+import { Input, InputGroup } from "reactstrap";
+import { CheckOutlined, SyncOutlined } from "@ant-design/icons";
+import { editSimulation } from "../../../../redux/actions/simulationAction";
 
 const SimulationInput = (props) => {
-  const { id, name, color, isLoaded, selected, onSelect } = props;
+  const { simulation, selected, onSelect } = props;
+  const { id, name, color, isLoaded } = simulation;
   const [value, setValue] = useState(name);
+
+  useEffect(() => {
+    // reset changes after generate parameters
+    setValue(name);
+  }, [isLoaded]);
 
   const onSelectSimulation = () => {
     onSelect(id);
+  };
+
+  const onChangeName = (value) => {
+    setValue(value);
+  };
+
+  const editName = () => {
+    console.log(value);
+    const newSimulation = { ...simulation, name: value };
+    props.editSimulation(newSimulation);
   };
 
   return (
     <InputGroup>
       <Input
         value={value}
-        onChange={(e) => setValue(e.target.value)}
+        onChange={(e) => onChangeName(e.target.value)}
         className={`simulation__inputs__child ${selected ? "selected" : ""}`}
         style={{
           background: selected ? color : "transparent",
           borderColor: color,
           paddingRight: !isLoaded ? "24px" : "",
         }}
+        disabled={!isLoaded}
         onClick={onSelectSimulation}
       />
+      {simulation.name !== value && (
+        <div
+          className={`simulation__inputs__icons check  ${
+            selected ? "selected" : ""
+          }`}
+        >
+          <CheckOutlined onClick={editName} />
+        </div>
+      )}
 
       {!isLoaded && (
         <div
-          className={`simulation__inputs__loading  ${
+          className={`simulation__inputs__icons loading  ${
             selected ? "selected" : ""
           }`}
         >
@@ -41,4 +65,4 @@ const SimulationInput = (props) => {
   );
 };
 
-export default SimulationInput;
+export default connect(null, { editSimulation })(SimulationInput);

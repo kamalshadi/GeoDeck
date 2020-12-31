@@ -10,7 +10,7 @@ import {
   TableCell,
 } from "@material-ui/core";
 import { Button, Input } from "reactstrap";
-import { editSimulationParameters } from "../../../../redux/actions/simulationAction";
+import { editSimulation } from "../../../../redux/actions/simulationAction";
 
 const columns = [
   { id: "label", label: "Variables", color: "#ff6ce6" },
@@ -22,7 +22,7 @@ const columns = [
   { id: "other", label: "etc." },
 ];
 
-const SimTable = ({ simulation, controlBar, editSimulationParameters }) => {
+const SimTable = ({ simulation, controlBar, editSimulation }) => {
   const { parameters } = simulation;
   const [newParameters, setNewParameters] = useState(parameters);
 
@@ -40,8 +40,15 @@ const SimTable = ({ simulation, controlBar, editSimulationParameters }) => {
 
   const onSubmit = () => {
     if (!_.isEqual(parameters, newParameters)) {
-      const newSimulation = { ...simulation, parameters: newParameters };
-      editSimulationParameters(newSimulation);
+      // for demo only
+      const newSimulation = {
+        ...simulation,
+        parameters: newParameters,
+        isLoaded: false,
+      };
+      // after api implementation
+      // const newSimulation = { ...simulation, parameters: newParameters };
+      editSimulation(newSimulation);
     } else {
       console.log("parameters is equals .....");
     }
@@ -73,7 +80,7 @@ const SimTable = ({ simulation, controlBar, editSimulationParameters }) => {
                       <TableCell key={column.id} align={column.align}>
                         {column.id === "value" && simulation.isLoaded ? (
                           <Input
-                          className="simulation__table__input"
+                            className="simulation__table__input"
                             defaultValue={value}
                             type="number"
                             onChange={(e) =>
@@ -137,4 +144,4 @@ const mapStateToProps = (state) => {
   return state;
 };
 
-export default connect(mapStateToProps, { editSimulationParameters })(SimTable);
+export default connect(mapStateToProps, { editSimulation })(SimTable);
