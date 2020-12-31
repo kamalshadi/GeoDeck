@@ -678,11 +678,12 @@ $controlbarHeight: 200px;
       padding: 0 spacing(2);
 
       .input-group {
-        margin-bottom: spacing(2);
         position: relative;
+        margin-bottom: spacing(2);
       }
 
       &__child {
+        cursor: pointer;
         font-size: 0.75rem;
         border-width: 1px;
         border-style: solid;

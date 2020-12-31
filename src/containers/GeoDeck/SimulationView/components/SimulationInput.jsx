@@ -29,7 +29,7 @@ const SimulationInput = (props) => {
   };
 
   return (
-    <InputGroup>
+    <InputGroup onClick={onSelectSimulation}>
       <Input
         value={value}
         onChange={(e) => onChangeName(e.target.value)}
@@ -40,7 +40,6 @@ const SimulationInput = (props) => {
           paddingRight: !isLoaded ? "24px" : "",
         }}
         disabled={!isLoaded}
-        onClick={onSelectSimulation}
       />
       {simulation.name !== value && (
         <div
