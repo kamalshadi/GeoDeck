@@ -61,4 +61,12 @@ const drawSamplingDot = (name) => {
   return sphere
 }
 
-export { drawSamplingPlane, drawSamplingLine, drawSamplingDot }
+const filler = () => {
+  const geometry = new THREE.BoxBufferGeometry( 1, 1, 1 );
+  const material = new THREE.MeshBasicMaterial( { color: '#F2AB1f' } );
+  const mesh = new THREE.Mesh( geometry, material )
+  return mesh
+}
+
+
+export { filler, drawSamplingPlane, drawSamplingLine, drawSamplingDot }
