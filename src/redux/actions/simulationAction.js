@@ -4,7 +4,6 @@ import _ from "lodash";
 export const fetchSimulations = () => async (dispatch) => {
   //   const response = await api.get("/sims");
   const response = getSims;
-  console.log(response.data);
   dispatch({
     type: types.FETCH_SIMULATIONS,
     payload: response.data,
@@ -14,18 +13,11 @@ export const fetchSimulations = () => async (dispatch) => {
 export const fetchSimulation = (id) => async (dispatch, getState) => {
   //   const response = await api.get("`/sims/${id}`);
   const state = getState();
-  const simulations = {state};
+  const simulations = { state };
   const response = { data: simulations.data.filter((sim) => sim.id === id) };
   dispatch({
     type: types.FETCH_SIMULATION,
     payload: response.data,
-  });
-};
-
-export const setCurrent = (id) => async (dispatch) => {
-  dispatch({
-    type: types.SET_SIMULATION_CUREENT,
-    payload: id,
   });
 };
 
@@ -40,16 +32,30 @@ export const createSimulation = (formValues) => async (dispatch, getState) => {
       id: size,
       name: `simulation ${size}`,
       color: "#1f8705",
-      isLoaded: false,
+      isLoaded: true,
       parameters: defalutParameters,
     },
   };
-  console.log(response);
   dispatch({
     type: types.CREATE_SIMULATION,
     payload: response.data,
   });
 };
+
+export const editSimulationParameters = (newSimulation) => async (dispatch) => {
+  // const response = await api.patch(`/sims/${id}`, newParameters); // return updated simulation object
+  const simluation = {...newSimulation, isLoaded: false};
+  dispatch({ type: types.UPDATE_SIMULATION, payload: simluation });
+};
+
+export const setCurrent = (id) => async (dispatch) => {
+  dispatch({
+    type: types.SET_SIMULATION_CUREENT,
+    payload: id,
+  });
+};
+
+
 
 const getParameters = [
   {
