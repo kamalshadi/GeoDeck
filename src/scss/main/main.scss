@@ -653,17 +653,16 @@ $controlbarHeight: 200px;
       overflow-y: auto;
       padding: 0 spacing(2);
 
-      // & :not(:last-child) {
-      //   margin-bottom: spacing(2);
-      // }
+      .input-group {
+        margin-bottom: spacing(2);
+        position: relative;
+      }
 
       &__child {
-        margin-bottom: spacing(2);
-
         font-size: 0.75rem;
         border-width: 1px;
         border-style: solid;
-        border-radius: 14px;
+        border-radius: 14px !important;
         background-color: transparent;
         @include themify($themes) {
           color: themed("colorTextAdditional");
@@ -680,7 +679,24 @@ $controlbarHeight: 200px;
           }
         }
       }
+
+      &__loading {
+        position: absolute;
+        right: spacing(0.5);
+        z-index: 3;
+        font-size: 16px;
+        @include themify($themes) {
+          color: themed("colorTextAdditional");
+        }
+        &.selected {
+          @include themify($themes) {
+            color: themed("colorText");
+          }
+        }
+      }
+
     }
+
     &__alert {
       &--none {
         @include themify($themes) {
@@ -707,7 +723,8 @@ $controlbarHeight: 200px;
             color: themed("colorBubble");
           }
         }
-        &:focus, :focus-visible {
+        &:focus,
+        :focus-visible {
           outline: unset !important;
         }
       }

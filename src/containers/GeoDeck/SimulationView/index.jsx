@@ -47,6 +47,7 @@ const SimulationView = (props) => {
                   onSelect={onSelectSim}
                   key={index}
                   id={id}
+                  isLoaded={isLoaded}
                   selected={id === current}
                   name={name}
                   color={color}
