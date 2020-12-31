@@ -8,7 +8,6 @@ import {
   setCurrent,
 } from "../../../redux/actions/simulationAction";
 import { connect } from "react-redux";
-import { Button } from "reactstrap";
 
 const SimulationView = (props) => {
   const [currentSimulation, setCurrentSimulation] = useState(null);
@@ -32,25 +31,22 @@ const SimulationView = (props) => {
   };
 
   const { controlBar } = props;
-  // console.log(props);
-  // console.log(currentSimulation);
   if (!simulations) return null;
   return (
     <Container className="simulation">
       <Row className="simulation__container">
         <Col md="2" className="simulation__sidebar">
-          <div className="simulation__inputs"
-          style = {{maxHeight : controlBar ? "72vh" : "56vh"}}
+          <div
+            className="simulation__inputs"
+            style={{ maxHeight: controlBar ? "72vh" : "56vh" }}
           >
-            {simulations?.map(({ id, name, color }, index) => {
+            {simulations?.map((simulation, index) => {
               return (
                 <SimulationInput
                   onSelect={onSelectSim}
                   key={index}
-                  id={id}
-                  selected={id === current}
-                  name={name}
-                  color={color}
+                  selected={simulation.id === current}
+                  simulation={simulation}
                 />
               );
             })}
@@ -64,18 +60,10 @@ const SimulationView = (props) => {
               <h4>API exposed variables - {currentSimulation.name}</h4>
 
               <SimTable
+                key={currentSimulation.id}
                 simulation={currentSimulation}
                 controlBar={controlBar}
               />
-              <div>
-                <Button
-                  color="primary"
-                  type="button"
-                  className="simulation__button"
-                >
-                  Regenerate Data
-                </Button>
-              </div>
             </React.Fragment>
           ) : (
             <div

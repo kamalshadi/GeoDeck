@@ -3,6 +3,7 @@ import {
   FETCH_SIMULATIONS,
   FETCH_SIMULATION,
   CREATE_SIMULATION,
+  UPDATE_SIMULATION,
   SET_SIMULATION_CUREENT,
 } from "../types";
 
@@ -14,7 +15,6 @@ const initialState = {
 export default (state = initialState, action) => {
   switch (action.type) {
     case FETCH_SIMULATIONS:
-      console.log(action.payload);
       return {
         ...state,
         data: { ..._.mapKeys(action.payload, "id") },
@@ -27,16 +27,21 @@ export default (state = initialState, action) => {
         [action.payload.id]: action.payload,
       };
 
-    case CREATE_SIMULATION:
-      console.log(state);
-      console.log(action.payload);
-      const oldData = state.data;
+    case CREATE_SIMULATION: {
+      let oldData = state.data;
       return {
         ...state,
         current: action.payload.id,
         data: { ...oldData, [action.payload.id]: action.payload },
       };
-
+    }
+    case UPDATE_SIMULATION: {
+      let oldData = state.data;
+      return {
+        ...state,
+        data: { ...oldData, [action.payload.id]: action.payload },
+      };
+    }
     case SET_SIMULATION_CUREENT:
       return {
         ...state,

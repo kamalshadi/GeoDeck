@@ -596,8 +596,32 @@ $controlbarHeight: 100px;
       }
     }
 
+    &__header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: spacing(2);
+      font-size: 14px;
+
+      p {
+        margin: 0;
+        @include themify($themes) {
+          color: lighten(themed("colorBubble"), 10%) !important;
+        }
+      }
+    }
+
     &__table {
       margin-bottom: spacing(3);
+
+      &__input {
+        border: none !important;
+        box-shadow: none !important;
+        @include themify($themes) {
+          background: themed("colorBackground") !important;
+          color: themed("colorText") !important;
+        }
+      }
 
       & tr:hover {
         background: none !important;
@@ -653,17 +677,17 @@ $controlbarHeight: 100px;
       overflow-y: auto;
       padding: 0 spacing(2);
 
-      // & :not(:last-child) {
-      //   margin-bottom: spacing(2);
-      // }
+      .input-group {
+        position: relative;
+        margin-bottom: spacing(2);
+      }
 
       &__child {
-        margin-bottom: spacing(2);
-
+        cursor: pointer;
         font-size: 0.75rem;
         border-width: 1px;
         border-style: solid;
-        border-radius: 14px;
+        border-radius: 14px !important;
         background-color: transparent;
         @include themify($themes) {
           color: themed("colorTextAdditional");
@@ -680,7 +704,30 @@ $controlbarHeight: 100px;
           }
         }
       }
+
+      &__icons {
+        position: absolute;
+        z-index: 3;
+        font-size: 16px;
+        @include themify($themes) {
+          color: themed("colorTextAdditional");
+        }
+        &.selected {
+          @include themify($themes) {
+            color: themed("colorText");
+          }
+        }
+
+        &.loading {
+          right: spacing(0.5);
+        }
+
+        &.check {
+          right: spacing(1);
+        }
+      }
     }
+
     &__alert {
       &--none {
         @include themify($themes) {
@@ -707,7 +754,8 @@ $controlbarHeight: 100px;
             color: themed("colorBubble");
           }
         }
-        &:focus, :focus-visible {
+        &:focus,
+        :focus-visible {
           outline: unset !important;
         }
       }
