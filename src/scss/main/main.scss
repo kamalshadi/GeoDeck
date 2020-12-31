@@ -599,6 +599,16 @@ $controlbarHeight: 200px;
     &__table {
       margin-bottom: spacing(3);
 
+      &__input {
+        border: none !important;
+        box-shadow: none !important;
+        @include themify($themes) {
+          background: themed("colorBackground") !important;
+          color: themed("colorText") !important;
+        }
+
+      }
+
       & tr:hover {
         background: none !important;
       }
@@ -694,7 +704,6 @@ $controlbarHeight: 200px;
           }
         }
       }
-
     }
 
     &__alert {

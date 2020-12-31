@@ -73,6 +73,7 @@ const SimTable = ({ simulation, controlBar, editSimulationParameters }) => {
                       <TableCell key={column.id} align={column.align}>
                         {column.id === "value" && simulation.isLoaded ? (
                           <Input
+                          className="simulation__table__input"
                             defaultValue={value}
                             type="number"
                             onChange={(e) =>
