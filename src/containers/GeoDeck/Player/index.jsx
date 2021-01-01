@@ -33,7 +33,7 @@ const Player = ({three, changeSample}) => {
       <div className="player-input">
         <span>Time</span>
         <div className="time-input">
-          <input type="number" defaultValue={5} ref={frame}/>
+          <input type="number" defaultValue={0} ref={frame}/>
         </div>
         <CameraOutlined style={{ fontSize: "18px"} } />
       </div>
