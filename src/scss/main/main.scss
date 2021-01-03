@@ -577,11 +577,13 @@ $controlbarHeight: 200px;
 
       & > * {
         margin: spacing(2) 0;
+        padding-bottom: spacing(2);
       }
     }
 
     &__sidebar {
-      padding: 0 0 spacing(2);
+      padding-left: 0;
+      padding-right: 0;
       @include themify($themes) {
         border-right: 0.5px solid themed("colorTextAdditional");
       }
@@ -596,17 +598,33 @@ $controlbarHeight: 200px;
       }
     }
 
-    &__header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: spacing(2);
-      font-size: 14px;
+    &__plot {
+      &__cards {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        overflow-y: auto;
+      }
 
-      p {
-        margin: 0;
+      &__card {
+        flex: 0 1 calc(33.33% - #{spacing(6)});
+        margin: spacing(3);
+        margin-bottom: spacing(3);
+        margin-top: 0;
+
+        & p {
+          font-weight: 500;
+          margin-bottom: spacing(1);
+          @include themify($themes) {
+            color: themed("colorTextAdditional");
+          }
+        }
+      }
+
+      &__chart {
+        height: 200px;
         @include themify($themes) {
-          color: lighten(themed("colorBubble"), 10%) !important;
+          border: 1px solid themed("colorBackground");
         }
       }
     }

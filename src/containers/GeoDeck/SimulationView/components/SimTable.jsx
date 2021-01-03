@@ -56,7 +56,7 @@ const SimTable = ({ simulation, controlBar, editSimulation }) => {
     <React.Fragment>
       <TableContainer
         className="simulation__table"
-        style={{ maxHeight: controlBar ? "72vh" : "52vh" }}
+        style={{ maxHeight: controlBar ? "71vh" : "53vh" }}
       >
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
@@ -110,32 +110,6 @@ const SimTable = ({ simulation, controlBar, editSimulation }) => {
         </Button>
       </div>
     </React.Fragment>
-    // <div className="simulation__table">
-    //   <div className="simulation__table__head">
-    //     <div>Variables</div>
-    //     <div>Current Values</div>
-    //     <div>Uint</div>
-    //     <div>Max</div>
-    //     <div>Min</div>
-    //     <div>Editable</div>
-    //     <div>etc.</div>
-    //   </div>
-    //   {parameters.map(
-    //     ({ label, value, unit, max, min, editable, other }, index) => {
-    //       return (
-    //         <div className="simulation__table__row" key={index}>
-    //           <td>{label}</td>
-    //           <td>{value}</td>
-    //           <td>{unit}</td>
-    //           <td>{max}</td>
-    //           <td>{min}</td>
-    //           <td>{editable}</td>
-    //           <td>{other}</td>
-    //         </div>
-    //       );
-    //     }
-    //   )}
-    // </div>
   );
 };
 const mapStateToProps = (state) => {
