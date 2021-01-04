@@ -3,16 +3,8 @@ import PlotCard from "./PlotCard";
 import PlotCreate from "./PlotCreate";
 
 const plotList = [
-  { name: "Plot1", type: "desc" },
-  { name: "Plot2", type: "linear" },
-  { name: "Plot3", type: "scatter" },
-  { name: "Plot3", type: "scatter" },
-  { name: "Plot3", type: "scatter" },
-  { name: "Plot3", type: "scatter" },
-  { name: "Plot3", type: "scatter" },
-  { name: "Plot3", type: "scatter" },
-  { name: "Plot3", type: "scatter" },
-  { name: "Plot4", type: "scatter" },
+  { name: "Plot1", type: "line" },
+  { name: "Plot2", type: "scatter" },
 ];
 const PlotList = (props) => {
   const { controlBar } = props;

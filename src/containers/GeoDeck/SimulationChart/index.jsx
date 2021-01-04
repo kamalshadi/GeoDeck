@@ -1,6 +1,7 @@
 import React from "react";
 import { Col, Container, Row } from "reactstrap";
 import PlotList from "./components/PlotList";
+import PlotPanel from "./components/PlotPanel";
 
 const SimulationChart = (props) => {
   const { controlBar } = props;
@@ -8,8 +9,12 @@ const SimulationChart = (props) => {
   return (
     <Container className="simulation">
       <Row className="simulation__container">
-        <Col md="2" className="simulation__sidebar">
-          <fiv>side bar</fiv>
+        <Col
+          md="2"
+          className="simulation__sidebar simulation__plot__panel"
+          style={{ maxHeight: controlBar ? "81vh" : "66vh" }}
+        >
+          <PlotPanel controlBar={controlBar} />
         </Col>
 
         <Col md="10" className="simulation__plot">
