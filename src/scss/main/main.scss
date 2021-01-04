@@ -269,19 +269,18 @@ $controlbarHeight: 200px;
     min-width: spacing(6);
     max-width: spacing(6);
 
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    grid-template-rows: repeat(10, min-content);
+    grid-gap: 1.5rem;
+    padding: 1rem 0;
     @include themify($themes) {
       background-color: lighten(themed("colorBackground"), 10%);
     }
 
-    @include respond(lg) {
-      min-width: spacing(8);
-      max-width: spacing(8);
-    }
-
     & > * {
-      padding: $toolIconSpace;
+      // padding: $toolIconSpace;
       cursor: pointer;
       font-size: 1rem;
       @include themify($themes) {
@@ -599,18 +598,25 @@ $controlbarHeight: 200px;
     }
 
     &__plot {
+      display: grid;
+      overflow-y: auto;
       &__cards {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        overflow-y: auto;
+        // display: flex;
+        // flex-direction: row;
+        // flex-wrap: wrap;
+        // overflow-y: auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+        grid-gap: 2rem;
       }
 
       &__card {
-        flex: 0 1 calc(33.33% - #{spacing(6)});
-        margin: spacing(3);
-        margin-bottom: spacing(3);
-        margin-top: 0;
+        display: grid;
+        grid-template-rows: min-content 1fr;
+        // flex: 0 1 calc(33.33% - #{spacing(6)});
+        // margin: spacing(3);
+        // margin-bottom: spacing(3);
+        // margin-top: 0;
 
         & p {
           font-weight: 500;
@@ -622,7 +628,7 @@ $controlbarHeight: 200px;
       }
 
       &__chart {
-        height: 200px;
+        // height: 200px;
         @include themify($themes) {
           border: 1px solid themed("colorBackground");
         }
