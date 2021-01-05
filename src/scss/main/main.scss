@@ -672,6 +672,19 @@ $controlbarHeight: 200px;
         grid-gap: 2rem;
         grid-template-rows: 1fr 0.5px 1fr;
         padding: 0;
+        
+        &__tabs {
+          display: grid;
+          grid-gap: 0.5rem;
+          grid-template-columns: 1fr 1fr;
+          justify-content: center;
+          align-items: center;
+          text-align: center;
+        }
+
+        &__data {
+          display: grid;
+        }
 
         & > * {
           overflow-y: auto;
@@ -697,6 +710,7 @@ $controlbarHeight: 200px;
             background-color: themed("colorBackground");
           }
         }
+
       }
 
       &__collapse {

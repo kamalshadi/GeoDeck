@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import PlotData from "./PlotData";
 import PlotVariable from "./PlotVariable";
 
 const simulations = [
@@ -41,29 +42,22 @@ const simulations = [
 ];
 
 const PlotPanel = (props) => {
+
+  const[current, setCurrent] = useState({}); // index of simulation
+
+  const onSelectVariable = (index) => {
+    setCurrent(index);
+  }
   return (
     <React.Fragment>
       <div className="simulation__plot__panel__variables simulation__inputs">
         {simulations.map((simulation, index) => {
-          return <PlotVariable simulation={simulation} key={index} />;
+          return <PlotVariable simulation={simulation} key={index} onSelectVariable={onSelectVariable}/>;
         })}
       </div>
       <div className="simulation__plot__panel__divider" />
       <div className="simulation__plot__panel__setting">
-        <p>points</p>
-        <p>points</p>
-        <p>points</p>
-        <p>points</p>
-        <p>points</p>
-        <p>points</p>
-        <p>points</p>
-        <p>points</p>
-        <p>points</p>
-        <p>points</p>
-        <p>points</p>
-        <p>points</p>
-        <p>points</p>
-        <p>points</p>
+        <PlotData index={current} />
       </div>
     </React.Fragment>
   );
