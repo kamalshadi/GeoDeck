@@ -3,16 +3,17 @@ import TimeFrame from "./TimeFrame";
 
 const SimulationLine = (props) => {
   const { lines } = props;
+  // console.log(lines);
 
   const onChangeTime = () => {
-    console.log("time changed!");
+    // console.log("time changed!");
   };
   return (
     <React.Fragment>
       <div>
         {!!lines &&
-          Object.keys(lines).map((point, index) => {
-            return <p key={index}>{point}</p>;
+          lines.map((line) => {
+            return <p key={line.id}>{line.name}</p>;
           })}
       </div>
       <div className="time-frame">

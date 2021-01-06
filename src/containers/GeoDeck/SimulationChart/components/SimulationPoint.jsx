@@ -4,19 +4,19 @@ import TimeFrame from "./TimeFrame";
 const SimulationPoint = (props) => {
   const { points } = props;
 
-  console.log(points);
+  // console.log(points);
   const onChangeStart = () => {
-    console.log("Start changed!");
+    // console.log("Start changed!");
   };
   const onChangeEnd = () => {
-    console.log("End changed!");
+    // console.log("End changed!");
   };
   return (
     <React.Fragment>
       <div>
         {!!points &&
-          Object.keys(points).map((point, index) => {
-            return <p key={index}>{point}</p>;
+          points.map((point) => {
+            return <p key={point.id}>{point.name}</p>;
           })}
       </div>
       <div className="time-frame">

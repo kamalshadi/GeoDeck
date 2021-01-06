@@ -7,30 +7,28 @@ import { fetchPlots } from "../../../redux/actions/plotAction";
 
 const SimulationChart = (props) => {
   const { controlBar, simulations } = props;
-  const [sims, setSims] = useState([]);
-  const [currentData, setCurrentData] = useState([]);
+  // const [sims, setSims] = useState([]);
+  // const [currentData, setCurrentData] = useState([]);
 
-  useEffect(() => {
-    props.fetchPlots();
-  }, []);
+  // useEffect(() => {
+  //   props.fetchPlots();
+  // }, []);
 
-  useEffect(() => {
-    setSims(simulations);
-  }, [simulations]);
+  // useEffect(() => {
+  //   setSims(simulations);
+  // }, [simulations]);
 
-  const onSetCurrentData = (id, dataKey) => {
-    console.log(`dataKey is: ${dataKey}`);
-    console.log(`id is: ${id}`);
-    const selectedSim = sims.find((sim) => sim.id === id);
-    const data = selectedSim.data[dataKey];
-    console.log(data);
-    console.log(sims);
-    setCurrentData(data);
-  };
+  // const onSetCurrentData = (id, dataKey) => {
+  //   console.log(`dataKey is: ${dataKey}`);
+  //   console.log(`id is: ${id}`);
+  //   const selectedSim = sims.find((sim) => sim.id === id);
+  //   const data = selectedSim.data[dataKey];
+  //   console.log(data);
+  //   console.log(sims);
+  //   setCurrentData(data);
+  // };
 
-  console.log(sims);
-
-  return null;
+  // console.log(sims);
 
   return (
     <Container className="simulation">
@@ -41,22 +39,26 @@ const SimulationChart = (props) => {
           style={{ maxHeight: controlBar ? "calc(100vh - 115px)" : "66vh" }}
         >
           <SimulationPanel
-            simulations={sims}
-            setCurrentData={onSetCurrentData}
-            currentData={currentData}
+            // simulations={sims}
+            // setCurrentData={onSetCurrentData}
+            // currentData={currentData}
           />
         </Col>
 
         <Col md="10" className="simulation__plot">
-          <PlotList controlBar={controlBar} data={currentData} />
+          <PlotList controlBar={controlBar}
+          
+          // data={currentData} 
+          />
         </Col>
       </Row>
     </Container>
   );
 };
 
-const mapStateToProps = (state) => {
-  return { simulations: Object.values(state.plots?.data) };
-};
+export default SimulationChart;
+// const mapStateToProps = (state) => {
+//   return { simulations: Object.values(state.plots?.data) };
+// };
 
-export default connect(mapStateToProps, { fetchPlots })(SimulationChart);
+// export default connect(mapStateToProps, { fetchPlots })(SimulationChart);

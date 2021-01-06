@@ -7,10 +7,10 @@ const SimulationVariable = (props) => {
   const [offSet, setOffSet] = useState(1);
   const perPage = 3;
 
-  console.log(props.simulation);
+  // console.log(props.simulation);
   const { id, name, data } = props.simulation;
-  console.log(data);
-  const visibleDataKeys =  Object.keys(data).slice(0, offSet * perPage);
+  // console.log(data);
+  const visibleVariables = data.slice(0, offSet * perPage);
 
   const onInputClick = () => {
     setIsOpen(!isOpen);
@@ -22,8 +22,8 @@ const SimulationVariable = (props) => {
   const onSelectVariable = (dataKey) => {
     // console.log(`dataKey is: ${dataKey}`);
     // console.log(`id is: ${id}`);
-    props.onSelectVariable(id,dataKey);
-  }
+    // props.onSelectVariable(id, dataKey);
+  };
   // {
   //   name: "simulation4",
   //   perPage: 3,
@@ -50,10 +50,13 @@ const SimulationVariable = (props) => {
       </InputGroup>
 
       <Collapse isOpen={isOpen} className="simulation__plot__collapse">
-        {visibleDataKeys.map((dataKey, index) => {
+        {visibleVariables.map(({ name, id }) => {
           return (
-            <p key={index} onClick={() => onSelectVariable(dataKey)}>
-              {dataKey}
+            <p
+              key={id}
+              //  onClick={() => onSelectVariable(id)}
+            >
+              {name}
             </p>
           );
         })}
