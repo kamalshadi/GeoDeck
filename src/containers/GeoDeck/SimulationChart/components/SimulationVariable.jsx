@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import _ from "lodash";
 import { Collapse, Input, InputGroup } from "reactstrap";
 
-const PlotVariable = (props) => {
+const SimulationVariable = (props) => {
   const [isOpen, setIsOpen] = useState(false);
   const [offSet, setOffSet] = useState(1);
   const perPage = 3;
@@ -65,4 +65,4 @@ const PlotVariable = (props) => {
   );
 };
 
-export default PlotVariable;
+export default SimulationVariable;

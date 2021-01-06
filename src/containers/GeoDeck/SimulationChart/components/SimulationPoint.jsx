@@ -1,7 +1,7 @@
 import React from "react";
 import TimeFrame from "./TimeFrame";
 
-const PlotPoint = (props) => {
+const SimulationPoint = (props) => {
   const { points } = props;
 
   console.log(points);
@@ -40,4 +40,4 @@ const PlotPoint = (props) => {
   );
 };
 
-export default PlotPoint;
+export default SimulationPoint;

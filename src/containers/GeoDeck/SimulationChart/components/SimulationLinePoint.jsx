@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import _ from "lodash";
-import PlotPoint from "./PlotPoint";
-import PlotLine from "./PlotLine";
+import SimulationPoint from "./SimulationPoint";
+import SimulationLine from "./SimulationLine";
 
-const PlotData = (props) => {
+const SimulationLinePoint = (props) => {
   const { currentData } = props;
   const [tab, setTab] = useState(0);
 
@@ -33,9 +33,9 @@ const PlotData = (props) => {
   const renderData = () => {
     switch (tab) {
       case 0:
-        return !!currentData?.points && <PlotPoint points={currentData?.points} />;
+        return !!currentData?.points && <SimulationPoint points={currentData?.points} />;
       case 1:
-        return !!currentData?.lines && <PlotLine lines={currentData?.lines} />;
+        return !!currentData?.lines && <SimulationLine lines={currentData?.lines} />;
       default:
         return null;
     }
@@ -49,4 +49,4 @@ const PlotData = (props) => {
   );
 };
 
-export default PlotData;
+export default SimulationLinePoint;

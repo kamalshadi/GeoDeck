@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import PlotData from "./PlotData";
-import PlotVariable from "./PlotVariable";
+import SimulationLinePoint from "./SimulationLinePoint";
+import SimulationVariable from "./SimulationVariable";
 
 const simulations = [
   {
@@ -41,7 +41,7 @@ const simulations = [
   },
 ];
 
-const PlotPanel = (props) => {
+const SimulationPanel = (props) => {
   const { simulations, currentData, setCurrentData } = props;
   // const [current, setCurrent] = useState({}); // index of simulation
 
@@ -59,7 +59,7 @@ const PlotPanel = (props) => {
           console.log(simulation);
 
           return (
-            <PlotVariable
+            <SimulationVariable
               simulation={simulation}
               key={index}
               onSelectVariable={onSelectVariable}
@@ -69,10 +69,10 @@ const PlotPanel = (props) => {
       </div>
       <div className="simulation__plot__panel__divider" />
       <div className="simulation__plot__panel__setting">
-        <PlotData currentData={currentData} />
+        <SimulationLinePoint currentData={currentData} />
       </div>
     </React.Fragment>
   );
 };
 
-export default PlotPanel;
+export default SimulationPanel;

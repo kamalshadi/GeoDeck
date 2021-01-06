@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { Col, Container, Row } from "reactstrap";
 import PlotList from "./components/PlotList";
-import PlotPanel from "./components/PlotPanel";
+import SimulationPanel from "./components/SimulationPanel";
 import { fetchPlots } from "../../../redux/actions/plotAction";
 
 const SimulationChart = (props) => {
@@ -21,7 +21,7 @@ const SimulationChart = (props) => {
   const onSetCurrentData = (id, dataKey) => {
     console.log(`dataKey is: ${dataKey}`);
     console.log(`id is: ${id}`);
-    const selectedSim = sims.find(sim => sim.id === id);
+    const selectedSim = sims.find((sim) => sim.id === id);
     const data = selectedSim.data[dataKey];
     console.log(data);
     console.log(sims);
@@ -29,7 +29,6 @@ const SimulationChart = (props) => {
   };
 
   console.log(sims);
-
 
   return (
     <Container className="simulation">
@@ -39,7 +38,7 @@ const SimulationChart = (props) => {
           className="simulation__sidebar simulation__plot__panel"
           style={{ maxHeight: controlBar ? "calc(100vh - 115px)" : "66vh" }}
         >
-          <PlotPanel
+          <SimulationPanel
             simulations={sims}
             setCurrentData={onSetCurrentData}
             currentData={currentData}

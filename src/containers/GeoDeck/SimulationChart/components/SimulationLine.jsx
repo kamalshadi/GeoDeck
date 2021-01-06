@@ -1,7 +1,7 @@
 import React from "react";
 import TimeFrame from "./TimeFrame";
 
-const PlotLine = (props) => {
+const SimulationLine = (props) => {
   const { lines } = props;
 
   const onChangeTime = () => {
@@ -30,4 +30,4 @@ const PlotLine = (props) => {
   );
 };
 
-export default PlotLine;
+export default SimulationLine;
