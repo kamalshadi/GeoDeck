@@ -672,7 +672,12 @@ $controlbarHeight: 200px;
         grid-gap: 2rem;
         grid-template-rows: 1fr 0.5px 1fr;
         padding: 0;
-        
+
+        &__setting {
+          display: grid;
+          grid-template-rows: min-content 1fr;
+        }
+
         &__tabs {
           display: grid;
           grid-gap: 0.5rem;
@@ -680,10 +685,13 @@ $controlbarHeight: 200px;
           justify-content: center;
           align-items: center;
           text-align: center;
+          margin-bottom: spacing(2);
+          line-height: 2;
         }
 
         &__data {
           display: grid;
+          grid-gap: 1rem;
         }
 
         & > * {
@@ -693,6 +701,7 @@ $controlbarHeight: 200px;
 
         & p {
           cursor: pointer;
+
           @include themify($themes) {
             color: themed("colorTextAdditional");
           }
@@ -710,7 +719,6 @@ $controlbarHeight: 200px;
             background-color: themed("colorBackground");
           }
         }
-
       }
 
       &__collapse {
@@ -723,6 +731,38 @@ $controlbarHeight: 200px;
 
         & .input-group {
           margin: 0 !important;
+        }
+      }
+    }
+
+    & .time-frame {
+      margin-top: spacing(2);
+
+      & > :not(:last-child) {
+        margin-bottom: spacing(2);
+      }
+
+      &__title {
+      }
+
+      &__content {
+        display: grid;
+        grid-template-columns: minmax(40px, max-content) max-content 1fr;
+        grid-gap: 1rem;
+        align-items: center;
+        justify-items: start;
+        & > * {
+          @include themify($themes) {
+            color: themed("colorTextAdditional");
+          }
+        }
+      }
+
+      &__change {
+        display: grid;
+        font-size: 14px;
+        & > :first-child {
+          margin-bottom: -4px;
         }
       }
     }

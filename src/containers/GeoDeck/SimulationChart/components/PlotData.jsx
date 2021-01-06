@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import _ from "lodash";
 import PlotPoint from "./PlotPoint";
+import PlotLine from "./PlotLine";
 
 const data = {
   pressure: {
@@ -147,7 +148,7 @@ const PlotData = (props) => {
       case 0:
         return <PlotPoint points={data} />;
       case 1:
-        return <p>Line Data</p>;
+        return <PlotLine points={data  } />;
       default:
         return null;
     }

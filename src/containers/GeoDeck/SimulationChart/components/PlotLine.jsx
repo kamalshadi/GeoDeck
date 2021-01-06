@@ -1,14 +1,11 @@
 import React from "react";
 import TimeFrame from "./TimeFrame";
 
-const PlotPoint = (props) => {
+const PlotLine = (props) => {
   const { points } = props;
 
-  const onChangeStart = () => {
-    console.log("Start changed!");
-  };
-  const onChangeEnd = () => {
-    console.log("End changed!");
+  const onChangeTime = () => {
+    console.log("time changed!");
   };
   return (
     <React.Fragment>
@@ -19,23 +16,17 @@ const PlotPoint = (props) => {
       </div>
       <div className="time-frame">
         <h6 className="time-frame__title" style={{ fontWeight: "bold" }}>
-          Time Span
+          Time Frame
         </h6>
         <TimeFrame
-          title="Start"
+          title="At"
           color="#2cb808"
           current={10}
-          onChangeTime={onChangeStart}
-        />
-        <TimeFrame
-          title="End"
-          color="red"
-          current={40}
-          onChangeTime={onChangeEnd}
+          onChangeTime={onChangeTime}
         />
       </div>
     </React.Fragment>
   );
 };
 
-export default PlotPoint;
+export default PlotLine;

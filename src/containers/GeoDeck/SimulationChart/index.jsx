@@ -12,7 +12,7 @@ const SimulationChart = (props) => {
         <Col
           md="2"
           className="simulation__sidebar simulation__plot__panel"
-          style={{ maxHeight: controlBar ? "81vh" : "66vh" }}
+          style={{ maxHeight: controlBar ? "calc(100vh - 115px)" : "66vh" }}
         >
           <PlotPanel controlBar={controlBar} />
         </Col>
