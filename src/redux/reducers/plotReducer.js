@@ -3,19 +3,40 @@ import { FETCH_PLOTS } from "../types";
 
 const initialState = {
   data: [],
-  current: null,
+  currentIds: [],
+  dataId: null,
+  pointId: null,
+  lineId: null,
+  isPoint: true,
 };
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case FETCH_PLOTS:
+    case FETCH_PLOTS: {
+      const fetchedData = getPlots(action.payload);
+      console.log(fetchedData);
       return {
         ...state,
-        data: { ..._.mapKeys(action.payload, "id") },
+        ...fetchedData,
       };
+    }
     default:
       return state;
   }
+};
+
+const getPlots = (payload) => {
+  const payloadData = payload[0]?.data;
+  const payloadPoints = payloadData ? payloadData[0]?.points : null;
+  const payloadLines = payloadData ? payloadData[0]?.lines : null;
+  return {
+    data: payload,
+    currentIds: [0],
+    dataId: payloadData ? payloadData[0]?.id : null,
+    pointId: payloadPoints ? payloadPoints[0]?.id : null,
+    lineId: payloadLines ? payloadLines[0]?.id : null,
+    isPoint: true,
+  };
 };
 
 // import _ from 'lodash';

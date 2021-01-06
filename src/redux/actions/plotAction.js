@@ -2,9 +2,149 @@ import * as types from "../types";
 
 export const fetchPlots = () => async (dispatch) => {
   //   const response = await api.get("/plots");
-  const response = { data: getSims };
+  const response = { data: getSimsT };
   dispatch({ type: types.FETCH_PLOTS, payload: response.data });
 };
+
+const getSimsT = [
+  {
+    id: 1,
+    name: "simulation 1",
+    data: [
+      {
+        id: 1,
+        name: "pressure",
+        points: [
+          {
+            id: 1,
+            name: "Near Well 1",
+            data: [1, 2, 3, 4],
+          },
+          {
+            id: 2,
+            name: "Right Bell",
+            data: [1, 2, 3, 4],
+          },
+        ],
+        lines: [
+          {
+            id: 1,
+            name: "Near Well 1",
+            data: [1, 2, 3, 4],
+          },
+        ],
+      },
+
+      {
+        id: 2,
+        name: "temperature",
+        points: [
+          {
+            id: 1,
+            name: "Near Well 1",
+            data: [1, 2, 3, 4],
+          },
+          {
+            id: 2,
+            name: "Right Bell",
+            data: [1, 2, 3, 4],
+          },
+        ],
+        lines: [
+          {
+            id: 1,
+            name: "Near Well 1",
+            data: [1, 2, 3, 4],
+          },
+        ],
+      },
+
+      {
+        id: 3,
+        name: "saturation",
+        points: [
+          {
+            id: 1,
+            name: "Near Well 1",
+            data: [1, 2, 3, 4],
+          },
+          {
+            id: 2,
+            name: "Right Bell",
+            data: [1, 2, 3, 4],
+          },
+        ],
+        lines: [
+          {
+            id: 1,
+            name: "Near Well 1",
+            data: [1, 2, 3, 4],
+          },
+        ],
+      },
+    ],
+  },
+
+  {
+    id: 2,
+    name: "simulation 2",
+    data: [
+      {
+        id: 1,
+        name: "pressure",
+        points: [
+          {
+            id: 1,
+            name: "Near Well 1",
+            data: [1, 2, 3, 4],
+          },
+          {
+            id: 2,
+            name: "Right Bell",
+            data: [1, 2, 3, 4],
+          },
+        ],
+        lines: [
+          {
+            id: 1,
+            name: "Near Well 1",
+            data: [1, 2, 3, 4],
+          },
+        ],
+      },
+    ],
+  },
+
+  {
+    id: 3,
+    name: "simulation 3",
+    data: [
+      {
+        id: 1,
+        name: "pressure",
+        points: [
+          {
+            id: 1,
+            name: "Near Well 1",
+            data: [1, 2, 3, 4],
+          },
+          {
+            id: 2,
+            name: "Right Bell",
+            data: [1, 2, 3, 4],
+          },
+        ],
+        lines: [
+          {
+            id: 1,
+            name: "Near Well 1",
+            data: [1, 2, 3, 4],
+          },
+        ],
+      },
+    ],
+  },
+];
 
 const getSims = [
   {

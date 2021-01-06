@@ -30,6 +30,8 @@ const SimulationChart = (props) => {
 
   console.log(sims);
 
+  return null;
+
   return (
     <Container className="simulation">
       <Row className="simulation__container">
