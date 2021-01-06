@@ -42,22 +42,34 @@ const simulations = [
 ];
 
 const PlotPanel = (props) => {
+  const { simulations, currentData, setCurrentData } = props;
+  // const [current, setCurrent] = useState({}); // index of simulation
 
-  const[current, setCurrent] = useState({}); // index of simulation
+  const onSelectVariable = (id, key) => {
+    // setCurrent(index);
+    setCurrentData(id, key); // id: id of simulation - key: variable key
+  };
 
-  const onSelectVariable = (index) => {
-    setCurrent(index);
-  }
+  console.log(currentData);
+
   return (
     <React.Fragment>
       <div className="simulation__plot__panel__variables simulation__inputs">
         {simulations.map((simulation, index) => {
-          return <PlotVariable simulation={simulation} key={index} onSelectVariable={onSelectVariable}/>;
+          console.log(simulation);
+
+          return (
+            <PlotVariable
+              simulation={simulation}
+              key={index}
+              onSelectVariable={onSelectVariable}
+            />
+          );
         })}
       </div>
       <div className="simulation__plot__panel__divider" />
       <div className="simulation__plot__panel__setting">
-        <PlotData index={current} />
+        <PlotData currentData={currentData} />
       </div>
     </React.Fragment>
   );

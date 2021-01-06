@@ -2,17 +2,28 @@ import React, { useState } from "react";
 import _ from "lodash";
 import { Collapse, Input, InputGroup } from "reactstrap";
 
-const PlotVariable = ({ simulation }) => {
-  const perPage = 3;
+const PlotVariable = (props) => {
   const [isOpen, setIsOpen] = useState(false);
   const [offSet, setOffSet] = useState(1);
+  const perPage = 3;
+
+  console.log(props.simulation);
+  const { id, name, data } = props.simulation;
+  console.log(data);
+  const visibleDataKeys =  Object.keys(data).slice(0, offSet * perPage);
 
   const onInputClick = () => {
     setIsOpen(!isOpen);
     setOffSet(1);
   };
+
   const onChangeOffSet = () => setOffSet(offSet + 1);
 
+  const onSelectVariable = (dataKey) => {
+    // console.log(`dataKey is: ${dataKey}`);
+    // console.log(`id is: ${id}`);
+    props.onSelectVariable(id,dataKey);
+  }
   // {
   //   name: "simulation4",
   //   perPage: 3,
@@ -23,10 +34,8 @@ const PlotVariable = ({ simulation }) => {
   //     { name: "variable3" },
   //   ],
   // },
-  const { name, variables } = simulation;
-  const visibleVariables = variables.slice(0, offSet * perPage);
   return (
-    <div  className="simulation__plot__input">
+    <div className="simulation__plot__input">
       <InputGroup onClick={onInputClick}>
         <Input
           value={name}
@@ -41,10 +50,14 @@ const PlotVariable = ({ simulation }) => {
       </InputGroup>
 
       <Collapse isOpen={isOpen} className="simulation__plot__collapse">
-        {visibleVariables.map((variable, index) => {
-          return <p key={index}>{variable.name}</p>;
+        {visibleDataKeys.map((dataKey, index) => {
+          return (
+            <p key={index} onClick={() => onSelectVariable(dataKey)}>
+              {dataKey}
+            </p>
+          );
         })}
-        {offSet * perPage < _.size(variables) && (
+        {offSet * perPage < _.size(data) && (
           <p onClick={onChangeOffSet}>More...</p>
         )}
       </Collapse>

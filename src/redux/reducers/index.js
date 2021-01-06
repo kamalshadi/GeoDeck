@@ -15,6 +15,7 @@ import threeReducer from "./threeReducer";
 import projectReducer from "./projectReducer";
 import galleryReducer from "./galleryReducer";
 import simulationReducer from "./simulationReducer";
+import plotReducer from "./plotReducer";
 
 export default combineReducers({
   form: reduxFormReducer, // mounted under "form",
@@ -33,4 +34,5 @@ export default combineReducers({
   projects: projectReducer,
   galleries: galleryReducer,
   simulations: simulationReducer,
+  plots: plotReducer,
 });

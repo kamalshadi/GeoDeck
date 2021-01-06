@@ -14,3 +14,5 @@ export const CREATE_SIMULATION = "CREATE_SIMULATION";
 export const UPDATE_SIMULATION = "UPDATE_SIMULATION";
 export const SET_SIMULATION_CUREENT = "SET_SIMULATION_CUREENT";
 
+//---------- PLOT Types ------------//
+export const FETCH_PLOTS = "FETCH_PLOTS";

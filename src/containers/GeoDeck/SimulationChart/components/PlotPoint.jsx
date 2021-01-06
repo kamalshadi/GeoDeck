@@ -4,6 +4,7 @@ import TimeFrame from "./TimeFrame";
 const PlotPoint = (props) => {
   const { points } = props;
 
+  console.log(points);
   const onChangeStart = () => {
     console.log("Start changed!");
   };
@@ -13,9 +14,10 @@ const PlotPoint = (props) => {
   return (
     <React.Fragment>
       <div>
-        {Object.keys(points).map((point, index) => {
-          return <p key={index}>{point}</p>;
-        })}
+        {!!points &&
+          Object.keys(points).map((point, index) => {
+            return <p key={index}>{point}</p>;
+          })}
       </div>
       <div className="time-frame">
         <h6 className="time-frame__title" style={{ fontWeight: "bold" }}>

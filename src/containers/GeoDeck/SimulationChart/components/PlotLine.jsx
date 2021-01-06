@@ -2,7 +2,7 @@ import React from "react";
 import TimeFrame from "./TimeFrame";
 
 const PlotLine = (props) => {
-  const { points } = props;
+  const { lines } = props;
 
   const onChangeTime = () => {
     console.log("time changed!");
@@ -10,9 +10,10 @@ const PlotLine = (props) => {
   return (
     <React.Fragment>
       <div>
-        {Object.keys(points).map((point, index) => {
-          return <p key={index}>{point}</p>;
-        })}
+        {!!lines &&
+          Object.keys(lines).map((point, index) => {
+            return <p key={index}>{point}</p>;
+          })}
       </div>
       <div className="time-frame">
         <h6 className="time-frame__title" style={{ fontWeight: "bold" }}>
