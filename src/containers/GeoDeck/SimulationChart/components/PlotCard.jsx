@@ -30,21 +30,21 @@ const PlotCard = (props) => {
         <img height="250px" src={`${process.env.PUBLIC_URL}/img/co2.png`} />
       </div> */}
 
-      <div className="simulation__plot__chart">
-        {plot.type === "scatter" ? (
-          <PlotChart name={name} data={dataArray} />
-        ) : (
-          <React.Fragment>
-            <p>{`${plot.name} Export`}</p>
-            <div className="simulation__plot__chart">
-              <img
-                height="250px"
-                src={`${process.env.PUBLIC_URL}/img/co2.png`}
-              />
-            </div>
-          </React.Fragment>
-        )}
-      </div>
+      {plot.type === "scatter" ? (
+        <React.Fragment>
+          <p>{`${name} Export`}</p>
+          <div className="simulation__plot__chart" style={{ height: "250px" }}>
+            <PlotChart name={name} data={dataArray} />
+          </div>
+        </React.Fragment>
+      ) : (
+        <React.Fragment>
+          <p>{`${plot.name} Export`}</p>
+          <div className="simulation__plot__chart">
+            <img height="250px" src={`${process.env.PUBLIC_URL}/img/co2.png`} />
+          </div>
+        </React.Fragment>
+      )}
 
       {/* 
       {simulations.map((simulation) => {

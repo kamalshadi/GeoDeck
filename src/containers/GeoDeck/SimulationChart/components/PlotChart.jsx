@@ -18,6 +18,10 @@ const data = [
   { x: 110, y: 280, z: 200 },
 ];
 
+const tooltipColor = {
+  color: "#70bbfd",
+};
+
 export default class Example extends PureComponent {
   render() {
     const { name, data } = this.props;
@@ -25,28 +29,28 @@ export default class Example extends PureComponent {
     console.log(name);
     console.log(data);
     return (
-    //   <ResponsiveContainer>
-        <ScatterChart
-          width={320}
-          height={250}
-        //   margin={{
-        //     top: 20,
-        //     right: 20,
-        //     bottom: 20,
-        //     left: 20,
-        //   }}
-        >
-          <CartesianGrid />
-          <XAxis type="number" dataKey="x" />
-          <YAxis type="number" dataKey="y" />
-          <Tooltip cursor={{ strokeDasharray: "3 3" }} />
-          {data.map((d) => {
-            let randomColor = Math.floor(Math.random() * 16777215).toString(16);
+      <React.Fragment>
+        <ResponsiveContainer>
+          <ScatterChart
+            margin={{
+              top: 0,
+              right: 0,
+              bottom: 0,
+              left: 0,
+            }}
+          >
+            <XAxis type="number" dataKey="x" reversed={false} />
+            <CartesianGrid strokeDasharray="3 3" />
+            <YAxis type="number" dataKey="y" stroke="#70bbfd" />
+            <Tooltip itemStyle={tooltipColor} />
 
-            return <Scatter name={name} data={d} fill={`#${randomColor}`} />;
-          })}
-        </ScatterChart>
-    //   </ResponsiveContainer>
+            {data.map((d) => {
+              let rColor = Math.floor(Math.random() * 16777215).toString(16);
+              return <Scatter name={name} data={d} fill={`#${rColor}`} />;
+            })}
+          </ScatterChart>
+        </ResponsiveContainer>
+      </React.Fragment>
     );
   }
 }
