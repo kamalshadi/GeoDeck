@@ -36,18 +36,19 @@ const SimulationChart = (props) => {
         <Col
           md="2"
           className="simulation__sidebar simulation__plot__panel"
-          style={{ maxHeight: controlBar ? "calc(100vh - 115px)" : "66vh" }}
+          style={{ maxHeight: "calc(100vh - 115px)" }}
+          // style={{ maxHeight: controlBar ? "calc(100vh - 115px)" : "66vh" }}
         >
           <SimulationPanel
-            // simulations={sims}
-            // setCurrentData={onSetCurrentData}
-            // currentData={currentData}
+          // simulations={sims}
+          // setCurrentData={onSetCurrentData}
+          // currentData={currentData}
           />
         </Col>
 
         <Col md="10" className="simulation__plot">
-          <PlotList 
-          // data={currentData} 
+          <PlotList
+          // data={currentData}
           />
         </Col>
       </Row>
