@@ -51,6 +51,7 @@ const SimulationVariable = (props) => {
   };
 
   const getClassName = (vId) => {
+    // variable id
     let pClassName = "";
     if (variableId === vId) {
       pClassName = `${pClassName} light`;
@@ -62,17 +63,35 @@ const SimulationVariable = (props) => {
     return pClassName;
   };
 
+  const inputStyles = () => {
+    // simulation id
+    let styles = {
+      width: "100%",
+      background: "transparent",
+      borderColor: "#1f8705",
+    };
+    if (_.includes(currentIds, simulation.id)) {
+      styles = { ...styles, background: "#1f8705" };
+    }
+    return styles;
+  };
+
+  const inputClassName = () => {
+    // simulation id
+    let className = "simulation__inputs__child";
+    if (_.includes(currentIds, simulation.id)) {
+      className = `${className} selected`;
+    }
+    return className;
+  };
+
   return (
     <div className="simulation__plot__input">
       <InputGroup onClick={onInputClick}>
         <Input
           value={name}
-          className={`simulation__inputs__child`}
-          style={{
-            width: "100%",
-            background: "transparent",
-            borderColor: "#1f8705",
-          }}
+          className={inputClassName()}
+          style={inputStyles()}
           disabled={true}
         />
       </InputGroup>
