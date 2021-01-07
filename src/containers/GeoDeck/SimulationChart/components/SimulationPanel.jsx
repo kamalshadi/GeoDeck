@@ -6,7 +6,7 @@ import { fetchPlots } from "../../../../redux/actions/plotAction";
 
 const SimulationPanel = (props) => {
   const [simulations, setSimulations] = useState([]);
-  const { data, currentIds, variableId, pointId, lineId, isPoint } = props;
+  const { data, currentIds, variableId, pointId, lineId } = props;
 
   useEffect(() => {
     setSimulations(data);
