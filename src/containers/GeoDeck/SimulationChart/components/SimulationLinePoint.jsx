@@ -4,7 +4,7 @@ import SimulationPoint from "./SimulationPoint";
 import SimulationLine from "./SimulationLine";
 
 const SimulationLinePoint = (props) => {
-  const { currentVariable } = props;
+  const { currentVariable, pointId, lineId } = props;
   const [tab, setTab] = useState(0);
 
   // console.log(currentVariable);
@@ -33,9 +33,20 @@ const SimulationLinePoint = (props) => {
   const renderData = () => {
     switch (tab) {
       case 0:
-        return !!currentVariable?.points && <SimulationPoint points={currentVariable?.points} />;
+        return (
+          !!currentVariable?.points && (
+            <SimulationPoint
+              pointId={pointId}
+              points={currentVariable?.points}
+            />
+          )
+        );
       case 1:
-        return !!currentVariable?.lines && <SimulationLine lines={currentVariable?.lines} />;
+        return (
+          !!currentVariable?.lines && (
+            <SimulationLine lineId={lineId} lines={currentVariable?.lines} />
+          )
+        );
       default:
         return null;
     }

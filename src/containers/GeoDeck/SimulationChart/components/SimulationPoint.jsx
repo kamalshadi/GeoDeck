@@ -1,9 +1,20 @@
 import React from "react";
 import TimeFrame from "./TimeFrame";
+import { editPlot } from "../../../../redux/actions/plotAction";
+import { connect } from "react-redux";
 
 const SimulationPoint = (props) => {
-  const { points } = props;
+  const { points, pointId } = props;
 
+  const onChangePoint = (newId) => {
+    console.log("pointId change!!!!");
+    if (newId !== pointId) {
+      const editObject = { pointId: newId };
+      console.log(editObject);
+
+      props.editPlot(editObject);
+    }
+  };
   // console.log(points);
   const onChangeStart = () => {
     // console.log("Start changed!");
@@ -15,8 +26,16 @@ const SimulationPoint = (props) => {
     <React.Fragment>
       <div>
         {!!points &&
-          points.map((point) => {
-            return <p key={point.id}>{point.name}</p>;
+          points.map(({ id, name }) => {
+            return (
+              <p
+                key={id}
+                onClick={() => onChangePoint(id)}
+                className={id === pointId ? "selected" : ""}
+              >
+                {name}
+              </p>
+            );
           })}
       </div>
       <div className="time-frame">
@@ -40,4 +59,4 @@ const SimulationPoint = (props) => {
   );
 };
 
-export default SimulationPoint;
+export default connect(null, { editPlot })(SimulationPoint);

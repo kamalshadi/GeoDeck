@@ -45,7 +45,11 @@ const SimulationPanel = (props) => {
       </div>
       <div className="simulation__plot__panel__divider" />
       <div className="simulation__plot__panel__setting">
-        <SimulationLinePoint currentVariable={currentVariable} />
+        <SimulationLinePoint
+          currentVariable={currentVariable}
+          pointId={pointId}
+          lineId={lineId}
+        />
       </div>
     </React.Fragment>
   );

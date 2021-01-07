@@ -711,6 +711,12 @@ $controlbarHeight: 200px;
               color: themed("colorBubble");
             }
           }
+
+          &.selected {
+            @include themify($themes) {
+              color: themed("colorBubble");
+            }
+          }
         }
 
         &__divider {
