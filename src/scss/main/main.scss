@@ -607,13 +607,16 @@ $controlbarHeight: 200px;
         // flex-wrap: wrap;
         // overflow-y: auto;
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
         grid-gap: 2rem;
       }
 
       &__card {
-        display: grid;
-        grid-template-rows: min-content 1fr;
+        @include themify($themes) {
+          background-color: themed("colorBackground");
+        }
+        // display: grid;
+        // grid-template-rows: min-content 1fr;
         // flex: 0 1 calc(33.33% - #{spacing(6)});
         // margin: spacing(3);
         // margin-bottom: spacing(3);
@@ -628,10 +631,23 @@ $controlbarHeight: 200px;
         }
 
         &.new {
+          display: grid;
+          grid-template-rows: min-content 1fr;
+          background-color: transparent;
           & p {
             opacity: 0.5;
             color: $color-gray !important;
           }
+        }
+
+        & .card-body {
+          padding: spacing(1);
+          @include themify($themes) {
+            background-color: themed("colorBackground");
+          }
+        }
+        & .card__title {
+          margin-bottom: 16px !important;
         }
       }
 

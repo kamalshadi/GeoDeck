@@ -4,6 +4,8 @@ import _ from "lodash";
 import PlotCard from "./PlotCard";
 import PlotCreate from "./PlotCreate";
 import { fetchPlots } from "../../../../redux/actions/plotAction";
+import ChartSample from "./ChartSample";
+import PlotChart from "./PlotChart";
 
 const plotList = [
   { name: "Plot1", type: "line" },
@@ -21,8 +23,6 @@ const PlotList = (props) => {
     props.fetchPlots();
   }, []);
 
-
-
   const selectedSimulations = simulations.filter((sim) =>
     _.includes(currentIds, sim.id)
   );
@@ -34,17 +34,30 @@ const PlotList = (props) => {
 
   return (
     <div className="simulation__plot__cards" style={{ maxHeight: "1vh" }}>
+      <ChartSample />
+
       {plotList.map((plot, index) => {
         return (
-          <PlotCard
-            simulations={selectedSimulations}
-            variableId={variableId}
-            pointId={pointId}
-            lineId={lineId}
-            isPoint={isPoint}
-            plot={plot}
-            key={index}
-          />
+          <PlotCard>
+            <PlotChart
+              simulations={selectedSimulations}
+              variableId={variableId}
+              pointId={pointId}
+              lineId={lineId}
+              isPoint={isPoint}
+              plot={plot}
+              key={index}
+            />
+          </PlotCard>
+          // <PlotCard
+          //   simulations={selectedSimulations}
+          //   variableId={variableId}
+          //   pointId={pointId}
+          //   lineId={lineId}
+          //   isPoint={isPoint}
+          //   plot={plot}
+          //   key={index}
+          // />
         );
       })}
 

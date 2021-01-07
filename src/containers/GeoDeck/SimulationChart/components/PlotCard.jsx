@@ -1,69 +1,42 @@
 import React from "react";
-import PlotChart from "./PlotChart";
+import { Card, CardBody } from "reactstrap";
+import { withTranslation } from "react-i18next";
+import PropTypes from "prop-types";
 
-const PlotCard = (props) => {
-  const { plot, simulations, variableId, pointId, lineId, isPoint } = props;
-
-  let name = "";
-  const dataArray = simulations.map((simulation) => {
-    const variable = simulation?.data.find(
-      (variable) => variable.id === variableId
-    );
-    const pointLine = isPoint
-      ? variable?.points.find((point) => point.id === pointId)
-      : variable?.lines.find((line) => line.id === lineId);
-    const xYData = pointLine?.data.map((data, index) => {
-      return { x: index, y: data };
-    });
-
-    name = pointLine?.name;
-
-    return xYData;
-  });
-
-  console.log(dataArray);
-
-  return (
-    <div className="simulation__plot__card">
-      {/* <p>{`${plot.name} Export`}</p>
-      <div className="simulation__plot__chart">
-        <img height="250px" src={`${process.env.PUBLIC_URL}/img/co2.png`} />
-      </div> */}
-
-      {plot.type === "scatter" ? (
-        <React.Fragment>
-          <p>{`${name} Export`}</p>
-          <div className="simulation__plot__chart" style={{ height: "250px" }}>
-            <PlotChart name={name} data={dataArray} />
+const PlotCard = ({ t, children, title }) => (
+  <div className="simulation__plot__card">
+    <div className="simulation__plot__chart">
+      <Card>
+        <CardBody>
+          <div className="card__title">
+            <h5 className="bold-text">{title}</h5>
           </div>
-        </React.Fragment>
-      ) : (
-        <React.Fragment>
-          <p>{`${plot.name} Export`}</p>
-          <div className="simulation__plot__chart">
-            <img height="250px" src={`${process.env.PUBLIC_URL}/img/co2.png`} />
-          </div>
-        </React.Fragment>
-      )}
-
-      {/* 
-      {simulations.map((simulation) => {
-        const variable = simulation?.data.find(
-          (variable) => variable.id === variableId
-        );
-        const pointLine = isPoint
-          ? variable?.points.find((point) => point.id === pointId)
-          : variable?.lines.find((line) => line.id === lineId);
-
-        return (
-          <div>
-            <p>{pointLine?.name}</p>
-            <PlotChart name={pointLine?.name} data={pointLine?.data} />
-          </div>
-        );
-      })} */}
+          {children}
+        </CardBody>
+      </Card>
     </div>
-  );
+  </div>
+);
+
+PlotCard.propTypes = {
+  t: PropTypes.func.isRequired,
 };
 
-export default PlotCard;
+export default withTranslation("common")(PlotCard);
+
+
+// {plot.type === "scatter" ? (
+//   <React.Fragment>
+//     <p>{`${name} Export`}</p>
+//     <div className="simulation__plot__chart" style={{ height: 400 }}>
+//       <PlotChart name={name} data={dataArray} />
+//     </div>
+//   </React.Fragment>
+// ) : (
+//   <React.Fragment>
+//     <p>{`${plot.name} Export`}</p>
+//     <div className="simulation__plot__chart">
+//       <img height="250px" src={`${process.env.PUBLIC_URL}/img/co2.png`} />
+//     </div>
+//   </React.Fragment>
+// )}
