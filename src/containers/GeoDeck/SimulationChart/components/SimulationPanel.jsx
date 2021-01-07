@@ -6,7 +6,7 @@ import { fetchPlots } from "../../../../redux/actions/plotAction";
 
 const SimulationPanel = (props) => {
   const [simulations, setSimulations] = useState([]);
-  const { data, currentIds, dataId, pointId, lineId, isPoint } = props;
+  const { data, currentIds, variableId, pointId, lineId, isPoint } = props;
 
   useEffect(() => {
     setSimulations(data);
@@ -15,18 +15,20 @@ const SimulationPanel = (props) => {
   useEffect(() => {
     props.fetchPlots();
   }, []);
-  console.log(simulations);
 
   if (!simulations) {
     return null;
   }
 
-  
+  // console.log(simulations);
+
   const firstId = currentIds[0];
-  const currentSimulation = data[firstId]
+  const currentSimulation = data.find((d) => d.id === firstId);
   console.log(currentSimulation);
-  const currentVariable = currentSimulation?.data.find(sim => sim.id === dataId);
-  console.log(currentVariable);
+  const currentVariable = currentSimulation?.data.find(
+    (sim) => sim.id === variableId
+  );
+  // console.log(currentVariable);
   return (
     <React.Fragment>
       <div className="simulation__plot__panel__variables simulation__inputs">
@@ -34,6 +36,8 @@ const SimulationPanel = (props) => {
           return (
             <SimulationVariable
               simulation={simulation}
+              currentIds={currentIds}
+              variableId={variableId}
               key={index}
             />
           );

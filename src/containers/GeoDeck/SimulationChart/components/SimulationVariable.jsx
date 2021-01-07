@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
 import _ from "lodash";
 import { Collapse, Input, InputGroup } from "reactstrap";
+import { editPlot } from "../../../../redux/actions/plotAction";
 
 const SimulationVariable = (props) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -8,7 +10,8 @@ const SimulationVariable = (props) => {
   const perPage = 3;
 
   // console.log(props.simulation);
-  const { id, name, data } = props.simulation;
+  const { currentIds, variableId, simulation } = props;
+  const { id, name, data } = simulation;
   // console.log(data);
   const visibleVariables = data.slice(0, offSet * perPage);
 
@@ -19,21 +22,34 @@ const SimulationVariable = (props) => {
 
   const onChangeOffSet = () => setOffSet(offSet + 1);
 
-  const onSelectVariable = (dataKey) => {
-    // console.log(`dataKey is: ${dataKey}`);
-    // console.log(`id is: ${id}`);
-    // props.onSelectVariable(id, dataKey);
+  const onSelectVariable = (newVariableId) => {
+    let newCurrentIds = [];
+
+    if (isVariableChanged(newVariableId)) {
+      newCurrentIds = refreshCurrentIds();
+    } else {
+      newCurrentIds = [id];
+    }
+
+    const editObject = { variableId: newVariableId, currentIds: newCurrentIds };
+    console.log(editObject);
+    props.editPlot(editObject);
   };
-  // {
-  //   name: "simulation4",
-  //   perPage: 3,
-  //   offSet: 1,
-  //   variables: [
-  //     { name: "variable1" },
-  //     { name: "variable2" },
-  //     { name: "variable3" },
-  //   ],
-  // },
+
+  const isVariableChanged = (newId) => {
+    return variableId === newId;
+  };
+
+  const refreshCurrentIds = () => {
+    if (!currentIds.find((cId) => cId === id)) {
+      return [id, ...currentIds];
+    } else {
+      // change active simulation with change index of currentIds
+      let newIds = currentIds.filter((cId) => cId !== id); // pop active id
+      return [id, ...newIds]; // push active id again
+    }
+  };
+
   return (
     <div className="simulation__plot__input">
       <InputGroup onClick={onInputClick}>
@@ -52,10 +68,7 @@ const SimulationVariable = (props) => {
       <Collapse isOpen={isOpen} className="simulation__plot__collapse">
         {visibleVariables.map(({ name, id }) => {
           return (
-            <p
-              key={id}
-              //  onClick={() => onSelectVariable(id)}
-            >
+            <p key={id} onClick={() => onSelectVariable(id)}>
               {name}
             </p>
           );
@@ -68,4 +81,4 @@ const SimulationVariable = (props) => {
   );
 };
 
-export default SimulationVariable;
+export default connect(null, { editPlot })(SimulationVariable);
