@@ -16,3 +16,5 @@ export const SET_SIMULATION_CUREENT = "SET_SIMULATION_CUREENT";
 
 //---------- PLOT Types ------------//
 export const FETCH_PLOTS = "FETCH_PLOTS";
+export const UPDATE_PLOT = "UPDATE_PLOT";
+

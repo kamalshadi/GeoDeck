@@ -1,10 +1,10 @@
 import _ from "lodash";
-import { FETCH_PLOTS } from "../types";
+import { FETCH_PLOTS, UPDATE_PLOT } from "../types";
 
 const initialState = {
   data: [],
   currentIds: [],
-  dataId: null,
+  variableId: null,
   pointId: null,
   lineId: null,
   isPoint: true,
@@ -20,6 +20,9 @@ export default (state = initialState, action) => {
         ...fetchedData,
       };
     }
+    case UPDATE_PLOT: {
+      return { ...state, ...action.payload };
+    }
     default:
       return state;
   }
@@ -31,8 +34,8 @@ const getPlots = (payload) => {
   const payloadLines = payloadData ? payloadData[0]?.lines : null;
   return {
     data: payload,
-    currentIds: [0],
-    dataId: payloadData ? payloadData[0]?.id : null,
+    currentIds: [payloadData[0]?.id],
+    variableId: payloadData ? payloadData[0]?.id : null,
     pointId: payloadPoints ? payloadPoints[0]?.id : null,
     lineId: payloadLines ? payloadLines[0]?.id : null,
     isPoint: true,

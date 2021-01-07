@@ -6,6 +6,23 @@ export const fetchPlots = () => async (dispatch) => {
   dispatch({ type: types.FETCH_PLOTS, payload: response.data });
 };
 
+// update redux state in brawser
+export const editPlot = (editObject) => async (dispatch) => {
+  dispatch({ type: types.UPDATE_PLOT, payload: editObject });
+};
+
+// update info in server -> dispatch in simulationReducer
+export const editPlotSimulation = (formValues, id) => async (
+  dispatch,
+  getState
+) => {
+  // const response = await api.patch(`/plot/${id}`, formValues); // return updated simulation object
+  const plots = getState().plots;
+  const newSimulation = plots.find((plot) => plot.id === id);
+  const response = { data: newSimulation };
+  dispatch({ type: types.UPDATE_SIMULATION, payload: response.data });
+};
+
 const getSimsT = [
   {
     id: 1,
