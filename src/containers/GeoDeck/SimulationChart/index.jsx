@@ -46,8 +46,7 @@ const SimulationChart = (props) => {
         </Col>
 
         <Col md="10" className="simulation__plot">
-          <PlotList controlBar={controlBar}
-          
+          <PlotList 
           // data={currentData} 
           />
         </Col>
