@@ -7,11 +7,8 @@ const SimulationPoint = (props) => {
   const { points, pointId } = props;
 
   const onChangePoint = (newId) => {
-    console.log("pointId change!!!!");
     if (newId !== pointId) {
       const editObject = { pointId: newId };
-      console.log(editObject);
-
       props.editPlot(editObject);
     }
   };

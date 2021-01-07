@@ -22,7 +22,7 @@ const SimulationPanel = (props) => {
 
   // console.log(simulations);
 
-  const firstId = currentIds[0];
+  const firstId = currentIds[0]; // always current simulation have first index
   const currentSimulation = data.find((d) => d.id === firstId);
   console.log(currentSimulation);
   const currentVariable = currentSimulation?.data.find(

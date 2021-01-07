@@ -32,7 +32,7 @@ const SimulationVariable = (props) => {
     }
 
     const editObject = { variableId: newVariableId, currentIds: newCurrentIds };
-    console.log(editObject);
+    // console.log(editObject);
     props.editPlot(editObject);
   };
 
