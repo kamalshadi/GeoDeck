@@ -50,6 +50,18 @@ const SimulationVariable = (props) => {
     }
   };
 
+  const getClassName = (vId) => {
+    let pClassName = "";
+    if (variableId === vId) {
+      pClassName = `${pClassName} light`;
+      if (currentIds.find((cId) => cId === id)) {
+        //simulation selectted
+        pClassName = `${pClassName} selected`;
+      }
+    }
+    return pClassName;
+  };
+
   return (
     <div className="simulation__plot__input">
       <InputGroup onClick={onInputClick}>
@@ -67,8 +79,14 @@ const SimulationVariable = (props) => {
 
       <Collapse isOpen={isOpen} className="simulation__plot__collapse">
         {visibleVariables.map(({ name, id }) => {
+          const pClassName = getClassName(id);
+
           return (
-            <p key={id} onClick={() => onSelectVariable(id)}>
+            <p
+              key={id}
+              onClick={() => onSelectVariable(id)}
+              className={pClassName}
+            >
               {name}
             </p>
           );

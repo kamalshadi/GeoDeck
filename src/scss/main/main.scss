@@ -712,6 +712,11 @@ $controlbarHeight: 200px;
             }
           }
 
+          &.light {
+            @include themify($themes) {
+              color: fade-out(themed("colorBubble"), 0.5);
+            }
+          }
           &.selected {
             @include themify($themes) {
               color: themed("colorBubble");
