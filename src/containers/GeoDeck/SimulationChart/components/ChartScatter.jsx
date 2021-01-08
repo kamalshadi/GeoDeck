@@ -98,18 +98,53 @@ class ChartScatter extends PureComponent {
       scales: {
         xAxes: [
           {
+            scaleLabel: {
+              display: true,
+              labelString: "time",
+            },
             type: "linear",
             position: "bottom",
           },
         ],
+        
+        yAxes: [
+          {
+            scaleLabel: {
+              display: true,
+              labelString: "point",
+            },
+          },
+        ],
       },
+      // xAxes: [
+      //   {
+      //     gridLines: {
+      //       color: "rgb(204, 204, 204)",
+      //       borderDash: [3, 3],
+      //     },
+      //     ticks: {
+      //       fontColor: "rgb(204, 204, 204)",
+      //     },
+      //   },
+      // ],
+      // yAxes: [
+      //   {
+      //     gridLines: {
+      //       color: "rgb(204, 204, 204)",
+      //       borderDash: [3, 3],
+      //     },
+      //     ticks: {
+      //       fontColor: "rgb(204, 204, 204)",
+      //     },
+      //   },
+      // ],
     };
     return (
       <React.Fragment>
         <Card>
           <CardBody>
             <div className="card__title">
-              <h5 className="bold-text">{"chart js scatter chart"}</h5>
+              <h5 className="bold-text">{"Scatter Chart"}</h5>
             </div>
             <Scatter data={scatterData} options={options} />
             {/* <ResponsiveContainer>
