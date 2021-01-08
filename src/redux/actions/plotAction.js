@@ -43,8 +43,8 @@ export const editPlotSimulation = (formValues, id) => async (
 
 
 const getPlots = [
-    {id: 1, name: "Line", type: "line" },
-    // {id: 2, name: "Scattenr", type: "scatter" },
+  // {id: 1, name: "Scatter", type: "scatter" },
+  // {id: 2, name: "Line", type: "line" },
 ]
 
 

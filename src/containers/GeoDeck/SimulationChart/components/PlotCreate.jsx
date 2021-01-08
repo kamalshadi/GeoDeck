@@ -16,8 +16,8 @@ const icons = [
   { name: "area", type: "area", element: <AreaChartOutlined /> },
   { name: "bar", type: "bar", element: <BarChartOutlined /> },
   { name: "radar", type: "radar", element: <RadarChartOutlined /> },
-  { name: "line", type: "line", element: <LineChartOutlined /> },
   { name: "scatter", type: "scatter", element: <DotChartOutlined /> },
+  { name: "line", type: "line", element: <LineChartOutlined /> },
 ];
 
 const PlotCreate = (props) => {
@@ -25,7 +25,13 @@ const PlotCreate = (props) => {
     console.log(type);
     switch (type) {
       case "scatter": {
-        props.createPlotType({ name: "Scattenr", type: "scatter" });
+        // props.createPlotType({ name: "Scattenr", type: "scatter" });
+        break;
+      }
+
+      case "line": {
+        props.createPlotType({ name: "Line", type: "line" });
+        break;
       }
     }
     // {id: 2, name: "Scatter", type: "scatter" },
