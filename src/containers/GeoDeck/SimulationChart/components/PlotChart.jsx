@@ -19,8 +19,16 @@ const tooltipColor = {
 const PlotChart = (props) => {
   const { plot, simulations, variableId, pointId, lineId, isPoint } = props;
 
-  let name = "";
-  const dataArray = simulations.map((simulation) => {
+  const backgroundColor = [
+    "#FF6384",
+    "#4BC0C0",
+    "#FFCE56",
+    "#E7E9ED",
+    "#36A2EB",
+  ];
+
+  const dataList = simulations.map((simulation, index) => {
+    const name = simulation.name;
     const variable = simulation?.data.find(
       (variable) => variable.id === variableId
     );
@@ -31,12 +39,18 @@ const PlotChart = (props) => {
       return { x: index, y: data };
     });
 
-    name = pointLine?.name;
+    let color = "";
+    if (index < 5) {
+      color = backgroundColor[index];
+    } else {
+      let rColor = Math.floor(Math.random() * 16777215).toString(16);
+      color = `#${rColor}`;
+    }
 
-    return xYData;
+    return { name, data: xYData, color };
   });
 
-  console.log(dataArray);
+  console.log(dataList);
 
   const renderChart = () => {
     switch (plot.type) {
@@ -45,7 +59,7 @@ const PlotChart = (props) => {
       case "scatter":
         return (
           // <div className="simulation__plot__chart" style={{ height: 400 }}>
-            <ChartScatter data={dataArray} name={name} />
+          <ChartScatter dataList={dataList} />
           // </div>
         );
 

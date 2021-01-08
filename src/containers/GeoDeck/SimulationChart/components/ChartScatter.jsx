@@ -65,28 +65,26 @@ const tooltipColor = {
 
 class ChartScatter extends PureComponent {
   render() {
-    const { name, data } = this.props;
+    const { dataList } = this.props;
 
     // console.log(name);
-    console.log(data);
+    console.log(dataList);
 
-    const datasets = data.map((d) => {
-      let rColor = Math.floor(Math.random() * 16777215).toString(16);
-      let color = `#${rColor}`;
+    const datasets = dataList.map(({ name, data, color }) => {
       return {
-        label: color,
+        label: name,
         fill: false,
         lineTension: 0.3,
         backgroundColor: color,
         borderColor: color,
-        borderWidth: 1,
-        borderDash: [3, 3],
+        // borderWidth: 1,
+        // borderDash: [3, 3],
         pointBackgroundColor: color,
-        pointHoverRadius: 2,
+        pointHoverRadius: 3,
         pointHoverBorderWidth: 1,
-        pointRadius: 1,
+        pointRadius: 2,
         pointHitRadius: 10,
-        data: d,
+        data: data,
       };
     });
 
