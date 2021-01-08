@@ -641,17 +641,19 @@ $controlbarHeight: 200px;
         }
 
         & .card-body {
-          padding: spacing(1);
+          // padding: spacing(1);
           @include themify($themes) {
             background-color: themed("colorBackground");
           }
         }
         & .card__title {
-          margin-bottom: 16px !important;
+          margin-bottom: 0 !important;
         }
       }
 
       &__chart {
+        padding: spacing(1);
+
         @include themify($themes) {
           border: 1px solid themed("colorBackground");
         }

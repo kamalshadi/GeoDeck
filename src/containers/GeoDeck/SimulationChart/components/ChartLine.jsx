@@ -4,77 +4,22 @@ import { Line } from "react-chartjs-2";
 import { withTranslation } from "react-i18next";
 import PropTypes from "prop-types";
 
-const data = {
-  labels: ["January", "February", "March", "April", "May", "June", "July"],
-  datasets: [
-    {
-      label: "Blue",
-      fill: false,
-      lineTension: 0.3,
-      backgroundColor: "#36A2EB",
-      borderColor: "#36A2EB",
-      borderWidth: 1,
-      borderDash: [5, 3],
-      pointBackgroundColor: "#36A2EB",
-      pointHoverRadius: 3,
-      pointHoverBorderWidth: 1,
-      pointRadius: 2,
-      pointHitRadius: 10,
-      data: [65, 59, 80, 81, 56, 55, 40],
-    },
-    {
-      label: "Red",
-      fill: false,
-      lineTension: 0.3,
-      backgroundColor: "#FF6384",
-      borderColor: "#FF6384",
-      borderWidth: 1,
-      borderDash: [3, 3],
-      pointBackgroundColor: "#FF6384",
-      pointHoverRadius: 2,
-      pointHoverBorderWidth: 1,
-      pointRadius: 1,
-      pointHitRadius: 10,
-      data: [5, 7, 54, 32, 87, 45, 25],
-    },
-    {
-      label: "Yellow",
-      fill: false,
-      lineTension: 0.3,
-      backgroundColor: "#FFCE56",
-      borderColor: "#FFCE56",
-      borderWidth: 1,
-      pointBackgroundColor: "#FFCE56",
-      pointHoverRadius: 5,
-      pointHoverBorderWidth: 1,
-      pointRadius: 4,
-      pointHitRadius: 10,
-      data: [25, 54, 2, 48, 78, 54, 35],
-    },
-    {
-      label: "Green",
-      fill: false,
-      lineTension: 0.3,
-      backgroundColor: "#4BC0C0",
-      borderColor: "#4BC0C0",
-      borderWidth: 1,
-      pointBackgroundColor: "#4BC0C0",
-      pointHoverRadius: 6,
-      pointHoverBorderWidth: 1,
-      pointRadius: 5,
-      pointHitRadius: 10,
-      data: [52, 47, 45, 4, 58, 7, 45],
-    },
-  ],
-};
-
 const options = {
-  legend: {
-    position: "bottom",
+  // legend: {
+  //   position: "bottom",
+  // },
+  layout: {
+    padding: {
+      top: 20,
+    },
   },
   scales: {
     xAxes: [
       {
+        scaleLabel: {
+          display: true,
+          labelString: "time",
+        },
         gridLines: {
           color: "rgb(204, 204, 204)",
           borderDash: [3, 3],
@@ -84,8 +29,13 @@ const options = {
         },
       },
     ],
+
     yAxes: [
       {
+        scaleLabel: {
+          display: true,
+          labelString: "point",
+        },
         gridLines: {
           color: "rgb(204, 204, 204)",
           borderDash: [3, 3],
@@ -96,20 +46,74 @@ const options = {
       },
     ],
   },
+  // xAxes: [
+  //   {
+  //     gridLines: {
+  //       color: "rgb(204, 204, 204)",
+  //       borderDash: [3, 3],
+  //     },
+  //     ticks: {
+  //       fontColor: "rgb(204, 204, 204)",
+  //     },
+  //   },
+  // ],
+  // yAxes: [
+  //   {
+  //     gridLines: {
+  //       color: "rgb(204, 204, 204)",
+  //       borderDash: [3, 3],
+  //     },
+  //     ticks: {
+  //       fontColor: "rgb(204, 204, 204)",
+  //     },
+  //   },
+  // ],
 };
 
-const ChartLine = ({ t }) => (
-  <React.Fragment>
-    <Card>
-      <CardBody>
-        <div className="card__title">
-          <h5 className="bold-text">{"Chart Point Sizes"}</h5>
-        </div>
-        <Line data={data} options={options} />
-      </CardBody>
-    </Card>
-  </React.Fragment>
-);
+const ChartLine = (props) => {
+  const { dataList, t } = props;
+
+  // console.log(name);
+  console.log(dataList);
+
+  const datasets = dataList.map(({ name, rawData, color }) => {
+    return {
+      label: name,
+      fill: false,
+      lineTension: 0.3,
+      backgroundColor: color,
+      borderColor: color,
+      borderWidth: 1,
+      // borderDash: [3, 3],
+      pointBackgroundColor: color,
+      pointHoverRadius: 6,
+      pointHoverBorderWidth: 1,
+      pointRadius: 5,
+      pointHitRadius: 10,
+      data: rawData,
+    };
+  });
+
+  const lineData = {
+    labels: [],
+    datasets: datasets,
+  };
+
+  return (
+    <React.Fragment>
+      <Card>
+        <CardBody>
+          <div
+            className="card__title"
+          >
+            <h5 className="bold-text">{"Line Chart"}</h5>
+          </div>
+          {datasets ? <Line data={lineData} options={options} /> : <Line />}
+        </CardBody>
+      </Card>
+    </React.Fragment>
+  );
+};
 
 ChartLine.propTypes = {
   t: PropTypes.func.isRequired,

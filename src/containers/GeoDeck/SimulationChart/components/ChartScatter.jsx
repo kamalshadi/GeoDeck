@@ -70,7 +70,7 @@ class ChartScatter extends PureComponent {
     // console.log(name);
     console.log(dataList);
 
-    const datasets = dataList.map(({ name, data, color }) => {
+    const datasets = dataList.map(({ name, xYData, color }) => {
       return {
         label: name,
         fill: false,
@@ -84,7 +84,7 @@ class ChartScatter extends PureComponent {
         pointHoverBorderWidth: 1,
         pointRadius: 2,
         pointHitRadius: 10,
-        data: data,
+        data: xYData,
       };
     });
 
@@ -95,6 +95,11 @@ class ChartScatter extends PureComponent {
 
     console.log(datasets);
     const options = {
+      layout: {
+        padding: {
+          top: 20,
+        },
+      },
       scales: {
         xAxes: [
           {
@@ -106,7 +111,7 @@ class ChartScatter extends PureComponent {
             position: "bottom",
           },
         ],
-        
+
         yAxes: [
           {
             scaleLabel: {

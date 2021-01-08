@@ -10,7 +10,7 @@ const data = {
       data: [11, 18, 7, 14],
       backgroundColor: ["#FF6384", "#4BC0C0", "#FFCE56", "#36A2EB"],
       borderColor: "rgba(255,255,255,0.54)",
-    },  
+    },
   ],
   labels: ["Simulation 1", "Simulation 2", "Simulation 3", "Simulation 4"],
 };
@@ -19,6 +19,11 @@ const options = {
   // legend: {
   //   position: "bottom",
   // },
+  layout: {
+    padding: {
+      top: 20,
+    },
+  },
   scale: {
     gridLines: {
       color: "rgb(204, 204, 204)",
@@ -37,7 +42,7 @@ const ChartSample = ({ t }) => (
         <CardBody>
           <div className="card__title">
             <h5 className="bold-text">
-              {t("charts.react_chartjs.polar_area")}
+              {t("Polar Area Chart")}
             </h5>
           </div>
           <Polar data={data} options={options} />

@@ -35,6 +35,8 @@ const PlotChart = (props) => {
     const pointLine = isPoint
       ? variable?.points.find((point) => point.id === pointId)
       : variable?.lines.find((line) => line.id === lineId);
+
+    const rawData = pointLine?.data;
     const xYData = pointLine?.data.map((data, index) => {
       return { x: index, y: data };
     });
@@ -47,7 +49,7 @@ const PlotChart = (props) => {
       color = `#${rColor}`;
     }
 
-    return { name, data: xYData, color };
+    return { name, xYData: xYData, rawData, color };
   });
 
   console.log(dataList);
@@ -55,7 +57,7 @@ const PlotChart = (props) => {
   const renderChart = () => {
     switch (plot.type) {
       case "line":
-        return <ChartLine />;
+        return <ChartLine dataList={dataList} />;
       case "scatter":
         return (
           // <div className="simulation__plot__chart" style={{ height: 400 }}>
