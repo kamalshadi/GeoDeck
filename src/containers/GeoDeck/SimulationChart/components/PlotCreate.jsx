@@ -8,6 +8,8 @@ import {
   PieChartOutlined,
   RadarChartOutlined,
 } from "@ant-design/icons";
+import { createPlotType } from "../../../../redux/actions/plotAction";
+import { connect } from "react-redux";
 
 const icons = [
   { name: "pie", type: "pie", element: <PieChartFilled /> },
@@ -21,6 +23,12 @@ const icons = [
 const PlotCreate = (props) => {
   const onCreate = (type) => {
     console.log(type);
+    switch (type) {
+      case "scatter": {
+        props.createPlotType({ name: "Scattenr", type: "scatter" });
+      }
+    }
+    // {id: 2, name: "Scatter", type: "scatter" },
   };
 
   return (
@@ -37,4 +45,4 @@ const PlotCreate = (props) => {
   );
 };
 
-export default PlotCreate;
+export default connect(null, { createPlotType })(PlotCreate);

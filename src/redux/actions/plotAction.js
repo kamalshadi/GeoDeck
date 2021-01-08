@@ -1,10 +1,26 @@
 import * as types from "../types";
 
+
+
+export const fetchPlotTypes = () => async (dispatch) => {
+  //   const response = await api.get("/plots");
+  const response = { data: getPlots };
+  dispatch({ type: types.FETCH_PLOT_TYPES, payload: response.data });
+};
+
+
+export const createPlotType = (formValues) => async (dispatch) => {
+  //   const response = await api.get("/plots");
+  const response = { data: formValues };
+  dispatch({ type: types.CREATE_PLOT_TYPE, payload: response.data });
+};
+
 export const fetchPlots = () => async (dispatch) => {
   //   const response = await api.get("/plots");
   const response = { data: getSimsT };
   dispatch({ type: types.FETCH_PLOTS, payload: response.data });
 };
+
 
 // update redux state in brawser
 export const editPlot = (editObject) => async (dispatch) => {
@@ -25,6 +41,11 @@ export const editPlotSimulation = (formValues, id) => async (
 
 
 
+
+const getPlots = [
+    {id: 1, name: "Line", type: "line" },
+    // {id: 2, name: "Scattenr", type: "scatter" },
+]
 
 
 const pointsData = [

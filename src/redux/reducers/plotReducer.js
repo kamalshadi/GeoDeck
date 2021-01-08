@@ -1,5 +1,10 @@
 import _ from "lodash";
-import { FETCH_PLOTS, UPDATE_PLOT } from "../types";
+import {
+  FETCH_PLOTS,
+  UPDATE_PLOT,
+  FETCH_PLOT_TYPES,
+  CREATE_PLOT_TYPE,
+} from "../types";
 
 const initialState = {
   data: [],
@@ -8,10 +13,25 @@ const initialState = {
   pointId: null,
   lineId: null,
   isPoint: true,
+  plots: [],
 };
 
 export default (state = initialState, action) => {
   switch (action.type) {
+    case FETCH_PLOT_TYPES: {
+      return {
+        ...state,
+        plots: action.payload,
+      };
+    }
+    case CREATE_PLOT_TYPE: {
+      const oldPlots = state.plots;
+      return {
+        ...state,
+        current: action.payload.id,
+        plots: [...oldPlots, action.payload],
+      };
+    }
     case FETCH_PLOTS: {
       const fetchedData = getPlots(action.payload);
       console.log(fetchedData);

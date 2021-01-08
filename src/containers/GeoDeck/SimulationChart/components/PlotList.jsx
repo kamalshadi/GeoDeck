@@ -3,24 +3,28 @@ import { connect } from "react-redux";
 import _ from "lodash";
 import PlotCard from "./PlotCard";
 import PlotCreate from "./PlotCreate";
-import { fetchPlots } from "../../../../redux/actions/plotAction";
+import { fetchPlots,fetchPlotTypes } from "../../../../redux/actions/plotAction";
 import ChartSample from "./ChartSample";
 import PlotChart from "./PlotChart";
 
-const plotList = [
-  { name: "Plot1", type: "line" },
-  { name: "Plot2", type: "scatter" },
-];
 const PlotList = (props) => {
   const [simulations, setSimulations] = useState([]);
-  const { data, currentIds, variableId, pointId, lineId, isPoint } = props;
+  const [plotList, setPlotList] = useState([]);
+  const { plots, data, currentIds, variableId, pointId, lineId, isPoint } = props;
 
   useEffect(() => {
     setSimulations(data);
   }, [data]);
+  
+  useEffect(() => {
+    setPlotList(plots);
+  }, [plots]);
 
   useEffect(() => {
     props.fetchPlots();
+  }, []);
+  useEffect(() => {
+    props.fetchPlotTypes();
   }, []);
 
   const selectedSimulations = simulations.filter((sim) =>
@@ -70,4 +74,4 @@ const mapStateToProps = (state) => {
   return { ...state.plots };
 };
 
-export default connect(mapStateToProps, { fetchPlots })(PlotList);
+export default connect(mapStateToProps, { fetchPlots, fetchPlotTypes })(PlotList);
