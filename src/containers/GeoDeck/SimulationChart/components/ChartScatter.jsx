@@ -9,63 +9,10 @@ import React, { PureComponent } from "react";
 //   ResponsiveContainer,
 // } from "recharts";
 import { Scatter } from "react-chartjs-2";
-import { Card, CardBody, Col } from "reactstrap";
-
-const tooltipColor = {
-  color: "#70bbfd",
-};
-
-// const data = {
-//   labels: ["January", "February", "March", "April", "May"],
-//   datasets: [
-//     {
-//       label: "Blue",
-//       fill: false,
-//       lineTension: 0.3,
-//       backgroundColor: "#36A2EB",
-//       borderColor: "#36A2EB",
-//       borderWidth: 1,
-//       borderDash: [5, 3],
-//       pointBackgroundColor: "#36A2EB",
-//       pointHoverRadius: 3,
-//       pointHoverBorderWidth: 1,
-//       pointRadius: 2,
-//       pointHitRadius: 10,
-//       data: [
-//         { x: 0, y: 65 },
-//         { x: 1, y: 68 },
-//         { x: 2, y: 98 },
-//         { x: 3, y: 85 },
-//         { x: 4, y: 34 },
-//       ],
-//     },
-//     {
-//       label: "Red",
-//       fill: false,
-//       lineTension: 0.3,
-//       backgroundColor: "#FF6384",
-//       borderColor: "#FF6384",
-//       borderWidth: 1,
-//       borderDash: [3, 3],
-//       pointBackgroundColor: "#FF6384",
-//       pointHoverRadius: 2,
-//       pointHoverBorderWidth: 1,
-//       pointRadius: 1,
-//       pointHitRadius: 10,
-//       data: [
-//         { x: 0, y: 75 },
-//         { x: 1, y: 34 },
-//         { x: 2, y: 49 },
-//         { x: 3, y: 78 },
-//         { x: 4, y: 18 },
-//       ],
-//     },
-//   ],
-// };
 
 class ChartScatter extends PureComponent {
   render() {
-    const { dataList } = this.props;
+    const { dataList, variableName } = this.props;
 
     // console.log(name);
     console.log(dataList);
@@ -93,13 +40,7 @@ class ChartScatter extends PureComponent {
       datasets: datasets,
     };
 
-    console.log(datasets);
     const options = {
-      layout: {
-        padding: {
-          top: 20,
-        },
-      },
       scales: {
         xAxes: [
           {
@@ -116,7 +57,7 @@ class ChartScatter extends PureComponent {
           {
             scaleLabel: {
               display: true,
-              labelString: "point",
+              labelString: variableName,
             },
           },
         ],
@@ -198,3 +139,57 @@ class ChartScatter extends PureComponent {
 }
 
 export default ChartScatter;
+
+
+const tooltipColor = {
+  color: "#70bbfd",
+};
+
+// const data = {
+//   labels: ["January", "February", "March", "April", "May"],
+//   datasets: [
+//     {
+//       label: "Blue",
+//       fill: false,
+//       lineTension: 0.3,
+//       backgroundColor: "#36A2EB",
+//       borderColor: "#36A2EB",
+//       borderWidth: 1,
+//       borderDash: [5, 3],
+//       pointBackgroundColor: "#36A2EB",
+//       pointHoverRadius: 3,
+//       pointHoverBorderWidth: 1,
+//       pointRadius: 2,
+//       pointHitRadius: 10,
+//       data: [
+//         { x: 0, y: 65 },
+//         { x: 1, y: 68 },
+//         { x: 2, y: 98 },
+//         { x: 3, y: 85 },
+//         { x: 4, y: 34 },
+//       ],
+//     },
+//     {
+//       label: "Red",
+//       fill: false,
+//       lineTension: 0.3,
+//       backgroundColor: "#FF6384",
+//       borderColor: "#FF6384",
+//       borderWidth: 1,
+//       borderDash: [3, 3],
+//       pointBackgroundColor: "#FF6384",
+//       pointHoverRadius: 2,
+//       pointHoverBorderWidth: 1,
+//       pointRadius: 1,
+//       pointHitRadius: 10,
+//       data: [
+//         { x: 0, y: 75 },
+//         { x: 1, y: 34 },
+//         { x: 2, y: 49 },
+//         { x: 3, y: 78 },
+//         { x: 4, y: 18 },
+//       ],
+//     },
+//   ],
+// };
+
