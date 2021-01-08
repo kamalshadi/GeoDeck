@@ -7,19 +7,18 @@ import PropTypes from "prop-types";
 const data = {
   datasets: [
     {
-      data: [11, 16, 7, 3, 14],
-      backgroundColor: ["#FF6384", "#4BC0C0", "#FFCE56", "#E7E9ED", "#36A2EB"],
-      label: "My dataset",
+      data: [11, 18, 7, 14],
+      backgroundColor: ["#FF6384", "#4BC0C0", "#FFCE56", "#36A2EB"],
       borderColor: "rgba(255,255,255,0.54)",
-    },
+    },  
   ],
-  labels: ["Red", "Green", "Yellow", "Grey", "Blue"],
+  labels: ["Simulation 1", "Simulation 2", "Simulation 3", "Simulation 4"],
 };
 
 const options = {
-  legend: {
-    position: "bottom",
-  },
+  // legend: {
+  //   position: "bottom",
+  // },
   scale: {
     gridLines: {
       color: "rgb(204, 204, 204)",
