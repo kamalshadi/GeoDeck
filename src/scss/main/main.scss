@@ -652,7 +652,7 @@ $controlbarHeight: 200px;
       }
 
       &__chart {
-        padding: spacing(1);
+        padding: spacing(1.5);
 
         @include themify($themes) {
           border: 1px solid themed("colorBackground");

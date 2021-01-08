@@ -35,22 +35,7 @@ const options = {
   },
 };
 
-const ChartSample = ({ t }) => (
-  <div className="simulation__plot__card">
-    <div className="simulation__plot__chart">
-      <Card>
-        <CardBody>
-          <div className="card__title">
-            <h5 className="bold-text">
-              {t("Polar Area Chart")}
-            </h5>
-          </div>
-          <Polar data={data} options={options} />
-        </CardBody>
-      </Card>
-    </div>
-  </div>
-);
+const ChartSample = ({ t }) => <Polar data={data} options={options} />;
 
 ChartSample.propTypes = {
   t: PropTypes.func.isRequired,

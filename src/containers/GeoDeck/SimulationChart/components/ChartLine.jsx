@@ -20,12 +20,14 @@ const options = {
           display: true,
           labelString: "time",
         },
+        type: "linear",
+        position: "bottom",
         gridLines: {
-          color: "rgb(204, 204, 204)",
-          borderDash: [3, 3],
+          color: "#757575",
+          borderDash: [2,2],
         },
         ticks: {
-          fontColor: "rgb(204, 204, 204)",
+          fontColor: "#757575",
         },
       },
     ],
@@ -37,11 +39,11 @@ const options = {
           labelString: "point",
         },
         gridLines: {
-          color: "rgb(204, 204, 204)",
+          color: "#757575",
           borderDash: [3, 3],
         },
         ticks: {
-          fontColor: "rgb(204, 204, 204)",
+          fontColor: "#757575",
         },
       },
     ],
@@ -74,7 +76,7 @@ const ChartLine = (props) => {
   const { dataList, t } = props;
 
   // console.log(name);
-  console.log(dataList);
+  // console.log(dataList);
 
   const datasets = dataList.map(({ name, rawData, color }) => {
     return {
@@ -101,16 +103,7 @@ const ChartLine = (props) => {
 
   return (
     <React.Fragment>
-      <Card>
-        <CardBody>
-          <div
-            className="card__title"
-          >
-            <h5 className="bold-text">{"Line Chart"}</h5>
-          </div>
-          {datasets ? <Line data={lineData} options={options} /> : <Line />}
-        </CardBody>
-      </Card>
+      {datasets ? <Line data={lineData} options={options} /> : <Line />}
     </React.Fragment>
   );
 };

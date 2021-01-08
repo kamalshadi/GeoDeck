@@ -3,13 +3,14 @@ import { Card, CardBody } from "reactstrap";
 import { withTranslation } from "react-i18next";
 import PropTypes from "prop-types";
 
-const PlotCard = ({ t, children, title }) => (
+const PlotCard = ({ t, children, number }) => (
   <div className="simulation__plot__card">
     <div className="simulation__plot__chart">
       <Card>
         <CardBody>
-          <div className="card__title">
-            <h5 className="bold-text">{title}</h5>
+          <div className="d-flex justify-content-between">
+            <h5 className="bold-text">{`Plot ${number}`}</h5>
+            <h5 className="bold-text">export</h5>
           </div>
           {children}
         </CardBody>

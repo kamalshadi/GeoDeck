@@ -1,4 +1,4 @@
-import React, { PureComponent } from "react";
+import React, { Component } from "react";
 // import {
 //   ScatterChart,
 //   Scatter,
@@ -63,37 +63,59 @@ const tooltipColor = {
 //   ],
 // };
 
-class ChartScatter extends PureComponent {
+const rawData = [
+  { x: 0, y: 754.6666666286 },
+  { x: 1, y: 1147.430274286 },
+  { x: 2, y: 880.2811447286 },
+  { x: 3, y: 302.202702286 },
+  { x: 4, y: 919.7417865286 },
+  { x: 5, y: 1732.5593221286 },
+  { x: 6, y: 241.0933068286 },
+  { x: 7, y: 249.9505939286 },
+  { x: 8, y: 755.6415668286 },
+  { x: 9, y: 461.4841470286 },
+  { x: 10, y: 1765.8065843286 },
+  { x: 11, y: 1986.4678051286 },
+  { x: 12, y: 1572.0342567286 },
+  { x: 13, y: 1395.808010286 },
+  { x: 14, y: 1277.2955480286 },
+  { x: 15, y: 1479.1527076286 },
+  { x: 16, y: 1582.7988385286 },
+  { x: 17, y: 782.6647514286 },
+  { x: 18, y: 384.7939113286 },
+  { x: 19, y: 686.1742445286 },
+  { x: 20, y: 788.9633285286 },
+  { x: 21, y: 1189.2157286 },
+  { x: 22, y: 589.2845755286 },
+  { x: 23, y: 648.9226864286 },
+  { x: 24, y: 789.7514284286 },
+];
+
+class ChartSampleScatter extends Component {
   render() {
-    const { dataList } = this.props;
-
-    // console.log(name);
-    console.log(dataList);
-
-    const datasets = dataList.map(({ name, xYData, color }) => {
-      return {
-        label: name,
+    const datasets = [
+      {
+        label: "Simulation",
         fill: false,
         lineTension: 0.3,
-        backgroundColor: color,
-        borderColor: color,
+        backgroundColor: "#FF6384",
+        borderColor: "#FF6384",
         // borderWidth: 1,
         // borderDash: [3, 3],
-        pointBackgroundColor: color,
+        pointBackgroundColor: "#FF6384",
         pointHoverRadius: 3,
         pointHoverBorderWidth: 1,
         pointRadius: 2,
         pointHitRadius: 10,
-        data: xYData,
-      };
-    });
+        data: rawData,
+      },
+    ];
 
     const scatterData = {
       labels: [],
       datasets: datasets,
     };
 
-    console.log(datasets);
     const options = {
       layout: {
         padding: {
@@ -105,7 +127,7 @@ class ChartScatter extends PureComponent {
           {
             scaleLabel: {
               display: true,
-              labelString: "time",
+              labelString: "Time",
             },
             type: "linear",
             position: "bottom",
@@ -116,33 +138,11 @@ class ChartScatter extends PureComponent {
           {
             scaleLabel: {
               display: true,
-              labelString: "point",
+              labelString: "Temperature",
             },
           },
         ],
       },
-      // xAxes: [
-      //   {
-      //     gridLines: {
-      //       color: "rgb(204, 204, 204)",
-      //       borderDash: [3, 3],
-      //     },
-      //     ticks: {
-      //       fontColor: "rgb(204, 204, 204)",
-      //     },
-      //   },
-      // ],
-      // yAxes: [
-      //   {
-      //     gridLines: {
-      //       color: "rgb(204, 204, 204)",
-      //       borderDash: [3, 3],
-      //     },
-      //     ticks: {
-      //       fontColor: "rgb(204, 204, 204)",
-      //     },
-      //   },
-      // ],
     };
     return (
       <React.Fragment>
@@ -171,6 +171,7 @@ class ChartScatter extends PureComponent {
                 })}
               </ScatterChart>
             </ResponsiveContainer> */}
+
         {/* <ResponsiveContainer> */}
         {/* <ScatterChart
           //   height={400}
@@ -197,4 +198,4 @@ class ChartScatter extends PureComponent {
   }
 }
 
-export default ChartScatter;
+export default ChartSampleScatter;
