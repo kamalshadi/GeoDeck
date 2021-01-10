@@ -4,7 +4,7 @@ import _ from "lodash";
 import { Col, Container, Row } from "reactstrap";
 import PlotList from "./components/PlotList";
 import SimulationPanel from "./components/SimulationPanel";
-import { fetchPlotTypes } from "../../../redux/actions/plotAction";
+import { fetchPlots } from "../../../redux/actions/plotAction";
 
 const SimulationChart = (props) => {
   const [selectedPlot, setSelectedPlot] = useState(0);
@@ -16,7 +16,7 @@ const SimulationChart = (props) => {
   }, [plots]);
 
   useEffect(() => {
-    props.fetchPlotTypes();
+    props.fetchPlots();
   }, []);
 
   if (_.isEmpty(plotList)) {
@@ -24,11 +24,6 @@ const SimulationChart = (props) => {
   }
 
   const currentPlot = plotList[selectedPlot];
-
-  let reducedPlots = plotList.reduce(
-    (acc, currentPlot) => acc.concat(_.omit(currentPlot, "simulations")),
-    []
-  );
 
   return (
     <Container className="simulation">
@@ -44,7 +39,7 @@ const SimulationChart = (props) => {
 
         <Col md="10" className="simulation__plot">
           <PlotList
-            plots={reducedPlots}
+            plots={plots}
             selectedPlot={selectedPlot}
             setSelectedPlot={setSelectedPlot}
           />
@@ -60,4 +55,4 @@ const mapStateToProps = (state) => {
   return { plots: Object.values(state.plots) };
 };
 
-export default connect(mapStateToProps, { fetchPlotTypes })(SimulationChart);
+export default connect(mapStateToProps, { fetchPlots })(SimulationChart);

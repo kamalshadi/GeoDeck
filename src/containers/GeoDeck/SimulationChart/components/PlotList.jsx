@@ -1,16 +1,12 @@
-import React, { useEffect, useState } from "react";
-import { connect } from "react-redux";
+import React from "react";
 import _ from "lodash";
 import PlotCard from "./PlotCard";
 import PlotCreate from "./PlotCreate";
-import { fetchPlotTypes } from "../../../../redux/actions/plotAction";
 import ChartSample from "./ChartSample";
 import PlotChart from "./PlotChart";
 import ChartSampleScatter from "./ChartSampleScatter";
 
 const PlotList = (props) => {
-  // console.log(props);
-  // const [simulations, setSimulations] = useState([]);
   console.log(props);
   const { plots, selectedPlot, setSelectedPlot } = props;
 
@@ -18,11 +14,8 @@ const PlotList = (props) => {
     return null;
   }
 
-
   return (
     <div className="simulation__plot__cards" style={{ maxHeight: "1vh" }}>
-      {/* <ChartSample />
-      <ChartSampleScatter /> */}
       <PlotCard number={1} index={-2} disable={true}>
         <ChartSample />
       </PlotCard>
@@ -37,10 +30,7 @@ const PlotList = (props) => {
             selectedPlot={selectedPlot}
             setSelectedPlot={setSelectedPlot}
           >
-            <PlotChart
-              plot={plot}
-              key={index}
-            />
+            <PlotChart plot={plot} key={index} />
           </PlotCard>
         );
       })}
@@ -50,10 +40,4 @@ const PlotList = (props) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  return { plots: Object.values(state.plots) };
-};
-
-export default connect(mapStateToProps, { fetchPlotTypes, fetchPlotTypes })(
-  PlotList
-);
+export default PlotList;

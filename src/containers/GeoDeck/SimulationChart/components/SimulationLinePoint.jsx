@@ -7,12 +7,6 @@ const SimulationLinePoint = (props) => {
   const { plotId, currentVariable, pointId, lineId } = props;
   const [tab, setTab] = useState(0);
 
-  // console.log(currentVariable);
-  // const [current, setCurrent] = useState(0);
-
-  // console.log(current);
-  // console.log(_.values(data)[current]);
-
   const renderTabs = () => (
     <div className="simulation__plot__panel__tabs">
       <div

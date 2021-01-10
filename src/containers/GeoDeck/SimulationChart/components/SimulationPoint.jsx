@@ -12,7 +12,7 @@ const SimulationPoint = (props) => {
       props.editPlot(plotId, editObject);
     }
   };
-  // console.log(points);
+
   const onChangeStart = () => {
     // console.log("Start changed!");
   };

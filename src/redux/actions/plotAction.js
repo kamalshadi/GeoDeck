@@ -1,43 +1,40 @@
 import * as types from "../types";
+import _ from "lodash";
 
-export const fetchPlotTypes = () => async (dispatch) => {
+export const fetchPlots = () => async (dispatch) => {
   //   const response = await api.get("/plots");
   const plots = getPlots;
   const newPlots = plots.map((plot) => {
     return { ...plot, simulations: getPlotStructures(getSimsT) };
   });
   const response = { data: newPlots };
-  dispatch({ type: types.FETCH_PLOT_TYPES, payload: response.data });
-};
-
-export const createPlotType = (formValues) => async (dispatch) => {
-  //   const response = await api.get("/plots");
-  formValues.simulations = getSimsT;
-  const response = { data: formValues };
-  dispatch({ type: types.CREATE_PLOT_TYPE, payload: response.data });
-};
-
-export const fetchPlots = () => async (dispatch) => {
-  //   const response = await api.get("/plots");
-  const response = { data: getSimsT };
   dispatch({ type: types.FETCH_PLOTS, payload: response.data });
 };
 
-// update redux state in brawser
-export const editPlot = (plotId, editObject) => async (dispatch) => {
-  dispatch({ type: types.UPDATE_PLOT, payload: {plotId, data:editObject} });
+export const createPlot = (formValues) => async (dispatch, getState) => {
+  //   const response = await api.get("/plots");
+  const newPlot = {
+    id: _.size(getState().plots) + 1,
+    ...formValues,
+    simulations: getPlotStructures(getSimsT),
+  };
+  const response = { data: newPlot };
+  dispatch({ type: types.CREATE_PLOT, payload: response.data });
 };
 
-// update info in server -> dispatch in simulationReducer
-export const editPlotSimulation = (formValues, id) => async (
-  dispatch,
-  getState
-) => {
-  // const response = await api.patch(`/plot/${id}`, formValues); // return updated simulation object
-  const plots = getState().plots;
-  const newSimulation = plots.find((plot) => plot.id === id);
-  const response = { data: newSimulation };
-  dispatch({ type: types.UPDATE_SIMULATION, payload: response.data });
+export const editPlot = (plotId, editObject) => async (dispatch, getState) => {
+  //   const response = await api.patch(`/plots/$plotId`. editObject);
+
+  const editPlot = Object.values(getState().plots).find(
+    (plot) => plot.id === plotId
+  );
+  editPlot.simulations = {
+    ...editPlot.simulations,
+    ...editObject,
+  };
+  const response = { data: editPlot };
+
+  dispatch({ type: types.UPDATE_PLOT, payload: response.data });
 };
 
 const initialState = {
