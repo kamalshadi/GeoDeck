@@ -12,9 +12,9 @@ const PlotList = (props) => {
   // console.log(props);
   // const [simulations, setSimulations] = useState([]);
   console.log(props);
-  const { plots, currentPlot, selectedPlot, setSelectedPlot } = props;
+  const { plots, selectedPlot, setSelectedPlot } = props;
 
-  if (!plots || _.isEmpty(currentPlot)) {
+  if (!plots) {
     return null;
   }
 
@@ -38,13 +38,7 @@ const PlotList = (props) => {
             setSelectedPlot={setSelectedPlot}
           >
             <PlotChart
-              // simulations={selectedSimulations}
-              // variableId={variableId}
-              // lineId={lineId}
-              // pointId={pointId}
-              // isPoint={isPoint}
               plot={plot}
-              // currentPlot={currentPlot}
               key={index}
             />
           </PlotCard>

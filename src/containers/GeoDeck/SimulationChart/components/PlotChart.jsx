@@ -34,7 +34,7 @@ const PlotChart = (props) => {
     lineId,
     isPoint,
   } = simulations;
-  
+
   const selectedSimulations = data.filter((sim) =>
     _.includes(currentIds, sim.id)
   );

@@ -45,7 +45,6 @@ const SimulationChart = (props) => {
         <Col md="10" className="simulation__plot">
           <PlotList
             plots={reducedPlots}
-            currentPlot={currentPlot}
             selectedPlot={selectedPlot}
             setSelectedPlot={setSelectedPlot}
           />
