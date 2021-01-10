@@ -4,12 +4,12 @@ import { editPlot } from "../../../../redux/actions/plotAction";
 import { connect } from "react-redux";
 
 const SimulationPoint = (props) => {
-  const { points, pointId } = props;
+  const { plotId, points, pointId } = props;
 
   const onChangePoint = (newId) => {
     if (newId !== pointId) {
       const editObject = { pointId: newId };
-      props.editPlot(editObject);
+      props.editPlot(plotId, editObject);
     }
   };
   // console.log(points);

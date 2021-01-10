@@ -3,9 +3,7 @@ import { connect } from "react-redux";
 import _ from "lodash";
 import PlotCard from "./PlotCard";
 import PlotCreate from "./PlotCreate";
-import {
-  fetchPlotTypes,
-} from "../../../../redux/actions/plotAction";
+import { fetchPlotTypes } from "../../../../redux/actions/plotAction";
 import ChartSample from "./ChartSample";
 import PlotChart from "./PlotChart";
 import ChartSampleScatter from "./ChartSampleScatter";
@@ -13,30 +11,19 @@ import ChartSampleScatter from "./ChartSampleScatter";
 const PlotList = (props) => {
   // console.log(props);
   // const [simulations, setSimulations] = useState([]);
-  const [plotList, setPlotList] = useState([]);
-  const { plots } = props;
+  console.log(props);
+  const { plots, currentPlot, selectedPlot, setSelectedPlot } = props;
 
-  useEffect(() => {
-    setPlotList(plots);
-  }, [plots]);
-
-  // useEffect(() => {
-  //   setPlotList(plots);
-  // }, [plots]);
-
-  useEffect(() => {
-    props.fetchPlotTypes();
-  }, []);
-
-  // const selectedSimulations = simulations.filter((sim) =>
-  //   _.includes(currentIds, sim.id)
-  // );
-
-  if (!plots) {
+  if (!plots || _.isEmpty(currentPlot)) {
     return null;
   }
 
-  return null;
+  const { id, name, simulations } = currentPlot;
+
+  if (_.isEmpty(simulations)) {
+    return null;
+  }
+
   const {
     data,
     currentIds,
@@ -44,39 +31,45 @@ const PlotList = (props) => {
     pointId,
     lineId,
     isPoint,
-  } = plots?.simulations;
+  } = simulations;
   const selectedSimulations = data.filter((sim) =>
     _.includes(currentIds, sim.id)
   );
+  console.log(selectedSimulations);
 
   return (
     <div className="simulation__plot__cards" style={{ maxHeight: "1vh" }}>
       {/* <ChartSample />
       <ChartSampleScatter /> */}
-      <PlotCard number={1}>
+      <PlotCard number={1} index={-2} disable={true}>
         <ChartSample />
       </PlotCard>
-      <PlotCard number={2}>
+      <PlotCard number={2} index={-1} disable={true}>
         <ChartSampleScatter />
       </PlotCard>
-      {data.map((plot, index) => {
+      {plots.map((plot, index) => {
         return (
-          <PlotCard number={index + 3}>
+          <PlotCard
+            number={index + 3}
+            index={index}
+            selectedPlot={selectedPlot}
+            setSelectedPlot={setSelectedPlot}
+          >
             <PlotChart
-            plot= {plot}
-              // simulations={}
-              // variableId={variableId}
-              // pointId={pointId}
-              // lineId={lineId}
-              // isPoint={isPoint}
-              // plot={plot}
-              // key={index}
+              simulations={selectedSimulations}
+              variableId={variableId}
+              lineId={lineId}
+              pointId={pointId}
+              isPoint={isPoint}
+              plot={plot}
+              currentPlot={currentPlot}
+              key={index}
             />
           </PlotCard>
         );
       })}
 
-      <PlotCreate />
+      <PlotCreate setSelectedPlot={setSelectedPlot} />
     </div>
   );
 };

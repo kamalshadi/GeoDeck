@@ -6,41 +6,26 @@ import SimulationVariable from "./SimulationVariable";
 import { fetchPlotTypes } from "../../../../redux/actions/plotAction";
 
 const SimulationPanel = (props) => {
-  const { plots } = props;
-  const [plotList, setPlotList] = useState([]);
-  const [selectedPlot, setSelectedPlot] = useState(0);
+  const { currentPlot } = props;
 
-  useEffect(() => {
-    setPlotList(plots);
-  }, [plots]);
+  const { id, name, simulations } = currentPlot;
 
-  useEffect(() => {
-    props.fetchPlotTypes();
-  }, []);
-
-  if (_.isEmpty(plotList)) {
+  if (_.isEmpty(simulations)) {
     return null;
   }
 
-  console.log(props);
-  console.log(plotList);
-  console.log(plotList[0]);
-
-  const simulations = plotList[selectedPlot]?.simulations;
-  const id = plotList[selectedPlot]?.id;
-  if (!simulations) return null;
   const {
     data,
     currentIds,
     variableId,
     pointId,
     lineId,
-    isPoint,
+    // isPoint,
   } = simulations;
 
   const firstId = currentIds[0]; // always current simulation have first index
   const currentSimulation = data.find((d) => d.id === firstId);
-  console.log(currentSimulation);
+  // console.log(currentSimulation);
   const currentVariable = currentSimulation?.data.find(
     (sim) => sim.id === variableId
   );
@@ -66,6 +51,7 @@ const SimulationPanel = (props) => {
           currentVariable={currentVariable}
           pointId={pointId}
           lineId={lineId}
+          plotId={id}
         />
       </div>
     </React.Fragment>

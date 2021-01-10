@@ -1,4 +1,4 @@
-import React, { PureComponent } from "react";
+import React, { PureComponent, useEffect, useState } from "react";
 import _ from "lodash";
 import {
   ScatterChart,
@@ -18,22 +18,27 @@ const tooltipColor = {
 };
 
 const PlotChart = (props) => {
-
-  console.log(props);
   const {
-    type,
+    plot,
+    currentPlot,
     simulations,
-    currentIds,
     variableId,
     pointId,
     lineId,
     isPoint,
   } = props;
+  const [isActive, setIsActive] = useState(false);
 
-  const selectedSimulations = simulations.filter((sim) =>
-    _.includes(currentIds, sim.id)
+  console.log(
+    `${plot.name} - ${plot.id} : isEqual = ${plot.id === currentPlot.id} `
   );
-
+  // useEffect(() => {
+  //   if(plot.id === currentPlot.id) {
+  //     setIsActive(true)
+  //   } else {
+  //     setIsActive(false)
+  //   }
+  // }, [currentPlot]);
   const backgroundColor = [
     "#FF6384",
     "#4BC0C0",
@@ -42,8 +47,9 @@ const PlotChart = (props) => {
     "#36A2EB",
   ];
 
+  console.log(props);
   let variableName = "variable";
-  const dataList = selectedSimulations.map((simulation, index) => {
+  const dataList = simulations.map((simulation, index) => {
     const name = simulation.name;
     const variable = simulation?.data.find(
       (variable) => variable.id === variableId
@@ -73,7 +79,7 @@ const PlotChart = (props) => {
   console.log(dataList);
 
   const renderChart = () => {
-    switch (type) {
+    switch (plot.type) {
       case "line":
         return <ChartLine dataList={dataList} variableName={variableName} />;
       case "scatter":

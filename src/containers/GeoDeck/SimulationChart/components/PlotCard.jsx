@@ -3,8 +3,20 @@ import { Card, CardBody } from "reactstrap";
 import { withTranslation } from "react-i18next";
 import PropTypes from "prop-types";
 
-const PlotCard = ({ t, children, number }) => (
-  <div className="simulation__plot__card">
+const PlotCard = ({
+  t,
+  index,
+  selectedPlot,
+  setSelectedPlot,
+  children,
+  number,
+  disable,
+}) => (
+  <div
+    className="simulation__plot__card"
+    onClick={() => (!disable ? setSelectedPlot(index) : "")} // disable is for two first charts
+    style={selectedPlot === index ? { border: "1px solid #F2AB1f" } : {}}
+  >
     <div className="simulation__plot__chart">
       <Card>
         <CardBody>
@@ -24,7 +36,6 @@ PlotCard.propTypes = {
 };
 
 export default withTranslation("common")(PlotCard);
-
 
 // {plot.type === "scatter" ? (
 //   <React.Fragment>
