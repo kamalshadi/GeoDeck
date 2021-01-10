@@ -18,27 +18,27 @@ const tooltipColor = {
 };
 
 const PlotChart = (props) => {
+  const { plot } = props;
+
+  const { simulations } = plot;
+
+  if (_.isEmpty(simulations)) {
+    return null;
+  }
+
   const {
-    plot,
-    currentPlot,
-    simulations,
+    data,
+    currentIds,
     variableId,
     pointId,
     lineId,
     isPoint,
-  } = props;
-  const [isActive, setIsActive] = useState(false);
-
-  console.log(
-    `${plot.name} - ${plot.id} : isEqual = ${plot.id === currentPlot.id} `
+  } = simulations;
+  
+  const selectedSimulations = data.filter((sim) =>
+    _.includes(currentIds, sim.id)
   );
-  // useEffect(() => {
-  //   if(plot.id === currentPlot.id) {
-  //     setIsActive(true)
-  //   } else {
-  //     setIsActive(false)
-  //   }
-  // }, [currentPlot]);
+
   const backgroundColor = [
     "#FF6384",
     "#4BC0C0",
@@ -47,9 +47,8 @@ const PlotChart = (props) => {
     "#36A2EB",
   ];
 
-  console.log(props);
   let variableName = "variable";
-  const dataList = simulations.map((simulation, index) => {
+  const dataList = selectedSimulations.map((simulation, index) => {
     const name = simulation.name;
     const variable = simulation?.data.find(
       (variable) => variable.id === variableId

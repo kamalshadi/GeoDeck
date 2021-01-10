@@ -18,24 +18,6 @@ const PlotList = (props) => {
     return null;
   }
 
-  const { id, name, simulations } = currentPlot;
-
-  if (_.isEmpty(simulations)) {
-    return null;
-  }
-
-  const {
-    data,
-    currentIds,
-    variableId,
-    pointId,
-    lineId,
-    isPoint,
-  } = simulations;
-  const selectedSimulations = data.filter((sim) =>
-    _.includes(currentIds, sim.id)
-  );
-  console.log(selectedSimulations);
 
   return (
     <div className="simulation__plot__cards" style={{ maxHeight: "1vh" }}>
@@ -56,13 +38,13 @@ const PlotList = (props) => {
             setSelectedPlot={setSelectedPlot}
           >
             <PlotChart
-              simulations={selectedSimulations}
-              variableId={variableId}
-              lineId={lineId}
-              pointId={pointId}
-              isPoint={isPoint}
+              // simulations={selectedSimulations}
+              // variableId={variableId}
+              // lineId={lineId}
+              // pointId={pointId}
+              // isPoint={isPoint}
               plot={plot}
-              currentPlot={currentPlot}
+              // currentPlot={currentPlot}
               key={index}
             />
           </PlotCard>
