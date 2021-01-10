@@ -7,8 +7,8 @@ import SimulationPanel from "./components/SimulationPanel";
 import { fetchPlots } from "../../../redux/actions/plotAction";
 
 const SimulationChart = (props) => {
-  const [selectedPlot, setSelectedPlot] = useState(0);
-  const [plotList, setPlotList] = useState([]);
+  const [selectedPlot, setSelectedPlot] = useState(0); // state for detect active plot
+  const [plotList, setPlotList] = useState([]); // list of plots
   const { plots } = props;
 
   useEffect(() => {
@@ -23,7 +23,7 @@ const SimulationChart = (props) => {
     return null;
   }
 
-  const currentPlot = plotList[selectedPlot];
+  const currentPlot = plotList[selectedPlot]; // current active plot
 
   return (
     <Container className="simulation">
@@ -48,8 +48,6 @@ const SimulationChart = (props) => {
     </Container>
   );
 };
-
-// export default SimulationChart;
 
 const mapStateToProps = (state) => {
   return { plots: Object.values(state.plots) };

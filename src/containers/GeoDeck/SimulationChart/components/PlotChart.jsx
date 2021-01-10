@@ -1,26 +1,15 @@
-import React, { PureComponent, useEffect, useState } from "react";
+import React from "react";
 import _ from "lodash";
-import {
-  ScatterChart,
-  Scatter,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  ResponsiveContainer,
-} from "recharts";
 import ChartLine from "./ChartLine";
 import ChartSample from "./ChartSample";
 import ChartScatter from "./ChartScatter";
 
-const tooltipColor = {
-  color: "#70bbfd",
-};
+const backgroundColor = ["#FF6384", "#4BC0C0", "#FFCE56", "#E7E9ED", "#36A2EB"];
 
 const PlotChart = (props) => {
   const { plot } = props;
 
-  const { simulations } = plot;
+  const { simulations } = plot; // get simulations for each plot
 
   if (_.isEmpty(simulations)) {
     return null;
@@ -37,30 +26,23 @@ const PlotChart = (props) => {
 
   const selectedSimulations = data.filter((sim) =>
     _.includes(currentIds, sim.id)
-  );
+  ); // select simulations based on id of active simulations [active simulation set in simulation panel]
 
-  const backgroundColor = [
-    "#FF6384",
-    "#4BC0C0",
-    "#FFCE56",
-    "#E7E9ED",
-    "#36A2EB",
-  ];
-
-  let variableName = "variable";
+  let variableName = "variable"; // label for selected variable
   const dataList = selectedSimulations.map((simulation, index) => {
     const name = simulation.name;
     const variable = simulation?.data.find(
       (variable) => variable.id === variableId
-    );
+    ); // select active variable
     const pointLine = isPoint
       ? variable?.points.find((point) => point.id === pointId)
-      : variable?.lines.find((line) => line.id === lineId);
+      : variable?.lines.find((line) => line.id === lineId); // select active points/lines
 
-    const rawData = pointLine?.data;
+
+    const rawData = pointLine?.data; //initial data
     const xYData = pointLine?.data.map((data, index) => {
       return { x: index, y: data };
-    });
+    }); // x/y data
 
     let color = "";
     if (index < 5) {
@@ -75,7 +57,6 @@ const PlotChart = (props) => {
     return { name, xYData: xYData, rawData, color };
   });
 
-  console.log(dataList);
 
   const renderChart = () => {
     switch (plot.type) {
@@ -83,9 +64,7 @@ const PlotChart = (props) => {
         return <ChartLine dataList={dataList} variableName={variableName} />;
       case "scatter":
         return (
-          // <div className="simulation__plot__chart" style={{ height: 400 }}>
           <ChartScatter dataList={dataList} variableName={variableName} />
-          // </div>
         );
 
       default:

@@ -16,9 +16,6 @@ const data = {
 };
 
 const options = {
-  // legend: {
-  //   position: "bottom",
-  // },
   layout: {
     padding: {
       top: 20,

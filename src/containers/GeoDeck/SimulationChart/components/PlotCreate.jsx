@@ -22,7 +22,7 @@ const icons = [
 
 const PlotCreate = (props) => {
   const onCreate = (type) => {
-    console.log(type);
+    // template => {id: 2, name: "Scatter", type: "scatter" },
     switch (type) {
       case "scatter": {
         props.createPlot({ name: "Scatter", type: "scatter" });
@@ -34,7 +34,6 @@ const PlotCreate = (props) => {
         break;
       }
     }
-    // {id: 2, name: "Scatter", type: "scatter" },
   };
 
   return (

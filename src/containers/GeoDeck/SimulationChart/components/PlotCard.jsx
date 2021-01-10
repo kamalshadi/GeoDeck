@@ -14,7 +14,7 @@ const PlotCard = ({
 }) => (
   <div
     className="simulation__plot__card"
-    onClick={() => (!disable ? setSelectedPlot(index) : "")} // disable is for two first charts
+    onClick={() => (!disable ? setSelectedPlot(index) : "")} // disable: for two first charts
     style={selectedPlot === index ? { border: "1px solid #F2AB1f" } : {}}
   >
     <div className="simulation__plot__chart">

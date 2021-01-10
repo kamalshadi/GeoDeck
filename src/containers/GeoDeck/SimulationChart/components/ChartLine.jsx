@@ -75,9 +75,6 @@ import PropTypes from "prop-types";
 const ChartLine = (props) => {
   const { dataList, variableName, t } = props;
 
-  // console.log(name);
-  // console.log(dataList);
-
   const datasets = dataList.map(({ name, xYData, color }) => {
     return {
       label: name,
