@@ -1,4 +1,5 @@
 import React, { PureComponent } from "react";
+import _ from "lodash";
 import {
   ScatterChart,
   Scatter,
@@ -17,9 +18,22 @@ const tooltipColor = {
 };
 
 const PlotChart = (props) => {
-  const { plot, simulations, variableId, pointId, lineId, isPoint } = props;
 
-  let variableName = "variable";
+  console.log(props);
+  const {
+    type,
+    simulations,
+    currentIds,
+    variableId,
+    pointId,
+    lineId,
+    isPoint,
+  } = props;
+
+  const selectedSimulations = simulations.filter((sim) =>
+    _.includes(currentIds, sim.id)
+  );
+
   const backgroundColor = [
     "#FF6384",
     "#4BC0C0",
@@ -28,7 +42,8 @@ const PlotChart = (props) => {
     "#36A2EB",
   ];
 
-  const dataList = simulations.map((simulation, index) => {
+  let variableName = "variable";
+  const dataList = selectedSimulations.map((simulation, index) => {
     const name = simulation.name;
     const variable = simulation?.data.find(
       (variable) => variable.id === variableId
@@ -58,7 +73,7 @@ const PlotChart = (props) => {
   console.log(dataList);
 
   const renderChart = () => {
-    switch (plot.type) {
+    switch (type) {
       case "line":
         return <ChartLine dataList={dataList} variableName={variableName} />;
       case "scatter":

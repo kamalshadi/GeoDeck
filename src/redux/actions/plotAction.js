@@ -1,16 +1,18 @@
 import * as types from "../types";
 
-
-
 export const fetchPlotTypes = () => async (dispatch) => {
   //   const response = await api.get("/plots");
-  const response = { data: getPlots };
+  const plots = getPlots;
+  const newPlots = plots.map((plot) => {
+    return { ...plot, simulations: getPlotStructures(getSimsT) };
+  });
+  const response = { data: newPlots };
   dispatch({ type: types.FETCH_PLOT_TYPES, payload: response.data });
 };
 
-
 export const createPlotType = (formValues) => async (dispatch) => {
   //   const response = await api.get("/plots");
+  formValues.simulations = getSimsT;
   const response = { data: formValues };
   dispatch({ type: types.CREATE_PLOT_TYPE, payload: response.data });
 };
@@ -21,10 +23,9 @@ export const fetchPlots = () => async (dispatch) => {
   dispatch({ type: types.FETCH_PLOTS, payload: response.data });
 };
 
-
 // update redux state in brawser
-export const editPlot = (editObject) => async (dispatch) => {
-  dispatch({ type: types.UPDATE_PLOT, payload: editObject });
+export const editPlot = (plotId, editObject) => async (dispatch) => {
+  dispatch({ type: types.UPDATE_PLOT, payload: {plotId, data:editObject} });
 };
 
 // update info in server -> dispatch in simulationReducer
@@ -39,14 +40,38 @@ export const editPlotSimulation = (formValues, id) => async (
   dispatch({ type: types.UPDATE_SIMULATION, payload: response.data });
 };
 
+const initialState = {
+  data: [],
+  currentIds: [],
+  variableId: null,
+  pointId: null,
+  lineId: null,
+  isPoint: true,
+};
 
+const getPlotStructures = (payload) => {
+  if (!payload) {
+    return initialState;
+  }
 
+  const payloadData = payload[0]?.data;
+
+  const payloadPoints = payloadData ? payloadData[0]?.points : null;
+  const payloadLines = payloadData ? payloadData[0]?.lines : null;
+  return {
+    data: payload,
+    currentIds: [payloadData[0]?.id],
+    variableId: payloadData ? payloadData[0]?.id : null,
+    pointId: payloadPoints ? payloadPoints[0]?.id : null,
+    lineId: payloadLines ? payloadLines[0]?.id : null,
+    isPoint: true,
+  };
+};
 
 const getPlots = [
-  // {id: 1, name: "Scatter", type: "scatter" },
+  { id: 1, name: "Scatter", type: "scatter" },
   // {id: 2, name: "Line", type: "line" },
-]
-
+];
 
 const pointsData = [
   154.6666666286,
@@ -75,7 +100,6 @@ const pointsData = [
   1393.9226864286,
   1594.7514284286,
 ];
-
 
 const pointsData1 = [
   1554.6666666286,

@@ -1,26 +1,42 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
+import _ from "lodash";
 import SimulationLinePoint from "./SimulationLinePoint";
 import SimulationVariable from "./SimulationVariable";
-import { fetchPlots } from "../../../../redux/actions/plotAction";
+import { fetchPlotTypes } from "../../../../redux/actions/plotAction";
 
 const SimulationPanel = (props) => {
-  const [simulations, setSimulations] = useState([]);
-  const { data, currentIds, variableId, pointId, lineId } = props;
+  const { plots } = props;
+  const [plotList, setPlotList] = useState([]);
+  const [selectedPlot, setSelectedPlot] = useState(0);
 
   useEffect(() => {
-    setSimulations(data);
-  }, [data]);
+    setPlotList(plots);
+  }, [plots]);
 
   useEffect(() => {
-    props.fetchPlots();
+    props.fetchPlotTypes();
   }, []);
 
-  if (!simulations) {
+  if (_.isEmpty(plotList)) {
     return null;
   }
 
-  // console.log(simulations);
+  console.log(props);
+  console.log(plotList);
+  console.log(plotList[0]);
+
+  const simulations = plotList[selectedPlot]?.simulations;
+  const id = plotList[selectedPlot]?.id;
+  if (!simulations) return null;
+  const {
+    data,
+    currentIds,
+    variableId,
+    pointId,
+    lineId,
+    isPoint,
+  } = simulations;
 
   const firstId = currentIds[0]; // always current simulation have first index
   const currentSimulation = data.find((d) => d.id === firstId);
@@ -32,13 +48,14 @@ const SimulationPanel = (props) => {
   return (
     <React.Fragment>
       <div className="simulation__plot__panel__variables simulation__inputs">
-        {simulations.map((simulation, index) => {
+        {data.map((simulation, index) => {
           return (
             <SimulationVariable
               simulation={simulation}
               currentIds={currentIds}
               variableId={variableId}
               key={index}
+              plotId={id}
             />
           );
         })}
@@ -56,7 +73,7 @@ const SimulationPanel = (props) => {
 };
 
 const mapStateToProps = (state) => {
-  return { ...state.plots };
+  return { plots: Object.values(state.plots) };
 };
 
-export default connect(mapStateToProps, { fetchPlots })(SimulationPanel);
+export default connect(mapStateToProps, { fetchPlotTypes })(SimulationPanel);

@@ -10,7 +10,7 @@ const SimulationVariable = (props) => {
   const perPage = 3;
 
   // console.log(props.simulation);
-  const { currentIds, variableId, simulation } = props;
+  const { plotId, currentIds, variableId, simulation } = props;
   const { id, name, data } = simulation;
   // console.log(data);
   const visibleVariables = data.slice(0, offSet * perPage);
@@ -33,7 +33,7 @@ const SimulationVariable = (props) => {
 
     const editObject = { variableId: newVariableId, currentIds: newCurrentIds };
     // console.log(editObject);
-    props.editPlot(editObject);
+    props.editPlot(plotId, editObject);
   };
 
   const isVariableChanged = (newId) => {

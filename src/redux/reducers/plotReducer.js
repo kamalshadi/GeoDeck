@@ -13,24 +13,27 @@ const initialState = {
   pointId: null,
   lineId: null,
   isPoint: true,
-  plots: [],
 };
 
-export default (state = initialState, action) => {
+export default (state = [], action) => {
   switch (action.type) {
     case FETCH_PLOT_TYPES: {
       return {
         ...state,
-        plots: action.payload,
+        ..._.mapKeys(action.payload, "id"),
       };
     }
     case CREATE_PLOT_TYPE: {
-      const oldPlots = state.plots;
-      return {
-        ...state,
-        current: action.payload.id,
-        plots: [...oldPlots, action.payload],
-      };
+      action.payload.id = _.size(state) + 1;
+      const simulationData = getPlots(action.payload?.simulations);
+
+      const newPlot = { ...action.payload, simulations: simulationData };
+      return { ...state, [action.payload.id]: newPlot };
+      // const oldPlots = state.plots;
+      // return {
+      //   ...state,
+      //   [oldPlots]: [...oldPlots, action.payload],
+      // };
     }
     case FETCH_PLOTS: {
       const fetchedData = getPlots(action.payload);
@@ -41,7 +44,15 @@ export default (state = initialState, action) => {
       };
     }
     case UPDATE_PLOT: {
-      return { ...state, ...action.payload };
+      console.log(state);
+      const currentPlot = Object.values(state).find(
+        (plot) => plot.id === action.payload.plotId
+      );
+      currentPlot.simulations = {
+        ...currentPlot.simulations,
+        ...action.payload.data,
+      };
+      return { ...state, [currentPlot.id]: currentPlot };
     }
     default:
       return state;
@@ -49,7 +60,12 @@ export default (state = initialState, action) => {
 };
 
 const getPlots = (payload) => {
+  if (!payload) {
+    return initialState;
+  }
+
   const payloadData = payload[0]?.data;
+
   const payloadPoints = payloadData ? payloadData[0]?.points : null;
   const payloadLines = payloadData ? payloadData[0]?.lines : null;
   return {
