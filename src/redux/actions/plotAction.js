@@ -70,7 +70,7 @@ const getPlotStructures = (payload) => {
 
 const getPlots = [
   { id: 1, name: "Line", type: "line" },
-  // {id: 2, name: "Line", type: "line" },
+  // {id: 2, name: "Scatter", type: "Scatter" },
 ];
 
 const pointsData = [

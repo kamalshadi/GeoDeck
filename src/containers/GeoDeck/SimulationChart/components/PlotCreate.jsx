@@ -25,7 +25,7 @@ const PlotCreate = (props) => {
     console.log(type);
     switch (type) {
       case "scatter": {
-        // props.createPlotType({ name: "Scattenr", type: "scatter" });
+        props.createPlotType({ name: "Scatter", type: "scatter" });
         break;
       }
 
