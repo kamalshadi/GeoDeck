@@ -55,7 +55,9 @@ const VisDash = () => {
           }`}
         >
           <Variables />
+          <div>&nbsp;</div>
           <Player />
+          <div>&nbsp;</div>
           <SimulationLoader tab={tab} setTab={setTab} />
         </div>
       </div>

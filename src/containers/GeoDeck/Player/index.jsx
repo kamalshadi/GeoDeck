@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
   StepBackwardOutlined,
   FastBackwardOutlined,
@@ -6,31 +6,31 @@ import {
   FastForwardOutlined,
   StepForwardOutlined,
   CameraOutlined,
-} from '@ant-design/icons';
-import Slider from '../../../shared/components/range_slider/Slider';
-
+} from "@ant-design/icons";
+import Slider from "../../../shared/components/range_slider/Slider";
 
 const Player = () => {
-
   return (
     <div className="time-play">
       <div className="player-buttons">
-        <StepBackwardOutlined /><FastBackwardOutlined />
-        <CaretRightOutlined />
-        <FastForwardOutlined /><StepForwardOutlined />
+        <StepBackwardOutlined className="geo-icon" />
+        <FastBackwardOutlined className="geo-icon" />
+        <CaretRightOutlined className="geo-icon" />
+        <FastForwardOutlined className="geo-icon" />
+        <StepForwardOutlined className="geo-icon" />
       </div>
       <div className="player-input">
         <span>Time</span>
         <div className="time-input">
-          <input type="number"/>
+          <input type="number" />
         </div>
-        <CameraOutlined style={{ fontSize: "18px"} } />
+        <CameraOutlined className="geo-icon" />
       </div>
       <div className="player-slider">
         <Slider min={0} max={129} value={34} />
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default Player;

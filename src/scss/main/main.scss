@@ -212,7 +212,6 @@ $controlbarHeight: 200px;
 //   }
 // }
 
-
 .geodeck-app {
   display: flex;
   flex-direction: row;
@@ -226,7 +225,7 @@ $controlbarHeight: 200px;
     justify-items: center;
     align-items: center;
     grid-template-rows: repeat(10, min-content);
-    grid-gap: .5rem;
+    grid-gap: 0.5rem;
     padding: 1rem 0;
     @include themify($themes) {
       background-color: lighten(themed("colorBackground"), 10%);
@@ -309,8 +308,6 @@ $controlbarHeight: 200px;
           margin-right: spacing(1);
         }
 
-        
-
         & .setting {
           border-radius: 4px;
           height: 100%;
@@ -332,20 +329,28 @@ $controlbarHeight: 200px;
     }
     .control-bar {
       // height: $controlbarHeight;
+      padding: spacing(2) spacing(4); // flex-basis = 2 * padding left/right
+      width: 100%;
+      display: grid;
+      grid-gap: 2rem;
+      grid-template-columns: 1fr min-content 1fr min-content 1fr;
+      justify-content: space-between;
+
       flex: 0 1 20%;
+      @include retina {
+        flex: 0 1 17%;
+      }
       @include themify($themes) {
         background-color: themed("colorBackground");
         color: themed("colorTextAdditional");
       }
-      // background-color: #262626;
-      width: 100%;
-      display: flex;
 
+      & > :nth-child(2n) {
+        border-right: 1px solid $color-black;
+      }
       & > div {
         flex: 1 1 0;
-        border-right: 1px solid black;
 
-        padding: spacing(2); // flex-basis = 2 * padding left/right
         &.variables {
           flex: 1 0 calc(35% - #{spacing(4)}); // flex-basis = 2 * padding left/right
           display: flex;
@@ -389,14 +394,11 @@ $controlbarHeight: 200px;
         display: flex;
         width: 100%;
         flex-direction: column;
-        justify-content: center;
+        justify-content: space-between;
         & > div {
           text-align: center;
         }
         .player-buttons {
-          padding-left: 90px;
-          padding-right: 90px;
-          font-size: 32px;
           width: 100%;
           display: flex;
           justify-content: center;
@@ -410,9 +412,9 @@ $controlbarHeight: 200px;
           justify-content: center;
           align-items: center;
           margin-right: 15px;
-          span {
-            font-size: 14px;
-          }
+          // span {
+          //   font-size: 14px;
+          // }
 
           .time-input {
             position: relative;
@@ -470,17 +472,21 @@ $controlbarHeight: 200px;
         }
       }
       .simulatin-loader {
-        margin: spacing(2) spacing(6);
-        flex: 0 0 calc(25% - #{spacing(12)}); // flex-basis = 2 * padding left/right
-        @include themify($themes) {
-          border: 2px solid themed("colorTextAdditional");
-          color: themed("colorTextAdditional");
-        }
+        flex-grow: 0;
+        flex-shrink: 0;
+        margin: 0 auto;
+        max-width: 250px;
+        width: 100%;
         border-radius: spacing(2);
         display: flex;
         justify-content: center;
         align-items: center;
         cursor: pointer;
+        flex: 0 0 calc(25% - #{spacing(12)}); // flex-basis = 2 * padding left/right
+        @include themify($themes) {
+          border: 2px solid themed("colorTextAdditional");
+          color: themed("colorTextAdditional");
+        }
         // flex: 0 0 15%;
 
         &.active {
