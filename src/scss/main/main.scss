@@ -329,10 +329,10 @@ $controlbarHeight: 200px;
     }
     .control-bar {
       // height: $controlbarHeight;
-      padding: spacing(2) spacing(4); // flex-basis = 2 * padding left/right
+      padding: 14px; // flex-basis = 2 * padding left/right
       width: 100%;
       display: grid;
-      grid-gap: 2rem;
+      grid-gap: 1rem;
       grid-template-columns: 1fr min-content 1fr min-content 1fr;
       justify-content: space-between;
 
@@ -495,12 +495,12 @@ $controlbarHeight: 200px;
             color: fade-out(themed("colorBubble"), 0.55);
           }
         }
-        & > * {
+        & * {
           // margin-bottom: 5px;
           font-size: spacing(2.5);
           font-weight: bold;
           @include themify($themes) {
-            color: inherit;
+            color: inherit !important;
           }
         }
         .anticon {
