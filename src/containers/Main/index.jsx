@@ -15,8 +15,9 @@ import SimulationLoader from "../GeoDeck/SimulationLoader";
 // import { withTranslation } from 'react-i18next';
 
 const VisDash = () => {
-  const [tab, setTab] = useState(3);
+  const [tab, setTab] = useState(1);
 
+  const isTabsDisable = tab === 1 || tab === 2;
   const [toggleDetailBar, setToggleDetailBar] = useState(false);
   const [toggleControlBar, setToggleControlBar] = useState(false);
   const [toggleXY, setToggleXY] = useState(false);
@@ -41,19 +42,28 @@ const VisDash = () => {
             detailBar={toggleDetailBar}
             controlBar={toggleControlBar}
             xy={toggleXY}
+            isTabsDisable={isTabsDisable}
             toggleDetailBar={onToggleDetailBar}
             toggleControlBar={onToggleControlBar}
             toggleXY={onToggleXY}
             style={{ width: "100%" }}
           />
         </div>
-        <div className={`control-bar ${toggleControlBar ? "hide" : ""}`}>
+        <div
+          className={`control-bar ${
+            toggleControlBar || isTabsDisable ? "hide" : ""
+          }`}
+        >
           <Variables />
           <Player />
           <SimulationLoader tab={tab} setTab={setTab} />
         </div>
       </div>
-      <div className={`detail-bar ${toggleDetailBar ? "hide" : ""}`}>
+      <div
+        className={`detail-bar ${
+          toggleDetailBar || isTabsDisable ? "hide" : ""
+        }`}
+      >
         <DetailChart />
         <InfoExport />
       </div>
