@@ -13,8 +13,9 @@
   background-color: transparent;
 
   &:hover {
-    color: $inactive-gray;
-    background-color: $active-gray;
+    // color: $inactive-gray;
+    border-color: $inactive-gray;
+    background-color: $inactive-gray;
   }
 
   &.selected {

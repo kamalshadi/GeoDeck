@@ -17,8 +17,8 @@
   background-image: none;
 
   &:hover {
-    color: $inactive-gray;
-    background-color: $active-gray;
+    color: $active-gray;
+    background-color: $inactive-gray;
   }
 
   &:active {

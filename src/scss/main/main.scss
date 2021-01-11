@@ -314,6 +314,7 @@ $controlbarHeight: 200px;
         & .setting {
           border-radius: 4px;
           height: 100%;
+          cursor: pointer;
           @include themify($themes) {
             color: $active-gray;
             border-color: $active-gray;
