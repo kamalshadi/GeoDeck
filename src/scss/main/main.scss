@@ -324,6 +324,7 @@ $controlbarHeight: 200px;
 
         .active {
           @include themify($themes) {
+            border-color: $active-gray !important;
             color: themed("colorBubble");
           }
         }
