@@ -61,6 +61,17 @@
   }
 }
 
+@mixin retina {
+  @media only screen and (-webkit-min-device-pixel-ratio: 2),
+    only screen and (min--moz-device-pixel-ratio: 2),
+    only screen and (-o-min-device-pixel-ratio: 2/1),
+    only screen and (min-device-pixel-ratio: 2),
+    only screen and (min-resolution: 227dpi),
+    only screen and (min-resolution: 2dppx) {
+    @content;
+  }
+}
+
 @mixin aspect-ratio-parrent($ratio) {
   position: relative;
   width: 100%;
@@ -86,7 +97,11 @@
 @mixin icon {
   position: relative;
   background-color: inherit;
-  font-size: 16px;
+  font-size: 20px;
+
+  @include retina {
+    font-size: 22px;
+  }
   &::after {
     display: inline-block;
     content: "";
@@ -97,3 +112,4 @@
     align-items: center;
   }
 }
+

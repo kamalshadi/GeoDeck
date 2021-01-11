@@ -63,6 +63,13 @@ $themes: (
   @return map-get($theme-map, $key);
 }
 
+// text colors 
+$active-gray:#929292;
+$inactive-gray:#5E5E5E;
+$color-primary: #F2AB1f;
+$color-black: #000;
+
+
 $color-accent: #F2AB1f;
 $color-accent-hover: darken($color-accent, 10%);
 $color-additional: #999999;

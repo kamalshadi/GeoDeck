@@ -1,0 +1,84 @@
+.geo-icon {
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 16px;  //same as geo-button
+  text-align: center;
+  height: 24px;
+  min-width: 24px;
+  padding: 0px;
+  margin: 6px 1px;
+  line-height: 24px;
+  box-shadow: none;
+  border-color: transparent !important;
+  border-radius: 4px;
+  border-width: 1px;
+  color: $active-gray;
+  background: transparent;
+  background-image: none;
+
+  &:hover {
+    color: $inactive-gray;
+    background-color: $active-gray;
+  }
+
+  &:active {
+    color: $color-black;
+    background-color: $color-primary;
+  }
+
+  &.selected {
+    color: $color-black;
+    background-color: $color-primary;
+  }
+}
+
+.icon {
+  &__toggle--side-bar {
+    @include icon;
+    width: 1.5em;
+    height: 1.5em;
+    border: 1px solid !important;
+    border-color: inherit !important;
+    &::after {
+      top: -1px;
+      right: -1px;
+      width: 0.45em;
+      height: 106%;
+      border-radius: inherit;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+  }
+
+  &__toggle--bottom-bar {
+    @include icon;
+    width: 1.5em;
+    height: 1.5em;
+    border: 1px solid !important;
+    border-color: inherit !important;
+    &::after {
+      bottom: -1px;
+      left: 0;
+      width: 100%;
+      height: 0.4em;
+      border-radius: inherit;
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+    }
+  }
+
+  &__toggle--xy {
+    @include icon;
+    width: 1.5em;
+    height: 1.5em;
+    border: 1px solid !important;
+    border-color: inherit !important;
+    &::after {
+      content: "XY";
+      width: 0.4em;
+      height: 100%;
+      background-color: transparent;
+      left: 33%;
+    }
+  }
+}

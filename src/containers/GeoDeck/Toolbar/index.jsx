@@ -66,7 +66,7 @@ const Toolbar = ({changeWidget}) => {
         return (
           <BootstrapTooltip title={toolText(ind)} placement="right"
             onClick={ () => changeWidget(widgetText(ind)) }
-          >{React.createElement(v, { index: ind }, null
+          >{React.createElement(v, { index: ind , className: `geo-icon`}, null
           )}</BootstrapTooltip>
         )
 

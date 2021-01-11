@@ -40,20 +40,13 @@ const MainContainer = ({
     return (
       <div className="d-flex page-setting">
         <div
-          className={`geo-button setting icon__toggle--xy ${
-            !isTabsDisable && !xy ? "active" : ""
-          }`}
-          onClick={!isTabsDisable && toggleXY}
-        />
-
-        <div
-          className={`geo-button setting icon__toggle--bottom-bar ${
+          className={` setting icon__toggle--bottom-bar ${
             !isTabsDisable && !controlBar ? "active" : ""
           }`}
           onClick={!isTabsDisable && toggleControlBar}
         />
         <div
-          className={`geo-button setting icon__toggle--side-bar ${
+          className={` setting icon__toggle--side-bar ${
             !isTabsDisable && !detailBar ? "active" : ""
           }`}
           onClick={!isTabsDisable && toggleDetailBar}
@@ -68,19 +61,19 @@ const MainContainer = ({
       <div>
         <div className="d-flex">
           <div
-            className={`geo-button ${tab === 0 ? "selected" : null}`}
+            className={`icon-button ${tab === 0 ? "selected" : null}`}
             onClick={() => setTab(0)}
           >
             3D
           </div>
           <div
-            className={`geo-button ${tab === 1 ? "selected" : null}`}
+            className={`icon-button ${tab === 1 ? "selected" : null}`}
             onClick={() => setTab(1)}
           >
             ST
           </div>
           <div
-            className={`geo-button ${tab === 2 ? "selected" : null}`}
+            className={`icon-button ${tab === 2 ? "selected" : null}`}
             onClick={() => setTab(2)}
           >
             VR

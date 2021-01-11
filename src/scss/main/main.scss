@@ -212,53 +212,6 @@ $controlbarHeight: 200px;
 //   }
 // }
 
-.icon {
-  &__toggle--side-bar {
-    @include icon;
-    width: 1.5em;
-    height: 1.5em;
-    border: 1px solid inherit !important;
-    &::after {
-      top: -1px;
-      right: -1px;
-      width: 0.45em;
-      height: 106%;
-      border-radius: inherit;
-      border-top-left-radius: 0;
-      border-bottom-left-radius: 0;
-    }
-  }
-
-  &__toggle--bottom-bar {
-    @include icon;
-    width: 1.5em;
-    height: 1.5em;
-    border: 1px solid inherit !important;
-    &::after {
-      bottom: -1px;
-      left: 0;
-      width: 100%;
-      height: 0.4em;
-      border-radius: inherit;
-      border-top-left-radius: 0;
-      border-top-right-radius: 0;
-    }
-  }
-
-  &__toggle--xy {
-    @include icon;
-    width: 1.5em;
-    height: 1.5em;
-    border: 1px solid inherit !important;
-    &::after {
-      content: "XY";
-      width: 0.4em;
-      height: 100%;
-      background-color: transparent;
-      left: 33%;
-    }
-  }
-}
 
 .geodeck-app {
   display: flex;
@@ -273,25 +226,13 @@ $controlbarHeight: 200px;
     justify-items: center;
     align-items: center;
     grid-template-rows: repeat(10, min-content);
-    grid-gap: 1.5rem;
+    grid-gap: .5rem;
     padding: 1rem 0;
     @include themify($themes) {
       background-color: lighten(themed("colorBackground"), 10%);
     }
 
     & > * {
-      // padding: $toolIconSpace;
-      cursor: pointer;
-      font-size: 1rem;
-      @include themify($themes) {
-        color: themed("colorText");
-      }
-
-      &:hover {
-        @include themify($themes) {
-          color: themed("colorBubble");
-        }
-      }
     }
   }
 
@@ -365,11 +306,17 @@ $controlbarHeight: 200px;
       .page-setting {
         // display: flex;
         & :not(:last-child) {
-          margin-right: spacing(0.5);
+          margin-right: spacing(1);
         }
 
-        setting {
+        
+
+        & .setting {
+          border-radius: 4px;
+          height: 100%;
           @include themify($themes) {
+            color: $active-gray;
+            border-color: $active-gray;
             background-color: themed("colorBackgroundBody");
           }
         }
