@@ -503,8 +503,8 @@ $controlbarHeight: 200px;
         cursor: pointer;
         flex: 0 0 calc(25% - #{spacing(12)}); // flex-basis = 2 * padding left/right
         @include themify($themes) {
-          border: 2px solid themed("colorTextAdditional");
-          color: themed("colorTextAdditional");
+          border: 2px solid themed("colorText");
+          color: themed("colorText");
         }
         // flex: 0 0 15%;
 
