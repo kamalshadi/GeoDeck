@@ -38,15 +38,15 @@
     }
 
     .form__form-group-button.active {
-      border-color: #eff1f5;
+      border-color: $active-gray;
 
       svg {
-        fill: $color-accent;
+        fill: $color-primary;
       }
     }
 
     input {
-      color: #ffffff;
+      color: $active-gray;
       box-shadow: none;
 
       &:focus {
@@ -60,9 +60,8 @@
   }
 }
 
-
 .account__title {
-  color: #ffffff;
+  color: $active-gray;
   font-size: 18px !important;
   @include respond(sm) {
     font-size: 24px !important;
@@ -79,7 +78,7 @@
 }
 
 .account__card {
-  background-color: #ffffff;
+  background-color: $active-gray;
   padding: 50px 60px;
   max-width: 520px;
   width: 100%;
@@ -147,7 +146,7 @@
 .account__sub {
   margin-top: 0;
   margin-bottom: 10px;
-  color: $color-additional;
+  color: $inactive-gray;
   font-size: 11px;
   line-height: 15px;
 }
@@ -196,7 +195,7 @@
     content: "";
     height: 1px;
     width: calc(50% - 90px);
-    background: #dddddd;
+    background: $active-gray;
     position: absolute;
     top: 10px;
   }

@@ -18,18 +18,18 @@
     background: transparent;
 
     &::-webkit-input-placeholder {
-      color: $color-additional;
+      color: $inactive-gray;
     }
     &::-moz-placeholder {
-      color: $color-additional;
+      color: $inactive-gray;
     }
     /* Firefox 19+ */
     &:-moz-placeholder {
-      color: $color-additional;
+      color: $inactive-gray;
     }
     /* Firefox 18- */
     &:-ms-input-placeholder {
-      color: $color-additional;
+      color: $inactive-gray;
     }
 
     @include themify($themes) {
@@ -237,7 +237,7 @@
   }
 
   svg {
-    fill: $color-additional;
+    fill: $inactive-gray;
     width: 18px;
     height: 18px;
     transition: all 0.3s;
@@ -298,7 +298,7 @@
   }
 
   svg {
-    fill: $color-additional;
+    fill: $inactive-gray;
     width: 18px;
     height: 18px;
     transition: all 0.3s;
@@ -307,7 +307,7 @@
 
 .form__form-group-description {
   font-size: 10px;
-  color: $color-additional;
+  color: $inactive-gray;
   line-height: 13px;
   margin-top: 2px;
 }
