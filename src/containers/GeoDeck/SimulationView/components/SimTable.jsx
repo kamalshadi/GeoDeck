@@ -57,7 +57,7 @@ const SimTable = ({ simulation, controlBar, editSimulation }) => {
     <React.Fragment>
       <TableContainer
         className="simulation__table"
-        style={{ maxHeight: controlBar ? "71vh" : "53vh" }}
+        style={{ maxHeight: controlBar ? "70vh" : "51vh" }}
       >
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
@@ -101,16 +101,16 @@ const SimTable = ({ simulation, controlBar, editSimulation }) => {
         </Table>
       </TableContainer>
       <div>
-        <Button
-          color="primary"
+        <button
+          // color="primary"
           type="button"
-          className="simulation__button"
+          className={`geo-button ${!simulation.editable ? "disable" : ""}`}
           type="submit"
           onClick={onSubmit}
           disabled={_.isEqual(parameters, newParameters)}
         >
           Regenerate Data
-        </Button>
+        </button>
       </div>
     </React.Fragment>
   );

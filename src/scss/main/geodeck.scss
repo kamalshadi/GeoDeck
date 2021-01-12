@@ -18,15 +18,27 @@
     background-color: $inactive-gray;
   }
 
+  &:active {
+    color: $color-black;
+    background-color: $color-primary;
+    border-color: $color-primary;
+  }
+
   &.selected {
     color: $color-black;
     background-color: $color-primary;
     border-color: $color-primary;
   }
+
+  &.disable {
+    cursor: not-allowed;
+    border-color: $inactive-gray;
+    background-color: $inactive-gray;
+  }
 }
 
 .geo-button {
-  font-size: 16px; //same as icon-button
+  font-size: 1em;
   // font-size: 14px;
   line-height: 16px;
   letter-spacing: 0.25px;
