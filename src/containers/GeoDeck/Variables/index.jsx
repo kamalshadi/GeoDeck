@@ -9,9 +9,9 @@ const V = [
   "Saturation",
   "Porosity",
   "Permeability",
-  '',
-  '',
-  '',
+  "",
+  "",
+  "",
 ];
 const Variables = ({ changeSample, three }) => {
   const [vs, setVs] = useState(0);
@@ -34,11 +34,12 @@ const Variables = ({ changeSample, three }) => {
         let filler = Array(12 - l).fill(1);
         return (
           <div>
-            <div className="variable" onClick={() => clickHandler(index)}>
+            <div
+              className={V[index] ? "variable" : "variable disabled"}
+              onClick={() => clickHandler(index)}
+            >
               <CheckCircleFilled className={vs === index ? "selected" : ""} />
-              <span className={V[index] ? "variable" : "variable disabled"}>
-                &nbsp;{V[index] ? V[index] : `variable ${index + 1}`}
-              </span>
+              <span>&nbsp; {V[index] ? V[index] : `Variable ${index + 1}`}</span>
             </div>
             <div
               className={V[index + 1] ? "variable" : "variable disabled"}
@@ -48,7 +49,7 @@ const Variables = ({ changeSample, three }) => {
                 className={vs === index + 1 ? "selected" : ""}
               />
               <span>
-                &nbsp; {V[index + 1] ? V[index + 1] : `variable ${index + 2}`}
+                &nbsp; {V[index + 1] ? V[index + 1] : `Variable ${index + 2}`}
               </span>
             </div>
           </div>
