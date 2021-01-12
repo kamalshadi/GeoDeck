@@ -734,7 +734,7 @@ $controlbarHeight: 200px;
       &__content {
         display: grid;
         grid-template-columns: minmax(40px, max-content) max-content 1fr;
-        grid-gap: 1rem;
+        grid-gap: 0.5rem;
         align-items: center;
         justify-items: start;
         & > * {
