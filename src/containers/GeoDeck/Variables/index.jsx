@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { CheckCircleFilled } from "@ant-design/icons";
+import { CheckCircleFilled, CheckSquareFilled } from "@ant-design/icons";
 import { connect } from "react-redux";
 import { changeSample } from "../../../redux/actions/threeActions";
 
@@ -36,16 +36,19 @@ const Variables = ({ changeSample, three }) => {
           <div>
             <div
               className={V[index] ? "variable" : "variable disabled"}
-              onClick={() => clickHandler(index)}
+              onClick={() => (V[index] ? clickHandler(index) : null)}
             >
-              <CheckCircleFilled className={vs === index ? "selected" : ""} />
-              <span>&nbsp; {V[index] ? V[index] : `Variable ${index + 1}`}</span>
+              <CheckSquareFilled className={vs === index ? "selected" : ""} />
+              <span>
+                &nbsp; {V[index] ? V[index] : `Variable ${index + 1}`}
+              </span>
             </div>
+
             <div
               className={V[index + 1] ? "variable" : "variable disabled"}
-              onClick={() => clickHandler(index + 1)}
+              onClick={() => (V[index + 1] ? clickHandler(index + 1) : null)}
             >
-              <CheckCircleFilled
+              <CheckSquareFilled
                 className={vs === index + 1 ? "selected" : ""}
               />
               <span>
