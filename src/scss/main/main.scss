@@ -763,10 +763,12 @@ $controlbarHeight: 200px;
       &__input {
         border: none !important;
         box-shadow: none !important;
-        @include themify($themes) {
-          background: themed("colorBackground") !important;
-          color: themed("colorText") !important;
-        }
+        background: transparent !important;
+        color: inherit !important;
+        // @include themify($themes) {
+        //   background: themed("colorBackground") !important;
+        //   color: themed("colorText") !important;
+        // }
       }
 
       & tr:hover {
@@ -795,6 +797,12 @@ $controlbarHeight: 200px;
         background-color: transparent !important;
         @include themify($themes) {
           color: lighten(themed("colorTextAdditional"), 15%);
+        }
+
+        &.editable {
+          padding: 0;
+          // background-color: white !important;
+          color: $color-primary !important;
         }
       }
     }

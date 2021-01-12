@@ -45,6 +45,7 @@ const SimTable = ({ simulation, controlBar, editSimulation }) => {
         ...simulation,
         parameters: newParameters,
         isLoaded: false,
+        editable: false,
       };
       // after api implementation
       // const newSimulation = { ...simulation, parameters: newParameters };
@@ -74,20 +75,22 @@ const SimTable = ({ simulation, controlBar, editSimulation }) => {
                 <TableRow hover role="checkbox" tabIndex={-1} key={index}>
                   {columns.map((column) => {
                     const value = row[column.id];
-                    return (
+                    return column.id === "value" && simulation.editable ? (
+                      <TableCell
+                        key={column.id}
+                        align={column.align}
+                        className="editable"
+                      >
+                        <Input
+                          className="simulation__table__input"
+                          defaultValue={value}
+                          type="number"
+                          onChange={(e) => onChangeValue(e.target.value, index)}
+                        />
+                      </TableCell>
+                    ) : (
                       <TableCell key={column.id} align={column.align}>
-                        {column.id === "value" && simulation.isLoaded ? (
-                          <Input
-                            className="simulation__table__input"
-                            defaultValue={value}
-                            type="number"
-                            onChange={(e) =>
-                              onChangeValue(e.target.value, index)
-                            }
-                          />
-                        ) : (
-                          value
-                        )}
+                        {value}
                       </TableCell>
                     );
                   })}
