@@ -828,23 +828,20 @@ $controlbarHeight: 200px;
         cursor: pointer;
         text-transform: capitalize;
         font-size: 0.75rem;
-        border-width: 1px;
-        border-style: solid;
+        color: $inactive-gray;
+        border: 1px solid $inactive-gray;
         border-radius: 14px !important;
         background-color: transparent;
-        @include themify($themes) {
-          color: themed("colorTextAdditional");
-        }
 
         &:focus {
           border-color: inherit;
           box-shadow: none;
         }
         &.selected {
-          @include themify($themes) {
-            color: themed("colorText");
-            // background-color: themed("colorBackground");
-          }
+          // color: $color-primary;
+          // border-color: $color-primary;
+          color: $active-gray;
+          border-color: #1f8705;
         }
       }
 

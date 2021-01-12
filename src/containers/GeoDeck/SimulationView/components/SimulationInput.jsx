@@ -34,8 +34,8 @@ const SimulationInput = (props) => {
         onChange={(e) => onChangeName(e.target.value)}
         className={`simulation__inputs__child ${selected ? "selected" : ""}`}
         style={{
-          background: selected ? color : "transparent",
-          borderColor: color,
+          // background: selected ? color : "transparent",
+          // borderColor: color,
           paddingRight: !isLoaded ? "24px" : "",
         }}
         disabled={!isLoaded}

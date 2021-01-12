@@ -86,7 +86,7 @@ const SimulationVariable = (props) => {
         <Input
           value={name}
           className={inputClassName()}
-          style={inputStyles()}
+          // style={inputStyles()}
           disabled={true}
         />
       </InputGroup>
