@@ -513,6 +513,10 @@ $controlbarHeight: 200px;
 
   .detail-bar {
     flex: 0 0 20%;
+
+    @include retina {
+      flex: 0 0 25%;
+    }
     @include themify($themes) {
       background-color: lighten(themed("colorBackground"), 10%);
     }
