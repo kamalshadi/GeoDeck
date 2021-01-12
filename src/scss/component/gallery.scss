@@ -30,14 +30,14 @@
 
 .gallery-download {
   font-size: 1.5rem;
-  color: rgb(233, 233, 233);
+  color: $active-gray;
 }
 
 .gallery__btn {
   background: transparent;
   padding: 0;
   text-transform: uppercase;
-  color: $color-additional;
+  color: $active-gray;
   font-size: 12px;
   border: none;
   font-weight: 500;
@@ -54,11 +54,11 @@
   }
 
   &:hover {
-    color: $color-additional-hover;
+    color: $color-primary;
   }
 
   &.gallery__btn--active {
-    color: $color-accent;
+    color: $color-primary;
   }
 }
 .BrainhubCarousel__thumbnail[type="button"] {

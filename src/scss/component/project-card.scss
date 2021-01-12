@@ -22,6 +22,11 @@
 }
 
 .project-card {
+  
+  // @include themify($themes) {
+  //   color: themed("colorTextAdditional");
+  // }
+  color: $inactive-gray;
   margin-bottom: spacing(3);
 
   @include respond(sm) {
@@ -38,9 +43,6 @@
     justify-content: space-between;
   }
 
-  @include themify($themes) {
-    color: themed("colorTextAdditional");
-  }
 
   &--primary {
     border-top: 5px solid $color-blue;

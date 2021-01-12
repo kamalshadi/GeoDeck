@@ -40,7 +40,7 @@
     }
 
     .material-table__checkbox span {
-      color: $color-accent;
+      color: $color-primary;
     }
   }
 
@@ -53,7 +53,7 @@
 }
 
 .material-table__checkbox--checked span {
-  color: $color-accent;
+  color: $color-primary;
 }
 
 .material-table__cell-right{
@@ -73,7 +73,7 @@
     }
 
     &:hover {
-      color: $color-accent;
+      color: $color-primary;
     }
   }
 }
@@ -127,7 +127,7 @@
   }
 
   .material-table__filter-menu-item {
-    color: #999999;
+    color: $active-gray;
     transition: 0.3s;
     font-size: 13px;
     padding: 7px 24px;
