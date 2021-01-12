@@ -338,9 +338,13 @@ $controlbarHeight: 200px;
       justify-content: space-between;
 
       flex: 0 1 20%;
+      @include full-screen {
+        flex: 0 1 17%;
+      }
       @include retina {
         flex: 0 1 17%;
       }
+
       @include themify($themes) {
         background-color: themed("colorBackground");
         // color: themed("colorTextAdditional");
