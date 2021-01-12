@@ -73,7 +73,7 @@ import PropTypes from "prop-types";
 // };
 
 const ChartLine = (props) => {
-  const { dataList, variableName, t } = props;
+  const { dataList, variableName, variableUnit, t } = props;
 
   const datasets = dataList.map(({ name, xYData, color }) => {
     return {
@@ -116,7 +116,7 @@ const ChartLine = (props) => {
         {
           scaleLabel: {
             display: true,
-            labelString: variableName,
+            labelString: `${variableName} ${variableUnit}`,
           },
           gridLines: {
             color: "#757575",

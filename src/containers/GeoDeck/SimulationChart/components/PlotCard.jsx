@@ -22,7 +22,7 @@ const PlotCard = ({
         <CardBody>
           <div className="d-flex justify-content-between">
             <h5 className="bold-text">{`Plot ${number}`}</h5>
-            <h5 className="bold-text">export</h5>
+            <h5 className="bold-text">Export</h5>
           </div>
           {children}
         </CardBody>

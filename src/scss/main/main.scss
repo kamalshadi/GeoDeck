@@ -676,7 +676,7 @@ $controlbarHeight: 200px;
 
         & p {
           cursor: pointer;
-
+          text-transform: capitalize;
           @include themify($themes) {
             color: themed("colorTextAdditional");
           }
@@ -826,6 +826,7 @@ $controlbarHeight: 200px;
 
       &__child {
         cursor: pointer;
+        text-transform: capitalize;
         font-size: 0.75rem;
         border-width: 1px;
         border-style: solid;

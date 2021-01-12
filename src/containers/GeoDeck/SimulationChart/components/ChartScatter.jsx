@@ -3,7 +3,7 @@ import { Scatter } from "react-chartjs-2";
 
 class ChartScatter extends PureComponent {
   render() {
-    const { dataList, variableName } = this.props;
+    const { dataList, variableName, variableUnit } = this.props;
 
     const datasets = dataList.map(({ name, xYData, color }) => {
       return {
@@ -45,7 +45,7 @@ class ChartScatter extends PureComponent {
           {
             scaleLabel: {
               display: true,
-              labelString: variableName,
+              labelString: `${variableName} (${variableUnit})`,
             },
           },
         ],

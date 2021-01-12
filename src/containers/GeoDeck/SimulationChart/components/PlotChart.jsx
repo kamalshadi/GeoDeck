@@ -3,6 +3,7 @@ import _ from "lodash";
 import ChartLine from "./ChartLine";
 import ChartSample from "./ChartSample";
 import ChartScatter from "./ChartScatter";
+import { getVariableUnit } from "./hepler";
 
 const backgroundColor = ["#FF6384", "#4BC0C0", "#FFCE56", "#E7E9ED", "#36A2EB"];
 
@@ -56,15 +57,17 @@ const PlotChart = (props) => {
 
     return { name, xYData: xYData, rawData, color };
   });
+  const variableUnit = getVariableUnit(variableName);
+
 
 
   const renderChart = () => {
     switch (plot.type) {
       case "line":
-        return <ChartLine dataList={dataList} variableName={variableName} />;
+        return <ChartLine dataList={dataList} variableName={variableName} variableUnit={variableUnit} />;
       case "scatter":
         return (
-          <ChartScatter dataList={dataList} variableName={variableName} />
+          <ChartScatter dataList={dataList} variableName={variableName} variableUnit={variableUnit} />
         );
 
       default:

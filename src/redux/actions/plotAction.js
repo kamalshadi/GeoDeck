@@ -189,7 +189,7 @@ const getSimsT = [
     data: [
       {
         id: 1,
-        name: "Pressure",
+        name: "pressure",
         points: [
           {
             id: 1,
@@ -213,7 +213,7 @@ const getSimsT = [
 
       {
         id: 2,
-        name: "Temperature",
+        name: "temperature",
         points: [
           {
             id: 1,
@@ -237,7 +237,7 @@ const getSimsT = [
 
       {
         id: 3,
-        name: "Saturation",
+        name: "saturation",
         points: [
           {
             id: 1,
@@ -267,7 +267,7 @@ const getSimsT = [
     data: [
       {
         id: 1,
-        name: "Pressure",
+        name: "pressure",
         points: [
           {
             id: 1,
@@ -297,7 +297,7 @@ const getSimsT = [
     data: [
       {
         id: 1,
-        name: "Pressure",
+        name: "pressure",
         points: [
           {
             id: 1,
