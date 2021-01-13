@@ -17,12 +17,11 @@ const SimulationLine = (props) => {
           })}
       </div>
       <div className="time-frame">
-        <h6 className="time-frame__title" style={{ fontWeight: "bold" }}>
+        <h5 className="time-frame__title" style={{ fontWeight: "bold" }}>
           Time Frame
-        </h6>
+        </h5>
         <TimeFrame
           title="At"
-          color="#2cb808"
           current={10}
           onChangeTime={onChangeTime}
         />

@@ -752,7 +752,7 @@ $controlbarHeight: 200px;
       margin-top: spacing(2);
 
       & > :not(:last-child) {
-        margin-bottom: spacing(2);
+        margin-bottom: spacing(1);
       }
 
       &__title {
@@ -764,6 +764,7 @@ $controlbarHeight: 200px;
         grid-gap: 0.5rem;
         align-items: center;
         justify-items: start;
+
         & > * {
           @include themify($themes) {
             color: themed("colorTextAdditional");

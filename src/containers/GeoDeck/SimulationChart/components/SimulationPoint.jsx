@@ -36,18 +36,18 @@ const SimulationPoint = (props) => {
           })}
       </div>
       <div className="time-frame">
-        <h6 className="time-frame__title" style={{ fontWeight: "bold" }}>
+        <h5 className="time-frame__title" style={{ fontWeight: "bold" }}>
           Time Span
-        </h6>
+        </h5>
         <TimeFrame
           title="Start"
-          color="#2cb808"
+          // color="#2cb808"
           current={10}
           onChangeTime={onChangeStart}
         />
         <TimeFrame
           title="End"
-          color="red"
+          // color="red"
           current={40}
           onChangeTime={onChangeEnd}
         />
