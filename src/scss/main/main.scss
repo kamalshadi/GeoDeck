@@ -364,7 +364,7 @@ $controlbarHeight: 200px;
           // padding-left: 0px;
           .variable {
             cursor: pointer;
-            font-size: 0.875rem;
+            font-size: 15px;
             &.disabled {
               cursor: not-allowed;
               @include themify($themes) {
