@@ -1,4 +1,4 @@
-$toolbarWidth: spacing(6);
+$toolbarWidth: 55px;
 $toolbarWidthLg: spacing(8);
 $toolIconSpace: spacing(2);
 $detailbarWidth: 450px;
@@ -218,8 +218,8 @@ $controlbarHeight: 200px;
   flex-wrap: nowrap;
 
   .tool-bar {
-    min-width: spacing(6);
-    max-width: spacing(6);
+    min-width: $toolbar-width;
+    max-width: $toolbar-width;
 
     display: grid;
     justify-items: center;
@@ -262,7 +262,7 @@ $controlbarHeight: 200px;
       // padding-top: 0px;
     }
 
-    height: calc(100vh - 60px);
+    height: calc(100vh - #{$topber-height});
     width: 100%;
     // padding-left: $toolbarWidth;
     // padding-right: $detailbarWidth;
@@ -330,7 +330,7 @@ $controlbarHeight: 200px;
     .control-bar {
       // height: $controlbarHeight;
       color: $active-gray;
-      padding: 14px; // flex-basis = 2 * padding left/right
+      padding: 14px 0; // flex-basis = 2 * padding left/right
       width: 100%;
       display: grid;
       grid-gap: 1rem;
