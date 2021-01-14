@@ -17,7 +17,7 @@ class Register extends Component {
     const { history } = this.props;
     firebase.auth().createUserWithEmailAndPassword(user.email, user.password)
       .then(() => {
-        history.push('/log_in');
+        history.push('/login');
       })
       .catch((error) => {
         this.setState({ error: error.message });
@@ -40,7 +40,7 @@ class Register extends Component {
             </div>
             <RegisterForm onSubmit={this.registerFireBase} errorMessage={error} />
             <div className="account__have-account">
-              <p>Already have an account? <NavLink to="/log_in">Login</NavLink></p>
+              <p>Already have an account? <NavLink to="/login">Login</NavLink></p>
             </div>
           </div>
         </div>
