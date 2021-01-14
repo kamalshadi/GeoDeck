@@ -88,26 +88,26 @@ const CardNew = () => {
               </div>
               <div
                 className="modal__body"
-                style={{ backgroundColor: "#232329" }}
+                // style={{ backgroundColor: "#232329" }}
               >
                 <CreateForm toggle={toggle} />
               </div>
               <ButtonToolbar
                 className="modal__footer"
-                style={{ backgroundColor: "#232329" }}
+                // style={{ backgroundColor: "#232329" }}
               >
-                <Button type="button" className="modal_cancel" onClick={toggle}>
+                <button type="button" className="geo-button" onClick={toggle}>
                   Cancel
-                </Button>{" "}
-                <Button
-                  className="modal_ok"
+                </button>
+                <button
+                  className="geo-button selected" 
                   outline={colored}
                   color={color}
                   type="submit"
                   form="new-project-form"
                 >
                   Create
-                </Button>
+                </button>
               </ButtonToolbar>
             </Modal>
           </div>

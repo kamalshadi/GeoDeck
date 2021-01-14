@@ -18,9 +18,11 @@
   position: relative;
   padding: 50px 40px 60px 40px;
   text-align: center;
-  background-color: #232329;
+  background-color: #262626;
   @include themify($themes) {
     background-color: themed("colorBackground");
+  }
+  @include themify($themes) {
     color: themed("colorText");
   }
 }
@@ -166,7 +168,8 @@
 
   .modal__title {
     margin: 0;
-    font-weight: 300;
+    font-weight: 800;
+    color: $color-primary;
   }
 
   .modal__close-btn {
@@ -194,7 +197,9 @@
   }
 
   &.modal-dialog--primary .modal__header {
-    background-color: $color-blue;
+    @include themify($themes) {
+      background-color: themed("colorBackground");
+    }
   }
 
   &.modal-dialog--success .modal__header {
