@@ -6,6 +6,7 @@ import MultipleYAxesScatterChart from "../../Charts/Recharts/components/Multiple
 import jet from "./jet.png";
 import SimulationView from "../SimulationView";
 import SimulationChart from "../SimulationChart";
+import Icon from "@ant-design/icons";
 
 const MainContainer = ({
   isTabsDisable,
@@ -61,19 +62,19 @@ const MainContainer = ({
       <div>
         <div className="d-flex">
           <div
-            className={`icon-button ${tab === 0 ? "selected" : null}`}
+            className={`icon__button ${tab === 0 ? "selected" : ""}`}
             onClick={() => setTab(0)}
           >
             3D
           </div>
           <div
-            className={`icon-button ${tab === 1 ? "selected" : null}`}
+            className={`icon__button ${tab === 1 ? "selected" : ""}`}
             onClick={() => setTab(1)}
           >
             ST
           </div>
           <div
-            className={`icon-button ${tab === 2 ? "selected" : null}`}
+            className={`icon__button ${tab === 2 ? "selected" : ""}`}
             onClick={() => setTab(2)}
           >
             VR

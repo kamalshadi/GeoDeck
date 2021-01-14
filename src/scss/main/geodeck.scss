@@ -1,42 +1,3 @@
-@mixin button-mixin {
-  font-weight: 500;
-  box-shadow: none;
-  border-radius: 4px;
-  cursor: pointer;
-
-  &:last-of-type {
-    margin-right: 0px !important;
-  }
-
-  color: $active-gray;
-  border: 1px solid $active-gray;
-  background-color: transparent;
-
-  &:hover {
-    // color: $inactive-gray;
-    border-color: $inactive-gray;
-    background-color: $inactive-gray;
-  }
-
-  &:active {
-    color: $color-black;
-    background-color: $color-primary;
-    border-color: $color-primary;
-  }
-
-  &.selected {
-    color: $color-black;
-    background-color: $color-primary;
-    border-color: $color-primary;
-  }
-
-  &.disable {
-    cursor: not-allowed;
-    border-color: $inactive-gray;
-    background-color: $inactive-gray;
-  }
-}
-
 .geo-button {
   font-size: 0.875rem;
   // font-size: 14px;
@@ -56,13 +17,3 @@
   @include button-mixin;
 }
 
-.icon-button {
-  font-size: 12px;
-  letter-spacing: 0.2px;
-  padding: 4px 6px;
-  margin-right: 8px;
-  @include button-mixin;
-  @include retina {
-    font-size: 14px;
-  }
-}
