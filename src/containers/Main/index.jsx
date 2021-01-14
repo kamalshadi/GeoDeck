@@ -17,7 +17,7 @@ import SimulationLoader from "../GeoDeck/SimulationLoader";
 const VisDash = () => {
   const [tab, setTab] = useState(1);
 
-  const isTabsDisable = tab === 1 || tab === 2;
+  const isTabsDisable = tab !== 0;
   const [toggleDetailBar, setToggleDetailBar] = useState(false);
   const [toggleControlBar, setToggleControlBar] = useState(false);
   const [toggleXY, setToggleXY] = useState(false);

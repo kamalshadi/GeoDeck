@@ -56,8 +56,9 @@ const SimTable = ({ simulation, controlBar, editSimulation }) => {
   return (
     <React.Fragment>
       <TableContainer
-        className="simulation__table"
-        style={{ maxHeight: controlBar ? "70vh" : "51vh" }}
+        className="simulation__table full-height"
+        style={{ maxHeight: "auto" }}
+        // style={{ maxHeight: controlBar ? "70vh" : "51vh" }}
       >
         <Table stickyHeader aria-label="sticky table">
           <TableHead>

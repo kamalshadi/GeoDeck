@@ -784,6 +784,16 @@ $controlbarHeight: 200px;
     &__table {
       margin-bottom: spacing(3);
 
+      &.full-height {
+        max-height: 70vh;
+        @include retina {
+          max-height: 75vh;
+        }
+        @include full-screen {
+          max-height: 75vh;
+        }
+      }
+
       &__input {
         border: none !important;
         box-shadow: none !important;
@@ -858,6 +868,16 @@ $controlbarHeight: 200px;
       .input-group {
         position: relative;
         margin-bottom: spacing(2);
+      }
+
+      &.full-height {
+        max-height: 73vh;
+        @include full-screen {
+          max-height: 76vh;
+        }
+        @include retina {
+          max-height: 78vh;
+        }
       }
 
       &__child {
