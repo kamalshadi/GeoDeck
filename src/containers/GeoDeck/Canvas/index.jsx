@@ -22,14 +22,13 @@ const MainContainer = ({
   const renderGraph = () => {
     switch (tab) {
       case 0:
-        return null;
-      // return <Cube />;
+        // return null;
+        return <Cube />;
       case 1:
         return <SimulationChart controlBar={controlBar} />;
       // return <MultipleYAxesScatterChart />;
       case 2:
-        return null;
-      // return <VRScene />;
+        return <VRScene />;
       case 3:
         return <SimulationView controlBar={controlBar} />;
       default:

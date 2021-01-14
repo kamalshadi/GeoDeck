@@ -33,16 +33,57 @@ const theme = {
 // no chart will be rendered.
 // website examples showcase many properties,
 // you'll often use just a few of them.
-//
+
+const norm = (m = 10) => {
+  let out = Array(m).fill(1)
+  return out.map((_,ind)=>{
+    if (ind < m/2){
+      return 1805 + (ind*18*Math.random())
+    }else{
+      return 1870 - ((ind-5)*20*Math.random())
+    }
+  })
+}
 const minMax = p => {
   if (p) return [1800,1900]
   else return [120,122]
 }
 const MyResponsiveLine = ({ three }) => {
+    const [data, setData] = useState([pressData[0]])
+
+    useEffect(() => {
+      document.addEventListener('sample-update', e => {
+        let tmp = data.map(d => {
+          return {id:d.id, color:d.color, data:d.data.map(p=>({...p, y: p.y + 2 * Math.random()}))}
+        })
+        if(e.detail.addPoint){
+          tmp.push(pressData[1])
+        }
+        setData(tmp)
+      }, false)
+    }, [data,three])
+
+    useEffect(()=>{
+      if(three.activeWidget === 'line') {
+        const t = norm()
+        let tmp = [{ ...pressData[0], id: 'line 1', data:Array(10).fill(1).map((_, ind) => ({
+          x: ind,
+          y: t[ind],
+          Temprature:120.2,
+          Pressure:1801,
+          Saturation:90
+        }))}]
+        setData(tmp)
+      } else{
+
+      }
+    }, [three])
+
     const m = minMax(three.sample.variable !== 'Temprature')
+
     return (
       <ResponsiveLine
-        data={three.sample.variable === 'Temprature'?tempData:pressData}
+        data={three.sample.variable === 'Temprature'? tempData: data}
         margin={{ top: 10, right: 0, bottom: 40, left: 50 }}
         xScale={{ type: 'point' }}
         yScale={{ type: 'linear', min: m[0], max: m[1], stacked: false, reverse: false }}
@@ -54,7 +95,7 @@ const MyResponsiveLine = ({ three }) => {
             tickSize: 5,
             tickPadding: 5,
             tickRotation: 0,
-            legend: 'Time (frame)',
+            legend: three.activeWidget === 'line' ? 'Y (meter)' : 'Time (frame)',
             legendOffset: 36,
             legendPosition: 'middle'
         }}
@@ -75,7 +116,6 @@ const MyResponsiveLine = ({ three }) => {
         useMesh={true}
         theme = {theme}
         tooltip={({point}) => {
-          console.log(point)
           return (
             <div
                 style={{

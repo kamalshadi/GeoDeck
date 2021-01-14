@@ -1,8 +1,8 @@
 $toolbarWidth: 55px;
 $toolbarWidthLg: spacing(8);
 $toolIconSpace: spacing(2);
-$detailbarWidth: 450px;
-$controlbarHeight: 200px;
+$detailbarWidth: 550px;
+$controlbarHeight: 100px;
 
 // .geodeck-app {
 //   height: calc(100vh - 60px);
@@ -486,7 +486,7 @@ $controlbarHeight: 200px;
               position: absolute;
               right: 40px;
               top: 18%;
-              content: "/120";
+              content: "/30";
             }
           }
         }

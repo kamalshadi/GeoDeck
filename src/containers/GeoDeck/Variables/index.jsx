@@ -22,6 +22,7 @@ const Variables = ({ changeSample, three }) => {
     changeSample({
       method: three.sample.method,
       variable: V[ind],
+      time:three.sample.time
     });
     setVs(ind);
   };

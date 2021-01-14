@@ -38,6 +38,7 @@ const SliderTheme = ({
       min={min}
       max={max}
       defaultValue={value}
+      value={value}
       handle={handle}
       marks={marks}
       tipFormatter={tipFormatter}
