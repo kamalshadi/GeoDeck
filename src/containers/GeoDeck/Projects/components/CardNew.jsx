@@ -78,12 +78,12 @@ const CardNew = () => {
               className={`modal-dialog--${color} ${modalClass}`}
             >
               <div className="modal__header">
-                <button
+                {/* <button
                   className="lnr lnr-cross modal__close-btn"
                   type="button"
                   onClick={toggle}
                 />
-                {header ? "" : Icon}
+                {header ? "" : Icon} */}
                 <h4 className="text-modal  modal__title">Add New Project</h4>
               </div>
               <div
