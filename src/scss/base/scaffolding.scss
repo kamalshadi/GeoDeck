@@ -42,12 +42,12 @@ ol {
 }
 
 a {
-  color: $inactive-gray;
+  color: $active-gray;
   transition: all 0.3s;
 
   &:hover {
     text-decoration: none;
-    color: $active-gray;
+    color: $color-primary;
   }
 }
 
