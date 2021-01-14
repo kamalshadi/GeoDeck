@@ -16,11 +16,16 @@ const data = {
 };
 
 const options = {
-  layout: {
-    padding: {
-      top: 20,
-    },
+  legend: {
+    labels: {
+      fontColor: "#929292",
+    }
   },
+  // layout: {
+  //   padding: {
+  //     top: 20,
+  //   },
+  // },
   scale: {
     gridLines: {
       color: "#5E5E5E",

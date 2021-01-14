@@ -62,6 +62,11 @@ const PlotChart = (props) => {
   // const variableUnit = getVariableUnit(variableName);
 
   const options = {
+    legend: {
+      labels: {
+        fontColor: "#929292",
+      }
+    },
     scales: {
       xAxes: [
         {

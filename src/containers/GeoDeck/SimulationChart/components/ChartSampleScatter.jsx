@@ -117,6 +117,11 @@ class ChartSampleScatter extends Component {
     };
 
     const options = {
+      legend: {
+        labels: {
+          fontColor: "#929292",
+        }
+      },
       scales: {
         xAxes: [
           {
