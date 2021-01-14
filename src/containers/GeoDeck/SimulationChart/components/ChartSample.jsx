@@ -23,11 +23,11 @@ const options = {
   },
   scale: {
     gridLines: {
-      color: "rgb(204, 204, 204)",
+      color: "#5E5E5E",
       borderDash: [3, 3],
     },
     ticks: {
-      fontColor: "rgb(204, 204, 204)",
+      fontColor: "#929292",
     },
   },
 };

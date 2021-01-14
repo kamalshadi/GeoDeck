@@ -3,7 +3,7 @@ import { Scatter } from "react-chartjs-2";
 
 class ChartScatter extends PureComponent {
   render() {
-    const { dataList, variableName, variableUnit } = this.props;
+    const { dataList, options } = this.props;
 
     const datasets = dataList.map(({ name, xYData, color }) => {
       return {
@@ -15,9 +15,9 @@ class ChartScatter extends PureComponent {
         // borderWidth: 1,
         // borderDash: [3, 3],
         pointBackgroundColor: color,
-        pointHoverRadius: 3,
+        pointHoverRadius: 4,
         pointHoverBorderWidth: 1,
-        pointRadius: 2,
+        pointRadius: 3,
         pointHitRadius: 10,
         data: xYData,
       };
@@ -28,29 +28,29 @@ class ChartScatter extends PureComponent {
       datasets: datasets,
     };
 
-    const options = {
-      scales: {
-        xAxes: [
-          {
-            scaleLabel: {
-              display: true,
-              labelString: "time",
-            },
-            type: "linear",
-            position: "bottom",
-          },
-        ],
+    // const options = {
+    //   scales: {
+    //     xAxes: [
+    //       {
+    //         scaleLabel: {
+    //           display: true,
+    //           labelString: "time",
+    //         },
+    //         type: "linear",
+    //         position: "bottom",
+    //       },
+    //     ],
 
-        yAxes: [
-          {
-            scaleLabel: {
-              display: true,
-              labelString: `${variableName} (${variableUnit})`,
-            },
-          },
-        ],
-      },
-    };
+    //     yAxes: [
+    //       {
+    //         scaleLabel: {
+    //           display: true,
+    //           labelString: `${variableName} (${variableUnit})`,
+    //         },
+    //       },
+    //     ],
+    //   },
+    // };
     return (
       <React.Fragment>
         <Scatter data={scatterData} options={options} />

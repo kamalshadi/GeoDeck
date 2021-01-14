@@ -31,6 +31,7 @@ const PlotChart = (props) => {
   ); // select simulations based on id of active simulations [active simulation set in simulation panel]
 
   let variableName = "variable"; // label for selected variable
+  let variableUnit = "-"; // unit for selected variable
   const dataList = selectedSimulations.map((simulation, index) => {
     const name = simulation.name;
     const variable = simulation?.data.find(
@@ -54,10 +55,51 @@ const PlotChart = (props) => {
     }
 
     variableName = variable.name;
+    variableUnit = variable.unit;
 
     return { name, xYData: xYData, rawData, color };
   });
-  const variableUnit = getVariableUnit(variableName);
+  // const variableUnit = getVariableUnit(variableName);
+
+  const options = {
+    scales: {
+      xAxes: [
+        {
+          scaleLabel: {
+            display: true,
+            labelString: "Time",
+            fontColor: "#929292",
+          },
+          type: "linear",
+          position: "bottom",
+          gridLines: {
+            color: "#5E5E5E",
+            borderDash: [1, 1],
+          },
+          ticks: {
+            fontColor: "#929292",
+          },
+        },
+      ],
+
+      yAxes: [
+        {
+          scaleLabel: {
+            display: true,
+            labelString: `${variableName} (${variableUnit})`,
+            fontColor: "#929292",
+          },
+          gridLines: {
+            color: "#5E5E5E",
+            borderDash: [1, 1],
+          },
+          ticks: {
+            fontColor: "#929292",
+          },
+        },
+      ],
+    },
+  };
 
   const renderChart = () => {
     switch (plot.type) {
@@ -67,11 +109,13 @@ const PlotChart = (props) => {
             dataList={dataList}
             variableName={variableName}
             variableUnit={variableUnit}
+            options={options}
           />
         );
       case "scatter":
         return (
           <ChartScatter
+            options={options}
             dataList={dataList}
             variableName={variableName}
             variableUnit={variableUnit}
