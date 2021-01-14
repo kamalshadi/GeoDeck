@@ -182,3 +182,7 @@
     color: $inactive-gray;
   }
 }
+
+.MuiInput-underline:before {
+  border-bottom-color: $inactive-gray !important;
+}

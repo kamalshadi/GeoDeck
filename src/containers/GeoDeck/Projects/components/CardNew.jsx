@@ -84,7 +84,7 @@ const CardNew = () => {
                   onClick={toggle}
                 />
                 {header ? "" : Icon}
-                <h4 className="text-modal  modal__title">Create New Project</h4>
+                <h4 className="text-modal  modal__title">Add New Project</h4>
               </div>
               <div
                 className="modal__body"

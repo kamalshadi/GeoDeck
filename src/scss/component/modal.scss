@@ -9,6 +9,10 @@
 
 .modal-dialog {
   max-width: 385px;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  margin: auto !important;
 }
 
 .modal-content {
