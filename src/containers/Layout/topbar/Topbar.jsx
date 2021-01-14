@@ -20,9 +20,9 @@ const Topbar = ({
       <Link className="topbar__logo" to="/online_marketing_dashboard" />
     </div>
     <div className="topbar__right">
-      <div className="topbar__right-search">
+      {/* <div className="topbar__right-search">
         <TopbarSearch />
-      </div>
+      </div> */}
       <div className="topbar__right-over">
         <TopbarNotification />
         <TopbarMail new />
