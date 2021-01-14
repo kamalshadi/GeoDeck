@@ -425,9 +425,11 @@ $controlbarHeight: 200px;
           width: 100%;
           display: flex;
           justify-content: center;
-          margin-bottom: 5px;
-          & :not(:last-child) {
-            margin-right: spacing(1);
+          margin-bottom: 4px;
+          
+          & span {
+            font-size: 28px!important;
+            padding: 2px !important;
           }
         }
         .player-input {
@@ -491,7 +493,7 @@ $controlbarHeight: 200px;
           }
         }
         .rc-slider {
-          margin-top: 15px;
+          margin-top: 8px;
         }
       }
       .simulatin-loader {
