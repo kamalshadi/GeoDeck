@@ -2,10 +2,13 @@ import React from "react";
 import { Card, CardBody } from "reactstrap";
 import { withTranslation } from "react-i18next";
 import PropTypes from "prop-types";
+import ChartSetting from "./ChartSetting";
 
 const PlotCard = ({
   t,
   index,
+  plotId,
+  currentPlotId,
   selectedPlot,
   setSelectedPlot,
   children,
@@ -21,8 +24,10 @@ const PlotCard = ({
       <Card>
         <CardBody>
           <div className="d-flex justify-content-between">
-            <h5 className="bold-text">{`Plot ${number}`}</h5>
-            <h5 className="bold-text">Export</h5>
+            <h5 className="bold-text d-flex align-items-center">{`Plot ${number}`}</h5>
+            <h5 className="bold-text">
+              <ChartSetting plotId={plotId} currentPlotId={currentPlotId} setSelectedPlot={setSelectedPlot}/>
+            </h5>
           </div>
           {children}
         </CardBody>

@@ -1,5 +1,5 @@
 import _ from "lodash";
-import { FETCH_PLOTS, CREATE_PLOT, UPDATE_PLOT } from "../types";
+import { FETCH_PLOTS, CREATE_PLOT, UPDATE_PLOT, DELETE_PLOT } from "../types";
 
 const initialState = [
   {
@@ -30,6 +30,8 @@ export default (state = [], action) => {
     case UPDATE_PLOT: {
       return { ...state, [action.payload.id]: action.payload };
     }
+    case DELETE_PLOT:
+      return _.omit(state, action.payload);
     default:
       return state;
   }

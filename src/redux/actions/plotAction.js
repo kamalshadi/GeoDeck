@@ -37,6 +37,11 @@ export const editPlot = (plotId, editObject) => async (dispatch, getState) => {
   dispatch({ type: types.UPDATE_PLOT, payload: response.data });
 };
 
+export const deletePlot = (id) => async (dispatch, getState) => {
+  //   const response = await api.delete(`plots/id`);
+  dispatch({ type: types.DELETE_PLOT, payload: id });
+};
+
 const initialState = {
   data: [],
   currentIds: [],

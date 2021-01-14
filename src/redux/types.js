@@ -18,4 +18,6 @@ export const SET_SIMULATION_CUREENT = "SET_SIMULATION_CUREENT";
 export const FETCH_PLOTS = "FETCH_PLOTS";
 export const CREATE_PLOT = "CREATE_PLOT";
 export const UPDATE_PLOT = "UPDATE_PLOT";
+export const DELETE_PLOT = "DELETE_PLOT";
+
 
