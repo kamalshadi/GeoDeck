@@ -426,9 +426,9 @@ $controlbarHeight: 200px;
           display: flex;
           justify-content: center;
           margin-bottom: 4px;
-          
+
           & span {
-            font-size: 28px!important;
+            font-size: 28px !important;
             padding: 2px !important;
           }
         }
@@ -823,18 +823,16 @@ $controlbarHeight: 200px;
       }
 
       & th {
+        color: white;
+        white-space: nowrap;
         @include themify($themes) {
-          color: themed("colorTextAdditional");
           background-color: themed("inboxButtonBackground");
         }
-        white-space: nowrap;
       }
 
       & td {
         background-color: transparent !important;
-        @include themify($themes) {
-          color: lighten(themed("colorTextAdditional"), 15%);
-        }
+        color: $active-gray;
 
         &.editable {
           padding: 0;

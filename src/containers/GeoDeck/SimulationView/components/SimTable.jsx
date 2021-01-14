@@ -13,7 +13,7 @@ import { Button, Input } from "reactstrap";
 import { editSimulation } from "../../../../redux/actions/simulationAction";
 
 const columns = [
-  { id: "label", label: "Variables", color: "#ff6ce6" },
+  { id: "label", label: "Variables", color: "#87c1fc" },
   { id: "value", label: "Value", color: "#87c1fc" },
   { id: "unit", label: "Unit" },
   { id: "max", label: "Max" },
