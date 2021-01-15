@@ -57,7 +57,7 @@ const ReactTable = ({
           dataLength={dataLength}
         />
       )}
-      <div className={withPagination ? 'table react-table' : 'table react-table table--not-pagination'}>
+      <div className={withPagination ? 'table react-table custom__table' : 'table react-table custom__table auto-height table--not-pagination'}>
         <table {...getTableProps()} className={isEditable ? 'editable-table' : 'react-table resizable-table'}>
           <ReactTableHeader
             headerGroups={headerGroups}

@@ -983,3 +983,70 @@ $controlbarHeight: 100px;
 .nav-link {
   padding: 1rem !important;
 }
+
+.custom {
+  &__table {
+    margin-bottom: spacing(3);
+
+    &.full-height {
+      max-height: 70vh;
+      @include retina {
+        max-height: 75vh;
+      }
+      @include full-screen {
+        max-height: 75vh;
+      }
+    }
+
+    &__input {
+      border: none !important;
+      box-shadow: none !important;
+      background: transparent !important;
+      color: inherit !important;
+      // @include themify($themes) {
+      //   background: themed("colorBackground") !important;
+      //   color: themed("colorText") !important;
+      // }
+    }
+
+    & tr:hover {
+      background: none !important;
+    }
+
+    & th,
+    td {
+      font-weight: 300;
+      text-align: center;
+      min-width: 8vw;
+      @include themify($themes) {
+        border: 0.5px solid themed("colorBackground");
+      }
+    }
+
+    & th {
+      color: white !important;
+      white-space: nowrap;
+      @include themify($themes) {
+        background-color: themed("inboxButtonBackground");
+      }
+      & > * {
+        display: block !important;
+        text-align: center;
+      }
+    }
+
+    & td {
+      background-color: transparent !important;
+      color: $active-gray !important;
+
+      &.editable {
+        padding: 0;
+        // background-color: white !important;
+        color: $color-primary !important;
+      }
+    }
+    &.auto-height {
+      height: auto !important;
+    }
+  }
+}
