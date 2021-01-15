@@ -137,25 +137,25 @@ const MyResponsiveLine = ({ three }) => {
         pointLabelYOffset={-12}
         useMesh={true}
         theme={theme}
-        colors={["#00a1ff80", "#60d93780", "#ed220d80", "feae0080"]}
+        colors={["#80D0FF", "#60d93780", "#ed220d80", "feae0080"]}
         // colors={["#00a1ff7a", "#60d9377a", "#ed220d7a", "feae00"]}
-        tooltip={({ point }) => {
-          return (
-            <div
-              className="nivo-tooltop"
-              style={{
-                background: "#929292",
-                padding: "12px 16px",
-              }}
-            >
-              <span>{`T: ${point.data.Temprature.toFixed(2)}`}</span>
-              <br />
-              <span>{`P: ${point.data.Pressure.toFixed(2)}`}</span>
-              <br />
-              <span>{`Saturation: ${point.data.Saturation.toFixed(2)}`}</span>
-            </div>
-          );
-        }}
+        // tooltip={({ point }) => {
+        //   return (
+        //     <div
+        //       className="nivo-tooltop"
+        //       style={{
+        //         background: "#929292",
+        //         padding: "12px 16px",
+        //       }}
+        //     >
+        //       <span>{`T: ${point.data.Temprature.toFixed(2)}`}</span>
+        //       <br />
+        //       <span>{`P: ${point.data.Pressure.toFixed(2)}`}</span>
+        //       <br />
+        //       <span>{`Saturation: ${point.data.Saturation.toFixed(2)}`}</span>
+        //     </div>
+        //   );
+        // }}
         legends={[
           {
             anchor: "bottom",

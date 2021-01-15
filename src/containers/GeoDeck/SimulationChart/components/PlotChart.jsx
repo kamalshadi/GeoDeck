@@ -7,8 +7,7 @@ import { getVariableUnit } from "./hepler";
 
 // const backgroundColor = ["#FF6384", "#4BC0C0", "#FFCE56", "#E7E9ED", "#36A2EB"];
 // const backgroundColor = ["#00a1ff7a", "#60d937", "#ed220d", "36A2EB"];
-const backgroundColor = ["#00a1ff80", "#60d93780", "#ed220d80", "feae0080"];
-
+const backgroundColor = ["#80D0FF", "#B0EC9B", "#F69186", "#FFD780"];
 
 const PlotChart = (props) => {
   const { plot } = props;
@@ -49,7 +48,7 @@ const PlotChart = (props) => {
     }); // x/y data
 
     let color = "";
-    if (index < 5) {
+    if (index < 4) {
       color = backgroundColor[index];
     } else {
       let rColor = Math.floor(Math.random() * 16777215).toString(16);
@@ -67,7 +66,7 @@ const PlotChart = (props) => {
     legend: {
       labels: {
         fontColor: "#d5d5d5",
-      }
+      },
     },
     scales: {
       xAxes: [

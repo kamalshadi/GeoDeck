@@ -8,7 +8,8 @@ const data = {
   datasets: [
     {
       data: [11, 18, 7, 14],
-      backgroundColor: ["#FF6384", "#4BC0C0", "#FFCE56", "#36A2EB"],
+
+      backgroundColor: ["#80D0FF", "#B0EC9B", "#F69186", "#FFD780"],
       borderColor: "rgba(255,255,255,0.54)",
     },
   ],
@@ -18,7 +19,7 @@ const data = {
 const options = {
   legend: {
     labels: {
-      fontColor: "#929292",
+      fontColor: "#d5d5d5",
     }
   },
   // layout: {
@@ -28,11 +29,11 @@ const options = {
   // },
   scale: {
     gridLines: {
-      color: "#5E5E5E",
+      color: "#929292",
       borderDash: [3, 3],
     },
     ticks: {
-      fontColor: "#929292",
+      fontColor: "#d5d5d5",
     },
   },
 };

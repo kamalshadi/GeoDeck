@@ -90,7 +90,7 @@ const rawData = [
   { x: 23, y: 648.9226864286 },
   { x: 24, y: 789.7514284286 },
 ];
-
+// ["#80D0FF", "#B0EC9B", "#F69186", "#FFD780"]
 class ChartSampleScatter extends Component {
   render() {
     const datasets = [
@@ -98,11 +98,11 @@ class ChartSampleScatter extends Component {
         label: "Simulation",
         fill: false,
         lineTension: 0.3,
-        backgroundColor: "#FFCE56",
-        borderColor: "#FFCE56",
+        backgroundColor: "#80D0FF",
+        borderColor: "#80D0FF",
         // borderWidth: 1,
         // borderDash: [3, 3],
-        pointBackgroundColor: "#FFCE56",
+        pointBackgroundColor: "#80D0FF",
         pointHoverRadius: 4,
         pointHoverBorderWidth: 1,
         pointRadius: 3,
@@ -119,7 +119,7 @@ class ChartSampleScatter extends Component {
     const options = {
       legend: {
         labels: {
-          fontColor: "#929292",
+          fontColor: "#d5d5d5",
         }
       },
       scales: {
@@ -128,16 +128,16 @@ class ChartSampleScatter extends Component {
             scaleLabel: {
               display: true,
               labelString: "Time",
-              fontColor: "#929292",
+              fontColor: "#d5d5d5",
             },
             type: "linear",
             position: "bottom",
             gridLines: {
-              color: "#5E5E5E",
+              color: "#929292",
               borderDash: [1, 1],
             },
             ticks: {
-              fontColor: "#929292",
+              fontColor: "#d5d5d5",
             },
           },
         ],
@@ -147,14 +147,14 @@ class ChartSampleScatter extends Component {
             scaleLabel: {
               display: true,
               labelString: "Temperature (\u00b0C)",
-              fontColor: "#929292",
+              fontColor: "#d5d5d5",
             },
             gridLines: {
-              color: "#5E5E5E",
+              color: "#929292",
               borderDash: [1, 1],
             },
             ticks: {
-              fontColor: "#929292",
+              fontColor: "#d5d5d5",
             },
           },
         ],
