@@ -16,7 +16,7 @@ const TopbarNavDashboards = () => (
       Projects
     </Link>
     <Link className="nav-link" to="/gallery">
-      Pallery
+      Gallery
     </Link>
     <Link className="nav-link" to="#">
       Report
