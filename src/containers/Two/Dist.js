@@ -89,7 +89,9 @@ const Dist = ({ three }) => (
       theme={theme}
       keys={["burger"]}
       indexBy="country"
-      margin={{ top: 50, right: 10, bottom: 50, left: 60 }}
+      margin={{ top: 40, right: 40, bottom: 40, left: 60 }}
+      // margin={{ top: 40, right: 40, bottom: 60, left: 65 }}
+
       padding={0.3}
       valueScale={{ type: "linear" }}
       indexScale={{ type: "band", round: true }}
@@ -137,7 +139,7 @@ const Dist = ({ three }) => (
         tickRotation: 0,
         legend: three.sample.variable || "Pressure",
         legendPosition: "middle",
-        legendOffset: 32,
+        legendOffset: 36,
       }}
       axisLeft={{
         tickSize: 5,
