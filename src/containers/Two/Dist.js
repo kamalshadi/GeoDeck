@@ -95,7 +95,7 @@ const Dist = ({ three }) => (
       padding={0.3}
       valueScale={{ type: "linear" }}
       indexScale={{ type: "band", round: true }}
-      colors={["#f2ab1f", "#4BC0C0", "#ff8282", "#63ff76", "36A2EB"]}
+      colors={["#FFCE56", "#ff8282", "#63ff76", "36A2EB"]}
       defs={[
         {
           id: "dots",
