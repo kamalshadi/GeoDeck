@@ -3,7 +3,7 @@
   display: flex;
   width: 100%;
   top: 0;
-  min-height: 60px;
+  min-height: $topber-height;
   z-index: 101;
   box-shadow: 0 2px 15px 0 rgba(0, 0, 0, 0.05);
 
@@ -42,7 +42,7 @@
 
 .topbar__logo {
   width: 150px;
-  height: 32px;
+  height: 30px;
   margin: auto 0;
   background-repeat: no-repeat;
   background-position-y: center;
@@ -524,6 +524,7 @@
   cursor: pointer;
   position: relative;
   display: flex;
+  align-items: center;
   border: none;
   background: transparent;
   transition: all 0.3s;
@@ -637,7 +638,7 @@
 }
 
 .topbar .topbar__nav-dropdown-toggle {
-  height: 60px;
+  height: $topber-height;
   background: transparent;
   border-radius: 0;
   border: none;

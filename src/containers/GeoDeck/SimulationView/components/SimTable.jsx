@@ -13,7 +13,7 @@ import { Button, Input } from "reactstrap";
 import { editSimulation } from "../../../../redux/actions/simulationAction";
 
 const columns = [
-  { id: "label", label: "Variables", color: "#ff6ce6" },
+  { id: "label", label: "Variables", color: "#87c1fc" },
   { id: "value", label: "Value", color: "#87c1fc" },
   { id: "unit", label: "Unit" },
   { id: "max", label: "Max" },
@@ -45,6 +45,7 @@ const SimTable = ({ simulation, controlBar, editSimulation }) => {
         ...simulation,
         parameters: newParameters,
         isLoaded: false,
+        editable: false,
       };
       // after api implementation
       // const newSimulation = { ...simulation, parameters: newParameters };
@@ -55,8 +56,9 @@ const SimTable = ({ simulation, controlBar, editSimulation }) => {
   return (
     <React.Fragment>
       <TableContainer
-        className="simulation__table"
-        style={{ maxHeight: controlBar ? "71vh" : "53vh" }}
+        className="simulation__table full-height"
+        style={{ maxHeight: "auto" }}
+        // style={{ maxHeight: controlBar ? "70vh" : "51vh" }}
       >
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
@@ -74,20 +76,22 @@ const SimTable = ({ simulation, controlBar, editSimulation }) => {
                 <TableRow hover role="checkbox" tabIndex={-1} key={index}>
                   {columns.map((column) => {
                     const value = row[column.id];
-                    return (
+                    return column.id === "value" && simulation.editable ? (
+                      <TableCell
+                        key={column.id}
+                        align={column.align}
+                        className="editable"
+                      >
+                        <Input
+                          className="simulation__table__input"
+                          defaultValue={value}
+                          type="number"
+                          onChange={(e) => onChangeValue(e.target.value, index)}
+                        />
+                      </TableCell>
+                    ) : (
                       <TableCell key={column.id} align={column.align}>
-                        {column.id === "value" && simulation.isLoaded ? (
-                          <Input
-                            className="simulation__table__input"
-                            defaultValue={value}
-                            type="number"
-                            onChange={(e) =>
-                              onChangeValue(e.target.value, index)
-                            }
-                          />
-                        ) : (
-                          value
-                        )}
+                        {value}
                       </TableCell>
                     );
                   })}
@@ -98,16 +102,16 @@ const SimTable = ({ simulation, controlBar, editSimulation }) => {
         </Table>
       </TableContainer>
       <div>
-        <Button
-          color="primary"
+        <button
+          // color="primary"
           type="button"
-          className="simulation__button"
+          className={`geo-button ${!simulation.editable ? "disable" : ""}`}
           type="submit"
           onClick={onSubmit}
           disabled={_.isEqual(parameters, newParameters)}
         >
           Regenerate Data
-        </Button>
+        </button>
       </div>
     </React.Fragment>
   );

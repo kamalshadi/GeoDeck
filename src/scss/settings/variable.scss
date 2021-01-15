@@ -27,8 +27,8 @@ $themes: (
     inboxButtonBackground: #000014,
     inboxButtonBackgroundHover: lighten(#000014, 5%),
     colorHeaderDataPicker:#F2AB1f,
-    colorText: #dddddd,
-    colorTextAdditional: #757575,
+    colorText: #929292,
+    colorTextAdditional: #5E5E5E,
     logoImg: url(../../shared/img/logo/logo_dark.png),
     colorHover: #38373f,
     colorFolderHover: #ffffff1A,
@@ -62,6 +62,17 @@ $themes: (
 @function themed($key) {
   @return map-get($theme-map, $key);
 }
+
+// text colors 
+$active-gray:#929292;
+$inactive-gray:#5E5E5E;
+$color-primary: #F2AB1f;
+$color-black: #000;
+
+
+// top bar
+$topber-height: 55px;
+$toolbar-width: 55px;
 
 $color-accent: #F2AB1f;
 $color-accent-hover: darken($color-accent, 10%);

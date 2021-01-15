@@ -16,3 +16,14 @@
     border-radius: spacing(4) !important;
   }
   
+  .color-primary {
+    color: $color-primary !important;
+  }
+
+  .color-active-gray {
+    color: $active-gray !important;
+  }
+
+  .color-inactive-gray {
+    color: $inactive-gray !important;
+  }

@@ -16,21 +16,23 @@ const data = {
 };
 
 const options = {
-  // legend: {
-  //   position: "bottom",
-  // },
-  layout: {
-    padding: {
-      top: 20,
-    },
+  legend: {
+    labels: {
+      fontColor: "#929292",
+    }
   },
+  // layout: {
+  //   padding: {
+  //     top: 20,
+  //   },
+  // },
   scale: {
     gridLines: {
-      color: "rgb(204, 204, 204)",
+      color: "#5E5E5E",
       borderDash: [3, 3],
     },
     ticks: {
-      fontColor: "rgb(204, 204, 204)",
+      fontColor: "#929292",
     },
   },
 };

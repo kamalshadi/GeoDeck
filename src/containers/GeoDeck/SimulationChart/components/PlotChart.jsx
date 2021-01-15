@@ -1,46 +1,50 @@
-import React, { PureComponent } from "react";
-import {
-  ScatterChart,
-  Scatter,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  ResponsiveContainer,
-} from "recharts";
+import React from "react";
+import _ from "lodash";
 import ChartLine from "./ChartLine";
 import ChartSample from "./ChartSample";
 import ChartScatter from "./ChartScatter";
+import { getVariableUnit } from "./hepler";
 
-const tooltipColor = {
-  color: "#70bbfd",
-};
+// const backgroundColor = ["#FF6384", "#4BC0C0", "#FFCE56", "#E7E9ED", "#36A2EB"];
+const backgroundColor = ["#FFCE56", "#4BC0C0", "#ff8282", "#63ff76", "36A2EB"];
 
 const PlotChart = (props) => {
-  const { plot, simulations, variableId, pointId, lineId, isPoint } = props;
+  const { plot } = props;
 
-  let variableName = "variable";
-  const backgroundColor = [
-    "#FF6384",
-    "#4BC0C0",
-    "#FFCE56",
-    "#E7E9ED",
-    "#36A2EB",
-  ];
+  const { simulations } = plot; // get simulations for each plot
 
-  const dataList = simulations.map((simulation, index) => {
+  if (_.isEmpty(simulations)) {
+    return null;
+  }
+
+  const {
+    data,
+    currentIds,
+    variableId,
+    pointId,
+    lineId,
+    isPoint,
+  } = simulations;
+
+  const selectedSimulations = data.filter((sim) =>
+    _.includes(currentIds, sim.id)
+  ); // select simulations based on id of active simulations [active simulation set in simulation panel]
+
+  let variableName = "variable"; // label for selected variable
+  let variableUnit = "-"; // unit for selected variable
+  const dataList = selectedSimulations.map((simulation, index) => {
     const name = simulation.name;
     const variable = simulation?.data.find(
       (variable) => variable.id === variableId
-    );
+    ); // select active variable
     const pointLine = isPoint
       ? variable?.points.find((point) => point.id === pointId)
-      : variable?.lines.find((line) => line.id === lineId);
+      : variable?.lines.find((line) => line.id === lineId); // select active points/lines
 
-    const rawData = pointLine?.data;
+    const rawData = pointLine?.data; //initial data
     const xYData = pointLine?.data.map((data, index) => {
       return { x: index, y: data };
-    });
+    }); // x/y data
 
     let color = "";
     if (index < 5) {
@@ -51,21 +55,76 @@ const PlotChart = (props) => {
     }
 
     variableName = variable.name;
+    variableUnit = variable.unit;
 
     return { name, xYData: xYData, rawData, color };
   });
+  // const variableUnit = getVariableUnit(variableName);
 
-  console.log(dataList);
+  const options = {
+    legend: {
+      labels: {
+        fontColor: "#929292",
+      }
+    },
+    scales: {
+      xAxes: [
+        {
+          scaleLabel: {
+            display: true,
+            labelString: "Time",
+            fontColor: "#929292",
+          },
+          type: "linear",
+          position: "bottom",
+          gridLines: {
+            color: "#5E5E5E",
+            borderDash: [1, 1],
+          },
+          ticks: {
+            fontColor: "#929292",
+          },
+        },
+      ],
+
+      yAxes: [
+        {
+          scaleLabel: {
+            display: true,
+            labelString: `${variableName} (${variableUnit})`,
+            fontColor: "#929292",
+          },
+          gridLines: {
+            color: "#5E5E5E",
+            borderDash: [1, 1],
+          },
+          ticks: {
+            fontColor: "#929292",
+          },
+        },
+      ],
+    },
+  };
 
   const renderChart = () => {
     switch (plot.type) {
       case "line":
-        return <ChartLine dataList={dataList} variableName={variableName} />;
+        return (
+          <ChartLine
+            dataList={dataList}
+            variableName={variableName}
+            variableUnit={variableUnit}
+            options={options}
+          />
+        );
       case "scatter":
         return (
-          // <div className="simulation__plot__chart" style={{ height: 400 }}>
-          <ChartScatter dataList={dataList} variableName={variableName} />
-          // </div>
+          <ChartScatter
+            options={options}
+            dataList={dataList}
+            variableName={variableName}
+            variableUnit={variableUnit}
+          />
         );
 
       default:

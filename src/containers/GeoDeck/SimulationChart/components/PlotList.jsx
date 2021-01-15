@@ -1,97 +1,44 @@
-import React, { useEffect, useState } from "react";
-import { connect } from "react-redux";
+import React from "react";
 import _ from "lodash";
 import PlotCard from "./PlotCard";
 import PlotCreate from "./PlotCreate";
-import {
-  fetchPlots,
-  fetchPlotTypes,
-} from "../../../../redux/actions/plotAction";
 import ChartSample from "./ChartSample";
 import PlotChart from "./PlotChart";
 import ChartSampleScatter from "./ChartSampleScatter";
 
 const PlotList = (props) => {
-  const [simulations, setSimulations] = useState([]);
-  const [plotList, setPlotList] = useState([]);
-  const {
-    plots,
-    data,
-    currentIds,
-    variableId,
-    pointId,
-    lineId,
-    isPoint,
-  } = props;
+  console.log(props);
+  const { plots, selectedPlot, setSelectedPlot } = props;
 
-  useEffect(() => {
-    setSimulations(data);
-  }, [data]);
-
-  useEffect(() => {
-    setPlotList(plots);
-  }, [plots]);
-
-  useEffect(() => {
-    props.fetchPlots();
-  }, []);
-  useEffect(() => {
-    props.fetchPlotTypes();
-  }, []);
-
-  const selectedSimulations = simulations.filter((sim) =>
-    _.includes(currentIds, sim.id)
-  );
-
-  if (!selectedSimulations) {
-    return null;
-  }
-  // console.log(selectedSimulations);
+  // if (!plots) {
+  //   return null;
+  // }
 
   return (
     <div className="simulation__plot__cards" style={{ maxHeight: "1vh" }}>
-      {/* <ChartSample />
-      <ChartSampleScatter /> */}
-      <PlotCard number={1}>
+      <PlotCard number={1} index={-2} disable={true} plotId={1}>
         <ChartSample />
       </PlotCard>
-      <PlotCard number={2}>
+      <PlotCard number={2} index={-1} disable={true} plotId={2}>
         <ChartSampleScatter />
       </PlotCard>
-      {plotList.map((plot, index) => {
+      {plots?.map((plot, index) => {
         return (
-          <PlotCard number={index + 3}>
-            <PlotChart
-              simulations={selectedSimulations}
-              variableId={variableId}
-              pointId={pointId}
-              lineId={lineId}
-              isPoint={isPoint}
-              plot={plot}
-              key={index}
-            />
+          <PlotCard
+            number={index + 3}
+            index={index}
+            selectedPlot={selectedPlot}
+            setSelectedPlot={setSelectedPlot}
+            plotId={plot.id}
+          >
+            <PlotChart plot={plot} key={index} />
           </PlotCard>
-          // <PlotCard
-          //   simulations={selectedSimulations}
-          //   variableId={variableId}
-          //   pointId={pointId}
-          //   lineId={lineId}
-          //   isPoint={isPoint}
-          //   plot={plot}
-          //   key={index}
-          // />
         );
       })}
 
-      <PlotCreate />
+      <PlotCreate setSelectedPlot={setSelectedPlot} />
     </div>
   );
 };
 
-const mapStateToProps = (state) => {
-  return { ...state.plots };
-};
-
-export default connect(mapStateToProps, { fetchPlots, fetchPlotTypes })(
-  PlotList
-);
+export default PlotList;

@@ -1,52 +1,79 @@
 import * as types from "../types";
-
-
-
-export const fetchPlotTypes = () => async (dispatch) => {
-  //   const response = await api.get("/plots");
-  const response = { data: getPlots };
-  dispatch({ type: types.FETCH_PLOT_TYPES, payload: response.data });
-};
-
-
-export const createPlotType = (formValues) => async (dispatch) => {
-  //   const response = await api.get("/plots");
-  const response = { data: formValues };
-  dispatch({ type: types.CREATE_PLOT_TYPE, payload: response.data });
-};
+import _ from "lodash";
 
 export const fetchPlots = () => async (dispatch) => {
   //   const response = await api.get("/plots");
-  const response = { data: getSimsT };
+  const plots = getPlots;
+  const newPlots = plots.map((plot) => {
+    return { ...plot, simulations: getPlotStructures(getSimsT) };
+  });
+  const response = { data: newPlots };
   dispatch({ type: types.FETCH_PLOTS, payload: response.data });
 };
 
-
-// update redux state in brawser
-export const editPlot = (editObject) => async (dispatch) => {
-  dispatch({ type: types.UPDATE_PLOT, payload: editObject });
+export const createPlot = (formValues) => async (dispatch, getState) => {
+  //   const response = await api.get("/plots");
+  const newPlot = {
+    id: _.size(getState().plots) + 1,
+    ...formValues,
+    simulations: getPlotStructures(getSimsT),
+  };
+  const response = { data: newPlot };
+  dispatch({ type: types.CREATE_PLOT, payload: response.data });
 };
 
-// update info in server -> dispatch in simulationReducer
-export const editPlotSimulation = (formValues, id) => async (
-  dispatch,
-  getState
-) => {
-  // const response = await api.patch(`/plot/${id}`, formValues); // return updated simulation object
-  const plots = getState().plots;
-  const newSimulation = plots.find((plot) => plot.id === id);
-  const response = { data: newSimulation };
-  dispatch({ type: types.UPDATE_SIMULATION, payload: response.data });
+export const editPlot = (plotId, editObject) => async (dispatch, getState) => {
+  //   const response = await api.patch(`/plots/$plotId`. editObject);
+
+  const editPlot = Object.values(getState().plots).find(
+    (plot) => plot.id === plotId
+  );
+  editPlot.simulations = {
+    ...editPlot.simulations,
+    ...editObject,
+  };
+  const response = { data: editPlot };
+
+  dispatch({ type: types.UPDATE_PLOT, payload: response.data });
 };
 
+export const deletePlot = (id) => async (dispatch, getState) => {
+  //   const response = await api.delete(`plots/id`);
+  dispatch({ type: types.DELETE_PLOT, payload: id });
+};
 
+const initialState = {
+  data: [],
+  currentIds: [],
+  variableId: null,
+  pointId: null,
+  lineId: null,
+  isPoint: true,
+};
 
+const getPlotStructures = (payload) => {
+  if (!payload) {
+    return initialState;
+  }
+
+  const payloadData = payload[0]?.data;
+
+  const payloadPoints = payloadData ? payloadData[0]?.points : null;
+  const payloadLines = payloadData ? payloadData[0]?.lines : null;
+  return {
+    data: payload,
+    currentIds: [payloadData[0]?.id],
+    variableId: payloadData ? payloadData[0]?.id : null,
+    pointId: payloadPoints ? payloadPoints[0]?.id : null,
+    lineId: payloadLines ? payloadLines[0]?.id : null,
+    isPoint: true,
+  };
+};
 
 const getPlots = [
-  // {id: 1, name: "Scatter", type: "scatter" },
-  // {id: 2, name: "Line", type: "line" },
-]
-
+  { id: 1, name: "Line", type: "line" },
+  // {id: 2, name: "Scatter", type: "Scatter" },
+];
 
 const pointsData = [
   154.6666666286,
@@ -75,7 +102,6 @@ const pointsData = [
   1393.9226864286,
   1594.7514284286,
 ];
-
 
 const pointsData1 = [
   1554.6666666286,
@@ -168,7 +194,8 @@ const getSimsT = [
     data: [
       {
         id: 1,
-        name: "Pressure",
+        name: "pressure",
+        unit: "PSI",
         points: [
           {
             id: 1,
@@ -192,7 +219,8 @@ const getSimsT = [
 
       {
         id: 2,
-        name: "Temperature",
+        name: "temperature",
+        unit: "\u00b0C",
         points: [
           {
             id: 1,
@@ -216,7 +244,9 @@ const getSimsT = [
 
       {
         id: 3,
-        name: "Saturation",
+        name: "saturation",
+        unit: "-",
+
         points: [
           {
             id: 1,
@@ -246,7 +276,8 @@ const getSimsT = [
     data: [
       {
         id: 1,
-        name: "Pressure",
+        name: "pressure",
+        unit: "PSI",
         points: [
           {
             id: 1,
@@ -276,7 +307,8 @@ const getSimsT = [
     data: [
       {
         id: 1,
-        name: "Pressure",
+        name: "pressure",
+        unit: "PSI",
         points: [
           {
             id: 1,

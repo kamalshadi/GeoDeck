@@ -64,18 +64,18 @@ const LoginForm = ({
         </div>
       </div>
       <div className="account__btns">
-        <Button
-          className="account__btn"
+        <button
+          className="geo-button selected full-width"
           type="submit"
           color="primary"
           disabled={submitting}
         >
           Sign In
-        </Button>
+        </button>
 
         <NavLink
           disabled
-          className="btn btn-outline-primary account__btn"
+          className="geo-button full-width"
           to="/register"
         >
           Create Account

@@ -9,10 +9,8 @@ const SimulationVariable = (props) => {
   const [offSet, setOffSet] = useState(1);
   const perPage = 3;
 
-  // console.log(props.simulation);
-  const { currentIds, variableId, simulation } = props;
+  const { plotId, currentIds, variableId, simulation } = props;
   const { id, name, data } = simulation;
-  // console.log(data);
   const visibleVariables = data.slice(0, offSet * perPage);
 
   const onInputClick = () => {
@@ -32,8 +30,7 @@ const SimulationVariable = (props) => {
     }
 
     const editObject = { variableId: newVariableId, currentIds: newCurrentIds };
-    // console.log(editObject);
-    props.editPlot(editObject);
+    props.editPlot(plotId, editObject);
   };
 
   const isVariableChanged = (newId) => {
@@ -64,7 +61,6 @@ const SimulationVariable = (props) => {
   };
 
   const inputStyles = () => {
-    // simulation id
     let styles = {
       width: "100%",
       background: "transparent",
@@ -77,7 +73,6 @@ const SimulationVariable = (props) => {
   };
 
   const inputClassName = () => {
-    // simulation id
     let className = "simulation__inputs__child";
     if (_.includes(currentIds, simulation.id)) {
       className = `${className} selected`;
@@ -91,7 +86,7 @@ const SimulationVariable = (props) => {
         <Input
           value={name}
           className={inputClassName()}
-          style={inputStyles()}
+          // style={inputStyles()}
           disabled={true}
         />
       </InputGroup>

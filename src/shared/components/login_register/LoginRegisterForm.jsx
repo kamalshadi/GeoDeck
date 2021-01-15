@@ -77,9 +77,9 @@ const RegisterForm = ({ handleSubmit, errorMessage }) => {
         </div>
       </div>
       <div className="account__btns register__btns">
-        <Button type="submit" color="primary" className="account__btn">
+        <button type="submit" color="primary" className="geo-button selected full-width">
           Sign Up
-        </Button>
+        </button>
       </div>
     </form>
   );

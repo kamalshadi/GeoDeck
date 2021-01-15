@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { CheckCircleFilled } from "@ant-design/icons";
+import { CheckCircleFilled, CheckSquareFilled } from "@ant-design/icons";
 import { connect } from "react-redux";
 import { changeSample } from "../../../redux/actions/threeActions";
 
@@ -9,9 +9,9 @@ const V = [
   "Saturation",
   "Porosity",
   "Permeability",
-  '',
-  '',
-  '',
+  "",
+  "",
+  "",
 ];
 const Variables = ({ changeSample, three }) => {
   const [vs, setVs] = useState(0);
@@ -35,21 +35,25 @@ const Variables = ({ changeSample, three }) => {
         let filler = Array(12 - l).fill(1);
         return (
           <div>
-            <div className="variable" onClick={() => clickHandler(index)}>
-              <CheckCircleFilled className={vs === index ? "selected" : ""} />
-              <span className={V[index] ? "variable" : "variable disabled"}>
-                &nbsp;{V[index] ? V[index] : `variable ${index + 1}`}
+            <div
+              className={V[index] ? "variable" : "variable disabled"}
+              onClick={() => (V[index] ? clickHandler(index) : null)}
+            >
+              <CheckSquareFilled className={vs === index ? "selected" : ""} />
+              <span>
+                &nbsp; {V[index] ? V[index] : `Variable ${index + 1}`}
               </span>
             </div>
+
             <div
               className={V[index + 1] ? "variable" : "variable disabled"}
-              onClick={() => clickHandler(index + 1)}
+              onClick={() => (V[index + 1] ? clickHandler(index + 1) : null)}
             >
-              <CheckCircleFilled
+              <CheckSquareFilled
                 className={vs === index + 1 ? "selected" : ""}
               />
               <span>
-                &nbsp; {V[index + 1] ? V[index + 1] : `variable ${index + 2}`}
+                &nbsp; {V[index + 1] ? V[index + 1] : `Variable ${index + 2}`}
               </span>
             </div>
           </div>

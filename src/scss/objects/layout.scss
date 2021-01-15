@@ -10,9 +10,9 @@
   @include directify($directions) {
     #{directed('padding-left')}: 0px;
   }
-  padding-top: $appbar-padding;
+  padding-top: $topber-height;
   &.exception{
-    padding-top: 60px;
+    padding-top: $topber-height;
   }
   min-height: 100vh;
   transition: padding-left 0.3s;
@@ -43,7 +43,7 @@
 
       @media screen and (min-width: 576px) {
         @include directify($directions) {
-          #{directed('padding-left')}: 60px;
+          #{directed('padding-left')}: $toolbar-width;
         }
       }
     }

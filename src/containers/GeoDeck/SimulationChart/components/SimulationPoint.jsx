@@ -4,15 +4,15 @@ import { editPlot } from "../../../../redux/actions/plotAction";
 import { connect } from "react-redux";
 
 const SimulationPoint = (props) => {
-  const { points, pointId } = props;
+  const { plotId, points, pointId } = props;
 
   const onChangePoint = (newId) => {
     if (newId !== pointId) {
       const editObject = { pointId: newId };
-      props.editPlot(editObject);
+      props.editPlot(plotId, editObject);
     }
   };
-  // console.log(points);
+
   const onChangeStart = () => {
     // console.log("Start changed!");
   };
@@ -36,18 +36,18 @@ const SimulationPoint = (props) => {
           })}
       </div>
       <div className="time-frame">
-        <h6 className="time-frame__title" style={{ fontWeight: "bold" }}>
+        <h5 className="time-frame__title" style={{ fontWeight: "bold" }}>
           Time Span
-        </h6>
+        </h5>
         <TimeFrame
           title="Start"
-          color="#2cb808"
+          // color="#2cb808"
           current={10}
           onChangeTime={onChangeStart}
         />
         <TimeFrame
           title="End"
-          color="red"
+          // color="red"
           current={40}
           onChangeTime={onChangeEnd}
         />

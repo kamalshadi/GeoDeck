@@ -1,4 +1,4 @@
-$toolbarWidth: spacing(6);
+$toolbarWidth: 55px;
 $toolbarWidthLg: spacing(8);
 $toolIconSpace: spacing(2);
 $detailbarWidth: 550px;
@@ -212,86 +212,26 @@ $controlbarHeight: 100px;
 //   }
 // }
 
-.icon {
-  &__toggle--side-bar {
-    @include icon;
-    width: 1.5em;
-    height: 1.5em;
-    border: 1px solid inherit !important;
-    &::after {
-      top: -1px;
-      right: -1px;
-      width: 0.45em;
-      height: 106%;
-      border-radius: inherit;
-      border-top-left-radius: 0;
-      border-bottom-left-radius: 0;
-    }
-  }
-
-  &__toggle--bottom-bar {
-    @include icon;
-    width: 1.5em;
-    height: 1.5em;
-    border: 1px solid inherit !important;
-    &::after {
-      bottom: -1px;
-      left: 0;
-      width: 100%;
-      height: 0.4em;
-      border-radius: inherit;
-      border-top-left-radius: 0;
-      border-top-right-radius: 0;
-    }
-  }
-
-  &__toggle--xy {
-    @include icon;
-    width: 1.5em;
-    height: 1.5em;
-    border: 1px solid inherit !important;
-    &::after {
-      content: "XY";
-      width: 0.4em;
-      height: 100%;
-      background-color: transparent;
-      left: 33%;
-    }
-  }
-}
-
 .geodeck-app {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
 
   .tool-bar {
-    min-width: spacing(6);
-    max-width: spacing(6);
+    min-width: $toolbar-width;
+    max-width: $toolbar-width;
 
     display: grid;
     justify-items: center;
     align-items: center;
     grid-template-rows: repeat(10, min-content);
-    grid-gap: 1.5rem;
+    grid-gap: 0.5rem;
     padding: 1rem 0;
     @include themify($themes) {
       background-color: lighten(themed("colorBackground"), 10%);
     }
 
     & > * {
-      // padding: $toolIconSpace;
-      cursor: pointer;
-      font-size: 1rem;
-      @include themify($themes) {
-        color: themed("colorText");
-      }
-
-      &:hover {
-        @include themify($themes) {
-          color: themed("colorBubble");
-        }
-      }
     }
   }
 
@@ -322,7 +262,7 @@ $controlbarHeight: 100px;
       // padding-top: 0px;
     }
 
-    height: calc(100vh - 60px);
+    height: calc(100vh - #{$topber-height});
     width: 100%;
     // padding-left: $toolbarWidth;
     // padding-right: $detailbarWidth;
@@ -359,22 +299,29 @@ $controlbarHeight: 100px;
         right: spacing(1);
         left: spacing(1);
         bottom: spacing(1);
+        z-index: 2;
       }
 
       .page-setting {
         // display: flex;
         & :not(:last-child) {
-          margin-right: spacing(0.5);
+          margin-right: spacing(1);
         }
 
-        setting {
+        & .setting {
+          border-radius: 4px;
+          // height: 100%;
+          cursor: pointer;
           @include themify($themes) {
+            color: $active-gray;
+            border-color: $active-gray;
             background-color: themed("colorBackgroundBody");
           }
         }
 
         .active {
           @include themify($themes) {
+            border-color: $active-gray !important;
             color: themed("colorBubble");
           }
         }
@@ -382,20 +329,33 @@ $controlbarHeight: 100px;
     }
     .control-bar {
       // height: $controlbarHeight;
+      color: $active-gray;
+      padding: 14px 0; // flex-basis = 2 * padding left/right
+      width: 100%;
+      display: grid;
+      grid-gap: 1rem;
+      grid-template-columns: 1fr min-content 1fr min-content 1fr;
+      justify-content: space-between;
+
       flex: 0 1 20%;
+      @include full-screen {
+        flex: 0 1 17%;
+      }
+      @include retina {
+        flex: 0 1 17%;
+      }
+
       @include themify($themes) {
         background-color: themed("colorBackground");
-        color: themed("colorTextAdditional");
+        // color: themed("colorTextAdditional");
       }
-      // background-color: #262626;
-      width: 100%;
-      display: flex;
 
+      & > :nth-child(2n) {
+        border-right: 1px solid $color-black;
+      }
       & > div {
         flex: 1 1 0;
-        border-right: 1px solid black;
 
-        padding: spacing(2); // flex-basis = 2 * padding left/right
         &.variables {
           flex: 1 0 calc(35% - #{spacing(4)}); // flex-basis = 2 * padding left/right
           display: flex;
@@ -404,11 +364,12 @@ $controlbarHeight: 100px;
           // padding-left: 0px;
           .variable {
             cursor: pointer;
-            font-size: 0.875rem;
+            font-size: 15px;
             &.disabled {
               cursor: not-allowed;
               @include themify($themes) {
-                color: darken(themed("colorTextAdditional"), 15%);
+                color: $inactive-gray;
+                // color: darken(themed("colorTextAdditional"), 15%);
               }
             }
           }
@@ -416,10 +377,27 @@ $controlbarHeight: 100px;
           span.anticon {
             padding-top: 2px;
             font-size: 16px;
+            position: relative;
+
+            &::before {
+              content: "";
+              display: block;
+              position: absolute;
+              background-color: currentColor;
+              width: 0.5em;
+              height: 0.5em;
+              top: 25%;
+              left: 25%;
+            }
+
             &.selected {
-              @include themify($themes) {
-                color: themed("colorBubble");
+              color: $color-primary;
+              &::before {
+                display: none;
               }
+            }
+            & svg {
+              border-radius: 0.25em; // 0.25 * parrent_font-size = 4px
             }
           }
           div {
@@ -439,31 +417,34 @@ $controlbarHeight: 100px;
         display: flex;
         width: 100%;
         flex-direction: column;
-        justify-content: center;
+        justify-content: space-between;
         & > div {
           text-align: center;
         }
         .player-buttons {
-          padding-left: 90px;
-          padding-right: 90px;
-          font-size: 32px;
           width: 100%;
           display: flex;
           justify-content: center;
-          margin-bottom: 5px;
-          & :not(:last-child) {
-            margin-right: spacing(1);
+          margin-bottom: 4px;
+
+          & span {
+            font-size: 28px !important;
+            padding: 2px !important;
           }
         }
         .player-input {
           display: flex;
           justify-content: center;
           align-items: center;
-          margin-right: 15px;
-          span {
-            font-size: 14px;
-          }
+          // margin-right: 15px;
+          // span {
+          //   font-size: 14px;
+          // }
 
+          &:first-child {
+            margin: 4px; // like margin of camera/snapshot icon
+            padding: 6px; // like padding of camera/snapshot icon
+          }
           .time-input {
             position: relative;
             input {
@@ -516,21 +497,25 @@ $controlbarHeight: 100px;
           }
         }
         .rc-slider {
-          margin-top: 15px;
+          margin-top: 8px;
         }
       }
       .simulatin-loader {
-        margin: spacing(2) spacing(6);
-        flex: 0 0 calc(25% - #{spacing(12)}); // flex-basis = 2 * padding left/right
-        @include themify($themes) {
-          border: 2px solid themed("colorTextAdditional");
-          color: themed("colorTextAdditional");
-        }
+        flex-grow: 0;
+        flex-shrink: 0;
+        margin: 0 auto;
+        max-width: 250px;
+        width: 100%;
         border-radius: spacing(2);
         display: flex;
         justify-content: center;
         align-items: center;
         cursor: pointer;
+        flex: 0 0 calc(25% - #{spacing(12)}); // flex-basis = 2 * padding left/right
+        @include themify($themes) {
+          border: 2px solid themed("colorText");
+          color: themed("colorText");
+        }
         // flex: 0 0 15%;
 
         &.active {
@@ -539,12 +524,12 @@ $controlbarHeight: 100px;
             color: fade-out(themed("colorBubble"), 0.55);
           }
         }
-        & > * {
+        & * {
           // margin-bottom: 5px;
           font-size: spacing(2.5);
           font-weight: bold;
           @include themify($themes) {
-            color: inherit;
+            color: inherit !important;
           }
         }
         .anticon {
@@ -557,6 +542,10 @@ $controlbarHeight: 100px;
 
   .detail-bar {
     flex: 0 0 20%;
+
+    @include retina {
+      flex: 0 0 25%;
+    }
     @include themify($themes) {
       background-color: lighten(themed("colorBackground"), 10%);
     }
@@ -612,6 +601,7 @@ $controlbarHeight: 100px;
       }
 
       &__card {
+        cursor: pointer;
         @include themify($themes) {
           background-color: themed("colorBackground");
         }
@@ -653,6 +643,7 @@ $controlbarHeight: 100px;
 
       &__chart {
         padding: spacing(1.5);
+        padding-top: spacing(1);
 
         @include themify($themes) {
           border: 1px solid themed("colorBackground");
@@ -719,7 +710,7 @@ $controlbarHeight: 100px;
 
         & p {
           cursor: pointer;
-
+          text-transform: capitalize;
           @include themify($themes) {
             color: themed("colorTextAdditional");
           }
@@ -768,18 +759,20 @@ $controlbarHeight: 100px;
       margin-top: spacing(2);
 
       & > :not(:last-child) {
-        margin-bottom: spacing(2);
+        margin-bottom: spacing(1);
       }
 
       &__title {
+        margin-bottom: 12px !important;
       }
 
       &__content {
         display: grid;
         grid-template-columns: minmax(40px, max-content) max-content 1fr;
-        grid-gap: 1rem;
+        grid-gap: 0.5rem;
         align-items: center;
         justify-items: start;
+
         & > * {
           @include themify($themes) {
             color: themed("colorTextAdditional");
@@ -799,13 +792,25 @@ $controlbarHeight: 100px;
     &__table {
       margin-bottom: spacing(3);
 
+      &.full-height {
+        max-height: 70vh;
+        @include retina {
+          max-height: 75vh;
+        }
+        @include full-screen {
+          max-height: 75vh;
+        }
+      }
+
       &__input {
         border: none !important;
         box-shadow: none !important;
-        @include themify($themes) {
-          background: themed("colorBackground") !important;
-          color: themed("colorText") !important;
-        }
+        background: transparent !important;
+        color: inherit !important;
+        // @include themify($themes) {
+        //   background: themed("colorBackground") !important;
+        //   color: themed("colorText") !important;
+        // }
       }
 
       & tr:hover {
@@ -823,17 +828,21 @@ $controlbarHeight: 100px;
       }
 
       & th {
+        color: white;
+        white-space: nowrap;
         @include themify($themes) {
-          color: themed("colorTextAdditional");
           background-color: themed("inboxButtonBackground");
         }
-        white-space: nowrap;
       }
 
       & td {
         background-color: transparent !important;
-        @include themify($themes) {
-          color: lighten(themed("colorTextAdditional"), 15%);
+        color: $active-gray;
+
+        &.editable {
+          padding: 0;
+          // background-color: white !important;
+          color: $color-primary !important;
         }
       }
     }
@@ -867,26 +876,34 @@ $controlbarHeight: 100px;
         margin-bottom: spacing(2);
       }
 
+      &.full-height {
+        max-height: 73vh;
+        @include full-screen {
+          max-height: 76vh;
+        }
+        @include retina {
+          max-height: 78vh;
+        }
+      }
+
       &__child {
         cursor: pointer;
-        font-size: 0.75rem;
-        border-width: 1px;
-        border-style: solid;
+        text-transform: capitalize;
+        font-size: 0.875rem;
+        color: $inactive-gray;
+        border: 1px solid $inactive-gray;
         border-radius: 14px !important;
         background-color: transparent;
-        @include themify($themes) {
-          color: themed("colorTextAdditional");
-        }
 
         &:focus {
           border-color: inherit;
           box-shadow: none;
         }
         &.selected {
-          @include themify($themes) {
-            color: themed("colorText");
-            // background-color: themed("colorBackground");
-          }
+          // color: $color-primary;
+          // border-color: $color-primary;
+          color: $active-gray;
+          border-color: #1f8705;
         }
       }
 
@@ -904,11 +921,16 @@ $controlbarHeight: 100px;
         }
 
         &.loading {
-          right: spacing(0.5);
+          right: 7px;
+          height: 100%;
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          align-items: center;
         }
 
         &.check {
-          right: spacing(1);
+          right: 7px;
         }
       }
     }
@@ -946,4 +968,8 @@ $controlbarHeight: 100px;
       }
     }
   }
+}
+
+.nav-link {
+  padding: 1rem !important;
 }

@@ -7,8 +7,6 @@ const Gallery = () => (
     <Row>
       <Col md={12}>
         <h3 className="page-title">Gallery</h3>
-        <h3 className="page-subhead subhead">All your project media files are accesible here.
-        </h3>
       </Col>
     </Row>
     <Row>

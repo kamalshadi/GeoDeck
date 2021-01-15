@@ -73,10 +73,7 @@ import PropTypes from "prop-types";
 // };
 
 const ChartLine = (props) => {
-  const { dataList, variableName, t } = props;
-
-  // console.log(name);
-  // console.log(dataList);
+  const { dataList, options, t } = props;
 
   const datasets = dataList.map(({ name, xYData, color }) => {
     return {
@@ -88,50 +85,52 @@ const ChartLine = (props) => {
       borderWidth: 1,
       // borderDash: [3, 3],
       pointBackgroundColor: color,
-      pointHoverRadius: 6,
+      pointHoverRadius: 4,
       pointHoverBorderWidth: 1,
-      pointRadius: 5,
+      pointRadius: 3,
       pointHitRadius: 10,
       data: xYData,
     };
   });
 
-  const options = {
-    scales: {
-      xAxes: [
-        {
-          scaleLabel: {
-            display: true,
-            labelString: "Time",
-          },
-          type: "linear",
-          gridLines: {
-            color: "#757575",
-            borderDash: [2, 2],
-          },
-          ticks: {
-            fontColor: "#757575",
-          },
-        },
-      ],
+  // const options = {
+  //   scales: {
+  //     xAxes: [
+  //       {
+  //         scaleLabel: {
+  //           display: true,
+  //           labelString: "Time",
+  //           fontColor: "#929292",
+  //         },
+  //         type: "linear",
+  //         gridLines: {
+  //           color: "#5E5E5E",
+  //           borderDash: [2, 2],
+  //         },
+  //         ticks: {
+  //           fontColor: "#929292",
+  //         },
+  //       },
+  //     ],
 
-      yAxes: [
-        {
-          scaleLabel: {
-            display: true,
-            labelString: variableName,
-          },
-          gridLines: {
-            color: "#757575",
-            borderDash: [3, 3],
-          },
-          ticks: {
-            fontColor: "#757575",
-          },
-        },
-      ],
-    },
-  };
+  //     yAxes: [
+  //       {
+  //         scaleLabel: {
+  //           display: true,
+  //           labelString: `${variableName} (${variableUnit})`,
+  //           fontColor: "#929292",
+  //         },
+  //         gridLines: {
+  //           color: "#5E5E5E",
+  //           borderDash: [3, 3],
+  //         },
+  //         ticks: {
+  //           fontColor: "#929292",
+  //         },
+  //       },
+  //     ],
+  //   },
+  // };
 
   const lineData = {
     labels: [],

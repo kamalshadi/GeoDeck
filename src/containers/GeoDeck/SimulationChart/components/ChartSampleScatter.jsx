@@ -98,14 +98,14 @@ class ChartSampleScatter extends Component {
         label: "Simulation",
         fill: false,
         lineTension: 0.3,
-        backgroundColor: "#FF6384",
-        borderColor: "#FF6384",
+        backgroundColor: "#FFCE56",
+        borderColor: "#FFCE56",
         // borderWidth: 1,
         // borderDash: [3, 3],
-        pointBackgroundColor: "#FF6384",
-        pointHoverRadius: 3,
+        pointBackgroundColor: "#FFCE56",
+        pointHoverRadius: 4,
         pointHoverBorderWidth: 1,
-        pointRadius: 2,
+        pointRadius: 3,
         pointHitRadius: 10,
         data: rawData,
       },
@@ -117,10 +117,10 @@ class ChartSampleScatter extends Component {
     };
 
     const options = {
-      layout: {
-        padding: {
-          top: 20,
-        },
+      legend: {
+        labels: {
+          fontColor: "#929292",
+        }
       },
       scales: {
         xAxes: [
@@ -128,9 +128,17 @@ class ChartSampleScatter extends Component {
             scaleLabel: {
               display: true,
               labelString: "Time",
+              fontColor: "#929292",
             },
             type: "linear",
             position: "bottom",
+            gridLines: {
+              color: "#5E5E5E",
+              borderDash: [1, 1],
+            },
+            ticks: {
+              fontColor: "#929292",
+            },
           },
         ],
 
@@ -138,12 +146,21 @@ class ChartSampleScatter extends Component {
           {
             scaleLabel: {
               display: true,
-              labelString: "Temperature",
+              labelString: "Temperature (\u00b0C)",
+              fontColor: "#929292",
+            },
+            gridLines: {
+              color: "#5E5E5E",
+              borderDash: [1, 1],
+            },
+            ticks: {
+              fontColor: "#929292",
             },
           },
         ],
       },
     };
+
     return (
       <React.Fragment>
         <Scatter data={scatterData} options={options} />

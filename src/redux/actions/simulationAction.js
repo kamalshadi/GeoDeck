@@ -33,6 +33,7 @@ export const createSimulation = (formValues) => async (dispatch, getState) => {
       name: `simulation ${size}`,
       color: "#1f8705",
       isLoaded: true,
+      editable: true,
       parameters: getParameters,
     },
   };
@@ -129,6 +130,7 @@ const getSims = {
       name: "simulation 1",
       color: "#1f8705",
       isLoaded: true,
+      editable: false,
       parameters: getParameters,
     },
     {
@@ -136,6 +138,7 @@ const getSims = {
       name: "simulation 2",
       color: "#2d9dbe",
       isLoaded: true,
+      editable: false,
       parameters: getParameters,
     },
     {
@@ -143,6 +146,7 @@ const getSims = {
       name: "simulation 3",
       color: "#b81350",
       isLoaded: true,
+      editable: false,
       parameters: getParameters,
     },
   ],

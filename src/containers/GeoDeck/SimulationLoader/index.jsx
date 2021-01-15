@@ -5,7 +5,9 @@ const Simulations = ({ tab, setTab }) => {
       className={`simulatin-loader ${tab === 3 ? "active" : ""} `}
       onClick={() => setTab(3)}
     >
-      <h5>Simulations</h5>
+      <div>
+        <h5>Simulations</h5>
+      </div>
     </div>
   );
 };

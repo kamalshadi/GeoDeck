@@ -2,15 +2,32 @@ import React from "react";
 import { Card, CardBody } from "reactstrap";
 import { withTranslation } from "react-i18next";
 import PropTypes from "prop-types";
+import ChartSetting from "./ChartSetting";
 
-const PlotCard = ({ t, children, number }) => (
-  <div className="simulation__plot__card">
+const PlotCard = ({
+  t,
+  index,
+  plotId,
+  currentPlotId,
+  selectedPlot,
+  setSelectedPlot,
+  children,
+  number,
+  disable,
+}) => (
+  <div
+    className="simulation__plot__card"
+    onClick={() => (!disable ? setSelectedPlot(index) : "")} // disable: for two first charts
+    style={selectedPlot === index ? { border: "1px solid #F2AB1f" } : {}}
+  >
     <div className="simulation__plot__chart">
       <Card>
         <CardBody>
           <div className="d-flex justify-content-between">
-            <h5 className="bold-text">{`Plot ${number}`}</h5>
-            <h5 className="bold-text">export</h5>
+            <h5 className="bold-text d-flex align-items-center">{`Plot ${number}`}</h5>
+            <h5 className="bold-text">
+              <ChartSetting plotId={plotId} currentPlotId={currentPlotId} setSelectedPlot={setSelectedPlot}/>
+            </h5>
           </div>
           {children}
         </CardBody>
@@ -24,7 +41,6 @@ PlotCard.propTypes = {
 };
 
 export default withTranslation("common")(PlotCard);
-
 
 // {plot.type === "scatter" ? (
 //   <React.Fragment>

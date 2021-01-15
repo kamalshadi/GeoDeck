@@ -4,14 +4,8 @@ import SimulationPoint from "./SimulationPoint";
 import SimulationLine from "./SimulationLine";
 
 const SimulationLinePoint = (props) => {
-  const { currentVariable, pointId, lineId } = props;
+  const { plotId, currentVariable, pointId, lineId } = props;
   const [tab, setTab] = useState(0);
-
-  // console.log(currentVariable);
-  // const [current, setCurrent] = useState(0);
-
-  // console.log(current);
-  // console.log(_.values(data)[current]);
 
   const renderTabs = () => (
     <div className="simulation__plot__panel__tabs">
@@ -36,6 +30,7 @@ const SimulationLinePoint = (props) => {
         return (
           !!currentVariable?.points && (
             <SimulationPoint
+              plotId={plotId}
               pointId={pointId}
               points={currentVariable?.points}
             />
@@ -44,7 +39,11 @@ const SimulationLinePoint = (props) => {
       case 1:
         return (
           !!currentVariable?.lines && (
-            <SimulationLine lineId={lineId} lines={currentVariable?.lines} />
+            <SimulationLine
+              plotId={plotId}
+              lineId={lineId}
+              lines={currentVariable?.lines}
+            />
           )
         );
       default:

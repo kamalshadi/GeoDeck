@@ -9,6 +9,10 @@
 
 .modal-dialog {
   max-width: 385px;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  margin: auto !important;
 }
 
 .modal-content {
@@ -18,9 +22,11 @@
   position: relative;
   padding: 50px 40px 60px 40px;
   text-align: center;
-  background-color: #232329;
+  background-color: #262626;
   @include themify($themes) {
     background-color: themed("colorBackground");
+  }
+  @include themify($themes) {
     color: themed("colorText");
   }
 }
@@ -160,13 +166,14 @@
 
   .modal__header {
     color: #ffffff;
-    padding: 15px 20px;
+    padding: 30px 35px;
     position: relative;
   }
 
   .modal__title {
     margin: 0;
-    font-weight: 300;
+    font-weight: 800;
+    color: $color-primary;
   }
 
   .modal__close-btn {
@@ -185,7 +192,7 @@
   }
 
   .modal__footer {
-    margin-bottom: 40px;
+    margin-bottom: 30px;
     justify-content: flex-end;
 
     @include directify($directions) {
@@ -194,7 +201,9 @@
   }
 
   &.modal-dialog--primary .modal__header {
-    background-color: $color-blue;
+    @include themify($themes) {
+      background-color: themed("colorBackground");
+    }
   }
 
   &.modal-dialog--success .modal__header {

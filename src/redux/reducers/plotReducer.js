@@ -1,66 +1,60 @@
 import _ from "lodash";
-import {
-  FETCH_PLOTS,
-  UPDATE_PLOT,
-  FETCH_PLOT_TYPES,
-  CREATE_PLOT_TYPE,
-} from "../types";
+import { FETCH_PLOTS, CREATE_PLOT, UPDATE_PLOT, DELETE_PLOT } from "../types";
 
-const initialState = {
-  data: [],
-  currentIds: [],
-  variableId: null,
-  pointId: null,
-  lineId: null,
-  isPoint: true,
-  plots: [],
-};
+const initialState = [
+  {
+    name: "",
+    type: "",
+    simulations: {
+      data: [],
+      currentIds: [],
+      variableId: null,
+      pointId: null,
+      lineId: null,
+      isPoint: true,
+    },
+  },
+];
 
-export default (state = initialState, action) => {
+export default (state = [], action) => {
   switch (action.type) {
-    case FETCH_PLOT_TYPES: {
-      return {
-        ...state,
-        plots: action.payload,
-      };
-    }
-    case CREATE_PLOT_TYPE: {
-      const oldPlots = state.plots;
-      return {
-        ...state,
-        current: action.payload.id,
-        plots: [...oldPlots, action.payload],
-      };
-    }
     case FETCH_PLOTS: {
-      const fetchedData = getPlots(action.payload);
-      console.log(fetchedData);
       return {
         ...state,
-        ...fetchedData,
+        ..._.mapKeys(action.payload, "id"),
       };
+    }
+    case CREATE_PLOT: {
+      return { ...state, [action.payload.id]: action.payload };
     }
     case UPDATE_PLOT: {
-      return { ...state, ...action.payload };
+      return { ...state, [action.payload.id]: action.payload };
     }
+    case DELETE_PLOT:
+      return _.omit(state, action.payload);
     default:
       return state;
   }
 };
 
-const getPlots = (payload) => {
-  const payloadData = payload[0]?.data;
-  const payloadPoints = payloadData ? payloadData[0]?.points : null;
-  const payloadLines = payloadData ? payloadData[0]?.lines : null;
-  return {
-    data: payload,
-    currentIds: [payloadData[0]?.id],
-    variableId: payloadData ? payloadData[0]?.id : null,
-    pointId: payloadPoints ? payloadPoints[0]?.id : null,
-    lineId: payloadLines ? payloadLines[0]?.id : null,
-    isPoint: true,
-  };
-};
+// const getPlots = (payload) => {
+//   if (!payload) {
+//     return initialState;
+//   }
+
+//   const payloadData = payload[0]?.data;
+
+//   const payloadPoints = payloadData ? payloadData[0]?.points : null;
+//   const payloadLines = payloadData ? payloadData[0]?.lines : null;
+//   return {
+//     data: payload,
+//     currentIds: [payloadData[0]?.id],
+//     variableId: payloadData ? payloadData[0]?.id : null,
+//     pointId: payloadPoints ? payloadPoints[0]?.id : null,
+//     lineId: payloadLines ? payloadLines[0]?.id : null,
+//     isPoint: true,
+//   };
+// };
 
 // import _ from 'lodash';
 // import {
