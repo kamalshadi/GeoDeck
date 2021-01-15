@@ -28,7 +28,7 @@ const renderTextField = ({
         input.onChange(e.target.value);
       }}
       InputLabelProps={{
-        style: { color: "#5E5E5E" },
+        style: { color: "#929292" },
       }}
       {...custom}
     />

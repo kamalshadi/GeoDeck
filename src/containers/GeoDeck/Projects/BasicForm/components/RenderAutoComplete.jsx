@@ -48,7 +48,7 @@ const RenderAutoComplete = ({
           className="material-form__field"
           variant="standard"
           InputLabelProps={{
-            style: { color: "#5E5E5E" },
+            style: { color: "#929292" },
           }}
           error={touched && invalid}
           helperText={touched && error}

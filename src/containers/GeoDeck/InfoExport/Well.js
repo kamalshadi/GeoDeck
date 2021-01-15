@@ -2,25 +2,25 @@ import React from "react";
 import { ResponsiveScatterPlot } from "@nivo/scatterplot";
 
 const theme = {
-  textColor: "#929292",
+  textColor: "#d5d5d5",
   fontSize: 12,
   axis: {
     domain: {
       line: {
-        stroke: "#929292",
+        stroke: "#d5d5d5",
         strokeWidth: 1,
       },
     },
     ticks: {
       line: {
-        stroke: "#929292",
+        stroke: "#d5d5d5",
         strokeWidth: 1,
       },
     },
   },
   grid: {
     line: {
-      stroke: "#929292",
+      stroke: "#d5d5d5",
       strokeWidth: 0,
     },
   },

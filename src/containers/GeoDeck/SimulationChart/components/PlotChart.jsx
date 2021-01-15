@@ -64,7 +64,7 @@ const PlotChart = (props) => {
   const options = {
     legend: {
       labels: {
-        fontColor: "#929292",
+        fontColor: "#d5d5d5",
       }
     },
     scales: {
@@ -73,16 +73,16 @@ const PlotChart = (props) => {
           scaleLabel: {
             display: true,
             labelString: "Time",
-            fontColor: "#929292",
+            fontColor: "#d5d5d5",
           },
           type: "linear",
           position: "bottom",
           gridLines: {
-            color: "#5E5E5E",
+            color: "#929292",
             borderDash: [1, 1],
           },
           ticks: {
-            fontColor: "#929292",
+            fontColor: "#d5d5d5",
           },
         },
       ],
@@ -92,14 +92,14 @@ const PlotChart = (props) => {
           scaleLabel: {
             display: true,
             labelString: `${variableName} (${variableUnit})`,
-            fontColor: "#929292",
+            fontColor: "#d5d5d5",
           },
           gridLines: {
-            color: "#5E5E5E",
+            color: "#929292",
             borderDash: [1, 1],
           },
           ticks: {
-            fontColor: "#929292",
+            fontColor: "#d5d5d5",
           },
         },
       ],
