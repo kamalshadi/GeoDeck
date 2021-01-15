@@ -15,7 +15,7 @@ import SimulationLoader from "../GeoDeck/SimulationLoader";
 // import { withTranslation } from 'react-i18next';
 
 const VisDash = () => {
-  const [tab, setTab] = useState(1);
+  const [tab, setTab] = useState(0);
 
   const isTabsDisable = tab !== 0;
   const [toggleDetailBar, setToggleDetailBar] = useState(false);
