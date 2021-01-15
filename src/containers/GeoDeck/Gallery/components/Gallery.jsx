@@ -258,7 +258,7 @@ class Gallery extends Component {
         isOpen={lightboxIsOpen}
         toggle={this.closeLightbox}
         className="modal-dialog--primary modal-dialog--carousel"
-        style={{ margin: 0}}
+        style={{ margin: 0 }}
       >
         <div className="modal__body">
           <div className="modal__header">
@@ -302,20 +302,22 @@ class Gallery extends Component {
     }
 
     return (
-      <div className="gallery">
+      <React.Fragment>
         {this.renderFilters()}
 
-        {items.map((item, index) => (
-          <button
-            className="gallery__img-wrap"
-            key={`gallery-item-${index} `}
-            onClick={(event) => this.openLightbox(index, event)}
-          >
-            <CardGallery item={item} />
-          </button>
-        ))}
-        {this.renderModal()}
-      </div>
+        <div className="gallery">
+          {items.map((item, index) => (
+            <button
+              className="gallery__img-wrap"
+              key={`gallery-item-${index} `}
+              onClick={(event) => this.openLightbox(index, event)}
+            >
+              <CardGallery item={item} />
+            </button>
+          ))}
+          {this.renderModal()}
+        </div>
+      </React.Fragment>
     );
   }
 }

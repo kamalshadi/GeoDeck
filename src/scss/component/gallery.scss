@@ -1,7 +1,7 @@
 .gallery {
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fit , minmax(18rem, 1fr));
+  grid-gap: 2rem;
 
   img {
     width: 100%;
@@ -68,29 +68,29 @@
 
 .gallery__img-wrap {
   // width: 100%;
-  flex: 0 1 100%;
+  // flex: 0 1 100%;
   overflow: hidden;
   cursor: pointer;
   border: none;
   padding: 0;
-  margin: spacing(1.5);
+  // margin: spacing(1.5);
   background-color: transparent;
   box-shadow: rgba(242, 172, 31, 0.24) 0px 0px 6px -1px,
     rgba(242, 172, 31, 0.06) 0px 2px 4px -1px;
 
   @include respond(md) {
-    flex: 0 1 calc(50% - 32px);
-    margin: spacing(2);
+    // flex: 0 1 calc(50% - 32px);
+    // margin: spacing(2);
   }
 
   @include respond(lg) {
-    flex: 0 1 calc(33.33% - 32px);
-    margin: spacing(2);
+    // flex: 0 1 calc(33.33% - 32px);
+    // margin: spacing(2);
   }
 
   @include respond(xl) {
-    flex: 0 1 calc(25% - 32px);
-    margin: spacing(2);
+    // flex: 0 1 calc(25% - 32px);
+    // margin: spacing(2);
   }
 }
 
