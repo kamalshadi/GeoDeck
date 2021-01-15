@@ -2,25 +2,25 @@ import React from 'react'
 import { ResponsiveScatterPlot } from '@nivo/scatterplot'
 
 const theme = {
-    textColor: '#ffffff',
+    textColor: '#929292',
     fontSize: 11,
     axis: {
         domain: {
             line: {
-                stroke: '#fff',
+                stroke: '#929292',
                 strokeWidth: 1
             }
         },
         ticks: {
             line: {
-                stroke: '#fff',
+                stroke: '#929292',
                 strokeWidth: 1
             }
         }
     },
     grid: {
         line: {
-            stroke: "#fff",
+            stroke: "#929292",
             strokeWidth: 0
         }
     }
@@ -92,7 +92,7 @@ export default () => (
             tickRotation: 0,
             legend: 'Northing',
             legendPosition: 'middle',
-            legendOffset: -60
+            legendOffset: -40
         }}
         legends={[
         ]}
