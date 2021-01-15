@@ -5,25 +5,25 @@ import tempData from './temp_point.json'
 import { ResponsiveLine } from '@nivo/line'
 
 const theme = {
-    textColor: '#ffffff',
+    textColor: '#929292',
     fontSize: 11,
     axis: {
         domain: {
             line: {
-                stroke: '#fff',
+                stroke: '#929292',
                 strokeWidth: 1
             }
         },
         ticks: {
             line: {
-                stroke: '#fff',
+                stroke: '#929292',
                 strokeWidth: 1
             }
         }
     },
     grid: {
         line: {
-            stroke: "#fff",
+            stroke: "#929292",
             strokeWidth: 0
         }
     }
