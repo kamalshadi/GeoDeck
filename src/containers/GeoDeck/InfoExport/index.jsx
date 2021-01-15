@@ -35,7 +35,7 @@ class DefaultTabsBorderedTop extends Component {
     const { activeTab } = this.state;
 
     return (
-            <div className="tabs tabs--bordered-bottom">
+            <div className="tabs tabs--bordered-bottom nav-fill">
               <div className="tabs__wrap">
                 <Nav tabs>
                   <NavItem>

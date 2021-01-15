@@ -1,15 +1,21 @@
-import React from 'react';
-import {
-  Card, CardBody, Col, Button, ButtonToolbar,
-} from 'reactstrap';
-import { Field, reduxForm } from 'redux-form';
-import TextField from '@material-ui/core/TextField';
-import MenuItem from '@material-ui/core/MenuItem';
-import { withTranslation } from 'react-i18next';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
+import { withTranslation } from "react-i18next";
+import { Card, CardBody, Col, Button, ButtonToolbar } from "reactstrap";
+import { Field, reduxForm } from "redux-form";
+import TextField from "@material-ui/core/TextField";
+import MenuItem from "@material-ui/core/MenuItem";
+import MaterialTextField from "../../../shared/components/form/material/MaterialTextField";
+import { Grid } from "@material-ui/core";
 
 const renderTextField = ({
-  input, label, meta: { touched, error }, children, select, type, multiline,
+  input,
+  label,
+  meta: { touched, error },
+  children,
+  select,
+  type,
+  multiline,
 }) => (
   <TextField
     className="material-form__field"
@@ -25,8 +31,8 @@ const renderTextField = ({
       input.onChange(e.target.value);
     }}
     InputLabelProps={{
-     style: { color: '#999' },
-   }}
+      style: { color: "#999" },
+    }}
   />
 );
 
@@ -47,7 +53,7 @@ renderTextField.defaultProps = {
   meta: null,
   select: false,
   children: [],
-  type: 'text',
+  type: "text",
   multiline: false,
 };
 
@@ -59,7 +65,7 @@ const AnimatedLineFormWithLabels = ({ handleSubmit, reset, t }) => (
           <div>
             <Field
               name="username"
-              component={renderTextField}
+              component={MaterialTextField}
               placeholder="title"
               label="File name"
             />
@@ -67,7 +73,7 @@ const AnimatedLineFormWithLabels = ({ handleSubmit, reset, t }) => (
           <div>
             <Field
               name="url"
-              component={renderTextField}
+              component={MaterialTextField}
               placeholder="text..."
               label="Description"
             />
@@ -75,21 +81,31 @@ const AnimatedLineFormWithLabels = ({ handleSubmit, reset, t }) => (
           <div>
             <Field
               name="select"
-              component={renderTextField}
+              component={MaterialTextField}
               select
               label="File type"
             >
-              <MenuItem className="material-form__option" value="one">JPG</MenuItem>
-              <MenuItem className="material-form__option" value="two">PNG</MenuItem>
-              <MenuItem className="material-form__option" value="three">TIFF</MenuItem>
-              <MenuItem className="material-form__option" value="four">PDF</MenuItem>
-              <MenuItem className="material-form__option" value="five">MP4</MenuItem>
+              <MenuItem className="material-form__option" value="one">
+                JPG
+              </MenuItem>
+              <MenuItem className="material-form__option" value="two">
+                PNG
+              </MenuItem>
+              <MenuItem className="material-form__option" value="three">
+                TIFF
+              </MenuItem>
+              <MenuItem className="material-form__option" value="four">
+                PDF
+              </MenuItem>
+              <MenuItem className="material-form__option" value="five">
+                MP4
+              </MenuItem>
             </Field>
           </div>
           <div>
             <Field
               name="textarea"
-              component={renderTextField}
+              component={MaterialTextField}
               placeholder="Type gallery note here"
               multiline
               rowsMax="4"
@@ -97,7 +113,10 @@ const AnimatedLineFormWithLabels = ({ handleSubmit, reset, t }) => (
             />
           </div>
         </form>
-        <Button outline color="primary">Export</Button> <Button outline color="primary">Add to Gallery</Button>
+        <div className="export__buttons">
+          <button className="geo-button full-width selected">Export</button>
+          <button className="geo-button full-width ">Add to Gallery</button>
+        </div>
       </CardBody>
     </Card>
   </Col>
@@ -110,5 +129,5 @@ AnimatedLineFormWithLabels.propTypes = {
 };
 
 export default reduxForm({
-  form: 'floating_labels_form', // a unique identifier for this form
-})(withTranslation('common')(AnimatedLineFormWithLabels));
+  form: "floating_labels_form", // a unique identifier for this form
+})(withTranslation("common")(AnimatedLineFormWithLabels));
