@@ -66,12 +66,12 @@ const data = [
 ];
 
 export default () => (
-  <div style={{ height: "350px" }}>
+  <div style={{ height: "300px" }}>
     <ResponsiveScatterPlot
       data={data}
       theme={theme}
       // margin={{ top: 50, right: 10, bottom: 50, left: 60 }}
-      margin={{ top: 20, right: 40, bottom: 40, left: 60 }}
+      margin={{ top: 20, right: 20, bottom: 40, left: 60 }}
       // margin={{ top: 40, right: 40, bottom: 60, left: 65 }}
       xScale={{ type: "linear", min: 0, max: 150 }}
       xFormat={function (e) {

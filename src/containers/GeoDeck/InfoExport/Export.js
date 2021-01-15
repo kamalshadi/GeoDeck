@@ -114,7 +114,7 @@ const AnimatedLineFormWithLabels = ({ handleSubmit, reset, t }) => (
           </div>
         </form>
         <div className="export__buttons">
-          <button className="geo-button full-width selected">Export</button>
+          <button className="geo-button full-width">Export</button>
           <button className="geo-button full-width ">Add to Gallery</button>
         </div>
       </CardBody>

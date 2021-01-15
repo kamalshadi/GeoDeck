@@ -224,6 +224,7 @@ $controlbarHeight: 100px;
     display: grid;
     justify-items: center;
     align-items: center;
+    align-content: start;
     grid-template-rows: repeat(10, min-content);
     grid-gap: 0.5rem;
     padding: 1rem 0;
@@ -545,7 +546,7 @@ $controlbarHeight: 100px;
 
     display: grid;
     max-height: calc(100vh - #{$topber-height});
-    grid-template-rows: 1fr 1fr;
+    grid-template-rows: min-content 1fr;
     grid-gap: spacing(3);
 
     @include retina {
@@ -561,6 +562,12 @@ $controlbarHeight: 100px;
     //     padding: spacing(1) spacing(2) 0;
     //   }
     // }
+    &:first-child {
+      padding: spacing(1);
+      @include retina {
+        padding: spacing(0) spacing(1);
+      }
+    }
     & > * {
       padding: spacing(1);
       @include retina {

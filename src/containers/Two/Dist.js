@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 
 const theme = {
   textColor: "#929292",
-  fontSize: 11,
+  fontSize: 12,
   axis: {
     domain: {
       line: {
@@ -83,19 +83,19 @@ const dataT = [
 // website examples showcase many properties,
 // you'll often use just a few of them.
 const Dist = ({ three }) => (
-  <div style={{ height: "350px" }}>
+  <div style={{ height: "300px" }}>
     <ResponsiveBar
       data={three.sample.variable === "Temprature" ? dataT : data}
       theme={theme}
       keys={["burger"]}
       indexBy="country"
-      margin={{ top: 20, right: 40, bottom: 40, left: 60 }}
+      margin={{ top: 20, right: 20, bottom: 60, left: 60 }}
       // margin={{ top: 40, right: 40, bottom: 60, left: 65 }}
 
       padding={0.3}
       valueScale={{ type: "linear" }}
       indexScale={{ type: "band", round: true }}
-      colors={["#FFCE56", "#ff8282", "#63ff76", "36A2EB"]}
+      colors={["#00a1ff7a", "#60d9377a", "#ed220d7a", "feae00"]}
       defs={[
         {
           id: "dots",
@@ -139,7 +139,7 @@ const Dist = ({ three }) => (
         tickRotation: 0,
         legend: three.sample.variable || "Pressure",
         legendPosition: "middle",
-        legendOffset: 36,
+        legendOffset: 40,
       }}
       axisLeft={{
         tickSize: 5,

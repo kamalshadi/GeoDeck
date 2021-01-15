@@ -97,91 +97,91 @@ const MyResponsiveLine = ({ three }) => {
   const m = minMax(three.sample.variable !== "Temprature");
 
   return (
-    <ResponsiveLine
-      data={three.sample.variable === "Temprature" ? tempData : data}
-      // margin={{ top: 10, right: 0, bottom: 40, left: 50 }}
-      // margin={{ top: 50, right: 10, bottom: 50, left: 60 }}
-      margin={{ top: 40, right: 40, bottom: 40, left: 60 }}
-      xScale={{ type: "point" }}
-      yScale={{
-        type: "linear",
-        min: m[0],
-        max: m[1],
-        stacked: false,
-        reverse: false,
-      }}
-      yFormat=" >-.2f"
-      axisTop={null}
-      axisRight={null}
-      axisBottom={{
-        orient: "bottom",
-        tickSize: 5,
-        tickPadding: 5,
-        tickRotation: 0,
-        legend: three.activeWidget === "line" ? "Y (meter)" : "Time (frame)",
-        legendOffset: 36,
-        legendPosition: "middle",
-      }}
-      axisLeft={{
-        orient: "left",
-        tickSize: 5,
-        tickPadding: 5,
-        tickRotation: 0,
-        legend: three.sample.variable || "Pressure",
-        legendOffset: -40,
-        legendPosition: "middle",
-      }}
-      pointSize={4}
-      pointColor={{ theme: "background" }}
-      pointBorderWidth={2}
-      pointBorderColor={{ from: "serieColor" }}
-      pointLabelYOffset={-12}
-      useMesh={true}
-      theme={theme}
-      colors={["#FFCE56", "#4BC0C0", "#ff8282", "#63ff76", "36A2EB"]}
-      tooltip={({ point }) => {
-        return (
-          <div
-            style={{
-              background: "#000",
-              padding: "12px 16px",
-            }}
-          >
-            {`T: ${point.data.Temprature.toFixed(2)}`}
-            <br />
-            {`P: ${point.data.Pressure.toFixed(2)}`}
-            <br />
-            {`Saturation: ${point.data.Saturation.toFixed(2)}`}
-          </div>
-        );
-      }}
-      legends={[
-        {
-          anchor: "bottom",
-          direction: "row",
-          justify: false,
-          translateX: 100,
-          translateY: 0,
-          itemsSpacing: 0,
-          itemDirection: "left-to-right",
-          itemWidth: 80,
-          itemHeight: 20,
-          itemOpacity: 0.75,
-          symbolSize: 12,
-          symbolShape: "circle",
-          symbolBorderColor: "rgba(0, 0, 0, .5)",
-          effects: [
-            {
-              on: "hover",
-              style: {
-                itemBackground: "rgba(0, 0, 0, .03)",
-                itemOpacity: 1,
+    <div style={{ height: "300px" }}>
+      <ResponsiveLine
+        data={three.sample.variable === "Temprature" ? tempData : data}
+        // margin={{ top: 10, right: 0, bottom: 40, left: 50 }}
+        // margin={{ top: 50, right: 10, bottom: 50, left: 60 }}
+        margin={{ top: 20, right: 20, bottom: 60, left: 60 }}
+        xScale={{ type: "point" }}
+        yScale={{
+          type: "linear",
+          min: m[0],
+          max: m[1],
+          stacked: false,
+          reverse: false,
+        }}
+        yFormat=" >-.2f"
+        axisTop={null}
+        axisRight={null}
+        axisBottom={{
+          tickSize: 5,
+          tickPadding: 5,
+          tickRotation: 0,
+          legend: three.activeWidget === "line" ? "Y (meter)" : "Time (frame)",
+          legendPosition: "middle",
+          legendOffset: 40,
+        }}
+        axisLeft={{
+          tickSize: 5,
+          tickPadding: 5,
+          tickRotation: 0,
+          legend: three.sample.variable || "Pressure",
+          legendPosition: "middle",
+          legendOffset: -50,
+        }}
+        pointSize={4}
+        pointColor={{ theme: "background" }}
+        pointBorderWidth={2}
+        pointBorderColor={{ from: "serieColor" }}
+        pointLabelYOffset={-12}
+        useMesh={true}
+        theme={theme}
+        colors={["#00a1ff7a", "#60d9377a", "#ed220d7a", "feae00"]}
+        tooltip={({ point }) => {
+          return (
+            <div
+              style={{
+                background: "#000",
+                padding: "12px 16px",
+              }}
+            >
+              {`T: ${point.data.Temprature.toFixed(2)}`}
+              <br />
+              {`P: ${point.data.Pressure.toFixed(2)}`}
+              <br />
+              {`Saturation: ${point.data.Saturation.toFixed(2)}`}
+            </div>
+          );
+        }}
+        legends={[
+          {
+            anchor: "bottom",
+            direction: "row",
+            justify: false,
+            translateX: 100,
+            translateY: 0,
+            itemsSpacing: 0,
+            itemDirection: "left-to-right",
+            itemWidth: 80,
+            itemHeight: 20,
+            itemOpacity: 0.75,
+            symbolSize: 12,
+            symbolShape: "circle",
+            symbolBorderColor: "rgba(0, 0, 0, .5)",
+            effects: [
+              {
+                on: "hover",
+                style: {
+                  itemBackground: "rgba(0, 0, 0, .03)",
+                  itemOpacity: 1,
+                },
               },
-            },
-          ],
-        },
-      ]}
-    />
+            ],
+          },
+        ]}
+      />
+    </div>
   );
 };
 

@@ -25,7 +25,7 @@ const chartForm = (s) => {
 }
 
 const LineSeriesWithManyColors = ({ three }) => (
-  <div style={{ height:"350px", marginBottom:'25px' }}>
+  <div style={{ height: "360px"}}>
     {chartForm(three.activeWidget)}
   </div>
 )
