@@ -6,7 +6,9 @@ import ChartScatter from "./ChartScatter";
 import { getVariableUnit } from "./hepler";
 
 // const backgroundColor = ["#FF6384", "#4BC0C0", "#FFCE56", "#E7E9ED", "#36A2EB"];
-const backgroundColor = ["#00a1ff7a", "#60d937", "#ed220d", "36A2EB"];
+// const backgroundColor = ["#00a1ff7a", "#60d937", "#ed220d", "36A2EB"];
+const backgroundColor = ["#00a1ff80", "#60d93780", "#ed220d80", "feae0080"];
+
 
 const PlotChart = (props) => {
   const { plot } = props;

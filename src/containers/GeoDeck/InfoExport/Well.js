@@ -84,7 +84,8 @@ export default () => (
       blendMode={null} //"multiply"
       axisTop={null}
       axisRight={null}
-      colors={["#FFCE56", "#4BC0C0", "#ff8282", "#63ff76", "36A2EB"]}
+      colors={["#00a1ff80", "#60d93780", "#ed220d80", "feae0080"]}
+      // colors={["#FFCE56", "#4BC0C0", "#ff8282", "#63ff76", "36A2EB"]}
       axisBottom={{
         orient: "bottom",
         tickSize: 5,

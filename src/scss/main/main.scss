@@ -543,6 +543,8 @@ $controlbarHeight: 100px;
 
   .detail-bar {
     flex: 0 0 20%;
+    padding: spacing(1);
+
 
     display: grid;
     max-height: calc(100vh - #{$topber-height});
@@ -557,21 +559,11 @@ $controlbarHeight: 100px;
     @include themify($themes) {
       background-color: lighten(themed("colorBackground"), 10%);
     }
-    // & :first-child {
-    //   & > p {
-    //     padding: spacing(1) spacing(2) 0;
-    //   }
-    // }
-    &:first-child {
-      padding: spacing(1);
-      @include retina {
-        padding: spacing(0) spacing(1);
-      }
-    }
-    & > * {
-      padding: spacing(1);
-      @include retina {
-        padding: spacing(2);
+
+    .detail-chart {
+      & > p {
+        padding: spacing(1);
+        padding-bottom: 0;
       }
     }
   }
@@ -1058,5 +1050,11 @@ $controlbarHeight: 100px;
     &.auto-height {
       height: auto !important;
     }
+  }
+}
+
+.nivo-tooltop {
+  & > * {
+    color: $active-gray;
   }
 }

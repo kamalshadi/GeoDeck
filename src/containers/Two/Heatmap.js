@@ -10,7 +10,7 @@ const HeatMap = () => {
   }, false)
 
   return (
-    <div style={{height: "100%"}} className="d-flex align-items-center justifity-content-conter">
+    <div style={{height: "calc( 100% - 40px )"}} className="d-flex align-items-center justifity-content-conter">
       <img src={`${process.env.PUBLIC_URL}/img/gem/gem_0_${frame}.png`} width='400px' alt="heat-map" />
     </div>
   )
