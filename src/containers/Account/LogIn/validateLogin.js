@@ -5,7 +5,7 @@ const validate = (values) => {
   const requiredFields = [
     "username",
     "password",
-    "remember_me",
+    // "remember_me",
   ];
 
   if (values["username"] !== "demo") {
