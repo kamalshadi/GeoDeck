@@ -6,7 +6,7 @@ import { ResponsiveLine } from "@nivo/line";
 
 const theme = {
   textColor: "#929292",
-  fontSize: 11,
+  fontSize: 12,
   axis: {
     domain: {
       line: {
