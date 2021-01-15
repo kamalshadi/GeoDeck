@@ -71,7 +71,7 @@ export default () => (
       data={data}
       theme={theme}
       // margin={{ top: 50, right: 10, bottom: 50, left: 60 }}
-      margin={{ top: 40, right: 40, bottom: 40, left: 60 }}
+      margin={{ top: 20, right: 40, bottom: 40, left: 60 }}
       // margin={{ top: 40, right: 40, bottom: 60, left: 65 }}
       xScale={{ type: "linear", min: 0, max: 150 }}
       xFormat={function (e) {
@@ -84,6 +84,7 @@ export default () => (
       blendMode={null} //"multiply"
       axisTop={null}
       axisRight={null}
+      colors={["#f2ab1f", "#4BC0C0", "#ff8282", "#63ff76", "36A2EB"]}
       axisBottom={{
         orient: "bottom",
         tickSize: 5,

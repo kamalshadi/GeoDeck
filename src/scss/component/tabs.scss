@@ -5,6 +5,7 @@
 }
 .tabs {
   overflow: auto;
+  padding-top: 0 !important;
 
   .tabs__wrap {
     @include directify($directions) {

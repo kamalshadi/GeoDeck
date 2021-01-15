@@ -546,9 +546,12 @@ $controlbarHeight: 100px;
     display: grid;
     max-height: calc(100vh - #{$topber-height});
     grid-template-rows: 1fr 1fr;
+    grid-gap: spacing(3);
 
     @include retina {
       flex: 0 0 25%;
+    grid-gap: spacing(1);
+
     }
     @include themify($themes) {
       background-color: lighten(themed("colorBackground"), 10%);

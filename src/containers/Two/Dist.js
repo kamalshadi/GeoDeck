@@ -89,13 +89,13 @@ const Dist = ({ three }) => (
       theme={theme}
       keys={["burger"]}
       indexBy="country"
-      margin={{ top: 40, right: 40, bottom: 40, left: 60 }}
+      margin={{ top: 20, right: 40, bottom: 40, left: 60 }}
       // margin={{ top: 40, right: 40, bottom: 60, left: 65 }}
 
       padding={0.3}
       valueScale={{ type: "linear" }}
       indexScale={{ type: "band", round: true }}
-      colors={{ scheme: "nivo" }}
+      colors={["#f2ab1f", "#4BC0C0", "#ff8282", "#63ff76", "36A2EB"]}
       defs={[
         {
           id: "dots",

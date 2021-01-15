@@ -138,6 +138,7 @@ const MyResponsiveLine = ({ three }) => {
       pointLabelYOffset={-12}
       useMesh={true}
       theme={theme}
+      colors={["#f2ab1f", "#4BC0C0", "#ff8282", "#63ff76", "36A2EB"]}
       tooltip={({ point }) => {
         return (
           <div
