@@ -223,7 +223,7 @@ $controlbarHeight: 100px;
 
     display: grid;
     justify-items: center;
-    align-items: center;
+    // align-items: center;
     align-content: start;
     grid-template-rows: repeat(10, min-content);
     grid-gap: 0.5rem;
