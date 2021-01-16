@@ -1,14 +1,23 @@
-import React from 'react';
-import { ScissorOutlined, HighlightOutlined,
-  RadiusSettingOutlined, AimOutlined, FormatPainterOutlined,
-  NodeIndexOutlined, StarOutlined, FunctionOutlined, CodepenOutlined, DragOutlined, ClearOutlined
- } from '@ant-design/icons'
-import { connect } from 'react-redux'
+import React from "react";
+import {
+  ScissorOutlined,
+  HighlightOutlined,
+  RadiusSettingOutlined,
+  AimOutlined,
+  FormatPainterOutlined,
+  NodeIndexOutlined,
+  StarOutlined,
+  FunctionOutlined,
+  CodepenOutlined,
+  DragOutlined,
+  ClearOutlined,
+} from "@ant-design/icons";
+import { connect } from "react-redux";
 
-import { withStyles, makeStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
-import Tooltip from '@material-ui/core/Tooltip';
-import { changeWidget } from '../../../redux/actions'
+import { withStyles, makeStyles } from "@material-ui/core/styles";
+import Button from "@material-ui/core/Button";
+import Tooltip from "@material-ui/core/Tooltip";
+import { changeWidget } from "../../../redux/actions";
 
 const useStylesBootstrap = makeStyles((theme) => ({
   arrow: {
@@ -16,13 +25,13 @@ const useStylesBootstrap = makeStyles((theme) => ({
   },
   tooltip: {
     backgroundColor: theme.palette.common.black,
-    marginRight: '-15px'
+    marginRight: "-15px",
   },
 }));
 
 const StyledTooltip = withStyles({
   tooltipPlacementRight: {
-    margin: '0px -5px'
+    margin: "0px -5px",
   },
 })(Tooltip);
 
@@ -32,67 +41,77 @@ function BootstrapTooltip(props) {
   return <StyledTooltip arrow classes={classes} {...props} />;
 }
 
-const tools = [AimOutlined, RadiusSettingOutlined, CodepenOutlined, ClearOutlined, ScissorOutlined, HighlightOutlined, FormatPainterOutlined, NodeIndexOutlined, StarOutlined, FunctionOutlined, DragOutlined]
+const tools = [
+  AimOutlined,
+  RadiusSettingOutlined,
+  CodepenOutlined,
+  ClearOutlined,
+  ScissorOutlined,
+  HighlightOutlined,
+  FormatPainterOutlined,
+  NodeIndexOutlined,
+  StarOutlined,
+  FunctionOutlined,
+  DragOutlined,
+];
 
 const toolText = (ind) => {
-  switch (ind){
+  switch (ind) {
     case 0:
-      return 'point sampling'
+      return "point sampling";
     case 1:
-      return 'line sampling'
+      return "line sampling";
     case 2:
-      return 'plane sampling'
+      return "plane sampling";
     case 3:
-      return 'clear'
+      return "clear";
     default:
-      return 'tool item'
+      return "tool item";
   }
-}
+};
 
 const widgetText = (ind) => {
-  switch (ind){
+  switch (ind) {
     case 0:
-      return 'point'
+      return "point";
     case 1:
-      return 'line'
+      return "line";
     case 2:
-      return 'plane'
+      return "plane";
     default:
-      return ''
+      return "";
   }
-}
-const Toolbar = ({changeWidget}) => {
+};
+const Toolbar = ({ changeWidget }) => {
   return (
     <>
-      {tools.map((v,ind)=>{
+      {tools.map((v, ind) => {
         return (
-          <BootstrapTooltip title={toolText(ind)} placement="right"
-            onClick={ () => changeWidget(widgetText(ind)) }
-          >{React.createElement(v, { index: ind , className: `geo-icon`}, null
-          )}</BootstrapTooltip>
-        )
-
+          <BootstrapTooltip
+            title={toolText(ind)}
+            key={ind}
+            placement="right"
+            onClick={() => changeWidget(widgetText(ind))}
+          >
+            {React.createElement(
+              v,
+              { index: ind, className: `geo-icon` },
+              null
+            )}
+          </BootstrapTooltip>
+        );
       })}
     </>
-  )
-}
+  );
+};
 
-
-
-
-
-function mapStateToProps({
-  three
-  }) {
+function mapStateToProps({ three }) {
   return {
-    three: three
-  }
+    three: three,
+  };
 }
 const mapDispatchToProps = {
-  changeWidget
-}
+  changeWidget,
+};
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Toolbar)
+export default connect(mapStateToProps, mapDispatchToProps)(Toolbar);

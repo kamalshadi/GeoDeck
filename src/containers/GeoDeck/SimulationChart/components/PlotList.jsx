@@ -7,7 +7,7 @@ import PlotChart from "./PlotChart";
 import ChartSampleScatter from "./ChartSampleScatter";
 
 const PlotList = (props) => {
-  console.log(props);
+  // console.log(props);
   const { plots, selectedPlot, setSelectedPlot } = props;
 
   // if (!plots) {
@@ -25,6 +25,7 @@ const PlotList = (props) => {
       {plots?.map((plot, index) => {
         return (
           <PlotCard
+            key={index}
             number={index + 3}
             index={index}
             selectedPlot={selectedPlot}

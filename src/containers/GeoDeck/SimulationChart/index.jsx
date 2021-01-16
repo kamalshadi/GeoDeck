@@ -27,8 +27,9 @@ const SimulationChart = (props) => {
 
   return (
     <Container className="simulation">
-      <Row className="simulation__container">
+      <Row className="simulation__container" key="simulation__container">
         <Col
+          key="simulation__sidebar-plot-panel"
           md="2"
           className="simulation__sidebar simulation__plot__panel"
           style={{ maxHeight: "calc(100vh - 115px)" }}
@@ -37,7 +38,7 @@ const SimulationChart = (props) => {
           {currentPlot && <SimulationPanel currentPlot={currentPlot} />}
         </Col>
 
-        <Col md="10" className="simulation__plot">
+        <Col md="10" key="simulation__plot" className="simulation__plot">
           <PlotList
             plots={plots}
             selectedPlot={selectedPlot}
