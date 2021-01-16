@@ -14,6 +14,6 @@ export const getVariableUnit = (variable) => {
 
 export const increaseLegend = (chart, options) => {
   chart.legend.afterFit = function () {
-    this.height = this.height + 10;
+    this.height = this.height + 15;
   };
 };
