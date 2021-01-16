@@ -20,25 +20,25 @@ import Tooltip from "@material-ui/core/Tooltip";
 import { changeWidget } from "../../../redux/actions";
 
 const useStylesBootstrap = makeStyles((theme) => ({
-  arrow: {
-    color: theme.palette.common.black,
-  },
-  tooltip: {
-    backgroundColor: theme.palette.common.black,
-    marginRight: "-15px",
-  },
+  // arrow: {
+  //   color: theme.palette.common.black,
+  // },
+  // tooltip: {
+  // backgroundColor: theme.palette.common.black,
+  // marginRight: "-15px",
+  // },
 }));
 
-const StyledTooltip = withStyles({
-  tooltipPlacementRight: {
-    margin: "0px -5px",
-  },
-})(Tooltip);
+// const StyledTooltip = withStyles({
+//   tooltipPlacementRight: {
+//     margin: "0px -5px",
+//   },
+// })(Tooltip);
 
 function BootstrapTooltip(props) {
   const classes = useStylesBootstrap();
 
-  return <StyledTooltip arrow classes={classes} {...props} />;
+  return <Tooltip classes={classes} {...props} />;
 }
 
 const tools = [
