@@ -34,7 +34,7 @@ const Variables = ({ changeSample, three }) => {
         let l = V[index + 1].length;
         let filler = Array(12 - l).fill(1);
         return (
-          <div>
+          <div key={index}>
             <div
               className={V[index] ? "variable" : "variable disabled"}
               onClick={() => (V[index] ? clickHandler(index) : null)}
