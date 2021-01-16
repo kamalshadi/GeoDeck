@@ -3,7 +3,7 @@ import _ from "lodash";
 import ChartLine from "./ChartLine";
 import ChartSample from "./ChartSample";
 import ChartScatter from "./ChartScatter";
-import { getVariableUnit } from "./hepler";
+import { getVariableUnit, increaseLegend } from "./hepler";
 
 // const backgroundColor = ["#FF6384", "#4BC0C0", "#FFCE56", "#E7E9ED", "#36A2EB"];
 // const backgroundColor = ["#00a1ff7a", "#60d937", "#ed220d", "36A2EB"];
@@ -107,6 +107,12 @@ const PlotChart = (props) => {
     },
   };
 
+  const plugins = [
+    {
+      beforeInit: increaseLegend,
+    },
+  ];
+
   const renderChart = () => {
     switch (plot.type) {
       case "line":
@@ -116,6 +122,7 @@ const PlotChart = (props) => {
             variableName={variableName}
             variableUnit={variableUnit}
             options={options}
+            plugins={plugins}
           />
         );
       case "scatter":
@@ -125,6 +132,7 @@ const PlotChart = (props) => {
             dataList={dataList}
             variableName={variableName}
             variableUnit={variableUnit}
+            plugins={plugins}
           />
         );
 

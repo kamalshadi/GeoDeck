@@ -73,7 +73,7 @@ import PropTypes from "prop-types";
 // };
 
 const ChartLine = (props) => {
-  const { dataList, options, t } = props;
+  const { dataList, options, plugins, t } = props;
 
   const datasets = dataList.map(({ name, xYData, color }) => {
     return {
@@ -139,7 +139,11 @@ const ChartLine = (props) => {
 
   return (
     <React.Fragment>
-      {datasets ? <Line data={lineData} options={options} /> : <Line />}
+      {datasets ? (
+        <Line data={lineData} options={options} plugins={plugins} />
+      ) : (
+        <Line />
+      )}
     </React.Fragment>
   );
 };

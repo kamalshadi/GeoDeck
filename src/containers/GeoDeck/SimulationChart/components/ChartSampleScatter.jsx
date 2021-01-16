@@ -10,6 +10,7 @@ import React, { Component } from "react";
 // } from "recharts";
 import { Scatter } from "react-chartjs-2";
 import { Card, CardBody, Col } from "reactstrap";
+import { increaseLegend } from "./hepler";
 
 const tooltipColor = {
   color: "#70bbfd",
@@ -120,7 +121,7 @@ class ChartSampleScatter extends Component {
       legend: {
         labels: {
           fontColor: "#d5d5d5",
-        }
+        },
       },
       scales: {
         xAxes: [
@@ -163,7 +164,15 @@ class ChartSampleScatter extends Component {
 
     return (
       <React.Fragment>
-        <Scatter data={scatterData} options={options} />
+        <Scatter
+          data={scatterData}
+          options={options}
+          plugins={[
+            {
+              beforeInit: increaseLegend,
+            },
+          ]}
+        />
 
         {/* <ResponsiveContainer>
               <ScatterChart

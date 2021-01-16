@@ -3,6 +3,7 @@ import { Card, CardBody, Col } from "reactstrap";
 import { Polar } from "react-chartjs-2";
 import { withTranslation } from "react-i18next";
 import PropTypes from "prop-types";
+import { increaseLegend } from "./hepler";
 
 const data = {
   datasets: [
@@ -20,7 +21,7 @@ const options = {
   legend: {
     labels: {
       fontColor: "#d5d5d5",
-    }
+    },
   },
   // layout: {
   //   padding: {
@@ -38,7 +39,17 @@ const options = {
   },
 };
 
-const ChartSample = ({ t }) => <Polar data={data} options={options} />;
+const ChartSample = ({ t }) => (
+  <Polar
+    data={data}
+    options={options}
+    plugins={[
+      {
+        beforeInit: increaseLegend,
+      },
+    ]}
+  />
+);
 
 ChartSample.propTypes = {
   t: PropTypes.func.isRequired,

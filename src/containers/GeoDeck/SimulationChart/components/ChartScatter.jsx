@@ -3,7 +3,7 @@ import { Scatter } from "react-chartjs-2";
 
 class ChartScatter extends PureComponent {
   render() {
-    const { dataList, options } = this.props;
+    const { dataList, options, plugins } = this.props;
 
     const datasets = dataList.map(({ name, xYData, color }) => {
       return {
@@ -53,7 +53,11 @@ class ChartScatter extends PureComponent {
     // };
     return (
       <React.Fragment>
-        <Scatter data={scatterData} options={options} />
+        <Scatter
+          data={scatterData}
+          options={options}
+          plugins={plugins}
+        />
       </React.Fragment>
     );
   }
