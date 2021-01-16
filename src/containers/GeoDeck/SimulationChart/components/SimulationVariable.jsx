@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import _ from "lodash";
-import { Collapse, Input, InputGroup } from "reactstrap";
+import { Input, InputGroup } from "reactstrap";
+import {Collapse} from '@material-ui/core';
 import { editPlot } from "../../../../redux/actions/plotAction";
 
 const SimulationVariable = (props) => {
@@ -91,7 +92,8 @@ const SimulationVariable = (props) => {
         />
       </InputGroup>
 
-      <Collapse isOpen={isOpen} className="simulation__plot__collapse">
+      <Collapse in={isOpen} className="simulation__plot__collapse" timeout="auto">
+ 
         {visibleVariables.map(({ name, id }) => {
           const pClassName = getClassName(id);
 
