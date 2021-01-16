@@ -669,6 +669,7 @@ $controlbarHeight: 100px;
           padding: 1rem;
           justify-content: center;
           align-items: center;
+          min-height: 300px;
           @include themify($themes) {
             color: darken(themed("colorBubble"), 45%);
           }
