@@ -13,7 +13,6 @@ const SimulationChart = (props) => {
   const { plots } = props;
 
   useEffect(() => {
-    console.log("set new plots----");
     setPlotList(plots);
   }, [plots]);
 
