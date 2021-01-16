@@ -11,10 +11,14 @@ export const fetchPlots = () => async (dispatch) => {
   dispatch({ type: types.FETCH_PLOTS, payload: response.data });
 };
 
+let newPlotId = 1;
+
 export const createPlot = (formValues) => async (dispatch, getState) => {
   //   const response = await api.get("/plots");
   const newPlot = {
-    id: _.size(getState().plots) + 1,
+    id: ++newPlotId,
+    // id: _.size(getState().plots) + 1, // have bug => two chart with one 1
+    // id: _.random(10, 16515), // change order of charts
     ...formValues,
     simulations: getPlotStructures(getSimsT),
   };

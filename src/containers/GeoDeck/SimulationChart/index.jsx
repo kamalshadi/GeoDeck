@@ -5,6 +5,7 @@ import { Col, Container, Row } from "reactstrap";
 import PlotList from "./components/PlotList";
 import SimulationPanel from "./components/SimulationPanel";
 import { fetchPlots } from "../../../redux/actions/plotAction";
+import SimulationPanelEmpty from "./components/SimulationPanelEmpty";
 
 const SimulationChart = (props) => {
   const [selectedPlot, setSelectedPlot] = useState(0); // state for detect active plot
@@ -12,6 +13,7 @@ const SimulationChart = (props) => {
   const { plots } = props;
 
   useEffect(() => {
+    console.log("set new plots----");
     setPlotList(plots);
   }, [plots]);
 
@@ -19,9 +21,9 @@ const SimulationChart = (props) => {
     props.fetchPlots();
   }, []);
 
-  if (_.isEmpty(plotList)) {
-    return null;
-  }
+  // if (_.isEmpty(plotList)) {
+  //   return null;
+  // }
 
   const currentPlot = plotList[selectedPlot]; // current active plot
 
@@ -35,7 +37,11 @@ const SimulationChart = (props) => {
           style={{ maxHeight: "calc(100vh - 115px)" }}
           // style={{ maxHeight: controlBar ? "calc(100vh - 115px)" : "66vh" }}
         >
-          {currentPlot && <SimulationPanel currentPlot={currentPlot} />}
+          {currentPlot ? (
+            <SimulationPanel currentPlot={currentPlot} />
+          ) : (
+            <SimulationPanelEmpty />
+          )}
         </Col>
 
         <Col md="10" key="simulation__plot" className="simulation__plot">

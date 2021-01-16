@@ -29,7 +29,7 @@ class ChartSetting extends React.Component {
   };
 
   onDelete = () => {
-    console.log(this.props);
+    // console.log(this.props);
     this.handleClose();
     this.props.deletePlot(this.props.plotId);
   };
