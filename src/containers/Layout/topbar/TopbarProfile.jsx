@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import DownIcon from 'mdi-react/ChevronDownIcon';
-import { Collapse } from 'reactstrap';
+import {Collapse} from "@material-ui/core";
 import TopbarMenuLink from './TopbarMenuLink';
 import { UserProps, AuthOProps } from '../../../shared/prop-types/ReducerProps';
 import { hookAuth0 } from '../../../shared/components/auth/withAuth0';
@@ -47,7 +47,7 @@ class TopbarProfile extends Component {
           <DownIcon className="topbar__icon" />
         </button>
         {collapse && <button className="topbar__back" type="button" onClick={this.toggle} />}
-        <Collapse isOpen={collapse} className="topbar__menu-wrap">
+        <Collapse in={collapse} className="topbar__menu-wrap">
           <div className="topbar__menu">
             <TopbarMenuLink
               title="My Profile"

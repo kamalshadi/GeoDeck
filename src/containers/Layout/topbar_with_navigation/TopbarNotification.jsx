@@ -1,6 +1,6 @@
 /* eslint-disable react/no-array-index-key */
 import React, { Component } from "react";
-import { Collapse } from "reactstrap";
+import {Collapse} from "@material-ui/core";
 import { Link } from "react-router-dom";
 import NotificationsIcon from "mdi-react/NotificationsIcon";
 import { BellFilled } from "@ant-design/icons";
@@ -56,7 +56,7 @@ export default class TopbarNotification extends Component {
             onClick={this.toggle}
           />
         )}
-        <Collapse isOpen={collapse} className="topbar__collapse-content">
+        <Collapse in={collapse} className="topbar__collapse-content">
           <div className="topbar__collapse-title-wrap">
             <p className="topbar__collapse-title">Notifications</p>
             <button className="topbar__collapse-button" type="button">

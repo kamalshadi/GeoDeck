@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import DownIcon from 'mdi-react/ChevronDownIcon';
-import { Collapse } from 'reactstrap';
+import {Collapse} from "@material-ui/core";
 import TopbarMenuLink from './TopbarMenuLink';
 
 const Ava = `${process.env.PUBLIC_URL}/img/ava.png`;
@@ -11,6 +11,8 @@ export default class TopbarProfile extends Component {
     this.state = {
       collapse: false,
     };
+    this.wrapper = React.createRef();
+
   }
 
   toggle = () => {
@@ -28,8 +30,8 @@ export default class TopbarProfile extends Component {
           <DownIcon className="topbar__icon" />
         </button>
         {collapse && <button className="topbar__back" type="button" onClick={this.toggle} />}
-        <Collapse isOpen={collapse} className="topbar__menu-wrap">
-          <div className="topbar__menu">
+        <Collapse in={collapse} className="topbar__menu-wrap">
+          <div className="topbar__menu"   ref={this.wrapper}>
             <TopbarMenuLink
               title="My Profile"
               icon="user"
