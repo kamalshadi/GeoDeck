@@ -79,10 +79,11 @@ const widgetText = (ind) => {
     case 2:
       return "plane";
     default:
-      return "";
+      return null;
   }
 };
-const Toolbar = ({ changeWidget }) => {
+const Toolbar = ({ three, changeWidget }) => {
+  console.log(three);
   return (
     <>
       {tools.map((v, ind) => {
@@ -95,7 +96,14 @@ const Toolbar = ({ changeWidget }) => {
           >
             {React.createElement(
               v,
-              { index: ind, className: `geo-icon` },
+              {
+                index: ind,
+                className: `geo-icon ${
+                  !!three.activeWidget && three.activeWidget === widgetText(ind)
+                    ? "selected"
+                    : ""
+                }`,
+              },
               null
             )}
           </BootstrapTooltip>
