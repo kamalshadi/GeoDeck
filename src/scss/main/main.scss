@@ -545,7 +545,6 @@ $controlbarHeight: 100px;
     flex: 0 0 20%;
     padding: spacing(1);
 
-
     display: grid;
     max-height: calc(100vh - #{$topber-height});
     grid-template-rows: min-content 1fr;
@@ -553,8 +552,7 @@ $controlbarHeight: 100px;
 
     @include retina {
       flex: 0 0 25%;
-    grid-gap: spacing(1);
-
+      grid-gap: spacing(1);
     }
     @include themify($themes) {
       background-color: lighten(themed("colorBackground"), 10%);
@@ -584,8 +582,13 @@ $controlbarHeight: 100px;
     &__sidebar {
       padding-left: 0;
       padding-right: 0;
+
       @include themify($themes) {
         border-right: 0.5px solid themed("colorBackground");
+      }
+
+      @include retina {
+        border-right: 0.5px solid $inactive-gray !important;
       }
     }
 
@@ -617,6 +620,7 @@ $controlbarHeight: 100px;
         @include themify($themes) {
           background-color: themed("colorBackground");
         }
+        
         // display: grid;
         // grid-template-rows: min-content 1fr;
         // flex: 0 1 calc(33.33% - #{spacing(6)});
@@ -638,7 +642,7 @@ $controlbarHeight: 100px;
           background-color: transparent;
           & p {
             opacity: 0.5;
-            color: $color-gray !important;
+            color: $inactive-gray !important;
           }
         }
 
@@ -661,6 +665,10 @@ $controlbarHeight: 100px;
           border: 1px solid themed("colorBackground");
         }
 
+        &.selected {
+          border: 1px solid $color-primary;
+        }
+
         &.new {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
@@ -669,7 +677,10 @@ $controlbarHeight: 100px;
           padding: 1rem;
           justify-content: center;
           align-items: center;
-          min-height: 300px;
+          min-height: 290px;
+          @include retina {
+            border-color: $inactive-gray;
+          }
           @include themify($themes) {
             color: darken(themed("colorBubble"), 45%);
           }
@@ -750,6 +761,9 @@ $controlbarHeight: 100px;
           margin: 0 spacing(2);
           @include themify($themes) {
             background-color: themed("colorBackground");
+          }
+          @include retina {
+            background-color: $inactive-gray !important;
           }
         }
       }

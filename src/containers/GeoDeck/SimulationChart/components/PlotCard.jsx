@@ -18,15 +18,22 @@ const PlotCard = ({
   <div
     className="simulation__plot__card"
     onClick={() => (!disable ? setSelectedPlot(index) : "")} // disable: for two first charts
-    style={selectedPlot === index ? { border: "1px solid #F2AB1f" } : {}}
   >
-    <div className="simulation__plot__chart">
+    <div
+      className={`simulation__plot__chart ${
+        selectedPlot === index ? "selected" : ""
+      }`}
+    >
       <Card>
         <CardBody>
           <div className="d-flex justify-content-between">
             <h5 className="bold-text d-flex align-items-center">{`Plot ${number}`}</h5>
             <h5 className="bold-text">
-              <ChartSetting plotId={plotId} currentPlotId={currentPlotId} setSelectedPlot={setSelectedPlot}/>
+              <ChartSetting
+                plotId={plotId}
+                currentPlotId={currentPlotId}
+                setSelectedPlot={setSelectedPlot}
+              />
             </h5>
           </div>
           {children}
