@@ -55,26 +55,26 @@ class Layout extends Component {
       className: `right-up ${this.props.rtl.direction}-support`,
     };
     notification.notice(notificationInitialProps);
-    const notificationIntervalKey = setInterval(() => {
-      notification.notice({
-        ...notificationInitialProps,
-        content: <BasicNotification
-          title={title}
-          message={message}
-          theme={this.props.theme}
-        />,
-        className: `right-up ${this.props.rtl.direction}-support`,
-        onClose() {
-          setTimeout(() => { clearInterval(notificationIntervalKey); });
-        },
-      });
-    }, 100);
-    setTimeout(() => { clearInterval(notificationIntervalKey); }, 5000);
+    // const notificationIntervalKey = setInterval(() => {
+    //   notification.notice({
+    //     ...notificationInitialProps,
+    //     content: <BasicNotification
+    //       title={title}
+    //       message={message}
+    //       theme={this.props.theme}
+    //     />,
+    //     className: `right-up ${this.props.rtl.direction}-support`,
+    //     onClose() {
+    //       setTimeout(() => { clearInterval(notificationIntervalKey); });
+    //     },
+    //   });
+    // }, 100);
+    // setTimeout(() => { clearInterval(notificationIntervalKey); }, 5000);
   }
 
-  componentWillUnmount() {
-    notification.destroy();
-  }
+  // componentWillUnmount() {
+  //   notification.destroy();
+  // }
 
   changeSidebarVisibility = () => {
     const { dispatch } = this.props;
