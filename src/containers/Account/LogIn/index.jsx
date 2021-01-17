@@ -8,6 +8,7 @@ import Loading from "../../../shared/components/Loading";
 import LogInForm from "./LoginForm";
 import GoogleAuthBtn from "../AuthBtn/googleAuthBtn";
 import FacebookAuthBtn from "../AuthBtn/fbAuthBtn";
+import AccountHead from "../AccountHead";
 
 const auth0Icon = `${process.env.PUBLIC_URL}/img/auth0.svg`;
 
@@ -20,21 +21,7 @@ const LogIn = ({ changeIsOpenModalFireBase }) => {
     <div className="account account--not-photo">
       <div className="account__wrapper">
         <div className="account__card">
-          <div className="account__head">
-            <div>
-              <h3 className="account__title">
-                Welcome to
-                <span className="account__logo">
-                  {" "}
-                  Geo
-                  <span className="account__logo-accent">Deck</span>
-                </span>
-              </h3>
-              <h4 className="account__subhead subhead">
-                Immerse yourself in Geo data
-              </h4>
-            </div>
-          </div>
+          <AccountHead subhead="Immerse yourself in Geo data" />
           <LogInForm onSubmit form="log_in_form" />
           <div className="account__or">
             <p>Product of </p>
@@ -67,7 +54,6 @@ const LogIn = ({ changeIsOpenModalFireBase }) => {
     </div>
   );
 };
-
 
 LogIn.propTypes = {
   changeIsOpenModalFireBase: PropTypes.func.isRequired,

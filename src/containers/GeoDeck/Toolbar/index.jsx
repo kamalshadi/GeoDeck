@@ -83,7 +83,6 @@ const widgetText = (ind) => {
   }
 };
 const Toolbar = ({ three, changeWidget }) => {
-  console.log(three);
   return (
     <>
       {tools.map((v, ind) => {
