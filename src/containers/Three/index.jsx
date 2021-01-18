@@ -175,9 +175,9 @@ const Cube = ({three}) => {
     })
     scene.add(groupP)
 
-    camera.position.z = 2
+    camera.position.z = 1.5
     camera.position.y = 1
-    camera.position.x = 1
+    camera.position.x = 2
     camera.up = new THREE.Vector3(0, 0, 1)
     window.camera = camera
     // camera.up = new THREE.Vector3(0,0,1)

@@ -45,7 +45,7 @@ const norm = (m = 10) => {
   });
 };
 const minMax = (p) => {
-  if (p) return [1800, 1900];
+  if (p) return [1800, 1870];
   else return [120, 122];
 };
 const MyResponsiveLine = ({ three }) => {
