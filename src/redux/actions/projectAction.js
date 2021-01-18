@@ -25,7 +25,7 @@ const getProjects = {
       username: "test project",
       collaborationGroup: "Lab Internal",
       description: "this is a test project",
-      source: "01.jpg",
+      source: "project.png",
     },
     {
       id: 2,
@@ -35,7 +35,7 @@ const getProjects = {
       username: "web project",
       collaborationGroup: "Lab Internal",
       description: "this is a web project",
-      source: "02.jpg",
+      source: "project1.png",
     },
     {
       id: 3,
@@ -45,7 +45,7 @@ const getProjects = {
       username: "mail project",
       collaborationGroup: "Lab Internal",
       description: "this is a mail project",
-      source: "03.jpg",
+      source: "project2.png",
     },
     {
       id: 4,
@@ -65,7 +65,7 @@ const getProjects = {
       username: "archive project",
       collaborationGroup: "Lab Internal",
       description: "this is a archive project",
-      source: null,
+      source: "project3.png",
     },
   ],
 };

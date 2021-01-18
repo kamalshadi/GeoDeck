@@ -18,7 +18,7 @@ const getGalleries = {
       username: "test project",
       collaborationGroup: "Lab Internal",
       description: "this is a test project",
-      source: "01.jpg",
+      source: "Untitled.png",
     },
     {
       id: 2,
@@ -28,7 +28,7 @@ const getGalleries = {
       username: "web project",
       collaborationGroup: "Lab Internal",
       description: "this is a web project",
-      source: "02.jpg",
+      source: "Untitled1.png",
     },
     {
       id: 3,
@@ -38,7 +38,7 @@ const getGalleries = {
       username: "mail project",
       collaborationGroup: "Lab Internal",
       description: "this is a mail project",
-      source: "04.png",
+      source: "Untitled2.png",
     },
     {
       id: 4,
@@ -68,7 +68,7 @@ const getGalleries = {
       username: "web project",
       collaborationGroup: "Lab Internal",
       description: "this is a web project",
-      source: "02.jpg",
+      source: "Untitled3.png",
     },
     {
       id: 7,
@@ -78,7 +78,7 @@ const getGalleries = {
       username: "mail project",
       collaborationGroup: "Lab Internal",
       description: "this is a mail project",
-      source: "04.png",
+      source: "Untitled4.png",
     },
     {
       id: 8,
@@ -108,7 +108,7 @@ const getGalleries = {
       username: "web project",
       collaborationGroup: "Lab Internal",
       description: "this is a web project",
-      source: "02.jpg",
+      source: "Untitled5.png",
     },
     {
       id: 1,
@@ -118,7 +118,7 @@ const getGalleries = {
       username: "mail project",
       collaborationGroup: "Lab Internal",
       description: "this is a mail project",
-      source: "04.png",
+      source: "Untitled6.png",
     },
     {
       id: 12,
@@ -128,7 +128,7 @@ const getGalleries = {
       username: "example project",
       collaborationGroup: "Lab Internal",
       description: "this is a example project",
-      source: "video.webm",
+      source: "Untitled7.png",
     },
     {
       id: 13,
