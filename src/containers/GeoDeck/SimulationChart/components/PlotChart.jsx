@@ -64,14 +64,14 @@ const options = {
 class PlotChart extends React.Component {
   constructor(props) {
     super(props);
-    this.chartRef = React.createRef();
-    this.imgRef = React.createRef();
+    // this.chartRef = React.createRef();
+    // this.imgRef = React.createRef();
   }
 
-  componentDidMount () {
-    this.chartRef = React.createRef();
-    this.imgRef = React.createRef();
-  }
+  // componentDidMount () {
+  //   this.chartRef = React.createRef();
+  //   this.imgRef = React.createRef();
+  // }
 
   getData = (simulations) => {
     const {
@@ -127,7 +127,7 @@ class PlotChart extends React.Component {
   renderChart = (variableName, variableUnit, dataList) => {
     const { plot } = this.props;
     options.scales.yAxes.map((yAxes) => {
-      yAxes.scaleLabel.labelString = `${variableName} (${variableUnit})`;
+      yAxes.scaleLabel.labelString = _.capitalize(`${variableName} (${variableUnit})`);
     });
 
     switch (plot.type) {
@@ -137,25 +137,25 @@ class PlotChart extends React.Component {
             dataList={dataList}
             options={options}
             plugins={plugins}
-            ref={this.chartRef}
+            // ref={this.chartRef}
           />
         );
       case "scatter":
-        return null;
-      // return (
-      //   <ChartScatter
-      //     options={options}
-      //     dataList={dataList}
-      //     variableName={variableName}
-      //     variableUnit={variableUnit}
-      //     plugins={plugins}
-      //     ref={ref}
-      //   />
-      // );
+        // return null;
+      return (
+        <ChartScatter
+          options={options}
+          dataList={dataList}
+          variableName={variableName}
+          variableUnit={variableUnit}
+          plugins={plugins}
+          // ref={ref}
+        />
+      );
 
       default:
-        return null;
-      // return <ChartSample />;
+        // return null;
+      return <ChartSample />;
     }
   };
 
@@ -176,29 +176,33 @@ class PlotChart extends React.Component {
     }
     const { variableName, variableUnit, dataList } = this.getData(simulations);
 
-    if(this.chartRef.current) {
-      const chartInstance = this.chartRef.current.chartInstance ;
-      if(!!chartInstance) {
-        const ctx = chartInstance.ctx;
-        const canvas = ctx?.canvas;
+    // if(this.chartRef.current) {
+    //   const chartInstance = this.chartRef.current.chartInstance ;
+    //   if(!!chartInstance) {
+    //     const ctx = chartInstance.ctx;
+    //     const canvas = ctx?.canvas;
 
-        this.imgRef.current.download = "download.png";
-        this.imgRef.current.innerText = "download";
-        this.imgRef.current.href = canvas?.toDataURL("image/png");
-        this.imgRef.current.target="_blank"
-      }
-    }
+    //     this.imgRef.current.download = "download.png";
+    //     this.imgRef.current.innerText = "download";
+    //     this.imgRef.current.href = canvas?.toDataURL("image/png");
+    //     this.imgRef.current.target="_blank"
+    //   }
+    // }
     
     return (
       <React.Fragment>
         {this.renderChart(variableName, variableUnit, dataList)}
         {/* <FancyButton ref={this.chartRef}>Click me!</FancyButton>; */}
-        <a ref={this.imgRef} />
+        {/* <a ref={this.imgRef} /> */}
 
       </React.Fragment>
     );
   }
 }
+
+export default PlotChart;
+
+
 
 // const FancyButton = React.forwardRef((props, ref) => {
 //   return (
@@ -206,30 +210,3 @@ class PlotChart extends React.Component {
 //     {props.children}
 //   </button>
 // )});
-
-export default PlotChart;
-
-{
-  /* <React.Fragment>
-  <ResponsiveContainer>
-    <ScatterChart
-      margin={{
-        top: 0,
-        right: 0,
-        bottom: 0,
-        left: 0,
-      }}
-    >
-      <XAxis type="number" dataKey="x" reversed={false} />
-      <CartesianGrid strokeDasharray="3 3" />
-      <YAxis type="number" dataKey="y" stroke="#70bbfd" />
-      <Tooltip itemStyle={tooltipColor} />
-
-      {data.map((d) => {
-        let rColor = Math.floor(Math.random() * 16777215).toString(16);
-        return <Scatter name={name} data={d} fill={`#${rColor}`} />;
-      })}
-    </ScatterChart>
-  </ResponsiveContainer>
-</React.Fragment>; */
-}

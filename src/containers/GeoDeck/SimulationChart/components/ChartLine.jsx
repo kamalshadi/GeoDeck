@@ -1,5 +1,4 @@
 import React from "react";
-import { Card, CardBody, Col } from "reactstrap";
 import { Line } from "react-chartjs-2";
 import { withTranslation } from "react-i18next";
 import PropTypes from "prop-types";
@@ -72,8 +71,9 @@ import PropTypes from "prop-types";
 //   // ],
 // };
 
-export default  React.forwardRef((props, ref) => {
-  console.log(ref);
+// export default  React.forwardRef((props, ref) => {
+const ChartLine = (props) => {
+  // console.log(ref);
   // const chartRef = ref;
   const { dataList, options, plugins, t } = props;
 
@@ -142,13 +142,17 @@ export default  React.forwardRef((props, ref) => {
   return (
     <React.Fragment>
       {datasets ? (
-        <Line data={lineData} options={options} plugins={plugins} ref={ref ? ref : null} />
+        <Line
+          data={lineData}
+          options={options}
+          plugins={plugins}
+          //  ref={ref ? ref : null}
+        />
       ) : (
         <Line />
       )}
     </React.Fragment>
   );
-});
+};
 
-
-// export default withTranslation("common")(ChartLine);
+export default withTranslation("common")(ChartLine);

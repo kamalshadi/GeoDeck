@@ -1,15 +1,16 @@
-import React, { PureComponent, useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Scatter } from "react-chartjs-2";
 
-const ChartScatter = React.forwardRef((props, ref) => {
-  const chartRef = ref;
-  const imgRef = useRef(null);
+const ChartScatter = (props) => {
+  // const ChartScatter = React.forwardRef((props, ref) => {
+  // const chartRef = ref;
+  // const imgRef = useRef(null);
 
-  const [chartInstance, setChartInstance] = useState(null);
+  // const [chartInstance, setChartInstance] = useState(null);
 
-  useEffect(() => {
-    setChartInstance(chartRef.current);
-  }, []);
+  // useEffect(() => {
+  //   setChartInstance(chartRef.current);
+  // }, []);
 
   const { dataList, options, plugins } = props;
 
@@ -35,83 +36,58 @@ const ChartScatter = React.forwardRef((props, ref) => {
     labels: [],
     datasets: datasets,
   };
-
-  // const options = {
-  //   scales: {
-  //     xAxes: [
-  //       {
-  //         scaleLabel: {
-  //           display: true,
-  //           labelString: "time",
-  //         },
-  //         type: "linear",
-  //         position: "bottom",
-  //       },
-  //     ],
-
-  //     yAxes: [
-  //       {
-  //         scaleLabel: {
-  //           display: true,
-  //           labelString: `${variableName} (${variableUnit})`,
-  //         },
-  //       },
-  //     ],
-  //   },
-  // };
-
   // const onClick = () => {
   //   imgRef.current.click();
   // }
 
   // imgRef = chartRef.current.chartInstance.toBase64Image();
   // console.log(chartRef.current.chartInstance.toBase64Image());
-  console.log(chartRef);
-  if (chartInstance) {
-    // imgRef.current.href = chartInstance.chartInstance.toBase64Image();
-    const ctx = chartInstance.chartInstance.ctx;
-    const canvas = ctx?.canvas;
-    // console.log(ctx);
-    // console.log(canvas);
-    // canvas.toBlob(function (blob) {
-    //   saveAs(blob, "");
-    // })
-    // imgRef.current.innerText = "download";
-    // imgRef.current.download = "download.png";
-    // imgRef.current.href = canvas
-    //   ? canvas.toBlob(function (blob) {
-    //       saveAs(blob, "pretty image.png");
-    //     })
-    //   : "#";
-    // imgRef.current.href = canvas ? canvas.toDataURL("image/png") : "#";
-    // window.open(canvas);
+  // console.log(chartRef);
+  // if (chartInstance) {
+  //   // imgRef.current.href = chartInstance.chartInstance.toBase64Image();
+  //   const ctx = chartInstance.chartInstance.ctx;
+  //   const canvas = ctx?.canvas;
+  //   // console.log(ctx);
+  //   // console.log(canvas);
+  //   // canvas.toBlob(function (blob) {
+  //   //   saveAs(blob, "");
+  //   // })
+  //   // imgRef.current.innerText = "download";
+  //   // imgRef.current.download = "download.png";
+  //   // imgRef.current.href = canvas
+  //   //   ? canvas.toBlob(function (blob) {
+  //   //       saveAs(blob, "pretty image.png");
+  //   //     })
+  //   //   : "#";
+  //   // imgRef.current.href = canvas ? canvas.toDataURL("image/png") : "#";
+  //   // window.open(canvas);
 
-    imgRef.current.download = "download.png";
-    imgRef.current.innerText = "download";
-    imgRef.current.href = canvas?.toDataURL("image/png");
-    imgRef.current.target="_blank"
-    // imgRef.current.href = chartRef.current.chartInstance.toBase64Image();
-    // imgRef.current.click();
-    
-    // }
-  // }
+  //   imgRef.current.download = "download.png";
+  //   imgRef.current.innerText = "download";
+  //   imgRef.current.href = canvas?.toDataURL("image/png");
+  //   imgRef.current.target="_blank"
+  //   // imgRef.current.href = chartRef.current.chartInstance.toBase64Image();
+  //   // imgRef.current.click();
 
-  console.log(chartInstance);
+  //   // }
+  // // }
 
-  };
+  // console.log(chartInstance);
+
+  // };
   return (
     <React.Fragment>
       <Scatter
-        ref={chartRef}
+        // ref={chartRef}
         // onElementsClick={onClick}
         data={scatterData}
         options={options}
         plugins={plugins}
       />
-      <a ref={imgRef} />
+      {/* <a ref={imgRef} /> */}
     </React.Fragment>
   );
-});
+};
 
 export default ChartScatter;
 
@@ -161,4 +137,30 @@ export default ChartScatter;
 //       ],
 //     },
 //   ],
+// };
+
+//----------------------------------------------
+
+// const options = {
+//   scales: {
+//     xAxes: [
+//       {
+//         scaleLabel: {
+//           display: true,
+//           labelString: "time",
+//         },
+//         type: "linear",
+//         position: "bottom",
+//       },
+//     ],
+
+//     yAxes: [
+//       {
+//         scaleLabel: {
+//           display: true,
+//           labelString: `${variableName} (${variableUnit})`,
+//         },
+//       },
+//     ],
+//   },
 // };
