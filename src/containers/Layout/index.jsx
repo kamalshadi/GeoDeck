@@ -40,9 +40,8 @@ class Layout extends Component {
   };
 
   componentDidMount() {
-    const title = 'Welcome to the EasyDev!';
-    const message = 'You have successfully registered in the EasyDev. Now you can start to explore the dashboard'
-      + 'interface with a bunch of components and applications. Enjoy!';
+    const title = 'Welcome to the GeoDeck!';
+    const message = 'You have successfully registered in the GeoDeck.';
     const notificationInitialProps = {
       content: <BasicNotification
         title={title}
