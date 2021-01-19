@@ -58,15 +58,15 @@ const tools = [
 const toolText = (ind) => {
   switch (ind) {
     case 0:
-      return "point sampling";
+      return "Point Sampling";
     case 1:
-      return "line sampling";
+      return "Line Sampling";
     case 2:
-      return "plane sampling";
+      return "Plane Sampling";
     case 3:
-      return "clear";
+      return "Clear";
     default:
-      return "tool item";
+      return "Tool Item";
   }
 };
 

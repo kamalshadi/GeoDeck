@@ -55,7 +55,7 @@ const getProjects = {
       username: "example project",
       collaborationGroup: "Lab Internal",
       description: "this is a example project",
-      source: "video.webm",
+      source: "project.png",
     },
     {
       id: 5,

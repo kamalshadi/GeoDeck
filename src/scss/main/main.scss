@@ -544,7 +544,7 @@ $controlbarHeight: 100px;
   }
 
   .detail-bar {
-    flex: 0 0 20%;
+    flex: 0 0 22%;
     padding: spacing(1);
 
     display: grid;
@@ -684,8 +684,12 @@ $controlbarHeight: 100px;
           align-items: center;
           min-height: 290px;
           @include retina {
-            border: 1px solid $inactive-gray;
+            @include themify($themes) {
+              border-color: fade-out(themed("colorTextAdditional"), .5);
+            }
           }
+
+
           @include themify($themes) {
             color: darken(themed("colorBubble"), 45%);
           }
