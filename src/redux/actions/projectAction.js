@@ -55,7 +55,7 @@ const getProjects = {
       username: "example project",
       collaborationGroup: "Lab Internal",
       description: "this is a example project",
-      source: "project.png",
+      source: "project3.png",
     },
     {
       id: 5,
@@ -65,7 +65,17 @@ const getProjects = {
       username: "archive project",
       collaborationGroup: "Lab Internal",
       description: "this is a archive project",
-      source: "project3.png",
+      source: "project4.png",
+    },
+    {
+      id: 6,
+      title: "Well Optimization",
+      time: "12/01/2020",
+      url: "http://example.com",
+      username: "example project",
+      collaborationGroup: "Lab Internal",
+      description: "this is a example project",
+      source: "project5.png",
     },
   ],
 };
@@ -78,7 +88,7 @@ const getCreatedProject = (formValues) => {
     username: "test project",
     collaborationGroup: "Lab Internal",
     description: "this is a test project",
-    source: null,
+    source: "project.png",
   };
   const values = _.omit(formValues, "password");
   return {data: _.merge(defaultValue, values)};
