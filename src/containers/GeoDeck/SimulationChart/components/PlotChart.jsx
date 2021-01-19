@@ -8,6 +8,8 @@ import { getVariableUnit, increaseLegend } from "./hepler";
 // const backgroundColor = ["#FF6384", "#4BC0C0", "#FFCE56", "#E7E9ED", "#36A2EB"];
 // const backgroundColor = ["#00a1ff7a", "#60d937", "#ed220d", "36A2EB"];
 const backgroundColor = ["#80D0FF", "#B0EC9B", "#F69186", "#FFD780"];
+const activeGray = "#d5d5d5";
+const inactiveGray = "#929292";
 
 const plugins = [
   {
@@ -18,7 +20,7 @@ const plugins = [
 const options = {
   legend: {
     labels: {
-      fontColor: "#d5d5d5",
+      fontColor: activeGray,
     },
   },
   scales: {
@@ -27,16 +29,16 @@ const options = {
         scaleLabel: {
           display: true,
           labelString: "Time",
-          fontColor: "#d5d5d5",
+          fontColor: activeGray,
         },
         type: "linear",
         position: "bottom",
         gridLines: {
-          color: "#929292",
+          color: inactiveGray,
           borderDash: [1, 1],
         },
         ticks: {
-          fontColor: "#d5d5d5",
+          fontColor: activeGray,
         },
       },
     ],
@@ -47,14 +49,14 @@ const options = {
           display: true,
           labelString: `variable`,
           // labelString: `${variableName} (${variableUnit})`,
-          fontColor: "#d5d5d5",
+          fontColor: activeGray,
         },
         gridLines: {
-          color: "#929292",
+          color: inactiveGray,
           borderDash: [1, 1],
         },
         ticks: {
-          fontColor: "#d5d5d5",
+          fontColor: activeGray,
         },
       },
     ],
@@ -127,7 +129,9 @@ class PlotChart extends React.Component {
   renderChart = (variableName, variableUnit, dataList) => {
     const { plot } = this.props;
     options.scales.yAxes.map((yAxes) => {
-      yAxes.scaleLabel.labelString = _.capitalize(`${variableName} (${variableUnit})`);
+      yAxes.scaleLabel.labelString = _.capitalize(
+        `${variableName} (${variableUnit})`
+      );
     });
 
     switch (plot.type) {
@@ -142,20 +146,20 @@ class PlotChart extends React.Component {
         );
       case "scatter":
         // return null;
-      return (
-        <ChartScatter
-          options={options}
-          dataList={dataList}
-          variableName={variableName}
-          variableUnit={variableUnit}
-          plugins={plugins}
-          // ref={ref}
-        />
-      );
+        return (
+          <ChartScatter
+            options={options}
+            dataList={dataList}
+            variableName={variableName}
+            variableUnit={variableUnit}
+            plugins={plugins}
+            // ref={ref}
+          />
+        );
 
       default:
         // return null;
-      return <ChartSample />;
+        return <ChartSample />;
     }
   };
 
@@ -188,21 +192,18 @@ class PlotChart extends React.Component {
     //     this.imgRef.current.target="_blank"
     //   }
     // }
-    
+
     return (
       <React.Fragment>
         {this.renderChart(variableName, variableUnit, dataList)}
         {/* <FancyButton ref={this.chartRef}>Click me!</FancyButton>; */}
         {/* <a ref={this.imgRef} /> */}
-
       </React.Fragment>
     );
   }
 }
 
 export default PlotChart;
-
-
 
 // const FancyButton = React.forwardRef((props, ref) => {
 //   return (

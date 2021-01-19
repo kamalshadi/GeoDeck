@@ -117,10 +117,13 @@ class ChartSampleScatter extends Component {
       datasets: datasets,
     };
 
+    const activeGray = "#d5d5d5";
+    const inactiveGray = "#929292";
+
     const options = {
       legend: {
         labels: {
-          fontColor: "#d5d5d5",
+          fontColor: activeGray,
         },
       },
       scales: {
@@ -129,16 +132,16 @@ class ChartSampleScatter extends Component {
             scaleLabel: {
               display: true,
               labelString: "Time",
-              fontColor: "#d5d5d5",
+              fontColor: activeGray,
             },
             type: "linear",
             position: "bottom",
             gridLines: {
-              color: "#929292",
+              color: inactiveGray,
               borderDash: [1, 1],
             },
             ticks: {
-              fontColor: "#d5d5d5",
+              fontColor: activeGray,
             },
           },
         ],
@@ -148,14 +151,14 @@ class ChartSampleScatter extends Component {
             scaleLabel: {
               display: true,
               labelString: "Temperature (\u00b0C)",
-              fontColor: "#d5d5d5",
+              fontColor: activeGray,
             },
             gridLines: {
-              color: "#929292",
+              color: inactiveGray,
               borderDash: [1, 1],
             },
             ticks: {
-              fontColor: "#d5d5d5",
+              fontColor: activeGray,
             },
           },
         ],
