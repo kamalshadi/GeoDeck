@@ -82,7 +82,7 @@ const widgetText = (ind) => {
       return null;
   }
 };
-const Toolbar = ({ three, changeWidget }) => {
+const Toolbar = ({ three, changeWidget, isToolbarEnable }) => {
   return (
     <>
       {tools.map((v, ind) => {
@@ -91,7 +91,9 @@ const Toolbar = ({ three, changeWidget }) => {
             title={toolText(ind)}
             key={ind}
             placement="right"
-            onClick={() => changeWidget(widgetText(ind))}
+            onClick={() =>
+              isToolbarEnable ? changeWidget(widgetText(ind)) : null
+            }
           >
             {React.createElement(
               v,
