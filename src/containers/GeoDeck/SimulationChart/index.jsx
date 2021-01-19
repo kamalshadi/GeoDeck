@@ -33,7 +33,6 @@ const SimulationChart = (props) => {
           key="simulation__sidebar-plot-panel"
           md="2"
           className="simulation__sidebar simulation__plot__panel"
-          style={{ maxHeight: "calc(100vh - 115px)" }}
           // style={{ maxHeight: controlBar ? "calc(100vh - 115px)" : "66vh" }}
         >
           {currentPlot ? (

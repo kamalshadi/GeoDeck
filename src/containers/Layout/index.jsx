@@ -23,6 +23,7 @@ import {
   CustomizerProps, SidebarProps, ThemeProps, RTLProps, UserProps,
 } from '../../shared/prop-types/ReducerProps';
 import BuyNowButton from './button_buy_now/BuyNowButton';
+import FooterLayout from './FooterLayout';
 
 let notification = null;
 
@@ -131,6 +132,7 @@ class Layout extends Component {
     });
 
     return (
+      <React.Fragment>
       <div className={layoutClass}>
       {/*
         <Customizer
@@ -182,6 +184,9 @@ class Layout extends Component {
           )
         }
       </div>
+      {this.props.children}
+      <FooterLayout />
+      </React.Fragment>
     );
   }
 }
