@@ -644,6 +644,7 @@ $controlbarHeight: 100px;
           display: grid;
           grid-template-rows: min-content 1fr;
           background-color: transparent;
+          cursor: unset;
           & p {
             opacity: 0.5;
             color: $inactive-gray !important;
@@ -683,24 +684,38 @@ $controlbarHeight: 100px;
           align-items: center;
           min-height: 290px;
           @include retina {
-            border-color: $inactive-gray;
+            border: 1px solid $inactive-gray;
           }
           @include themify($themes) {
             color: darken(themed("colorBubble"), 45%);
           }
-          & > * {
+          & .icon__img {
+            width: 100%;
             height: 100%;
-            font-size: 80px;
+            object-fit: cover;
+            display: block;
+            opacity: 0.2;
             cursor: pointer;
-            display: grid;
-            justify-content: center;
-            align-items: center;
             &:hover {
-              @include themify($themes) {
-                color: themed("colorBubble");
-              }
+              opacity: 1;
             }
           }
+          // & > * {
+          //   // for svg icons
+          //   height: 100%;
+          //   font-size: 80px;
+          //   cursor: pointer;
+          //   display: grid;
+          //   justify-content: center;
+          //   align-items: center;
+          //   &:hover {
+          //     opacity: 1; // for images
+
+          //     @include themify($themes) {
+          //       color: themed("colorBubble");
+          //     }
+          //   }
+          // }
         }
       }
 
