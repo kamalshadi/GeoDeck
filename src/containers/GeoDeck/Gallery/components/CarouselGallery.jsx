@@ -6,6 +6,7 @@ import {
   CarouselIndicators,
   CarouselCaption,
 } from "reactstrap";
+import { baseUrl } from "../../../../baseUrl";
 import { renderMedia } from "../../../../shared/helpers";
 
 const CarouselGallery = (props) => {
@@ -39,7 +40,7 @@ const CarouselGallery = (props) => {
         onExiting={() => setAnimating(true)}
         onExited={() => setAnimating(false)}
       >
-        {renderMedia(item.source, item.title)}
+        {renderMedia(item.source, item.title, `${baseUrl}/gallery`)}
         <CarouselCaption
           // className="text-danger"
           captionText={item.title}
