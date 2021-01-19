@@ -18,7 +18,7 @@ const getGalleries = {
       username: "test project",
       collaborationGroup: "Lab Internal",
       description: "this is a test project",
-      source: "01.jpg",
+      source: "Untitled.png",
     },
     {
       id: 2,
@@ -28,7 +28,7 @@ const getGalleries = {
       username: "web project",
       collaborationGroup: "Lab Internal",
       description: "this is a web project",
-      source: "02.jpg",
+      source: "Untitled1.png",
     },
     {
       id: 3,
@@ -38,7 +38,7 @@ const getGalleries = {
       username: "mail project",
       collaborationGroup: "Lab Internal",
       description: "this is a mail project",
-      source: "04.png",
+      source: "Untitled2.png",
     },
     {
       id: 4,
@@ -48,7 +48,7 @@ const getGalleries = {
       username: "example project",
       collaborationGroup: "Lab Internal",
       description: "this is a example project",
-      source: "video.webm",
+      source: "Untitled3.png",
     },
     {
       id: 5,
@@ -58,7 +58,7 @@ const getGalleries = {
       username: "archive project",
       collaborationGroup: "Lab Internal",
       description: "this is a archive project",
-      source: null,
+      source: "Untitled4.png",
     },
     {
       id: 6,
@@ -68,7 +68,7 @@ const getGalleries = {
       username: "web project",
       collaborationGroup: "Lab Internal",
       description: "this is a web project",
-      source: "02.jpg",
+      source: "Untitled5.png",
     },
     {
       id: 7,
@@ -78,7 +78,7 @@ const getGalleries = {
       username: "mail project",
       collaborationGroup: "Lab Internal",
       description: "this is a mail project",
-      source: "04.png",
+      source: "Untitled6.png",
     },
     {
       id: 8,
@@ -88,7 +88,7 @@ const getGalleries = {
       username: "example project",
       collaborationGroup: "Lab Internal",
       description: "this is a example project",
-      source: "video.webm",
+      source: "Untitled7.png",
     },
     {
       id: 9,
@@ -98,7 +98,7 @@ const getGalleries = {
       username: "archive project",
       collaborationGroup: "Lab Internal",
       description: "this is a archive project",
-      source: null,
+      source: "Untitled8.png",
     },
     {
       id: 10,
@@ -108,7 +108,7 @@ const getGalleries = {
       username: "web project",
       collaborationGroup: "Lab Internal",
       description: "this is a web project",
-      source: "02.jpg",
+      source: "Untitled9.png",
     },
     {
       id: 1,
@@ -118,7 +118,7 @@ const getGalleries = {
       username: "mail project",
       collaborationGroup: "Lab Internal",
       description: "this is a mail project",
-      source: "04.png",
+      source: "Untitled10.png",
     },
     {
       id: 12,
@@ -128,17 +128,17 @@ const getGalleries = {
       username: "example project",
       collaborationGroup: "Lab Internal",
       description: "this is a example project",
-      source: "video.webm",
+      source: "Untitled11.png",
     },
-    {
-      id: 13,
-      title: "USA Geothermal",
-      time: "12/18/2020",
-      url: "http://archive.com",
-      username: "archive project",
-      collaborationGroup: "Lab Internal",
-      description: "this is a archive project",
-      source: null,
-    },
+  //   {
+  //     id: 13,
+  //     title: "USA Geothermal",
+  //     time: "12/18/2020",
+  //     url: "http://archive.com",
+  //     username: "archive project",
+  //     collaborationGroup: "Lab Internal",
+  //     description: "this is a archive project",
+  //     source: null,
+  //   },
   ],
 };

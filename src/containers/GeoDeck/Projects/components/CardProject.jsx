@@ -2,6 +2,7 @@ import React from "react";
 import { Card, CardBody, CardHeader } from "reactstrap";
 import { Link } from "react-router-dom";
 import { renderMedia } from "../../../../shared/helpers";
+import { baseUrl } from "../../../../baseUrl";
 
 const CardProject = (props) => {
   const { source, title, time, id } = props.item;
@@ -9,7 +10,7 @@ const CardProject = (props) => {
   return (
     <Card className="border-radius-spacing-2">
       <CardBody className="project-card__container">
-        <CardHeader>{renderMedia(source, title)}</CardHeader>
+        <CardHeader>{renderMedia(source, title, `${baseUrl}/project`)}</CardHeader>
         <div className="project-card__body">
           {/* <h3 className="project-card__plan">Toy Example</h3>
           <hr /> */}

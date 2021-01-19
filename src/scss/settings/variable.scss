@@ -69,10 +69,15 @@ $inactive-gray:#929292;
 $color-primary: #F2AB1f;
 $color-black: #000;
 
+// navigation-colors
+$nav-background: #1B3062;
 
 // top bar
 $topber-height: 55px;
 $toolbar-width: 55px;
+$footer-height: 32px;
+$padding-container: $topber-height + $footer-height;
+
 
 $color-accent: #F2AB1f;
 $color-accent-hover: darken($color-accent, 10%);

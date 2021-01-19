@@ -1,67 +1,93 @@
-import React, { PureComponent } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Scatter } from "react-chartjs-2";
 
-class ChartScatter extends PureComponent {
-  render() {
-    const { dataList, options, plugins } = this.props;
+const ChartScatter = (props) => {
+  // const ChartScatter = React.forwardRef((props, ref) => {
+  // const chartRef = ref;
+  // const imgRef = useRef(null);
 
-    const datasets = dataList.map(({ name, xYData, color }) => {
-      return {
-        label: name,
-        fill: false,
-        lineTension: 0.3,
-        backgroundColor: color,
-        borderColor: color,
-        // borderWidth: 1,
-        // borderDash: [3, 3],
-        pointBackgroundColor: color,
-        pointHoverRadius: 4,
-        pointHoverBorderWidth: 1,
-        pointRadius: 3,
-        pointHitRadius: 10,
-        data: xYData,
-      };
-    });
+  // const [chartInstance, setChartInstance] = useState(null);
 
-    const scatterData = {
-      labels: [],
-      datasets: datasets,
+  // useEffect(() => {
+  //   setChartInstance(chartRef.current);
+  // }, []);
+
+  const { dataList, options, plugins } = props;
+
+  const datasets = dataList.map(({ name, xYData, color }) => {
+    return {
+      label: name,
+      fill: false,
+      lineTension: 0.3,
+      backgroundColor: color,
+      borderColor: color,
+      // borderWidth: 1,
+      // borderDash: [3, 3],
+      pointBackgroundColor: color,
+      pointHoverRadius: 4,
+      pointHoverBorderWidth: 1,
+      pointRadius: 3,
+      pointHitRadius: 10,
+      data: xYData,
     };
+  });
 
-    // const options = {
-    //   scales: {
-    //     xAxes: [
-    //       {
-    //         scaleLabel: {
-    //           display: true,
-    //           labelString: "time",
-    //         },
-    //         type: "linear",
-    //         position: "bottom",
-    //       },
-    //     ],
+  const scatterData = {
+    labels: [],
+    datasets: datasets,
+  };
+  // const onClick = () => {
+  //   imgRef.current.click();
+  // }
 
-    //     yAxes: [
-    //       {
-    //         scaleLabel: {
-    //           display: true,
-    //           labelString: `${variableName} (${variableUnit})`,
-    //         },
-    //       },
-    //     ],
-    //   },
-    // };
-    return (
-      <React.Fragment>
-        <Scatter
-          data={scatterData}
-          options={options}
-          plugins={plugins}
-        />
-      </React.Fragment>
-    );
-  }
-}
+  // imgRef = chartRef.current.chartInstance.toBase64Image();
+  // console.log(chartRef.current.chartInstance.toBase64Image());
+  // console.log(chartRef);
+  // if (chartInstance) {
+  //   // imgRef.current.href = chartInstance.chartInstance.toBase64Image();
+  //   const ctx = chartInstance.chartInstance.ctx;
+  //   const canvas = ctx?.canvas;
+  //   // console.log(ctx);
+  //   // console.log(canvas);
+  //   // canvas.toBlob(function (blob) {
+  //   //   saveAs(blob, "");
+  //   // })
+  //   // imgRef.current.innerText = "download";
+  //   // imgRef.current.download = "download.png";
+  //   // imgRef.current.href = canvas
+  //   //   ? canvas.toBlob(function (blob) {
+  //   //       saveAs(blob, "pretty image.png");
+  //   //     })
+  //   //   : "#";
+  //   // imgRef.current.href = canvas ? canvas.toDataURL("image/png") : "#";
+  //   // window.open(canvas);
+
+  //   imgRef.current.download = "download.png";
+  //   imgRef.current.innerText = "download";
+  //   imgRef.current.href = canvas?.toDataURL("image/png");
+  //   imgRef.current.target="_blank"
+  //   // imgRef.current.href = chartRef.current.chartInstance.toBase64Image();
+  //   // imgRef.current.click();
+
+  //   // }
+  // // }
+
+  // console.log(chartInstance);
+
+  // };
+  return (
+    <React.Fragment>
+      <Scatter
+        // ref={chartRef}
+        // onElementsClick={onClick}
+        data={scatterData}
+        options={options}
+        plugins={plugins}
+      />
+      {/* <a ref={imgRef} /> */}
+    </React.Fragment>
+  );
+};
 
 export default ChartScatter;
 
@@ -111,4 +137,30 @@ export default ChartScatter;
 //       ],
 //     },
 //   ],
+// };
+
+//----------------------------------------------
+
+// const options = {
+//   scales: {
+//     xAxes: [
+//       {
+//         scaleLabel: {
+//           display: true,
+//           labelString: "time",
+//         },
+//         type: "linear",
+//         position: "bottom",
+//       },
+//     ],
+
+//     yAxes: [
+//       {
+//         scaleLabel: {
+//           display: true,
+//           labelString: `${variableName} (${variableUnit})`,
+//         },
+//       },
+//     ],
+//   },
 // };

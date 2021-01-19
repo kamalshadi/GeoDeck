@@ -35,20 +35,36 @@ class Gallery extends Component {
     ).isRequired,
   };
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      items: props.items,
-      currentTag: "all",
-      tags: props.tags,
-      lightboxIsOpen: false,
-      currentItem: 0,
-      carouselItems: [],
-    };
-  }
+  state = {
+    firstRender: true,
+    items: [],
+    currentTag: "all",
+    tags: this.props.tags,
+    lightboxIsOpen: false,
+    currentItem: 0,
+    carouselItems: [],
+  };
+
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     // items: props.items,
+  //     currentTag: "all",
+  //     tags: props.tags,
+  //     lightboxIsOpen: false,
+  //     currentItem: 0,
+  //     carouselItems: [],
+  //   };
+  // }
 
   componentDidMount() {
     this.props.fetchGalleryItems();
+  }
+
+  componentDidUpdate() {
+    if (this.state.firstRender) {
+      this.setState({ items: this.props.items, firstRender: false });
+    }
   }
 
   onFilter = (tag) => {
@@ -295,18 +311,25 @@ class Gallery extends Component {
   };
 
   render() {
-    const { items } = this.state;
+    const { items, firstRender } = this.state;
 
     if (!this.props.items) {
       return null;
     }
+
+    // if (!_.isEmpty(this.props.items) && _.isEmpty(items)) {
+    //   console.log("fill items-------------------");
+    //   this.setState({ items: this.props.items });
+    // }
+
+    const iterateItems = firstRender ? this.props.items : items;
 
     return (
       <React.Fragment>
         {this.renderFilters()}
 
         <div className="gallery">
-          {items.map((item, index) => (
+          {iterateItems?.map((item, index) => (
             <button
               className="gallery__img-wrap"
               key={`gallery-item-${index} `}

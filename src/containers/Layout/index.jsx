@@ -23,6 +23,7 @@ import {
   CustomizerProps, SidebarProps, ThemeProps, RTLProps, UserProps,
 } from '../../shared/prop-types/ReducerProps';
 import BuyNowButton from './button_buy_now/BuyNowButton';
+import FooterLayout from './FooterLayout';
 
 let notification = null;
 
@@ -40,9 +41,8 @@ class Layout extends Component {
   };
 
   componentDidMount() {
-    const title = 'Welcome to the EasyDev!';
-    const message = 'You have successfully registered in the EasyDev. Now you can start to explore the dashboard'
-      + 'interface with a bunch of components and applications. Enjoy!';
+    const title = 'Welcome to the GeoDeck!';
+    const message = 'You have successfully logged in to GeoDeck.';
     const notificationInitialProps = {
       content: <BasicNotification
         title={title}
@@ -72,9 +72,9 @@ class Layout extends Component {
     // setTimeout(() => { clearInterval(notificationIntervalKey); }, 5000);
   }
 
-  // componentWillUnmount() {
-  //   notification.destroy();
-  // }
+  componentWillUnmount() {
+    notification.destroy();
+  }
 
   changeSidebarVisibility = () => {
     const { dispatch } = this.props;
@@ -132,6 +132,7 @@ class Layout extends Component {
     });
 
     return (
+      <React.Fragment>
       <div className={layoutClass}>
       {/*
         <Customizer
@@ -183,6 +184,9 @@ class Layout extends Component {
           )
         }
       </div>
+      {this.props.children}
+      <FooterLayout />
+      </React.Fragment>
     );
   }
 }

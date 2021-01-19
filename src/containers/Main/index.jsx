@@ -18,6 +18,7 @@ const VisDash = () => {
   const [tab, setTab] = useState(0);
 
   const isTabsDisable = tab !== 0;
+  const isToolbarEnable = tab === 0 || tab === 2;
   const [toggleDetailBar, setToggleDetailBar] = useState(false);
   const [toggleControlBar, setToggleControlBar] = useState(false);
   const [toggleXY, setToggleXY] = useState(false);
@@ -32,7 +33,7 @@ const VisDash = () => {
   return (
     <div className="geodeck-app">
       <div className="tool-bar">
-        <Toolbar />
+        <Toolbar isToolbarEnable={isToolbarEnable} />
       </div>
       <div className="geodeck-canvas">
         <div className="chart-container">

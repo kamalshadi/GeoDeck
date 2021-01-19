@@ -24,7 +24,7 @@ class ChartSetting extends React.Component {
     return null;
   };
 
-  onExport = () => {
+  onSave = () => {
     return null;
   };
 
@@ -59,13 +59,6 @@ class ChartSetting extends React.Component {
           }}
         >
           <MenuItem
-            key="download-chart"
-            onClick={this.onDownload}
-            className={`material-table__filter-menu-item`}
-          >
-            Download
-          </MenuItem>
-          <MenuItem
             key="Edit-chart"
             onClick={this.onEdit}
             className={`material-table__filter-menu-item`}
@@ -73,13 +66,26 @@ class ChartSetting extends React.Component {
             Edit
           </MenuItem>
           <MenuItem
-            key="Export-chart"
-            onClick={this.onExport}
+            key="gallery-chart"
+            // onClick={this.onEdit}
             className={`material-table__filter-menu-item`}
           >
-            Export
+            Gallery
           </MenuItem>
-
+          <MenuItem
+            key="save-chart"
+            onClick={this.onSave}
+            className={`material-table__filter-menu-item`}
+          >
+            Save
+          </MenuItem>
+          <MenuItem
+            key="download-chart"
+            onClick={this.onDownload}
+            className={`material-table__filter-menu-item`}
+          >
+            Download
+          </MenuItem>
           <MenuItem
             key="Delete-chart"
             onClick={this.onDelete}

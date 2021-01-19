@@ -17,10 +17,13 @@ const data = {
   labels: ["Simulation 1", "Simulation 2", "Simulation 3", "Simulation 4"],
 };
 
+const activeGray = "#d5d5d5";
+const inactiveGray = "#929292";
+
 const options = {
   legend: {
     labels: {
-      fontColor: "#d5d5d5",
+      fontColor: activeGray,
     },
   },
   // layout: {
@@ -30,11 +33,11 @@ const options = {
   // },
   scale: {
     gridLines: {
-      color: "#929292",
+      color: inactiveGray,
       borderDash: [3, 3],
     },
     ticks: {
-      fontColor: "#d5d5d5",
+      fontColor: activeGray,
     },
   },
 };

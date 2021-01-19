@@ -1,5 +1,6 @@
 import { CardMedia } from "@material-ui/core";
 import React from "react";
+import { defaultImage } from "../../baseUrl";
 
 const ligthTheme = {
   backgroundColor: "white",
@@ -34,16 +35,14 @@ export const sourceToTag = (source) => {
   return "all";
 };
 
-export const renderMedia = (source, title) => {
-  const defaultImage = `${process.env.PUBLIC_URL}/img/co2.png`;
-  const imageUrl = `${process.env.PUBLIC_URL}/img/gallery/`;
+export const renderMedia = (source, title, baseUrl) => {
   const sourceTag = sourceToTag(source);
 
   if (sourceTag === "img" || !source) {
     return (
       <CardMedia
         component="img"
-        src={source ? `${imageUrl}${source}` : defaultImage}
+        src={source ? `${baseUrl}/${source}` : defaultImage}
         style={{ minHeight: "auto" }}
         className={
           source
@@ -56,7 +55,7 @@ export const renderMedia = (source, title) => {
   } else if (sourceTag === "video") {
     return (
       <CardMedia
-        src={`${imageUrl}${source}`}
+        src={`${baseUrl}/${source}`}
         autoPlay={true}
         loop={true}
         // style={{ height: "150px" }}

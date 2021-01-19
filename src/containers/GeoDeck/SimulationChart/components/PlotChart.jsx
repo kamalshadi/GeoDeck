@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import _ from "lodash";
 import ChartLine from "./ChartLine";
 import ChartSample from "./ChartSample";
@@ -8,124 +8,144 @@ import { getVariableUnit, increaseLegend } from "./hepler";
 // const backgroundColor = ["#FF6384", "#4BC0C0", "#FFCE56", "#E7E9ED", "#36A2EB"];
 // const backgroundColor = ["#00a1ff7a", "#60d937", "#ed220d", "36A2EB"];
 const backgroundColor = ["#80D0FF", "#B0EC9B", "#F69186", "#FFD780"];
+const activeGray = "#d5d5d5";
+const inactiveGray = "#929292";
 
-const PlotChart = (props) => {
-  const { plot } = props;
+const plugins = [
+  {
+    beforeInit: increaseLegend,
+  },
+];
 
-  const { simulations } = plot; // get simulations for each plot
+const options = {
+  legend: {
+    labels: {
+      fontColor: activeGray,
+    },
+  },
+  scales: {
+    xAxes: [
+      {
+        scaleLabel: {
+          display: true,
+          labelString: "Time",
+          fontColor: activeGray,
+        },
+        type: "linear",
+        position: "bottom",
+        gridLines: {
+          color: inactiveGray,
+          borderDash: [1, 1],
+        },
+        ticks: {
+          fontColor: activeGray,
+        },
+      },
+    ],
 
-  if (_.isEmpty(simulations)) {
-    return null;
+    yAxes: [
+      {
+        scaleLabel: {
+          display: true,
+          labelString: `variable`,
+          // labelString: `${variableName} (${variableUnit})`,
+          fontColor: activeGray,
+        },
+        gridLines: {
+          color: inactiveGray,
+          borderDash: [1, 1],
+        },
+        ticks: {
+          fontColor: activeGray,
+        },
+      },
+    ],
+  },
+};
+
+class PlotChart extends React.Component {
+  constructor(props) {
+    super(props);
+    // this.chartRef = React.createRef();
+    // this.imgRef = React.createRef();
   }
 
-  const {
-    data,
-    currentIds,
-    variableId,
-    pointId,
-    lineId,
-    isPoint,
-  } = simulations;
+  // componentDidMount () {
+  //   this.chartRef = React.createRef();
+  //   this.imgRef = React.createRef();
+  // }
 
-  const selectedSimulations = data.filter((sim) =>
-    _.includes(currentIds, sim.id)
-  ); // select simulations based on id of active simulations [active simulation set in simulation panel]
+  getData = (simulations) => {
+    const {
+      data,
+      currentIds,
+      variableId,
+      pointId,
+      lineId,
+      isPoint,
+    } = simulations;
 
-  let variableName = "variable"; // label for selected variable
-  let variableUnit = "-"; // unit for selected variable
-  const dataList = selectedSimulations.map((simulation, index) => {
-    const name = simulation.name;
-    const variable = simulation?.data.find(
-      (variable) => variable.id === variableId
-    ); // select active variable
-    const pointLine = isPoint
-      ? variable?.points.find((point) => point.id === pointId)
-      : variable?.lines.find((line) => line.id === lineId); // select active points/lines
+    const selectedSimulations = data.filter((sim) =>
+      _.includes(currentIds, sim.id)
+    ); // select simulations based on id of active simulations [active simulation set in simulation panel]
 
-    const rawData = pointLine?.data; //initial data
-    const xYData = pointLine?.data.map((data, index) => {
-      return { x: index, y: data };
-    }); // x/y data
+    let variableName = "variable"; // label for selected variable
+    let variableUnit = "-"; // unit for selected variable
+    const dataList = selectedSimulations.map((simulation, index) => {
+      const name = simulation.name;
+      const variable = simulation?.data.find(
+        (variable) => variable.id === variableId
+      ); // select active variable
+      const pointLine = isPoint
+        ? variable?.points.find((point) => point.id === pointId)
+        : variable?.lines.find((line) => line.id === lineId); // select active points/lines
 
-    let color = "";
-    if (index < 4) {
-      color = backgroundColor[index];
-    } else {
-      let rColor = Math.floor(Math.random() * 16777215).toString(16);
-      color = `#${rColor}`;
-    }
+      const rawData = pointLine?.data; //initial data
+      const xYData = pointLine?.data.map((data, index) => {
+        return { x: index, y: data };
+      }); // x/y data
 
-    variableName = variable.name;
-    variableUnit = variable.unit;
+      let color = "";
+      if (index < 4) {
+        color = backgroundColor[index];
+      } else {
+        let rColor = Math.floor(Math.random() * 16777215).toString(16);
+        color = `#${rColor}`;
+      }
 
-    return { name, xYData: xYData, rawData, color };
-  });
-  // const variableUnit = getVariableUnit(variableName);
+      variableName = variable.name;
+      variableUnit = variable.unit;
 
-  const options = {
-    legend: {
-      labels: {
-        fontColor: "#d5d5d5",
-      },
-    },
-    scales: {
-      xAxes: [
-        {
-          scaleLabel: {
-            display: true,
-            labelString: "Time",
-            fontColor: "#d5d5d5",
-          },
-          type: "linear",
-          position: "bottom",
-          gridLines: {
-            color: "#929292",
-            borderDash: [1, 1],
-          },
-          ticks: {
-            fontColor: "#d5d5d5",
-          },
-        },
-      ],
+      return { name, xYData: xYData, rawData, color };
+    });
 
-      yAxes: [
-        {
-          scaleLabel: {
-            display: true,
-            labelString: `${variableName} (${variableUnit})`,
-            fontColor: "#d5d5d5",
-          },
-          gridLines: {
-            color: "#929292",
-            borderDash: [1, 1],
-          },
-          ticks: {
-            fontColor: "#d5d5d5",
-          },
-        },
-      ],
-    },
+    return {
+      variableName,
+      variableUnit,
+      dataList,
+    };
   };
 
-  const plugins = [
-    {
-      beforeInit: increaseLegend,
-    },
-  ];
+  renderChart = (variableName, variableUnit, dataList) => {
+    const { plot } = this.props;
+    options.scales.yAxes.map((yAxes) => {
+      yAxes.scaleLabel.labelString = _.capitalize(
+        `${variableName} (${variableUnit})`
+      );
+    });
 
-  const renderChart = () => {
     switch (plot.type) {
       case "line":
         return (
           <ChartLine
             dataList={dataList}
-            variableName={variableName}
-            variableUnit={variableUnit}
             options={options}
             plugins={plugins}
+            // ref={this.chartRef}
           />
         );
       case "scatter":
+        // return null;
         return (
           <ChartScatter
             options={options}
@@ -133,40 +153,61 @@ const PlotChart = (props) => {
             variableName={variableName}
             variableUnit={variableUnit}
             plugins={plugins}
+            // ref={ref}
           />
         );
 
       default:
+        // return null;
         return <ChartSample />;
     }
   };
 
-  return <React.Fragment>{renderChart()}</React.Fragment>;
-};
+  render() {
+    // if (chartInstance) {
+    //   const ctx = chartInstance.chartInstance.ctx;
+    //   const canvas = ctx?.canvas;
+    //   imgRef.current.download = "download.png";
+    //   imgRef.current.innerText = "download";
+    //   imgRef.current.href = canvas?.toDataURL("image/png");
+    //   imgRef.current.target = "_blank";
+    // }
+
+    const { plot } = this.props;
+    const { simulations } = plot; // get simulations for each plot
+    if (_.isEmpty(simulations)) {
+      return null;
+    }
+    const { variableName, variableUnit, dataList } = this.getData(simulations);
+
+    // if(this.chartRef.current) {
+    //   const chartInstance = this.chartRef.current.chartInstance ;
+    //   if(!!chartInstance) {
+    //     const ctx = chartInstance.ctx;
+    //     const canvas = ctx?.canvas;
+
+    //     this.imgRef.current.download = "download.png";
+    //     this.imgRef.current.innerText = "download";
+    //     this.imgRef.current.href = canvas?.toDataURL("image/png");
+    //     this.imgRef.current.target="_blank"
+    //   }
+    // }
+
+    return (
+      <React.Fragment>
+        {this.renderChart(variableName, variableUnit, dataList)}
+        {/* <FancyButton ref={this.chartRef}>Click me!</FancyButton>; */}
+        {/* <a ref={this.imgRef} /> */}
+      </React.Fragment>
+    );
+  }
+}
 
 export default PlotChart;
 
-{
-  /* <React.Fragment>
-  <ResponsiveContainer>
-    <ScatterChart
-      margin={{
-        top: 0,
-        right: 0,
-        bottom: 0,
-        left: 0,
-      }}
-    >
-      <XAxis type="number" dataKey="x" reversed={false} />
-      <CartesianGrid strokeDasharray="3 3" />
-      <YAxis type="number" dataKey="y" stroke="#70bbfd" />
-      <Tooltip itemStyle={tooltipColor} />
-
-      {data.map((d) => {
-        let rColor = Math.floor(Math.random() * 16777215).toString(16);
-        return <Scatter name={name} data={d} fill={`#${rColor}`} />;
-      })}
-    </ScatterChart>
-  </ResponsiveContainer>
-</React.Fragment>; */
-}
+// const FancyButton = React.forwardRef((props, ref) => {
+//   return (
+//   <button ref={ref} className="FancyButton">
+//     {props.children}
+//   </button>
+// )});

@@ -216,11 +216,14 @@ $controlbarHeight: 100px;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
+  & > * {
+    height: calc(100vh - #{$padding-container});
+  }
 
   .tool-bar {
     min-width: $toolbar-width;
     max-width: $toolbar-width;
-
+    overflow-y: auto;
     display: grid;
     justify-items: center;
     // align-items: center;
@@ -242,6 +245,10 @@ $controlbarHeight: 100px;
 
   .geodeck-canvas {
     flex: 0 1 auto;
+    // height: calc(100vh - #{$padding-container});
+    width: 100%;
+    // padding-left: $toolbarWidth;
+    // padding-right: $detailbarWidth;
 
     canvas {
       // change default styles for fix responsive bug
@@ -262,11 +269,6 @@ $controlbarHeight: 100px;
     & > div:first-child {
       // padding-top: 0px;
     }
-
-    height: calc(100vh - #{$topber-height});
-    width: 100%;
-    // padding-left: $toolbarWidth;
-    // padding-right: $detailbarWidth;
 
     @include themify($themes) {
       background-color: themed("colorBackgroundBody");
@@ -542,11 +544,11 @@ $controlbarHeight: 100px;
   }
 
   .detail-bar {
-    flex: 0 0 20%;
+    flex: 0 0 22%;
     padding: spacing(1);
 
     display: grid;
-    max-height: calc(100vh - #{$topber-height});
+    // max-height: calc(100vh - #{$padding-container});
     grid-template-rows: min-content 1fr;
     grid-gap: spacing(3);
 
@@ -582,6 +584,8 @@ $controlbarHeight: 100px;
     &__sidebar {
       padding-left: 0;
       padding-right: 0;
+
+      max-height: calc(100vh - 124px);
 
       @include themify($themes) {
         border-right: 0.5px solid themed("colorBackground");
@@ -620,7 +624,7 @@ $controlbarHeight: 100px;
         @include themify($themes) {
           background-color: themed("colorBackground");
         }
-        
+
         // display: grid;
         // grid-template-rows: min-content 1fr;
         // flex: 0 1 calc(33.33% - #{spacing(6)});
@@ -640,6 +644,7 @@ $controlbarHeight: 100px;
           display: grid;
           grid-template-rows: min-content 1fr;
           background-color: transparent;
+          cursor: unset;
           & p {
             opacity: 0.5;
             color: $inactive-gray !important;
@@ -679,24 +684,42 @@ $controlbarHeight: 100px;
           align-items: center;
           min-height: 290px;
           @include retina {
-            border-color: $inactive-gray;
+            @include themify($themes) {
+              border-color: fade-out(themed("colorTextAdditional"), .5);
+            }
           }
+
+
           @include themify($themes) {
             color: darken(themed("colorBubble"), 45%);
           }
-          & > * {
+          & .icon__img {
+            width: 100%;
             height: 100%;
-            font-size: 80px;
+            object-fit: cover;
+            display: block;
+            opacity: 0.2;
             cursor: pointer;
-            display: grid;
-            justify-content: center;
-            align-items: center;
             &:hover {
-              @include themify($themes) {
-                color: themed("colorBubble");
-              }
+              opacity: 1;
             }
           }
+          // & > * {
+          //   // for svg icons
+          //   height: 100%;
+          //   font-size: 80px;
+          //   cursor: pointer;
+          //   display: grid;
+          //   justify-content: center;
+          //   align-items: center;
+          //   &:hover {
+          //     opacity: 1; // for images
+
+          //     @include themify($themes) {
+          //       color: themed("colorBubble");
+          //     }
+          //   }
+          // }
         }
       }
 
@@ -705,6 +728,7 @@ $controlbarHeight: 100px;
         grid-gap: 2rem;
         grid-template-rows: 1fr 0.5px 1fr;
         padding: 0;
+        padding-bottom: 34px;
 
         &__setting {
           display: grid;
@@ -820,12 +844,12 @@ $controlbarHeight: 100px;
       margin-bottom: spacing(3);
 
       &.full-height {
-        max-height: 70vh;
+        max-height: 66vh;
         @include retina {
-          max-height: 75vh;
+          max-height: 71vh;
         }
         @include full-screen {
-          max-height: 75vh;
+          max-height: 71vh;
         }
       }
 
@@ -904,12 +928,12 @@ $controlbarHeight: 100px;
       }
 
       &.full-height {
-        max-height: 73vh;
+        max-height: 69vh;
         @include full-screen {
-          max-height: 76vh;
+          max-height: 72vh;
         }
         @include retina {
-          max-height: 78vh;
+          max-height: 74vh;
         }
       }
 
@@ -1006,12 +1030,12 @@ $controlbarHeight: 100px;
     margin-bottom: spacing(3);
 
     &.full-height {
-      max-height: 70vh;
+      max-height: 66vh;
       @include retina {
-        max-height: 75vh;
+        max-height: 71vh;
       }
       @include full-screen {
-        max-height: 75vh;
+        max-height: 71vh;
       }
     }
 
