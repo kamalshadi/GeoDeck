@@ -42,7 +42,7 @@ class Layout extends Component {
 
   componentDidMount() {
     const title = 'Welcome to the GeoDeck!';
-    const message = 'You have successfully registered in the GeoDeck.';
+    const message = 'You have successfully logged in to GeoDeck.';
     const notificationInitialProps = {
       content: <BasicNotification
         title={title}
@@ -72,9 +72,9 @@ class Layout extends Component {
     // setTimeout(() => { clearInterval(notificationIntervalKey); }, 5000);
   }
 
-  // componentWillUnmount() {
-  //   notification.destroy();
-  // }
+  componentWillUnmount() {
+    notification.destroy();
+  }
 
   changeSidebarVisibility = () => {
     const { dispatch } = this.props;
