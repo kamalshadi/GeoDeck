@@ -296,7 +296,7 @@ class Gallery extends Component {
           <div className="modal__footer gallery-modal-footer">
             <a
               // target="_blank"
-              href={itemSource ? `${baseUrl}${itemSource}` : defaultImage}
+              href={itemSource ? `${baseUrl}/gallery/${itemSource}` : defaultImage}
               download
             >
               <DownloadOutlined className="gallery-download" />
