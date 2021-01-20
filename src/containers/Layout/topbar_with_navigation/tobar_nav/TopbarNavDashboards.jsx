@@ -18,8 +18,8 @@ const TopbarNavDashboards = () => (
     <Link className="nav-link" to="/gallery">
       Gallery
     </Link>
-    <Link className="nav-link" to="#">
-      Reports
+    <Link className="nav-link" to="/main/1">
+      Studio
     </Link>
   </React.Fragment>
   // <UncontrolledDropdown className="topbar__nav-dropdown">
