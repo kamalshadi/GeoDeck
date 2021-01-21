@@ -41,7 +41,7 @@ const Player = ({ three, changeSample }) => {
         <StepForwardOutlined className="geo-icon" />
       </div>
       <div className="player-input">
-        <span>Timestep</span>
+        <span style={{fontSize: "15px"}}>Timestep</span>
         <div className="time-input">
           <input type="number" defaultValue={0} ref={frame} />
           <div className="time-label">{`/ ${three.sample.total}`}</div>

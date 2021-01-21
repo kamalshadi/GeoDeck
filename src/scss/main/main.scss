@@ -451,6 +451,7 @@ $controlbarHeight: 100px;
           .time-input {
             position: relative;
             display: flex;
+
             input {
               // color: white;
               // background-color: transparent;
@@ -464,13 +465,19 @@ $controlbarHeight: 100px;
                 color: themed("colorBubble");
                 border: 1px solid themed("colorTextAdditional");
               }
+
               margin: 0 spacing(1.5);
+              margin-left: 22px;
               display: flex;
               width: spacing(11);
               padding: 4px 6px;
               padding-left: 10px;
               border-radius: 4px;
               height: 30px;
+              @include retina {
+                font-size: 13px;
+                line-height: 3;
+              }
               &:focus {
                 @include themify($themes) {
                   border: 1px solid themed("colorBubble");

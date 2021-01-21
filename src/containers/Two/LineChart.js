@@ -161,10 +161,10 @@ const MyResponsiveLine = ({ three }) => {
         // }}
         legends={[
           {
-            anchor: "bottom",
+            anchor: "top-left",
             direction: "row",
             justify: false,
-            translateX: 100,
+            translateX: 10,
             translateY: 0,
             itemsSpacing: 0,
             itemDirection: "left-to-right",
