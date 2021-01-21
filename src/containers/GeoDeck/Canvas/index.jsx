@@ -42,13 +42,13 @@ const MainContainer = ({
           className={` setting icon__toggle--bottom-bar ${
             !isTabsDisable && !controlBar ? "active" : ""
           }`}
-          onClick={!isTabsDisable && toggleControlBar}
+          onClick={!isTabsDisable ? toggleControlBar : undefined}
         />
         <div
           className={` setting icon__toggle--side-bar ${
             !isTabsDisable && !detailBar ? "active" : ""
           }`}
-          onClick={!isTabsDisable && toggleDetailBar}
+          onClick={!isTabsDisable ? toggleDetailBar : undefined}
         />
       </div>
     );
