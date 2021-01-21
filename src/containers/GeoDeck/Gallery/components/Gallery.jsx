@@ -43,6 +43,7 @@ class Gallery extends Component {
     lightboxIsOpen: false,
     currentItem: 0,
     carouselItems: [],
+    sortFlag: false,
   };
 
   // constructor(props) {
@@ -73,6 +74,7 @@ class Gallery extends Component {
       this.setState({
         items: items,
         currentTag: "all",
+        sortFlag: !this.state.sortFlag,
       });
     } else {
       this.setState({
@@ -81,6 +83,7 @@ class Gallery extends Component {
           return itemTag === tag;
         }),
         currentTag: tag,
+        sortFlag: !this.state.sortFlag,
       });
     }
   };
@@ -129,7 +132,7 @@ class Gallery extends Component {
       default:
         newItems = _.sortBy(items, function (o) {
           return o.id;
-        }).reverse();
+        });
         break;
     }
     this.setState({ items: newItems });
@@ -161,7 +164,10 @@ class Gallery extends Component {
           </button>
         ))}
         <div className="gallery__btn">
-          <GalleryFilterButton onRequestSort={this.handleRequestSort} />
+          <GalleryFilterButton
+            onRequestSort={this.handleRequestSort}
+            sortFlag={this.state.sortFlag}
+          />
         </div>
       </div>
     );
@@ -296,7 +302,9 @@ class Gallery extends Component {
           <div className="modal__footer gallery-modal-footer">
             <a
               // target="_blank"
-              href={itemSource ? `${baseUrl}/gallery/${itemSource}` : defaultImage}
+              href={
+                itemSource ? `${baseUrl}/gallery/${itemSource}` : defaultImage
+              }
               download
             >
               <DownloadOutlined className="gallery-download" />

@@ -13,6 +13,14 @@ class GalleryFilterButton extends React.Component {
 
   state = { anchorEl: null, selected: "default" };
 
+  componentDidUpdate(prevProps) {
+    const { sortFlag } = this.props;
+    const { selected } = this.state;
+    if (sortFlag !== prevProps.sortFlag && selected !== "default") {
+      this.setState({ selected: "default" });
+    }
+  }
+
   handleClick = (event) => {
     this.setState({ anchorEl: event.currentTarget });
   };
