@@ -12,12 +12,12 @@ const getGalleries = {
   data: [
     {
       id: 1,
-      title: "USA Geothermal",
+      title: "2D Flow Contour",
       time: "09/09/2020",
       url: "http://test.com",
       username: "test project",
       collaborationGroup: "Lab Internal",
-      description: "this is a test project",
+      description: "EAI Geo Model",
       source: "Untitled.png",
     },
     {
@@ -28,20 +28,10 @@ const getGalleries = {
       username: "web project",
       collaborationGroup: "Lab Internal",
       description: "this is a web project",
-      source: "Untitled1.png",
+      source: "Untitled5.png",
     },
     {
       id: 3,
-      title: "USA Geothermal",
-      time: "11/27/2020",
-      url: "http://mail.com",
-      username: "mail project",
-      collaborationGroup: "Lab Internal",
-      description: "this is a mail project",
-      source: "Untitled2.png",
-    },
-    {
-      id: 4,
       title: "Well Optimization",
       time: "12/01/2020",
       url: "http://example.com",
@@ -49,6 +39,16 @@ const getGalleries = {
       collaborationGroup: "Lab Internal",
       description: "this is a example project",
       source: "Untitled3.png",
+    },
+    {
+      id: 4,
+      title: "USA Geothermal",
+      time: "11/27/2020",
+      url: "http://mail.com",
+      username: "mail project",
+      collaborationGroup: "Lab Internal",
+      description: "this is a mail project",
+      source: "Untitled2.png",
     },
     {
       id: 5,
@@ -68,7 +68,7 @@ const getGalleries = {
       username: "web project",
       collaborationGroup: "Lab Internal",
       description: "this is a web project",
-      source: "Untitled5.png",
+      source: "Untitled1.png",
     },
     {
       id: 7,
@@ -111,7 +111,7 @@ const getGalleries = {
       source: "Untitled9.png",
     },
     {
-      id: 1,
+      id: 11,
       title: "USA Geothermal",
       time: "11/27/2020",
       url: "http://mail.com",

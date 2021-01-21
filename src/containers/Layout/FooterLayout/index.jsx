@@ -5,7 +5,7 @@ const FooterLayout = () => {
     <div className="footer-layout">
       <p>
         &#169; 2021 - Powered by{" "}
-        <span className="powered-by">Petrloren LLC</span>
+        <span className="powered-by">Petrolern LLC</span>
       </p>
     </div>
   );

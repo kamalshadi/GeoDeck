@@ -118,7 +118,8 @@ const MyResponsiveLine = ({ three }) => {
           tickSize: 5,
           tickPadding: 5,
           tickRotation: 0,
-          legend: three.activeWidget === "line" ? "Y (meter)" : "Time (frame)",
+          tickValues : Array(12).fill(0).map((_, ind) => 2*ind),
+          legend: three.activeWidget === "line" ? "Y (meter)" : "Timestep",
           legendPosition: "middle",
           legendOffset: 40,
         }}
@@ -126,7 +127,7 @@ const MyResponsiveLine = ({ three }) => {
           tickSize: 5,
           tickPadding: 5,
           tickRotation: 0,
-          legend: three.sample.variable || "Pressure",
+          legend: three.sample.variable || "Pressure (Psi)",
           legendPosition: "middle",
           legendOffset: -50,
         }}

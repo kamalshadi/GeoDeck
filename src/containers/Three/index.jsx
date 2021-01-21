@@ -106,6 +106,7 @@ const Cube = ({three}) => {
     _groupP.name = 'cube-pressure-0'
     cubeData.map(node => {
       const {i, j, k} = node
+      if (i === 0 || j === 0 || k === 0)return
       const geometry = new THREE.BoxBufferGeometry(0.04, 0.04, 0.04);
       const materialT = new THREE.MeshBasicMaterial({ color: node.Temprature, clippingPlanes: [] });
       const materialP = new THREE.MeshBasicMaterial({ color: node.Pressure, clippingPlanes: [] });
@@ -127,6 +128,7 @@ const Cube = ({three}) => {
         _gP.name = `cube-pressure-${j}`
         data.map(node => {
           const {i, j, k} = node
+          if (i === 0 || j === 0 || k === 0)return
           const geometry = new THREE.BoxBufferGeometry(0.04, 0.04, 0.04);
           const materialP = new THREE.MeshBasicMaterial({ color: node.Pressure, clippingPlanes: [] });
           const cubeP = new THREE.Mesh(geometry, materialP);
@@ -213,7 +215,7 @@ const Cube = ({three}) => {
     setGroupT(_groupT)
     // window.stage = scene
     setSamplePlane(plane)
-    scene.add(PlaneHelper); // the help grid on the floor
+    // scene.add(PlaneHelper); // the help grid on the floor
     animate()
     // controls.addEventListener( 'change', render)
   }, []);

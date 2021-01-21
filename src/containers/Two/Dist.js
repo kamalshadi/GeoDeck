@@ -138,7 +138,7 @@ const Dist = ({ three }) => (
         tickSize: 5,
         tickPadding: 5,
         tickRotation: 0,
-        legend: three.sample.variable || "Pressure",
+        legend: three.sample.variable + (three.sample.variable.search(/pre/i)>=0? ' (Psi)' : ' (°F)'),
         legendPosition: "middle",
         legendOffset: 40,
       }}

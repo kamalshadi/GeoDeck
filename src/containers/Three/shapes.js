@@ -8,15 +8,15 @@ const netTexture = () => {
   canvas.width = 64;
   canvas.height = 64;
   ctx.clearRect(0,0,64,64);
-  ctx.fillStyle = '#fff';
-  for (let i = 1; i < 10; i++) {
-    ctx.fillRect(i * 6, 0, 2, 64)
-  }
-  for (let i = 1; i < 10; i++){
-    ctx.fillRect(0, i * 6, 64, 2)
-  }
-
-  // ctx.fillRect(0, 0, 32, 32)
+  ctx.fillStyle = "rgba(255, 255, 255, 0.5)"
+  // for (let i = 1; i < 10; i++) {
+  //   ctx.fillRect(i * 6, 0, 2, 64)
+  // }
+  // for (let i = 1; i < 10; i++){
+  //   ctx.fillRect(0, i * 6, 64, 2)
+  // }
+  ctx.globalAlpha = 0.2
+  ctx.fillRect(0, 0, 64, 64)
   return new THREE.CanvasTexture(canvas);
 }
 
@@ -25,8 +25,8 @@ const drawSamplingPlane = () => {
   // const material = new THREE.MeshBasicMaterial({ color: 0xffff0022, });
   // const alphaMap = new THREE.ImageUtils.loadTexture(alpha_map)
   const material = new THREE.MeshBasicMaterial({
-    color: '#F2AB1f', // red (can also use a CSS color string here)
-    alphaMap: netTexture(),
+    color: 'rgba(f,f,f,0.5)', // red (can also use a CSS color string here)
+    // alphaMap: netTexture(),
     side: THREE.DoubleSide,
     transparent: true,
   });
@@ -42,8 +42,8 @@ const drawSamplingPlane = () => {
 }
 
 const drawSamplingLine = () => {
-  const geometry = new THREE.CylinderGeometry(0.02, 0.02, 1.5, 32)
-  const material = new THREE.MeshBasicMaterial({ color: '#F2AB1f' })
+  const geometry = new THREE.CylinderGeometry(0.01, 0.01, 1.5, 32)
+  const material = new THREE.MeshBasicMaterial({ color: '#80D0FF' })
   const cylinder = new THREE.Mesh(geometry, material);
   cylinder.translateX(0.45)
   cylinder.translateY(0.5)
@@ -54,7 +54,7 @@ const drawSamplingLine = () => {
 
 const drawSamplingDot = (name) => {
   const geometry = new THREE.SphereGeometry( .02, .02, .02 );
-  const material = new THREE.MeshBasicMaterial( {color: name ? '#f50':'#F2AB1f'} );
+  const material = new THREE.MeshBasicMaterial( {color: name ? '#00ff00':'#80D0FF'} );
   const sphere = new THREE.Mesh( geometry, material );
   sphere.position.set(0.2, name ? 0.3 : 0.2, 1-0.02);
   sphere.name = name || 'sampling-dot'

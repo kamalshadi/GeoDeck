@@ -18,18 +18,8 @@ export const createProject = (formValues) => async (dispatch) => {
 const getProjects = {
   data: [
     {
-      id: 1,
-      title: "USA Geothermal",
-      time: "09/09/2020",
-      url: "http://test.com",
-      username: "test project",
-      collaborationGroup: "Lab Internal",
-      description: "this is a test project",
-      source: "project.png",
-    },
-    {
       id: 2,
-      title: "Well Optimization",
+      title: "EAI Geo Model",
       time: "10/21/2020",
       url: "http://web.com",
       username: "web project",
@@ -39,7 +29,7 @@ const getProjects = {
     },
     {
       id: 3,
-      title: "USA Geothermal",
+      title: "Surface Flow",
       time: "11/27/2020",
       url: "http://mail.com",
       username: "mail project",
@@ -59,7 +49,7 @@ const getProjects = {
     },
     {
       id: 5,
-      title: "USA Geothermal",
+      title: "3D Overlays",
       time: "12/18/2020",
       url: "http://archive.com",
       username: "archive project",
@@ -69,7 +59,7 @@ const getProjects = {
     },
     {
       id: 6,
-      title: "Well Optimization",
+      title: "Thermal Field Survey",
       time: "12/01/2020",
       url: "http://example.com",
       username: "example project",
