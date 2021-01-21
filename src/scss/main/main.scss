@@ -450,6 +450,7 @@ $controlbarHeight: 100px;
           }
           .time-input {
             position: relative;
+            display: flex;
             input {
               // color: white;
               // background-color: transparent;
@@ -467,6 +468,7 @@ $controlbarHeight: 100px;
               display: flex;
               width: spacing(11);
               padding: 4px 6px;
+              padding-left: 10px;
               border-radius: 4px;
               height: 30px;
               &:focus {
@@ -475,21 +477,29 @@ $controlbarHeight: 100px;
                 }
               }
             }
-            &:after {
-              // color: #d5d5d5;
-              // position: absolute;
-              // right: 30px;
-              // top: 0px;
-              // content: "/120";
+            // &:after {
+            //   // color: #d5d5d5;
+            //   // position: absolute;
+            //   // right: 30px;
+            //   // top: 0px;
+            //   // content: "/120";
 
-              @include themify($themes) {
-                color: themed("colorTextAdditional");
-              }
-              // color: #757575;
+            //   @include themify($themes) {
+            //     color: themed("colorTextAdditional");
+            //   }
+            //   // color: #757575;
+            //   position: absolute;
+            //   right: 40px;
+            //   top: 18%;
+            //   content: "/24";
+            // }
+
+            & .time-label {
               position: absolute;
               right: 40px;
-              top: 18%;
-              content: "/24";
+              height: 100%;
+              display: flex;
+              align-items: center;
             }
           }
         }

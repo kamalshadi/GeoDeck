@@ -13,12 +13,21 @@ import { changeSample } from "../../../redux/actions";
 
 const Player = ({ three, changeSample }) => {
   const frame = useRef(null);
+
+  const [currentTime, setCurrentTime] = useState(0);
+
   useEffect(() => {
     frame.current.onchange = (e) => {
-      changeSample({
-        ...three.sample,
-        time: parseInt(e.target.value),
-      });
+
+      if (e.target.value > three.sample.total) {
+        setCurrentTime(three.sample.total);
+      } else {
+        setCurrentTime(parseInt(e.target.value));
+        changeSample({
+          ...three.sample,
+          time: parseInt(e.target.value),
+        });
+      }
     };
   }, []);
 
@@ -35,11 +44,12 @@ const Player = ({ three, changeSample }) => {
         <span>Timestep</span>
         <div className="time-input">
           <input type="number" defaultValue={0} ref={frame} />
+          <div className="time-label">{`/ ${three.sample.total}`}</div>
         </div>
         <CameraOutlined className="geo-icon" />
       </div>
       <div className="player-slider">
-        <Slider min={0} max={30} value={three.sample.time} />
+        <Slider min={0} max={three.sample.total} value={currentTime} />
       </div>
     </div>
   );
