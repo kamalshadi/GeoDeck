@@ -32,7 +32,7 @@ const Player = ({ three, changeSample }) => {
         <StepForwardOutlined className="geo-icon" />
       </div>
       <div className="player-input">
-        <span>Time</span>
+        <span>Timestep</span>
         <div className="time-input">
           <input type="number" defaultValue={0} ref={frame} />
         </div>

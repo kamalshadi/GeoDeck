@@ -131,7 +131,7 @@ class ChartSampleScatter extends Component {
           {
             scaleLabel: {
               display: true,
-              labelString: "Time",
+              labelString: "Timestep",
               fontColor: activeGray,
             },
             type: "linear",
