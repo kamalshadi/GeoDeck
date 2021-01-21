@@ -4,27 +4,29 @@ import pressData from "./pressure_point.json";
 import tempData from "./temp_point.json";
 import { ResponsiveLine } from "@nivo/line";
 
+const activeGray = "#d5d5d5";
+const inactiveGray = "#929292";
 const theme = {
-  textColor: "#d5d5d5",
+  textColor: activeGray,
   fontSize: 12,
   axis: {
     domain: {
       line: {
-        stroke: "#d5d5d5",
+        stroke: activeGray,
         strokeWidth: 1,
       },
     },
     ticks: {
       line: {
-        stroke: "#d5d5d5",
+        stroke: activeGray,
         strokeWidth: 1,
       },
     },
   },
   grid: {
     line: {
-      stroke: "#d5d5d5",
-      strokeWidth: 0,
+      stroke: inactiveGray,
+      strokeWidth: 0.5,
     },
   },
 };
@@ -102,7 +104,7 @@ const MyResponsiveLine = ({ three }) => {
         data={three.sample.variable === "Temprature" ? tempData : data}
         // margin={{ top: 10, right: 0, bottom: 40, left: 50 }}
         // margin={{ top: 50, right: 10, bottom: 50, left: 60 }}
-        margin={{ top: 20, right: 20, bottom: 60, left: 60 }}
+        margin={{ top: 20, right: 25, bottom: 60, left: 60 }}
         xScale={{ type: "point" }}
         yScale={{
           type: "linear",
