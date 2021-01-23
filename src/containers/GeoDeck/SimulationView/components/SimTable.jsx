@@ -110,7 +110,7 @@ const SimTable = ({ simulation, controlBar, editSimulation }) => {
           onClick={onSubmit}
           disabled={_.isEqual(parameters, newParameters)}
         >
-          Regenerate Data
+          Run
         </button>
       </div>
     </React.Fragment>

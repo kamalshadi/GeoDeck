@@ -29,51 +29,51 @@ const theme = {
 const data = [
   {
     country: "1.6k",
-    burger: 53,
-    burgerColor: "#FFCE56",
+    pressure: 53,
+    pressureColor: "#FFCE56",
   },
   {
     country: "1.7k",
-    burger: 100,
-    burgerColor: "#FFCE56",
+    pressure: 100,
+    pressureColor: "#FFCE56",
   },
   {
     country: "1.8k",
-    burger: 153,
-    burgerColor: "#FFCE56",
+    pressure: 153,
+    pressureColor: "#FFCE56",
   },
   {
     country: "1.9k",
-    burger: 43,
-    burgerColor: "#FFCE56",
+    pressure: 43,
+    pressureColor: "#FFCE56",
   },
   {
     country: "2.0k",
-    burger: 11,
-    burgerColor: "#FFCE56",
+    pressure: 11,
+    pressureColor: "#FFCE56",
   },
 ];
 
 const dataT = [
   {
     country: "100",
-    burger: 23,
-    burgerColor: "#FFCE56",
+    pressure: 23,
+    pressureColor: "#FFCE56",
   },
   {
     country: "110",
-    burger: 89,
-    burgerColor: "#FFCE56",
+    pressure: 89,
+    pressureColor: "#FFCE56",
   },
   {
     country: "120",
-    burger: 93,
-    burgerColor: "#FFCE56",
+    pressure: 93,
+    pressureColor: "#FFCE56",
   },
   {
     country: "130",
-    burger: 9,
-    burgerColor: "#FFCE56",
+    pressure: 9,
+    pressureColor: "#FFCE56",
   },
 ];
 
@@ -87,7 +87,7 @@ const Dist = ({ three }) => (
     <ResponsiveBar
       data={three.sample.variable === "Temprature" ? dataT : data}
       theme={theme}
-      keys={["burger"]}
+      keys={["pressure"]}
       indexBy="country"
       margin={{ top: 20, right: 20, bottom: 60, left: 60 }}
       // margin={{ top: 40, right: 40, bottom: 60, left: 65 }}

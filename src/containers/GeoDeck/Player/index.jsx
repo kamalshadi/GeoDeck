@@ -44,12 +44,12 @@ const Player = ({ three, changeSample }) => {
         <span style={{fontSize: "15px"}}>Timestep</span>
         <div className="time-input">
           <input type="number" defaultValue={0} ref={frame} />
-          <div className="time-label">{`/ ${three.sample.total}`}</div>
+          <div className="time-label">{`/ ${24}`}</div>
         </div>
         <CameraOutlined className="geo-icon" />
       </div>
       <div className="player-slider">
-        <Slider min={0} max={three.sample.total} value={currentTime} />
+        <Slider min={0} max={24} value={currentTime} />
       </div>
     </div>
   );
